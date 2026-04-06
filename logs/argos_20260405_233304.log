@@ -1,0 +1,37 @@
+2026-04-05 23:33:05 - [INFO] - Cambiando a tab:  verificador
+2026-04-05 23:33:06 - [INFO] - Argos iniciado correctamente
+2026-04-05 23:33:10 - [INFO] - Cambiando a tab:  generador
+2026-04-05 23:33:26 - [INFO] - Certificado cargado: Q-AR-05917-T-0 - BIDCOM - LAVAVAJILLAS ELÉCTRICO.pdf
+2026-04-05 23:33:28 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-04-05 23:33:28 - [INFO] - [M3] Modo: comun
+2026-04-05 23:33:28 - [INFO] - [M3] Archivo: Q-AR-05917-T-0 - BIDCOM - LAVAVAJILLAS ELÉCTRICO.pdf
+2026-04-05 23:33:28 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-04-05 23:33:28 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-04-05 23:33:28 - [INFO] - [M3] ── Nro. Certificado : Q-AR-05917-T-0
+2026-04-05 23:33:28 - [INFO] - [M3] ── OEC detectado   : Quektra
+2026-04-05 23:33:28 - [INFO] - [M3] ── Normas          : IEC 60335-2-5:2012 + A1:2018 Ed. 6.1
+2026-04-05 23:33:28 - [INFO] - [M3] ── Fecha emisión   : [no encontrada]
+2026-04-05 23:33:28 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-04-05 23:33:28 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)
+2026-04-05 23:33:28 - [INFO] - [M3] Extrayendo datos del producto...
+2026-04-05 23:33:28 - [INFO] - [M3] ── Marca           : GADNIC
+2026-04-05 23:33:28 - [INFO] - [M3] ── Fabricante      : SHAANXI KONKA SMART HOME APPLIANCE CO., LTD.
+2026-04-05 23:33:28 - [INFO] - [M3] ── Producto desc   : Lavavajillas eléctrico
+2026-04-05 23:33:28 - [INFO] - [M3] ── Modelos         : GADW14
+2026-04-05 23:33:28 - [INFO] - [M3] ── Specs           : 220-240 V~; 50 Hz; 1900 W; Clase I; IPX1
+2026-04-05 23:33:28 - [INFO] - [M3] ── Fecha emisión   : 01/04/2026
+2026-04-05 23:33:28 - [INFO] - [M3] ── Fecha venc.     : 31/03/2028
+2026-04-05 23:33:28 - [INFO] - [M3] Armando datos finales DJC...
+2026-04-05 23:33:28 - [INFO] - [M3] Bidcom manual: 'C444' → ID: DJC-SE-0426-C444-QKA-V1
+2026-04-05 23:33:28 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-04-05 23:33:28 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-04-05 23:33:29 - [INFO] - Vista DJC renderizada correctamente
+2026-04-05 23:33:35 - [INFO] - === GENERANDO DJC ===
+2026-04-05 23:33:35 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0426-C444-QKA-V1_djc.docx
+2026-04-05 23:33:44 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0426-C444-QKA-V1.pdf
+2026-04-05 23:33:44 - [INFO] - [M3] DJC Codificada — Fabricante original: 'SHAANXI KONKA SMART HOME APPLIANCE CO., ...'
+2026-04-05 23:33:44 - [INFO] - [M3] DJC Codificada — Texto de resguardo: 'Información Restringida - Res. SIyC 237/2024 (China)'
+2026-04-05 23:33:44 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0426-C444-QKA-V1_djc_2.docx
+2026-04-05 23:33:52 - [INFO] - [M3] Certificado censurado guardado en: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0426-C444-QKA-V1_cert_cod.pdf
+2026-04-05 23:33:53 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0426-C444-QKA-V1_1775442832.pdf
+2026-04-05 23:34:08 - [INFO] - [M3] El usuario descartó las DJC generadas temporalmente.
