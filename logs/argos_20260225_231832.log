@@ -1,0 +1,110 @@
+2026-02-25 23:18:33 - [INFO] - Cambiando a tab:  verificador
+2026-02-25 23:18:33 - [INFO] - Argos iniciado correctamente
+2026-02-25 23:18:35 - [INFO] - Cambiando a tab:  generador
+2026-02-25 23:18:58 - [INFO] - Certificado cargado: CASO 8 Seguridad electrica.pdf
+2026-02-25 23:18:59 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-02-25 23:18:59 - [INFO] - [M3] Archivo: CASO 8 Seguridad electrica.pdf
+2026-02-25 23:19:00 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-02-25 23:19:00 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-02-25 23:19:00 - [INFO] - [M3] ── Nro. Certificado : LCSH-2058
+2026-02-25 23:19:00 - [INFO] - [M3] ── OEC detectado   : Lenor
+2026-02-25 23:19:00 - [INFO] - [M3] ── Normas          : IEC 17067, IEC 60335-2-80:, IEC 60335-1:
+2026-02-25 23:19:00 - [INFO] - [M3] ── Fecha emisión   : 10/02/2026
+2026-02-25 23:19:00 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-02-25 23:19:00 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)
+2026-02-25 23:19:00 - [INFO] - [M3] Extrayendo datos del producto...
+2026-02-25 23:19:00 - [INFO] - [M3] ── Marca           : GADNIC
+2026-02-25 23:19:00 - [INFO] - [M3] ── Fabricante      : Jiaxing Quancheng Inflatable Products Co., Ltd.
+2026-02-25 23:19:00 - [INFO] - [M3] ── Producto desc   : Soplador eléctrico
+2026-02-25 23:19:00 - [INFO] - [M3] ── Modelos         : BA6800, BMBE35, PSC74, PROY56, BAM953
+2026-02-25 23:19:00 - [INFO] - [M3] ── Specs           : 220V~; 50Hz; 250W; Clase I
+2026-02-25 23:19:00 - [INFO] - [M3] ── Fecha emisión   : 10/02/2026
+2026-02-25 23:19:00 - [INFO] - [M3] ── Fecha venc.     : 10/02/2028
+2026-02-25 23:19:00 - [INFO] - [M3] Armando datos finales DJC...
+2026-02-25 23:19:00 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-02-25 23:19:00 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-02-25 23:19:01 - [INFO] - Vista DJC renderizada correctamente
+2026-02-25 23:19:31 - [INFO] - === GENERANDO DJC ===
+2026-02-25 23:19:32 - [INFO] - [M3] DJC Word guardada en: C:\Users\FDean\Documents\DJC generadas\c999\DJC-SE-202602-c999-LEN-V1.docx
+2026-02-25 23:19:35 - [INFO] - DJC generada: C:\Users\FDean\Documents\DJC generadas\c999\DJC-SE-202602-c999-LEN-V1.docx
+2026-02-25 23:20:48 - [INFO] - Cambiando a tab:  generador
+2026-02-25 23:21:05 - [INFO] - Certificado cargado: certificado caso 3 Seguridad en juguetes.PDF
+2026-02-25 23:21:08 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-02-25 23:21:08 - [INFO] - [M3] Archivo: certificado caso 3 Seguridad en juguetes.PDF
+2026-02-25 23:21:08 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-02-25 23:21:08 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-02-25 23:21:08 - [INFO] - [M3] ── Nro. Certificado : LCJ-15734
+2026-02-25 23:21:08 - [INFO] - [M3] ── OEC detectado   : Lenor
+2026-02-25 23:21:08 - [INFO] - [M3] ── Normas          : NM 300-1:2003, NM 300-, NM 300-3:2003
+2026-02-25 23:21:08 - [INFO] - [M3] ── Fecha emisión   : 19/01/2026
+2026-02-25 23:21:08 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-02-25 23:21:08 - [INFO] - [M3] ── Reglamento      : Res. SCT Nº 163/2004 (Juguetes – vigente)
+2026-02-25 23:21:08 - [INFO] - [M3] Extrayendo datos del producto...
+2026-02-25 23:21:08 - [INFO] - [M3] ── Marca           : GADNIC / MAWE
+2026-02-25 23:21:08 - [INFO] - [M3] ── Fabricante      : Linyi Huacen Plastic Technology Co., Ltd.
+2026-02-25 23:21:08 - [INFO] - [M3] ── Producto desc   : ALFOMBRA DIDACTICA PRIMERA INFANCIA
+2026-02-25 23:21:08 - [INFO] - [M3] ── Modelos         : HYU543, HFO789
+2026-02-25 23:21:08 - [INFO] - [M3] ── Specs           : [vacías]
+2026-02-25 23:21:08 - [INFO] - [M3] ── Fecha emisión   : 19/01/2026
+2026-02-25 23:21:08 - [INFO] - [M3] ── Fecha venc.     : 18/01/2027
+2026-02-25 23:21:08 - [INFO] - [M3] Armando datos finales DJC...
+2026-02-25 23:21:08 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-02-25 23:21:08 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-02-25 23:21:09 - [INFO] - Vista DJC renderizada correctamente
+2026-02-25 23:22:35 - [INFO] - === GENERANDO DJC ===
+2026-02-25 23:22:36 - [INFO] - [M3] DJC Word guardada en: C:\Users\FDean\Documents\DJC generadas\XXXX\DJC-SJ-202602-XXXX-LEN-V1.docx
+2026-02-25 23:22:44 - [INFO] - DJC generada: C:\Users\FDean\Documents\DJC generadas\XXXX\DJC-SJ-202602-XXXX-LEN-V1.docx
+2026-02-25 23:23:32 - [INFO] - Cambiando a tab:  generador
+2026-02-25 23:26:53 - [INFO] - Certificado cargado: CASO 6 certificado.pdf
+2026-02-25 23:26:55 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-02-25 23:26:55 - [INFO] - [M3] Archivo: CASO 6 certificado.pdf
+2026-02-25 23:26:55 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-02-25 23:26:55 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-02-25 23:26:55 - [INFO] - [M3] ── Nro. Certificado : IACSA-0146/310
+2026-02-25 23:26:55 - [INFO] - [M3] ── OEC detectado   : Intertek
+2026-02-25 23:26:55 - [INFO] - [M3] ── Normas          : IEC 17067, IEC 60335-1:, IEC 60335-2-27:
+2026-02-25 23:26:55 - [INFO] - [M3] ── Fecha emisión   : [no encontrada]
+2026-02-25 23:26:55 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-02-25 23:26:55 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)
+2026-02-25 23:26:55 - [INFO] - [M3] Extrayendo datos del producto...
+2026-02-25 23:26:55 - [INFO] - [M3] ── Marca           : GADNIC.
+2026-02-25 23:26:55 - [INFO] - [M3] ── Fabricante      : Guangzhou Konmison Electronic Technology Co., LTD. // 6th Fl
+2026-02-25 23:26:55 - [INFO] - [M3] ── Producto desc   : Máscara Facial LED.
+2026-02-25 23:26:55 - [INFO] - [M3] ── Modelos         : 1) LM1010; 2) GRSR75; 3) ETYQ5; 4) LDM1010; 5) LDM110; 6) LEDSK10A; 7) LDHN502; 
+2026-02-25 23:26:55 - [INFO] - [M3] ── Specs           : 17,9Vcc; 0,35A; 6,2W; Clase III.
+2026-02-25 23:26:55 - [INFO] - [M3] ── Fecha emisión   : 06/12/2023
+2026-02-25 23:26:55 - [INFO] - [M3] ── Fecha venc.     : 05/12/2025
+2026-02-25 23:26:55 - [INFO] - [M3] Armando datos finales DJC...
+2026-02-25 23:26:55 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-02-25 23:26:55 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-02-25 23:26:56 - [INFO] - Vista DJC renderizada correctamente
+2026-02-25 23:27:47 - [INFO] - === GENERANDO DJC ===
+2026-02-25 23:27:47 - [INFO] - [M3] DJC Word guardada en: C:\Users\FDean\Documents\DJC generadas\C888\DJC-SE-202602-C888-INT-V1.docx
+2026-02-25 23:27:55 - [INFO] - DJC generada: C:\Users\FDean\Documents\DJC generadas\C888\DJC-SE-202602-C888-INT-V1.docx
+2026-02-25 23:30:18 - [INFO] - Cambiando a tab:  generador
+2026-02-25 23:30:31 - [INFO] - Certificado cargado: caso 7 Quektra.pdf
+2026-02-25 23:30:33 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-02-25 23:30:33 - [INFO] - [M3] Archivo: caso 7 Quektra.pdf
+2026-02-25 23:30:33 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-02-25 23:30:33 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-02-25 23:30:33 - [INFO] - [M3] ── Nro. Certificado : Q-AR-02839
+2026-02-25 23:30:33 - [INFO] - [M3] ── OEC detectado   : Quektra
+2026-02-25 23:30:33 - [INFO] - [M3] ── Normas          : IEC 17067, IEC 60335-2-29:2016
+2026-02-25 23:30:33 - [INFO] - [M3] ── Fecha emisión   : [no encontrada]
+2026-02-25 23:30:33 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-02-25 23:30:33 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. I (Fuentes y Cargadores)
+2026-02-25 23:30:33 - [INFO] - [M3] Extrayendo datos del producto...
+2026-02-25 23:30:33 - [INFO] - [M3] ── Marca           : GADNIC
+2026-02-25 23:30:33 - [INFO] - [M3] ── Fabricante      : ZHEJIANG QIMO INTELLIGENT TECHNOLOGY CO., LTD.
+2026-02-25 23:30:33 - [INFO] - [M3] ── Producto desc   : Cargador de batería para taladro inalámbrico
+2026-02-25 23:30:33 - [INFO] - [M3] ── Modelos         : D35R, DESE8130R, DL350, PER3.5, TAL35, VKKDN3992
+2026-02-25 23:30:33 - [INFO] - [M3] ── Specs           : Entrada: 100-240 V~; 50-60 Hz; 2 A; Salida: 18 V⎓; 1,5 A; Clase II
+2026-02-25 23:30:33 - [INFO] - [M3] ── Fecha emisión   : 21/04/2025
+2026-02-25 23:30:33 - [INFO] - [M3] ── Fecha venc.     : 21/04/2027
+2026-02-25 23:30:33 - [INFO] - [M3] Armando datos finales DJC...
+2026-02-25 23:30:33 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-02-25 23:30:33 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-02-25 23:30:34 - [INFO] - Vista DJC renderizada correctamente
+2026-02-25 23:31:08 - [INFO] - === GENERANDO DJC ===
+2026-02-25 23:31:08 - [INFO] - [M3] DJC Word guardada en: C:\Users\FDean\Documents\DJC generadas\C777\DJC-SE-202602-C777-QUE-V1.docx
+2026-02-25 23:31:16 - [INFO] - DJC generada: C:\Users\FDean\Documents\DJC generadas\C777\DJC-SE-202602-C777-QUE-V1.docx

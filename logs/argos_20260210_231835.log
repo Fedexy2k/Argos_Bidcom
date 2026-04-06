@@ -1,0 +1,290 @@
+2026-02-10 23:18:36 - [INFO] - Argos iniciado correctamente
+2026-02-10 23:18:42 - [INFO] - Datasheet cargado: C:/Users/FDean/Antigravity/Argos Proyect/Datasheet caso 5 seguridad electrica.xlsx
+2026-02-10 23:18:42 - [INFO] - Parseando datasheet...
+2026-02-10 23:18:42 - [INFO] - Datasheet parseado: SEGURIDAD_ELECTRICA - GADNIC - 96 modelo(s)
+2026-02-10 23:18:44 - [INFO] - 1 certificado(s) agregado(s)
+2026-02-10 23:18:45 - [INFO] - === INICIANDO AUDITORÍA ===
+2026-02-10 23:18:45 - [INFO] - Datasheet: C:/Users/FDean/Antigravity/Argos Proyect/Datasheet caso 5 seguridad electrica.xlsx
+2026-02-10 23:18:45 - [INFO] - Certificados: 1
+2026-02-10 23:18:45 - [INFO] - Mapeado: SEGURIDAD_ELECTRICA -> Certificado Caso 5 seguridad electrica.pdf
+2026-02-10 23:18:45 - [INFO] - Ejecutando auditoría con estrategias adaptativas...
+2026-02-10 23:18:45 - [INFO] - 
+2026-02-10 23:18:45 - [INFO] - ╔══════════════════════════════════════════╗
+2026-02-10 23:18:45 - [INFO] - ║  INICIANDO AUDITORÍA MULTICERTIFICADO   ║
+2026-02-10 23:18:45 - [INFO] - ╚══════════════════════════════════════════╝
+2026-02-10 23:18:45 - [INFO] - 
+2026-02-10 23:18:45 - [INFO] - Certificados requeridos: 1
+2026-02-10 23:18:45 - [INFO] -   1. SEGURIDAD_ELECTRICA
+2026-02-10 23:18:45 - [INFO] - 
+2026-02-10 23:18:45 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-10 23:18:45 - [INFO] - PROCESANDO: SEGURIDAD_ELECTRICA
+2026-02-10 23:18:45 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-10 23:18:45 - [INFO] - 📄 PDF: Certificado Caso 5 seguridad electrica.pdf
+2026-02-10 23:18:45 - [DEBUG] -   Path completo: C:/Users/FDean/Antigravity/Argos Proyect/Certificado Caso 5 seguridad electrica.pdf
+2026-02-10 23:18:45 - [DEBUG] - Extrayendo texto del PDF...
+2026-02-10 23:18:45 - [INFO] - ✓ Texto extraído: 4305 caracteres
+2026-02-10 23:18:45 - [DEBUG] -   Primeros 200 caracteres: Producto
+Masajeador.
+Product 
+BIDCOM S.R.L.
+Av. Bouchard 468 5º I, C.A.B.A., Argentina.
+Fábrica / Dirección
+GADNIC.
+Trade mark
+Model or type
+74621-1527-110605.
+SHITSUKE S.R.L.
+02/08/2024.
+Remarks
+Firm...
+2026-02-10 23:18:45 - [DEBUG] - Tipo de producto: SEGURIDAD_ELECTRICA
+2026-02-10 23:18:45 - [DEBUG] - 
+=== DETECCIÓN DE ESTRATEGIA DE VALIDACIÓN ===
+2026-02-10 23:18:45 - [DEBUG] - Tipo de producto: SEGURIDAD_ELECTRICA
+2026-02-10 23:18:45 - [DEBUG] - Analizando contenido del certificado...
+2026-02-10 23:18:45 - [INFO] - ✓ Estrategia detectada: ESTÁNDAR
+2026-02-10 23:18:45 - [DEBUG] - No se detectaron keywords especiales - Usando validación estándar
+2026-02-10 23:18:45 - [INFO] - 
+2026-02-10 23:18:45 - [INFO] - === Validación con Estrategia Estándar ===
+2026-02-10 23:18:45 - [DEBUG] - 
+>> Validando campo: MARCA (Hard Match)
+2026-02-10 23:18:45 - [DEBUG] -    Esperado: "GADNIC"
+2026-02-10 23:18:45 - [DEBUG] -    Buscando en PDF...
+2026-02-10 23:18:45 - [DEBUG] -    Valores a buscar: ['GADNIC']
+2026-02-10 23:18:45 - [INFO] -    ✓ Marca: Match encontrado - "GADNIC"
+2026-02-10 23:18:45 - [DEBUG] - 
+>> Validando MODELOS (Lista completa)
+2026-02-10 23:18:45 - [DEBUG] -    Modelos esperados: ['LMSK60F', 'MASLD16', 'MSJ160K', 'LEDKS900', 'FCEMSK9', 'MJU915', 'MGUN50', 'M166JGE', 'MSUC16', 'OCMX18', 'OMAJ250', 'MJ34OP', 'MJE1720', 'M1723U', 'MAGN189', 'KSMG63', 'MGGER88', 'KSG880', 'MAJG9091', 'MGU1955', 'MJG19H', 'MFRAD350', 'CPFK305', 'CPA315R', 'MCP300U', 'MEF1405', 'MJ741KL', 'MEG921B', 'M21KD', 'MMN35GK', 'JSU8817', 'LMASK9', 'MSJE970', 'MSJ921Q', 'WM930E', 'MJJ584', 'D1E7F5G4', 'MSJ199', 'MSSJ292', 'QM4088A', 'RJ9600', 'MMT101', 'REJ977', 'GN112W', 'MSX924B', 'L1J6X8B9V', 'U2V9W7X8', 'CEP1', 'RELAX', 'S3H7N5D1Z', 'WMJ4.5', 'RDTH5', '5F4', 'MQ17MSJ', 'MM1L22T', 'MJ17400', 'MM4.0A', 'MGUNV4', 'MP904', 'MSJDR5', 'MTJ4700', 'MSJ174', 'NMAJ71', 'MSJ141', 'DGN1740', 'M35B890', 'DK-11', '9GN870', 'SJSIE91', 'DGJ186', 'VJ970MJ', 'MPS57', 'RELAX-M60SJ', 'GUNAX', '48392NGN', 'GJFU82', 'MSJ3', 'RELAX-M144SJ', 'EM23878', 'RELAX-M23SJ', 'IT4J2K5', 'KSL-199', 'VU178', 'SLKEI9920', 'MRT567', 'GJFU84', 'CEPF1000', 'CF1010', 'CP1010', 'PL155MJ', 'CPF03', '21MKS', 'IT4J2K8', 'SLO101', 'KL51', 'TIMU3']
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "LMSK60F"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MASLD16"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MSJ160K"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "LEDKS900"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "FCEMSK9"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MJU915"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MGUN50"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "M166JGE"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MSUC16"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "OCMX18"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "OMAJ250"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MJ34OP"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MJE1720"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "M1723U"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MAGN189"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "KSMG63"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MGGER88"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "KSG880"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MAJG9091"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MGU1955"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MJG19H"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MFRAD350"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "CPFK305"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "CPA315R"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MCP300U"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MEF1405"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MJ741KL"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MEG921B"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "M21KD"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MMN35GK"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "JSU8817"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "LMASK9"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MSJE970"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MSJ921Q"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "WM930E"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MJJ584"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "D1E7F5G4"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MSJ199"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MSSJ292"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "QM4088A"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "RJ9600"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MMT101"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "REJ977"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "GN112W"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MSX924B"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "L1J6X8B9V"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "U2V9W7X8"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "CEP1"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "RELAX"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "S3H7N5D1Z"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "WMJ4.5"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "RDTH5"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "5F4"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MQ17MSJ"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MM1L22T"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MJ17400"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MM4.0A"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MGUNV4"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MP904"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MSJDR5"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MTJ4700"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MSJ174"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "NMAJ71"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MSJ141"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "DGN1740"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "M35B890"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "DK-11"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "9GN870"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "SJSIE91"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "DGJ186"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "VJ970MJ"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MPS57"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "RELAX-M60SJ"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "GUNAX"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "48392NGN"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "GJFU82"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MSJ3"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "RELAX-M144SJ"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "EM23878"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "RELAX-M23SJ"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "IT4J2K5"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "KSL-199"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "VU178"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "SLKEI9920"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "MRT567"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "GJFU84"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "CEPF1000"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "CF1010"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "CP1010"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "PL155MJ"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "CPF03"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "21MKS"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "IT4J2K8"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "SLO101"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "KL51"
+2026-02-10 23:18:45 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:18:45 - [DEBUG] -    Buscando modelo: "TIMU3"
+2026-02-10 23:18:45 - [DEBUG] -       → No encontrado
+2026-02-10 23:18:45 - [ERROR] -    ❌ MODELOS: Faltan 1 de 96
+2026-02-10 23:18:45 - [DEBUG] -    Faltantes: ['TIMU3']
+2026-02-10 23:18:45 - [DEBUG] - 
+>> Validando campo: FÁBRICA (Fuzzy Match, threshold=85%)
+2026-02-10 23:18:45 - [DEBUG] -    Esperado: ['Dongyang Xiaoqi Industry & Trade Co., Ltd']
+2026-02-10 23:18:45 - [DEBUG] -    Buscando coincidencias fuzzy...
+2026-02-10 23:18:45 - [DEBUG] -    - "Dongyang Xiaoqi Industry & Trade Co., Ltd": 100% similitud
+2026-02-10 23:18:45 - [INFO] -    ✓ Fábrica: Match aceptable (100% >= 85%)
+2026-02-10 23:18:45 - [DEBUG] - 
+>> Validando campo: DIRECCIÓN FÁBRICA (Fuzzy Match, threshold=85%)
+2026-02-10 23:18:45 - [DEBUG] -    Esperado: ['3rd Floor, No. 77 Ma Xiang Road, Baiyun Street, Dongyang City, Zhejiang Province, China.']
+2026-02-10 23:18:45 - [DEBUG] -    Buscando coincidencias fuzzy...
+2026-02-10 23:18:45 - [DEBUG] -    - "3rd Floor, No. 77 Ma Xiang Road, Baiyun Street, Dongyang City, Zhejiang Province, China.": 100% similitud
+2026-02-10 23:18:45 - [INFO] -    ✓ Dirección Fábrica: Match aceptable (100% >= 85%)
+2026-02-10 23:18:45 - [DEBUG] - 
+>> Validando campo: SPECS TÉCNICAS
+2026-02-10 23:18:45 - [DEBUG] -    Specs individuales a buscar: 1
+2026-02-10 23:18:45 - [INFO] -    ✓ Specs Técnicas: Todas encontradas
+2026-02-10 23:18:45 - [INFO] - 
+2026-02-10 23:18:45 - [ERROR] - Estado: FAIL (1 errores críticos)
+2026-02-10 23:18:45 - [INFO] - 
+2026-02-10 23:18:45 - [INFO] - ════════════════════════════════════════════════════════════
+2026-02-10 23:18:45 - [INFO] - AUDITORÍA COMPLETADA - Estado global: FAIL
+2026-02-10 23:18:45 - [INFO] - ════════════════════════════════════════════════════════════
+2026-02-10 23:18:45 - [INFO] - 
+2026-02-10 23:18:45 - [INFO] - Auditoría completada. Estado: FAIL
+2026-02-10 23:18:45 - [INFO] - Mostrando pantalla de resultados...
+2026-02-10 23:18:45 - [INFO] - Main frame oculto correctamente
+2026-02-10 23:18:45 - [INFO] - Estado global auditoría: FAIL
+2026-02-10 23:18:45 - [INFO] - Scroll frame creado
+2026-02-10 23:18:45 - [INFO] - Procesando 1 certificados en UI
+2026-02-10 23:18:45 - [INFO] - Creando tarjeta para: CERT_SEGURIDAD_ELECTRICA
+2026-02-10 23:18:46 - [INFO] - Pantalla de resultados renderizada completamente
+2026-02-10 23:19:59 - [INFO] - 🔄 Cambio manual: Modelos -> OK
+2026-02-10 23:19:59 - [INFO] - ⚡ Recalculando estado global...
+2026-02-10 23:20:00 - [INFO] - 🔄 Cambio manual: Modelos -> FAIL
+2026-02-10 23:20:00 - [INFO] - ⚡ Recalculando estado global...
+2026-02-10 23:20:02 - [INFO] - 🔄 Cambio manual: Modelos -> OK
+2026-02-10 23:20:02 - [INFO] - ⚡ Recalculando estado global...
+2026-02-10 23:20:03 - [INFO] - 🔄 Cambio manual: Modelos -> FAIL
+2026-02-10 23:20:03 - [INFO] - ⚡ Recalculando estado global...

@@ -1,0 +1,7 @@
+2026-02-10 22:58:09 - [INFO] - Argos iniciado correctamente
+2026-02-10 22:58:34 - [INFO] - Datasheet cargado: C:/Users/FDean/Antigravity/Argos Proyect/Datasheet caso 5 seguridad electrica.xlsx
+2026-02-10 22:58:35 - [INFO] - Parseando datasheet...
+2026-02-10 22:58:35 - [ERROR] - Error al parsear datasheet: 'DatasheetParser' object has no attribute 'logger'
+2026-02-10 22:58:42 - [INFO] - Datasheet cargado: C:/Users/FDean/Antigravity/Argos Proyect/Datasheet caso 5 seguridad electrica.xlsx
+2026-02-10 22:58:42 - [INFO] - Parseando datasheet...
+2026-02-10 22:58:42 - [ERROR] - Error al parsear datasheet: 'DatasheetParser' object has no attribute 'logger'

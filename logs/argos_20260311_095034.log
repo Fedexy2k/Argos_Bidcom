@@ -1,0 +1,125 @@
+2026-03-11 09:50:35 - [INFO] - Cambiando a tab:  verificador
+2026-03-11 09:50:36 - [INFO] - Argos iniciado correctamente
+2026-03-11 09:50:41 - [INFO] - Cambiando a tab:  generador
+2026-03-11 09:51:17 - [INFO] - Certificado cargado: LCSH-2259.pdf
+2026-03-11 09:51:19 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-03-11 09:51:19 - [INFO] - [M3] Modo: comun
+2026-03-11 09:51:19 - [INFO] - [M3] Archivo: LCSH-2259.pdf
+2026-03-11 09:51:19 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-03-11 09:51:19 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-03-11 09:51:19 - [INFO] - [M3] ── Nro. Certificado : LCSH-2259
+2026-03-11 09:51:19 - [INFO] - [M3] ── OEC detectado   : Lenor
+2026-03-11 09:51:19 - [INFO] - [M3] ── Normas          : IEC 60335-2-7: 2024 (Ed. 9.0), IEC 60335-1: 2020 (Ed. 6.0)
+2026-03-11 09:51:19 - [INFO] - [M3] ── Fecha emisión   : 10/02/2026
+2026-03-11 09:51:19 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-03-11 09:51:19 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)
+2026-03-11 09:51:19 - [INFO] - [M3] Extrayendo datos del producto...
+2026-03-11 09:51:19 - [INFO] - [M3] ── Marca           : GADNIC
+2026-03-11 09:51:19 - [INFO] - [M3] ── Fabricante      : Jiangsu Konka Smart Electrical Appliances Co., Ltd.
+2026-03-11 09:51:19 - [INFO] - [M3] ── Producto desc   : Lavarropas
+2026-03-11 09:51:19 - [INFO] - [M3] ── Modelos         : GAD-WM60, GAD-WM80, GAD-WM120, GAD-WM60B, GAD-WM80B, GAD-WM120B
+2026-03-11 09:51:19 - [INFO] - [M3] ── Specs           : 220-240 V~; 50 Hz; 1850 W; IPX4; Clase I
+2026-03-11 09:51:19 - [INFO] - [M3] ── Fecha emisión   : 10/02/2026
+2026-03-11 09:51:19 - [INFO] - [M3] ── Fecha venc.     : 10/02/2028
+2026-03-11 09:51:19 - [INFO] - [M3] Armando datos finales DJC...
+2026-03-11 09:51:20 - [INFO] - [M3] Bidcom manual: 'C862' → ID: DJC-SE-0326-C862-LNR-V1
+2026-03-11 09:51:20 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-03-11 09:51:20 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-03-11 09:51:20 - [INFO] - Vista DJC renderizada correctamente
+2026-03-11 09:51:32 - [INFO] - === GENERANDO DJC ===
+2026-03-11 09:51:32 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C862-LNR-V1_djc_14.docx
+2026-03-11 09:51:51 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C862-LNR-V1_1773233504.pdf
+2026-03-11 09:51:51 - [INFO] - [M3] DJC Codificada — Fabricante original: 'Jiangsu Konka Smart Electrical Appliance...'
+2026-03-11 09:51:51 - [INFO] - [M3] DJC Codificada — Texto de resguardo: 'Información Restringida - Res. SIyC 237/2024 (China)'
+2026-03-11 09:51:52 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C862-LNR-V1_djc_15.docx
+2026-03-11 09:51:59 - [INFO] - [M3] Certificado censurado guardado en: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C862-LNR-V1_cert_cod.pdf
+2026-03-11 09:52:06 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C862-LNR-V1_1773233519.pdf
+2026-03-11 10:15:20 - [INFO] - [M3] El usuario descartó las DJC generadas temporalmente.
+2026-03-11 10:15:22 - [INFO] - Cambiando a tab:  generador
+2026-03-11 10:15:57 - [INFO] - Certificado cargado: LCSH-2259.pdf
+2026-03-11 10:16:11 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-03-11 10:16:11 - [INFO] - [M3] Modo: comun
+2026-03-11 10:16:11 - [INFO] - [M3] Archivo: LCSH-2259.pdf
+2026-03-11 10:16:11 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-03-11 10:16:11 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-03-11 10:16:11 - [INFO] - [M3] ── Nro. Certificado : LCSH-2259
+2026-03-11 10:16:11 - [INFO] - [M3] ── OEC detectado   : Lenor
+2026-03-11 10:16:11 - [INFO] - [M3] ── Normas          : IEC 60335-2-7: 2024 (Ed. 9.0), IEC 60335-1: 2020 (Ed. 6.0)
+2026-03-11 10:16:11 - [INFO] - [M3] ── Fecha emisión   : 10/02/2026
+2026-03-11 10:16:11 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-03-11 10:16:11 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)
+2026-03-11 10:16:11 - [INFO] - [M3] Extrayendo datos del producto...
+2026-03-11 10:16:11 - [INFO] - [M3] ── Marca           : GADNIC
+2026-03-11 10:16:11 - [INFO] - [M3] ── Fabricante      : Jiangsu Konka Smart Electrical Appliances Co., Ltd.
+2026-03-11 10:16:11 - [INFO] - [M3] ── Producto desc   : Lavarropas
+2026-03-11 10:16:11 - [INFO] - [M3] ── Modelos         : GAD-WM60, GAD-WM80, GAD-WM120, GAD-WM60B, GAD-WM80B, GAD-WM120B
+2026-03-11 10:16:11 - [INFO] - [M3] ── Specs           : 220-240 V~; 50 Hz; 1850 W; IPX4; Clase I
+2026-03-11 10:16:11 - [INFO] - [M3] ── Fecha emisión   : 10/02/2026
+2026-03-11 10:16:11 - [INFO] - [M3] ── Fecha venc.     : 10/02/2028
+2026-03-11 10:16:11 - [INFO] - [M3] Armando datos finales DJC...
+2026-03-11 10:16:11 - [INFO] - [M3] Bidcom manual: 'C862' → ID: DJC-SE-0326-C862-LNR-V1
+2026-03-11 10:16:11 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-03-11 10:16:11 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-03-11 10:16:13 - [INFO] - Vista DJC renderizada correctamente
+2026-03-11 10:18:47 - [INFO] - === GENERANDO DJC ===
+2026-03-11 10:18:47 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C862-LNR-V1_djc_16.docx
+2026-03-11 10:19:19 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C862-LNR-V1_1773235147.pdf
+2026-03-11 10:19:19 - [INFO] - [M3] DJC Codificada — Fabricante original: 'Jiangsu Konka Smart Electrical Appliance...'
+2026-03-11 10:19:19 - [INFO] - [M3] DJC Codificada — Texto de resguardo: 'Información Restringida - Res. SIyC 237/2024 (China)'
+2026-03-11 10:19:20 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C862-LNR-V1_djc_17.docx
+2026-03-11 10:19:31 - [INFO] - [M3] Certificado censurado guardado en: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C862-LNR-V1_cert_cod.pdf
+2026-03-11 10:19:41 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C862-LNR-V1_1773235171.pdf
+2026-03-11 10:21:46 - [INFO] - [M3] Guardado final (solo PDF final): C:\Users\FDean\Documents\DJC generadas\C862\DJC-SE-0326-C862-LNR-V1.pdf
+2026-03-11 10:21:46 - [INFO] - [M3] Guardado final (solo PDF final): C:\Users\FDean\Documents\DJC generadas\C862\DJC-SE-0326-C862-LNR-V1_1773235306.pdf
+2026-03-11 10:21:46 - [INFO] - [M3] === GENERACIÓN FINALIZADA Y GUARDADA ===
+2026-03-11 10:23:10 - [INFO] - Cambiando a tab:  generador
+2026-03-11 10:23:31 - [INFO] - Certificado cargado: LCSH-2259.pdf
+2026-03-11 10:23:37 - [INFO] - Nota de extensión cargada: Nota de ExtensiÃ³n Bidcom SRL 02-26 (2).pdf
+2026-03-11 10:23:39 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-03-11 10:23:39 - [INFO] - [M3] Modo: extension
+2026-03-11 10:23:39 - [INFO] - [M3] Archivo: LCSH-2259.pdf
+2026-03-11 10:23:39 - [INFO] - [M3] Extensiones seleccionadas: Bemotec S.R.L., Calitec S.R.L., Caba Innovaciones S.R.L., Eucaforest S.R.L., Bfoot S.R.L., Foretec S.R.L., Compra Rápido S.R.L.
+2026-03-11 10:23:39 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-03-11 10:23:39 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-03-11 10:23:39 - [INFO] - [M3] ── Nro. Certificado : LCSH-2259
+2026-03-11 10:23:39 - [INFO] - [M3] ── OEC detectado   : Lenor
+2026-03-11 10:23:39 - [INFO] - [M3] ── Normas          : IEC 60335-2-7: 2024 (Ed. 9.0), IEC 60335-1: 2020 (Ed. 6.0)
+2026-03-11 10:23:39 - [INFO] - [M3] ── Fecha emisión   : 10/02/2026
+2026-03-11 10:23:39 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-03-11 10:23:39 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)
+2026-03-11 10:23:39 - [INFO] - [M3] Extrayendo datos del producto...
+2026-03-11 10:23:39 - [INFO] - [M3] ── Marca           : GADNIC
+2026-03-11 10:23:39 - [INFO] - [M3] ── Fabricante      : Jiangsu Konka Smart Electrical Appliances Co., Ltd.
+2026-03-11 10:23:39 - [INFO] - [M3] ── Producto desc   : Lavarropas
+2026-03-11 10:23:39 - [INFO] - [M3] ── Modelos         : GAD-WM60, GAD-WM80, GAD-WM120, GAD-WM60B, GAD-WM80B, GAD-WM120B
+2026-03-11 10:23:39 - [INFO] - [M3] ── Specs           : 220-240 V~; 50 Hz; 1850 W; IPX4; Clase I
+2026-03-11 10:23:39 - [INFO] - [M3] ── Fecha emisión   : 10/02/2026
+2026-03-11 10:23:39 - [INFO] - [M3] ── Fecha venc.     : 10/02/2028
+2026-03-11 10:23:39 - [INFO] - [M3] Armando datos finales DJC...
+2026-03-11 10:23:39 - [INFO] - [M3] Bidcom manual: 'C862' → ID: DJC-SE-0326-C862-LNR-V1
+2026-03-11 10:23:39 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-03-11 10:23:39 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-03-11 10:23:40 - [INFO] - Vista DJC renderizada correctamente
+2026-03-11 10:24:01 - [INFO] - === GENERANDO DJC ===
+2026-03-11 10:24:01 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C862-LNR-BEMO-V1_djc.docx
+2026-03-11 10:24:23 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C862-LNR-BEMO-V1.pdf
+2026-03-11 10:24:23 - [INFO] - [M3] ✓ Extensión Bemotec S.R.L. completada
+2026-03-11 10:24:24 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C862-LNR-CALI-V1_djc.docx
+2026-03-11 10:24:44 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C862-LNR-CALI-V1.pdf
+2026-03-11 10:24:44 - [INFO] - [M3] ✓ Extensión Calitec S.R.L. completada
+2026-03-11 10:24:44 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C862-LNR-CABA-V1_djc.docx
+2026-03-11 10:25:02 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C862-LNR-CABA-V1.pdf
+2026-03-11 10:25:02 - [INFO] - [M3] ✓ Extensión Caba Innovaciones S.R.L. completada
+2026-03-11 10:25:03 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C862-LNR-EUCA-V1_djc.docx
+2026-03-11 10:25:26 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C862-LNR-EUCA-V1.pdf
+2026-03-11 10:25:26 - [INFO] - [M3] ✓ Extensión Eucaforest S.R.L. completada
+2026-03-11 10:25:26 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C862-LNR-BFOO-V1_djc.docx
+2026-03-11 10:25:46 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C862-LNR-BFOO-V1.pdf
+2026-03-11 10:25:46 - [INFO] - [M3] ✓ Extensión Bfoot S.R.L. completada
+2026-03-11 10:25:47 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C862-LNR-FORE-V1_djc.docx
+2026-03-11 10:25:58 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C862-LNR-FORE-V1.pdf
+2026-03-11 10:25:58 - [INFO] - [M3] ✓ Extensión Foretec S.R.L. completada
+2026-03-11 10:25:58 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C862-LNR-COMP-V1_djc.docx
+2026-03-11 10:26:09 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C862-LNR-COMP-V1.pdf
+2026-03-11 10:26:09 - [INFO] - [M3] ✓ Extensión Compra Rápido S.R.L. completada
+2026-03-11 10:26:37 - [INFO] - [M3] El usuario descartó las DJC generadas temporalmente.

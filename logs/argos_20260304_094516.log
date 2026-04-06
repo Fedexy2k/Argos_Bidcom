@@ -1,0 +1,38 @@
+2026-03-04 09:45:19 - [INFO] - Cambiando a tab:  verificador
+2026-03-04 09:45:20 - [INFO] - Argos iniciado correctamente
+2026-03-04 09:45:58 - [INFO] - Cambiando a tab:  generador
+2026-03-04 12:43:48 - [INFO] - Nota de extensión cargada: Nota de ExtensiÃ³n Bidcom SRL 02-26 (2).pdf
+2026-03-04 12:44:15 - [INFO] - Nota de extensión cargada: DJC11982SE - BIDCOM - TCSE-IACSA-0146-324.1.pdf
+2026-03-04 12:44:24 - [INFO] - Nota de extensión cargada: Nota de ExtensiÃ³n Bidcom SRL 02-26 (2).pdf
+2026-03-04 12:44:26 - [INFO] - Certificado cargado: DJC11982SE - BIDCOM - TCSE-IACSA-0146-324.1.pdf
+2026-03-04 12:44:43 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-03-04 12:44:43 - [INFO] - [M3] Modo: extension
+2026-03-04 12:44:43 - [INFO] - [M3] Archivo: DJC11982SE - BIDCOM - TCSE-IACSA-0146-324.1.pdf
+2026-03-04 12:44:43 - [INFO] - [M3] Extensiones seleccionadas: Compra Rápido S.R.L.
+2026-03-04 12:44:43 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-03-04 12:44:43 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-03-04 12:44:43 - [INFO] - [M3] ── Nro. Certificado : IACSA-0146/324
+2026-03-04 12:44:43 - [INFO] - [M3] ── OEC detectado   : Intertek
+2026-03-04 12:44:43 - [INFO] - [M3] ── Normas          : IEC 60335-1: 2020 (Ed. 6.0) + IEC 60335-2-2: 2019 (Ed. 7.0)
+2026-03-04 12:44:43 - [INFO] - [M3] ── Fecha emisión   : [no encontrada]
+2026-03-04 12:44:43 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-03-04 12:44:43 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)
+2026-03-04 12:44:43 - [INFO] - [M3] Extrayendo datos del producto...
+2026-03-04 12:44:43 - [INFO] - [M3] ── Marca           : GADNIC.
+2026-03-04 12:44:43 - [INFO] - [M3] ── Fabricante      : Zhejiang Yili Machinery And Electric Co., Ltd // No.111 Ling
+2026-03-04 12:44:43 - [INFO] - [M3] ── Producto desc   : Aspiradora.
+2026-03-04 12:44:43 - [INFO] - [M3] ── Modelos         : 1) FKN700; 2) FKN70; 3) FKN75; 4) FKN750; 5) FKN760; 6) MCA650; 7) MCA65; 8) MCA
+2026-03-04 12:44:43 - [INFO] - [M3] ── Specs           : 220V~; 50Hz; IPX4; Clase I; 1-5) 700W; 6-10) 450W; 11-15) 400W.
+2026-03-04 12:44:43 - [INFO] - [M3] ── Fecha emisión   : [no extraída]
+2026-03-04 12:44:43 - [INFO] - [M3] ── Fecha venc.     : [no extraída]
+2026-03-04 12:44:43 - [INFO] - [M3] Armando datos finales DJC...
+2026-03-04 12:44:43 - [INFO] - [M3] Bidcom manual: 'C558' → ID: DJC-SE-0326-C558-ITK-V1
+2026-03-04 12:44:43 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-03-04 12:44:43 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-03-04 12:44:43 - [INFO] - Vista DJC renderizada correctamente
+2026-03-04 12:45:38 - [INFO] - === GENERANDO DJC ===
+2026-03-04 12:45:39 - [INFO] - [M3] DJC Word guardada en: C:\Users\FDean\Documents\DJC generadas\C558\Extensiones\Compra Rápido S.R.L.\DJC-SE-0326-C558-ITK-COMP-V1_djc.docx
+2026-03-04 12:45:42 - [INFO] - [M3] ✓ PDF final: C:\Users\FDean\Documents\DJC generadas\C558\Extensiones\Compra Rápido S.R.L.\DJC-SE-0326-C558-ITK-COMP-V1.pdf
+2026-03-04 12:45:42 - [INFO] - [M3] ✓ Extensión Compra Rápido S.R.L. completada
+2026-03-04 12:45:42 - [INFO] - [M3] === 1 extensiones generadas ===
+2026-03-04 12:45:42 - [INFO] -   → DJC-SE-0326-C558-ITK-COMP-V1.pdf

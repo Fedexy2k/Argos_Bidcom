@@ -1,0 +1,38 @@
+2026-02-26 11:03:04 - [INFO] - Cambiando a tab:  verificador
+2026-02-26 11:03:04 - [INFO] - Argos iniciado correctamente
+2026-02-26 11:03:06 - [INFO] - Cambiando a tab:  generador
+2026-02-26 11:04:38 - [INFO] - Certificado cargado: DJC12992SE_COD - BIDCOM - TCSE-IACSA-0146-413.1 (1).pdf
+2026-02-26 11:04:47 - [INFO] - Nota de extensión cargada: Nota de ExtensiÃ³n Bidcom SRL 02-26 (1).pdf
+2026-02-26 11:05:40 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-02-26 11:05:40 - [INFO] - [M3] Modo: extension
+2026-02-26 11:05:40 - [INFO] - [M3] Archivo: DJC12992SE_COD - BIDCOM - TCSE-IACSA-0146-413.1 (1).pdf
+2026-02-26 11:05:40 - [INFO] - [M3] Extensiones seleccionadas: Caba Innovaciones S.R.L.
+2026-02-26 11:05:40 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-02-26 11:05:40 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-02-26 11:05:40 - [INFO] - [M3] ── Nro. Certificado : IACSA-0146/413
+2026-02-26 11:05:40 - [INFO] - [M3] ── OEC detectado   : Intertek
+2026-02-26 11:05:40 - [INFO] - [M3] ── Normas          : IEC 60335-1:, IEC 60335-2-15:, IEC 17067
+2026-02-26 11:05:40 - [INFO] - [M3] ── Fecha emisión   : [no encontrada]
+2026-02-26 11:05:40 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-02-26 11:05:40 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)
+2026-02-26 11:05:40 - [INFO] - [M3] Extrayendo datos del producto...
+2026-02-26 11:05:40 - [INFO] - [M3] ── Marca           : GADNIC.
+2026-02-26 11:05:40 - [INFO] - [M3] ── Fabricante      : TCSE-IACSA-0146/413.1 - F14.
+2026-02-26 11:05:40 - [INFO] - [M3] ── Producto desc   : Yogurtera Eléctrica.
+2026-02-26 11:05:40 - [INFO] - [M3] ── Modelos         : 1) YG20; 2) YG20A; 3) YO8021; 4) CR501L; 5) YE1500; 6) YMK20U; 7) YUG21E; 8) FYO
+2026-02-26 11:05:40 - [INFO] - [M3] ── Specs           : 220-240Vca; 50/60Hz; 20W; Clase II.
+2026-02-26 11:05:40 - [INFO] - [M3] ── Fecha emisión   : 16/10/2025
+2026-02-26 11:05:40 - [INFO] - [M3] ── Fecha venc.     : 16/10/2027
+2026-02-26 11:05:40 - [INFO] - [M3] Armando datos finales DJC...
+2026-02-26 11:05:40 - [INFO] - [M3] Bidcom manual: 'C64' → ID: DJC-SE-0226-C64-OEC-V1
+2026-02-26 11:05:40 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-02-26 11:05:40 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-02-26 11:05:41 - [INFO] - Vista DJC renderizada correctamente
+2026-02-26 11:06:46 - [INFO] - === GENERANDO DJC ===
+2026-02-26 11:06:46 - [ERROR] - Error generando DJC: name 'soc_codigo' is not defined
+2026-02-26 11:06:46 - [ERROR] - Traceback (most recent call last):
+  File "C:\Users\FDean\Antigravity\Argos Proyect\argos_main.py", line 1367, in _execute_djc_generation
+    ext_data["djc_id"] = f"{m_ver.group(1)}-{soc_codigo}{m_ver.group(2)}"
+                                             ^^^^^^^^^^
+NameError: name 'soc_codigo' is not defined
+

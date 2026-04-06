@@ -1,0 +1,473 @@
+2026-02-10 19:32:06 - [INFO] - Argos iniciado correctamente
+2026-02-10 19:32:14 - [INFO] - Tema cambiado a: Matrix
+2026-02-10 19:32:45 - [INFO] - Datasheet cargado: C:/Users/FDean/Antigravity/Argos Proyect/Datasheet caso 4 convenio.xlsx
+2026-02-10 19:32:47 - [INFO] - Parseando datasheet...
+2026-02-10 19:32:47 - [INFO] - Datasheet parseado: SEGURIDAD_ELECTRICA - DJI - 1 modelo(s)
+2026-02-10 19:32:48 - [INFO] - 1 certificado(s) agregado(s)
+2026-02-10 19:32:49 - [INFO] - === INICIANDO AUDITORÍA ===
+2026-02-10 19:32:49 - [INFO] - Datasheet: C:/Users/FDean/Antigravity/Argos Proyect/Datasheet caso 4 convenio.xlsx
+2026-02-10 19:32:49 - [INFO] - Certificados: 1
+2026-02-10 19:32:50 - [INFO] - Mapeado: SEGURIDAD_ELECTRICA -> datasheet caso 4 CE.pdf
+2026-02-10 19:32:50 - [INFO] - Ejecutando auditoría con estrategias adaptativas...
+2026-02-10 19:32:50 - [INFO] - 
+2026-02-10 19:32:50 - [INFO] - ╔══════════════════════════════════════════╗
+2026-02-10 19:32:50 - [INFO] - ║  INICIANDO AUDITORÍA MULTICERTIFICADO   ║
+2026-02-10 19:32:50 - [INFO] - ╚══════════════════════════════════════════╝
+2026-02-10 19:32:50 - [INFO] - 
+2026-02-10 19:32:50 - [INFO] - Certificados requeridos: 1
+2026-02-10 19:32:50 - [INFO] -   1. SEGURIDAD_ELECTRICA
+2026-02-10 19:32:50 - [INFO] - 
+2026-02-10 19:32:50 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-10 19:32:50 - [INFO] - PROCESANDO: SEGURIDAD_ELECTRICA
+2026-02-10 19:32:50 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-10 19:32:50 - [INFO] - 📄 PDF: datasheet caso 4 CE.pdf
+2026-02-10 19:32:50 - [DEBUG] -   Path completo: C:/Users/FDean/Antigravity/Argos Proyect/datasheet caso 4 CE.pdf
+2026-02-10 19:32:50 - [DEBUG] - Extrayendo texto del PDF...
+2026-02-10 19:32:50 - [INFO] - ✓ Texto extraído: 2898 caracteres
+2026-02-10 19:32:50 - [DEBUG] -   Primeros 200 caracteres: 10/061SMD 2024-12 rke-simplified
+ Ref. Certif. No. 
+JPTUV-180629 
+IEC SYSTEM FOR MUTUAL RECOGNITION OF TEST CERTIFICATES FOR ELECTRICAL EQUIPMENT 
+(IECEE) CB SCHEME 
+CB TEST CERTIFICATE 
+Product 
+Port...
+2026-02-10 19:32:50 - [DEBUG] - Tipo de producto: SEGURIDAD_ELECTRICA
+2026-02-10 19:32:50 - [DEBUG] - 
+=== DETECCIÓN DE ESTRATEGIA DE VALIDACIÓN ===
+2026-02-10 19:32:50 - [DEBUG] - Tipo de producto: SEGURIDAD_ELECTRICA
+2026-02-10 19:32:50 - [DEBUG] - Analizando contenido del certificado...
+2026-02-10 19:32:50 - [INFO] - ✓ Estrategia detectada: CB SCHEME
+2026-02-10 19:32:50 - [DEBUG] - Keywords encontradas: CB Scheme / IECEE
+2026-02-10 19:32:50 - [INFO] - 
+2026-02-10 19:32:50 - [INFO] - === Validación con CB SCHEME STRATEGY ===
+2026-02-10 19:32:50 - [INFO] - Tipo de certificado: SEGURIDAD_ELECTRICA
+2026-02-10 19:32:50 - [DEBUG] - CB Scheme: Estructura internacional estandarizada
+2026-02-10 19:32:50 - [DEBUG] - Campo MARCA en CB: Aparece como 'Trademark' o 'Brand'
+2026-02-10 19:32:50 - [DEBUG] - 
+>> Validando campo: MARCA (Hard Match)
+2026-02-10 19:32:50 - [DEBUG] -    Esperado: "DJI"
+2026-02-10 19:32:50 - [DEBUG] -    Buscando en PDF...
+2026-02-10 19:32:50 - [DEBUG] -    Valores a buscar: ['DJI']
+2026-02-10 19:32:50 - [INFO] -    ✓ Marca: Match encontrado - "DJI"
+2026-02-10 19:32:50 - [DEBUG] - Campo MODELO en CB: Aparece como 'Model' o 'Type Reference'
+2026-02-10 19:32:50 - [DEBUG] - 
+>> Validando MODELOS (Lista completa)
+2026-02-10 19:32:50 - [DEBUG] -    Modelos esperados: ['DYM1000M']
+2026-02-10 19:32:50 - [DEBUG] -    Buscando modelo: "DYM1000M"
+2026-02-10 19:32:50 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 19:32:50 - [INFO] -    ✓ MODELOS: Todos encontrados (1 modelos)
+2026-02-10 19:32:50 - [DEBUG] - Campo FÁBRICA: Threshold relajado (70%) por formato variable
+2026-02-10 19:32:50 - [DEBUG] - 
+>> Validando campo: FÁBRICA (Fuzzy Match, threshold=70%)
+2026-02-10 19:32:50 - [DEBUG] -    Esperado: ['Lobby of T2, DJI Sky City, No. 53 Xianyuan Road, Xili Community, Xili Street, Nanshan District, Shenzhen, China.']
+2026-02-10 19:32:50 - [DEBUG] -    Buscando coincidencias fuzzy...
+2026-02-10 19:32:50 - [DEBUG] -    - "Lobby of T2, DJI Sky City, No. 53 Xianyuan Road, Xili Community, Xili Street, Nanshan District, Shenzhen, China.": 96% similitud
+2026-02-10 19:32:50 - [INFO] -    ✓ Fábrica: Match aceptable (96% >= 70%)
+2026-02-10 19:32:50 - [DEBUG] - Validando especificaciones técnicas (voltajes, potencias...)
+2026-02-10 19:32:50 - [DEBUG] - 
+>> Validando ESPECIFICACIONES TÉCNICAS (CB Scheme)
+2026-02-10 19:32:50 - [DEBUG] -    Specs desde datasheet: Estación de energía portátil
+
+- Especificaciones eléctricas:
+
+Entradas:
+
+- CA: 220-240 V~, 50/60Hz, ...
+2026-02-10 19:32:50 - [DEBUG] -    Valores técnicos en datasheet: {'2200W', '60Hz', '12W', '240 V~', '50Hz', '105 A', '20V⎓', '1000W', '100W', '230V~', '1008 W', '960 W', '5V⎓', '4,5A', '100 A', '60 Hz', '400W', '2,4A', '800W', '220 V~', '300W', '9,6V⎓', '240V~', '5A', '28V⎓'}
+2026-02-10 19:32:50 - [DEBUG] -    Valores técnicos en certificado: 26 encontrados
+2026-02-10 19:32:50 - [DEBUG] -    Coincidencias: {'1000W', '2200W', '100W', '300W', '60Hz', '12W', '400W', '5A', '50Hz', '800W'}
+2026-02-10 19:32:50 - [WARNING] -    ⚠️ SPECS: Match parcial (10/25 valores)
+2026-02-10 19:32:50 - [INFO] - 
+2026-02-10 19:32:50 - [WARNING] - Estado: WARNING (1 advertencias)
+2026-02-10 19:32:50 - [INFO] - 
+2026-02-10 19:32:50 - [INFO] - ════════════════════════════════════════════════════════════
+2026-02-10 19:32:50 - [INFO] - AUDITORÍA COMPLETADA - Estado global: WARNING
+2026-02-10 19:32:50 - [INFO] - ════════════════════════════════════════════════════════════
+2026-02-10 19:32:50 - [INFO] - 
+2026-02-10 19:32:50 - [INFO] - Auditoría completada. Estado: WARNING
+2026-02-10 19:33:04 - [INFO] - Tema cambiado a: Claro
+2026-02-10 19:33:45 - [INFO] - Tema cambiado a: Oscuro
+2026-02-10 19:33:49 - [INFO] - Tema cambiado a: Matrix
+2026-02-10 19:33:51 - [INFO] - Tema cambiado a: Claro
+2026-02-10 19:33:57 - [INFO] - Datasheet cargado: C:/Users/FDean/Antigravity/Argos Proyect/Datasheet caso 4 convenio.xlsx
+2026-02-10 19:33:57 - [INFO] - Parseando datasheet...
+2026-02-10 19:33:57 - [INFO] - Datasheet parseado: SEGURIDAD_ELECTRICA - DJI - 1 modelo(s)
+2026-02-10 19:33:58 - [INFO] - 1 certificado(s) agregado(s)
+2026-02-10 19:34:00 - [INFO] - === INICIANDO AUDITORÍA ===
+2026-02-10 19:34:00 - [INFO] - Datasheet: C:/Users/FDean/Antigravity/Argos Proyect/Datasheet caso 4 convenio.xlsx
+2026-02-10 19:34:00 - [INFO] - Certificados: 2
+2026-02-10 19:34:00 - [INFO] - Mapeado: SEGURIDAD_ELECTRICA -> datasheet caso 4 CE.pdf
+2026-02-10 19:34:00 - [INFO] - Ejecutando auditoría con estrategias adaptativas...
+2026-02-10 19:34:00 - [INFO] - 
+2026-02-10 19:34:00 - [INFO] - ╔══════════════════════════════════════════╗
+2026-02-10 19:34:00 - [INFO] - ║  INICIANDO AUDITORÍA MULTICERTIFICADO   ║
+2026-02-10 19:34:00 - [INFO] - ╚══════════════════════════════════════════╝
+2026-02-10 19:34:00 - [INFO] - 
+2026-02-10 19:34:00 - [INFO] - Certificados requeridos: 1
+2026-02-10 19:34:00 - [INFO] -   1. SEGURIDAD_ELECTRICA
+2026-02-10 19:34:00 - [INFO] - 
+2026-02-10 19:34:00 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-10 19:34:00 - [INFO] - PROCESANDO: SEGURIDAD_ELECTRICA
+2026-02-10 19:34:00 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-10 19:34:00 - [INFO] - 📄 PDF: datasheet caso 4 CE.pdf
+2026-02-10 19:34:00 - [DEBUG] -   Path completo: C:/Users/FDean/Antigravity/Argos Proyect/datasheet caso 4 CE.pdf
+2026-02-10 19:34:00 - [DEBUG] - Extrayendo texto del PDF...
+2026-02-10 19:34:00 - [INFO] - ✓ Texto extraído: 2898 caracteres
+2026-02-10 19:34:00 - [DEBUG] -   Primeros 200 caracteres: 10/061SMD 2024-12 rke-simplified
+ Ref. Certif. No. 
+JPTUV-180629 
+IEC SYSTEM FOR MUTUAL RECOGNITION OF TEST CERTIFICATES FOR ELECTRICAL EQUIPMENT 
+(IECEE) CB SCHEME 
+CB TEST CERTIFICATE 
+Product 
+Port...
+2026-02-10 19:34:00 - [DEBUG] - Tipo de producto: SEGURIDAD_ELECTRICA
+2026-02-10 19:34:00 - [DEBUG] - 
+=== DETECCIÓN DE ESTRATEGIA DE VALIDACIÓN ===
+2026-02-10 19:34:00 - [DEBUG] - Tipo de producto: SEGURIDAD_ELECTRICA
+2026-02-10 19:34:00 - [DEBUG] - Analizando contenido del certificado...
+2026-02-10 19:34:00 - [INFO] - ✓ Estrategia detectada: CB SCHEME
+2026-02-10 19:34:00 - [DEBUG] - Keywords encontradas: CB Scheme / IECEE
+2026-02-10 19:34:00 - [INFO] - 
+2026-02-10 19:34:00 - [INFO] - === Validación con CB SCHEME STRATEGY ===
+2026-02-10 19:34:00 - [INFO] - Tipo de certificado: SEGURIDAD_ELECTRICA
+2026-02-10 19:34:00 - [DEBUG] - CB Scheme: Estructura internacional estandarizada
+2026-02-10 19:34:00 - [DEBUG] - Campo MARCA en CB: Aparece como 'Trademark' o 'Brand'
+2026-02-10 19:34:00 - [DEBUG] - 
+>> Validando campo: MARCA (Hard Match)
+2026-02-10 19:34:00 - [DEBUG] -    Esperado: "DJI"
+2026-02-10 19:34:00 - [DEBUG] -    Buscando en PDF...
+2026-02-10 19:34:00 - [DEBUG] -    Valores a buscar: ['DJI']
+2026-02-10 19:34:00 - [INFO] -    ✓ Marca: Match encontrado - "DJI"
+2026-02-10 19:34:00 - [DEBUG] - Campo MODELO en CB: Aparece como 'Model' o 'Type Reference'
+2026-02-10 19:34:00 - [DEBUG] - 
+>> Validando MODELOS (Lista completa)
+2026-02-10 19:34:00 - [DEBUG] -    Modelos esperados: ['DYM1000M']
+2026-02-10 19:34:00 - [DEBUG] -    Buscando modelo: "DYM1000M"
+2026-02-10 19:34:00 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 19:34:00 - [INFO] -    ✓ MODELOS: Todos encontrados (1 modelos)
+2026-02-10 19:34:00 - [DEBUG] - Campo FÁBRICA: Threshold relajado (70%) por formato variable
+2026-02-10 19:34:00 - [DEBUG] - 
+>> Validando campo: FÁBRICA (Fuzzy Match, threshold=70%)
+2026-02-10 19:34:00 - [DEBUG] -    Esperado: ['Lobby of T2, DJI Sky City, No. 53 Xianyuan Road, Xili Community, Xili Street, Nanshan District, Shenzhen, China.']
+2026-02-10 19:34:00 - [DEBUG] -    Buscando coincidencias fuzzy...
+2026-02-10 19:34:00 - [DEBUG] -    - "Lobby of T2, DJI Sky City, No. 53 Xianyuan Road, Xili Community, Xili Street, Nanshan District, Shenzhen, China.": 96% similitud
+2026-02-10 19:34:00 - [INFO] -    ✓ Fábrica: Match aceptable (96% >= 70%)
+2026-02-10 19:34:00 - [DEBUG] - Validando especificaciones técnicas (voltajes, potencias...)
+2026-02-10 19:34:00 - [DEBUG] - 
+>> Validando ESPECIFICACIONES TÉCNICAS (CB Scheme)
+2026-02-10 19:34:00 - [DEBUG] -    Specs desde datasheet: Estación de energía portátil
+
+- Especificaciones eléctricas:
+
+Entradas:
+
+- CA: 220-240 V~, 50/60Hz, ...
+2026-02-10 19:34:00 - [DEBUG] -    Valores técnicos en datasheet: {'2200W', '60Hz', '12W', '240 V~', '50Hz', '105 A', '20V⎓', '1000W', '100W', '230V~', '1008 W', '960 W', '5V⎓', '4,5A', '100 A', '60 Hz', '400W', '2,4A', '800W', '220 V~', '300W', '9,6V⎓', '240V~', '5A', '28V⎓'}
+2026-02-10 19:34:00 - [DEBUG] -    Valores técnicos en certificado: 26 encontrados
+2026-02-10 19:34:00 - [DEBUG] -    Coincidencias: {'1000W', '2200W', '100W', '300W', '60Hz', '12W', '400W', '5A', '50Hz', '800W'}
+2026-02-10 19:34:00 - [WARNING] -    ⚠️ SPECS: Match parcial (10/25 valores)
+2026-02-10 19:34:00 - [INFO] - 
+2026-02-10 19:34:00 - [WARNING] - Estado: WARNING (1 advertencias)
+2026-02-10 19:34:00 - [INFO] - 
+2026-02-10 19:34:00 - [INFO] - ════════════════════════════════════════════════════════════
+2026-02-10 19:34:00 - [INFO] - AUDITORÍA COMPLETADA - Estado global: WARNING
+2026-02-10 19:34:00 - [INFO] - ════════════════════════════════════════════════════════════
+2026-02-10 19:34:00 - [INFO] - 
+2026-02-10 19:34:00 - [INFO] - Auditoría completada. Estado: WARNING
+2026-02-10 19:35:42 - [INFO] - Volviendo a pantalla principal
+2026-02-10 19:35:44 - [INFO] - Certificado eliminado: datasheet caso 4 CE.pdf
+2026-02-10 19:35:45 - [INFO] - Certificado eliminado: datasheet caso 4 CE.pdf
+2026-02-10 19:37:42 - [INFO] - Datasheet cargado: C:/Users/FDean/Downloads/Datasheet caso 2 juguetes.xlsx
+2026-02-10 19:37:42 - [INFO] - Parseando datasheet...
+2026-02-10 19:37:42 - [INFO] - Datasheet parseado: JUGUETES - GADNIC - 1 modelo(s)
+2026-02-10 19:37:44 - [INFO] - 1 certificado(s) agregado(s)
+2026-02-10 19:37:46 - [INFO] - === INICIANDO AUDITORÍA ===
+2026-02-10 19:37:46 - [INFO] - Datasheet: C:/Users/FDean/Downloads/Datasheet caso 2 juguetes.xlsx
+2026-02-10 19:37:46 - [INFO] - Certificados: 1
+2026-02-10 19:37:46 - [INFO] - Mapeado: SEGURIDAD_JUGUETES -> certificado caso 2 juguetes.PDF
+2026-02-10 19:37:46 - [INFO] - Ejecutando auditoría con estrategias adaptativas...
+2026-02-10 19:37:46 - [INFO] - 
+2026-02-10 19:37:46 - [INFO] - ╔══════════════════════════════════════════╗
+2026-02-10 19:37:46 - [INFO] - ║  INICIANDO AUDITORÍA MULTICERTIFICADO   ║
+2026-02-10 19:37:46 - [INFO] - ╚══════════════════════════════════════════╝
+2026-02-10 19:37:46 - [INFO] - 
+2026-02-10 19:37:46 - [INFO] - Certificados requeridos: 2
+2026-02-10 19:37:46 - [INFO] -   1. SEGURIDAD_JUGUETES
+2026-02-10 19:37:46 - [INFO] -   2. FTALATOS
+2026-02-10 19:37:46 - [INFO] - 
+2026-02-10 19:37:46 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-10 19:37:46 - [INFO] - PROCESANDO: SEGURIDAD_JUGUETES
+2026-02-10 19:37:46 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-10 19:37:46 - [INFO] - 📄 PDF: certificado caso 2 juguetes.PDF
+2026-02-10 19:37:46 - [DEBUG] -   Path completo: C:/Users/FDean/Downloads/certificado caso 2 juguetes.PDF
+2026-02-10 19:37:46 - [DEBUG] - Extrayendo texto del PDF...
+2026-02-10 19:37:46 - [INFO] - ✓ Texto extraído: 6024 caracteres
+2026-02-10 19:37:46 - [DEBUG] -   Primeros 200 caracteres: 1 
+ 
+DECLARACIÓN JURADA DE 
+CONFORMIDAD (DJC) 
+Número de Identificación de DJC 
+13937 JJ 
+ 
+Resolución SCT 163/2005 
+ 
+ 
+  
+Información del Fabricante o Importador 
+   
+● Razón Social 
+BIDCOM S.R.L 
+●...
+2026-02-10 19:37:46 - [DEBUG] - Tipo de producto: JUGUETES
+2026-02-10 19:37:46 - [DEBUG] - 
+=== DETECCIÓN DE ESTRATEGIA DE VALIDACIÓN ===
+2026-02-10 19:37:46 - [DEBUG] - Tipo de producto: JUGUETES
+2026-02-10 19:37:46 - [DEBUG] - Analizando contenido del certificado...
+2026-02-10 19:37:46 - [INFO] - ✓ Estrategia detectada: LENOR TOY
+2026-02-10 19:37:46 - [DEBUG] - Keywords: Lenor + Producto tipo JUGUETES
+2026-02-10 19:37:46 - [INFO] - 
+2026-02-10 19:37:46 - [INFO] - === Validación con LENOR TOY STRATEGY ===
+2026-02-10 19:37:46 - [INFO] - Tipo de certificado: SEGURIDAD_JUGUETES
+2026-02-10 19:37:46 - [DEBUG] - 
+>> Validando campo: MARCA (Hard Match)
+2026-02-10 19:37:46 - [DEBUG] -    Esperado: "GADNIC"
+2026-02-10 19:37:46 - [DEBUG] -    Buscando en PDF...
+2026-02-10 19:37:46 - [DEBUG] -    Valores a buscar: ['GADNIC']
+2026-02-10 19:37:46 - [INFO] -    ✓ Marca: Match encontrado - "GADNIC"
+2026-02-10 19:37:46 - [DEBUG] - 
+>> Validando MODELOS (Lista completa)
+2026-02-10 19:37:46 - [DEBUG] -    Modelos esperados: ['MGN2100B']
+2026-02-10 19:37:46 - [DEBUG] -    Buscando modelo: "MGN2100B"
+2026-02-10 19:37:46 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 19:37:46 - [INFO] -    ✓ MODELOS: Todos encontrados (1 modelos)
+2026-02-10 19:37:46 - [DEBUG] - 
+>> Validando campo: FÁBRICA (Fuzzy Match, threshold=85%)
+2026-02-10 19:37:46 - [DEBUG] -    Esperado: ['Yongkang Zhihao Technology Co., Ltd.']
+2026-02-10 19:37:46 - [DEBUG] -    Buscando coincidencias fuzzy...
+2026-02-10 19:37:46 - [DEBUG] -    - "Yongkang Zhihao Technology Co., Ltd.": 100% similitud
+2026-02-10 19:37:46 - [INFO] -    ✓ Fábrica: Match aceptable (100% >= 85%)
+2026-02-10 19:37:46 - [DEBUG] - 
+>> Validando campo: DIRECCIÓN FÁBRICA (Fuzzy Match, threshold=85%)
+2026-02-10 19:37:46 - [DEBUG] -    Esperado: ['No. 26, Jinshan East Road, Yongkang City, Jin Hua Shi, Zhejiang Sheng Province, China.']
+2026-02-10 19:37:46 - [DEBUG] -    Buscando coincidencias fuzzy...
+2026-02-10 19:37:46 - [DEBUG] -    - "No. 26, Jinshan East Road, Yongkang City, Jin Hua Shi, Zhejiang Sheng Province, China.": 100% similitud
+2026-02-10 19:37:46 - [INFO] -    ✓ Dirección Fábrica: Match aceptable (100% >= 85%)
+2026-02-10 19:37:46 - [INFO] - 
+2026-02-10 19:37:46 - [INFO] - Estado: ✓ OK - Validación exitosa
+2026-02-10 19:37:46 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-10 19:37:46 - [INFO] - PROCESANDO: FTALATOS
+2026-02-10 19:37:46 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-10 19:37:46 - [ERROR] - ❌ Archivo PDF no encontrado para FTALATOS
+2026-02-10 19:37:46 - [DEBUG] -   Path esperado: None
+2026-02-10 19:37:46 - [INFO] - 
+2026-02-10 19:37:46 - [INFO] - ════════════════════════════════════════════════════════════
+2026-02-10 19:37:46 - [INFO] - AUDITORÍA COMPLETADA - Estado global: FAIL
+2026-02-10 19:37:46 - [INFO] - ════════════════════════════════════════════════════════════
+2026-02-10 19:37:46 - [INFO] - 
+2026-02-10 19:37:46 - [INFO] - Auditoría completada. Estado: FAIL
+2026-02-10 19:37:49 - [INFO] - === INICIANDO AUDITORÍA ===
+2026-02-10 19:37:49 - [INFO] - Datasheet: C:/Users/FDean/Downloads/Datasheet caso 2 juguetes.xlsx
+2026-02-10 19:37:49 - [INFO] - Certificados: 1
+2026-02-10 19:37:49 - [INFO] - Mapeado: SEGURIDAD_JUGUETES -> certificado caso 2 juguetes.PDF
+2026-02-10 19:37:49 - [INFO] - Ejecutando auditoría con estrategias adaptativas...
+2026-02-10 19:37:49 - [INFO] - 
+2026-02-10 19:37:49 - [INFO] - ╔══════════════════════════════════════════╗
+2026-02-10 19:37:49 - [INFO] - ║  INICIANDO AUDITORÍA MULTICERTIFICADO   ║
+2026-02-10 19:37:49 - [INFO] - ╚══════════════════════════════════════════╝
+2026-02-10 19:37:49 - [INFO] - 
+2026-02-10 19:37:49 - [INFO] - Certificados requeridos: 2
+2026-02-10 19:37:49 - [INFO] -   1. SEGURIDAD_JUGUETES
+2026-02-10 19:37:49 - [INFO] -   2. FTALATOS
+2026-02-10 19:37:49 - [INFO] - 
+2026-02-10 19:37:49 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-10 19:37:49 - [INFO] - PROCESANDO: SEGURIDAD_JUGUETES
+2026-02-10 19:37:49 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-10 19:37:49 - [INFO] - 📄 PDF: certificado caso 2 juguetes.PDF
+2026-02-10 19:37:49 - [DEBUG] -   Path completo: C:/Users/FDean/Downloads/certificado caso 2 juguetes.PDF
+2026-02-10 19:37:49 - [DEBUG] - Extrayendo texto del PDF...
+2026-02-10 19:37:50 - [INFO] - ✓ Texto extraído: 6024 caracteres
+2026-02-10 19:37:50 - [DEBUG] -   Primeros 200 caracteres: 1 
+ 
+DECLARACIÓN JURADA DE 
+CONFORMIDAD (DJC) 
+Número de Identificación de DJC 
+13937 JJ 
+ 
+Resolución SCT 163/2005 
+ 
+ 
+  
+Información del Fabricante o Importador 
+   
+● Razón Social 
+BIDCOM S.R.L 
+●...
+2026-02-10 19:37:50 - [DEBUG] - Tipo de producto: JUGUETES
+2026-02-10 19:37:50 - [DEBUG] - 
+=== DETECCIÓN DE ESTRATEGIA DE VALIDACIÓN ===
+2026-02-10 19:37:50 - [DEBUG] - Tipo de producto: JUGUETES
+2026-02-10 19:37:50 - [DEBUG] - Analizando contenido del certificado...
+2026-02-10 19:37:50 - [INFO] - ✓ Estrategia detectada: LENOR TOY
+2026-02-10 19:37:50 - [DEBUG] - Keywords: Lenor + Producto tipo JUGUETES
+2026-02-10 19:37:50 - [INFO] - 
+2026-02-10 19:37:50 - [INFO] - === Validación con LENOR TOY STRATEGY ===
+2026-02-10 19:37:50 - [INFO] - Tipo de certificado: SEGURIDAD_JUGUETES
+2026-02-10 19:37:50 - [DEBUG] - 
+>> Validando campo: MARCA (Hard Match)
+2026-02-10 19:37:50 - [DEBUG] -    Esperado: "GADNIC"
+2026-02-10 19:37:50 - [DEBUG] -    Buscando en PDF...
+2026-02-10 19:37:50 - [DEBUG] -    Valores a buscar: ['GADNIC']
+2026-02-10 19:37:50 - [INFO] -    ✓ Marca: Match encontrado - "GADNIC"
+2026-02-10 19:37:50 - [DEBUG] - 
+>> Validando MODELOS (Lista completa)
+2026-02-10 19:37:50 - [DEBUG] -    Modelos esperados: ['MGN2100B']
+2026-02-10 19:37:50 - [DEBUG] -    Buscando modelo: "MGN2100B"
+2026-02-10 19:37:50 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 19:37:50 - [INFO] -    ✓ MODELOS: Todos encontrados (1 modelos)
+2026-02-10 19:37:50 - [DEBUG] - 
+>> Validando campo: FÁBRICA (Fuzzy Match, threshold=85%)
+2026-02-10 19:37:50 - [DEBUG] -    Esperado: ['Yongkang Zhihao Technology Co., Ltd.']
+2026-02-10 19:37:50 - [DEBUG] -    Buscando coincidencias fuzzy...
+2026-02-10 19:37:50 - [DEBUG] -    - "Yongkang Zhihao Technology Co., Ltd.": 100% similitud
+2026-02-10 19:37:50 - [INFO] -    ✓ Fábrica: Match aceptable (100% >= 85%)
+2026-02-10 19:37:50 - [DEBUG] - 
+>> Validando campo: DIRECCIÓN FÁBRICA (Fuzzy Match, threshold=85%)
+2026-02-10 19:37:50 - [DEBUG] -    Esperado: ['No. 26, Jinshan East Road, Yongkang City, Jin Hua Shi, Zhejiang Sheng Province, China.']
+2026-02-10 19:37:50 - [DEBUG] -    Buscando coincidencias fuzzy...
+2026-02-10 19:37:50 - [DEBUG] -    - "No. 26, Jinshan East Road, Yongkang City, Jin Hua Shi, Zhejiang Sheng Province, China.": 100% similitud
+2026-02-10 19:37:50 - [INFO] -    ✓ Dirección Fábrica: Match aceptable (100% >= 85%)
+2026-02-10 19:37:50 - [INFO] - 
+2026-02-10 19:37:50 - [INFO] - Estado: ✓ OK - Validación exitosa
+2026-02-10 19:37:50 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-10 19:37:50 - [INFO] - PROCESANDO: FTALATOS
+2026-02-10 19:37:50 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-10 19:37:50 - [ERROR] - ❌ Archivo PDF no encontrado para FTALATOS
+2026-02-10 19:37:50 - [DEBUG] -   Path esperado: None
+2026-02-10 19:37:50 - [INFO] - 
+2026-02-10 19:37:50 - [INFO] - ════════════════════════════════════════════════════════════
+2026-02-10 19:37:50 - [INFO] - AUDITORÍA COMPLETADA - Estado global: FAIL
+2026-02-10 19:37:50 - [INFO] - ════════════════════════════════════════════════════════════
+2026-02-10 19:37:50 - [INFO] - 
+2026-02-10 19:37:50 - [INFO] - Auditoría completada. Estado: FAIL
+2026-02-10 19:38:03 - [INFO] - 1 certificado(s) agregado(s)
+2026-02-10 19:38:04 - [INFO] - === INICIANDO AUDITORÍA ===
+2026-02-10 19:38:04 - [INFO] - Datasheet: C:/Users/FDean/Downloads/Datasheet caso 2 juguetes.xlsx
+2026-02-10 19:38:04 - [INFO] - Certificados: 2
+2026-02-10 19:38:04 - [INFO] - Mapeado: SEGURIDAD_JUGUETES -> certificado caso 2 juguetes.PDF
+2026-02-10 19:38:04 - [INFO] - Mapeado: FTALATOS -> certificado caso 2 ftalatos.PDF
+2026-02-10 19:38:04 - [INFO] - Ejecutando auditoría con estrategias adaptativas...
+2026-02-10 19:38:04 - [INFO] - 
+2026-02-10 19:38:04 - [INFO] - ╔══════════════════════════════════════════╗
+2026-02-10 19:38:04 - [INFO] - ║  INICIANDO AUDITORÍA MULTICERTIFICADO   ║
+2026-02-10 19:38:04 - [INFO] - ╚══════════════════════════════════════════╝
+2026-02-10 19:38:04 - [INFO] - 
+2026-02-10 19:38:04 - [INFO] - Certificados requeridos: 2
+2026-02-10 19:38:04 - [INFO] -   1. SEGURIDAD_JUGUETES
+2026-02-10 19:38:04 - [INFO] -   2. FTALATOS
+2026-02-10 19:38:04 - [INFO] - 
+2026-02-10 19:38:04 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-10 19:38:04 - [INFO] - PROCESANDO: SEGURIDAD_JUGUETES
+2026-02-10 19:38:04 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-10 19:38:04 - [INFO] - 📄 PDF: certificado caso 2 juguetes.PDF
+2026-02-10 19:38:04 - [DEBUG] -   Path completo: C:/Users/FDean/Downloads/certificado caso 2 juguetes.PDF
+2026-02-10 19:38:04 - [DEBUG] - Extrayendo texto del PDF...
+2026-02-10 19:38:04 - [INFO] - ✓ Texto extraído: 6024 caracteres
+2026-02-10 19:38:04 - [DEBUG] -   Primeros 200 caracteres: 1 
+ 
+DECLARACIÓN JURADA DE 
+CONFORMIDAD (DJC) 
+Número de Identificación de DJC 
+13937 JJ 
+ 
+Resolución SCT 163/2005 
+ 
+ 
+  
+Información del Fabricante o Importador 
+   
+● Razón Social 
+BIDCOM S.R.L 
+●...
+2026-02-10 19:38:04 - [DEBUG] - Tipo de producto: JUGUETES
+2026-02-10 19:38:04 - [DEBUG] - 
+=== DETECCIÓN DE ESTRATEGIA DE VALIDACIÓN ===
+2026-02-10 19:38:04 - [DEBUG] - Tipo de producto: JUGUETES
+2026-02-10 19:38:04 - [DEBUG] - Analizando contenido del certificado...
+2026-02-10 19:38:04 - [INFO] - ✓ Estrategia detectada: LENOR TOY
+2026-02-10 19:38:04 - [DEBUG] - Keywords: Lenor + Producto tipo JUGUETES
+2026-02-10 19:38:04 - [INFO] - 
+2026-02-10 19:38:04 - [INFO] - === Validación con LENOR TOY STRATEGY ===
+2026-02-10 19:38:04 - [INFO] - Tipo de certificado: SEGURIDAD_JUGUETES
+2026-02-10 19:38:04 - [DEBUG] - 
+>> Validando campo: MARCA (Hard Match)
+2026-02-10 19:38:04 - [DEBUG] -    Esperado: "GADNIC"
+2026-02-10 19:38:04 - [DEBUG] -    Buscando en PDF...
+2026-02-10 19:38:04 - [DEBUG] -    Valores a buscar: ['GADNIC']
+2026-02-10 19:38:04 - [INFO] -    ✓ Marca: Match encontrado - "GADNIC"
+2026-02-10 19:38:04 - [DEBUG] - 
+>> Validando MODELOS (Lista completa)
+2026-02-10 19:38:04 - [DEBUG] -    Modelos esperados: ['MGN2100B']
+2026-02-10 19:38:04 - [DEBUG] -    Buscando modelo: "MGN2100B"
+2026-02-10 19:38:04 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 19:38:04 - [INFO] -    ✓ MODELOS: Todos encontrados (1 modelos)
+2026-02-10 19:38:04 - [DEBUG] - 
+>> Validando campo: FÁBRICA (Fuzzy Match, threshold=85%)
+2026-02-10 19:38:04 - [DEBUG] -    Esperado: ['Yongkang Zhihao Technology Co., Ltd.']
+2026-02-10 19:38:04 - [DEBUG] -    Buscando coincidencias fuzzy...
+2026-02-10 19:38:04 - [DEBUG] -    - "Yongkang Zhihao Technology Co., Ltd.": 100% similitud
+2026-02-10 19:38:04 - [INFO] -    ✓ Fábrica: Match aceptable (100% >= 85%)
+2026-02-10 19:38:04 - [DEBUG] - 
+>> Validando campo: DIRECCIÓN FÁBRICA (Fuzzy Match, threshold=85%)
+2026-02-10 19:38:04 - [DEBUG] -    Esperado: ['No. 26, Jinshan East Road, Yongkang City, Jin Hua Shi, Zhejiang Sheng Province, China.']
+2026-02-10 19:38:04 - [DEBUG] -    Buscando coincidencias fuzzy...
+2026-02-10 19:38:04 - [DEBUG] -    - "No. 26, Jinshan East Road, Yongkang City, Jin Hua Shi, Zhejiang Sheng Province, China.": 100% similitud
+2026-02-10 19:38:04 - [INFO] -    ✓ Dirección Fábrica: Match aceptable (100% >= 85%)
+2026-02-10 19:38:04 - [INFO] - 
+2026-02-10 19:38:04 - [INFO] - Estado: ✓ OK - Validación exitosa
+2026-02-10 19:38:04 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-10 19:38:04 - [INFO] - PROCESANDO: FTALATOS
+2026-02-10 19:38:04 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-10 19:38:04 - [INFO] - 📄 PDF: certificado caso 2 ftalatos.PDF
+2026-02-10 19:38:04 - [DEBUG] -   Path completo: C:/Users/FDean/Downloads/certificado caso 2 ftalatos.PDF
+2026-02-10 19:38:04 - [DEBUG] - Extrayendo texto del PDF...
+2026-02-10 19:38:04 - [INFO] - ✓ Texto extraído: 2422 caracteres
+2026-02-10 19:38:04 - [DEBUG] -   Primeros 200 caracteres:  
+ 
+ 
+ 
+ 
+NOTA DE NO APLICABILIDAD 
+ 
+ 
+Lenor S.R.L. – Organismo de Certificación – Fraga 1371, C1427BUA, Ciudad Autónoma de Buenos Aires, Argentina  
+email: info@lenorcert.com                        ...
+2026-02-10 19:38:04 - [DEBUG] - Tipo de producto: JUGUETES
+2026-02-10 19:38:04 - [DEBUG] - 
+=== DETECCIÓN DE ESTRATEGIA DE VALIDACIÓN ===
+2026-02-10 19:38:04 - [DEBUG] - Tipo de producto: JUGUETES
+2026-02-10 19:38:04 - [DEBUG] - Analizando contenido del certificado...
+2026-02-10 19:38:04 - [INFO] - ✓ Estrategia detectada: LENOR TOY
+2026-02-10 19:38:04 - [DEBUG] - Keywords: Lenor + Producto tipo JUGUETES
+2026-02-10 19:38:04 - [INFO] - 
+2026-02-10 19:38:04 - [INFO] - === Validación con LENOR TOY STRATEGY ===
+2026-02-10 19:38:04 - [INFO] - Tipo de certificado: FTALATOS
+2026-02-10 19:38:04 - [DEBUG] - Certificado de Ftalatos detectado - Marca es warning (no critical)
+2026-02-10 19:38:04 - [WARNING] - ⚠️ Marca 'GADNIC' no encontrada en Ftalatos (común en Lenor/Químicos)
+2026-02-10 19:38:04 - [DEBUG] - 
+>> Validando MODELOS (Lista completa)
+2026-02-10 19:38:04 - [DEBUG] -    Modelos esperados: ['MGN2100B']
+2026-02-10 19:38:04 - [DEBUG] -    Buscando modelo: "MGN2100B"
+2026-02-10 19:38:04 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 19:38:04 - [INFO] -    ✓ MODELOS: Todos encontrados (1 modelos)
+2026-02-10 19:38:04 - [INFO] - 
+2026-02-10 19:38:04 - [WARNING] - Estado: WARNING (1 advertencias)
+2026-02-10 19:38:04 - [INFO] - 
+2026-02-10 19:38:04 - [INFO] - ════════════════════════════════════════════════════════════
+2026-02-10 19:38:04 - [INFO] - AUDITORÍA COMPLETADA - Estado global: WARNING
+2026-02-10 19:38:04 - [INFO] - ════════════════════════════════════════════════════════════
+2026-02-10 19:38:04 - [INFO] - 
+2026-02-10 19:38:04 - [INFO] - Auditoría completada. Estado: WARNING
+2026-02-10 19:40:19 - [INFO] - Log guardado en: logs\argos_20260210_193205.log
+2026-02-10 19:47:40 - [INFO] - Log guardado en: logs\argos_20260210_193205.log

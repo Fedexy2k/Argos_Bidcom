@@ -1,0 +1,18 @@
+{
+  "id_gestion": "CERTIFICADO 897",
+  "tipo_producto": "SEGURIDAD_ELECTRICA",
+  "certificados_requeridos": [
+    {
+      "tipo": "SEGURIDAD_ELECTRICA",
+      "archivo": null
+    }
+  ],
+  "sku_principal": null,
+  "marca": "DJI",
+  "fabrica": "Lobby of T2, DJI Sky City, No. 53 Xianyuan Road, Xili Community, Xili Street, Nanshan District, Shenzhen, China.",
+  "direccion_fabrica": "Lobby of T2, DJI Sky City, No. 53 Xianyuan Road, Xili Community, Xili Street, Nanshan District, Shenzhen, China.",
+  "specs_tecnicas": "Estación de energía portátil\n\n- Especificaciones eléctricas:\n\nEntradas:\n\n- CA: 220-240 V~, 50/60Hz, 4,5A Máx;\n- SDC: 9-28V⎓, 400W Máx;\n- USB-C: 5/9/12/15/20V⎓ 5A, 100W Máx;\n- Cable USB-C: 5/9/12/15/20V⎓ 5A, 100W Máx.\n\nSalidas:\n\n- SDC: 9-28V⎓ , 300W Máx;\n- CA (x2):\n                CN: 220 V~, 50/60 Hz, 800W (1000W Máx.);\n                EU/UK/AU: 230V~, 50/60Hz, 800W (1000W Máx.);\n- USB-A (x2): 5V⎓ 2,4A, 12W Máx.\n- USB-C: 5/9/12/15/20V⎓ 5A, 100W Máx.\n- Cable USB-C: 5/9/12/15/20V⎓ 5A, 100W Máx.\nSalida Total 1000W;\n- CA (bypass x2): 220-240V~, 50Hz/60Hz, 2200W Máx. (Total)\n\n\n- Capacidad de la batería: típica 105 Ah, 1008 Wh/nominal 100 Ah, 960 Wh, 9,6V⎓;\n- Rango de temperatura de carga: -10-45 °C.\n- Rango de temperatura de descarga: -10-45 °C.\n\nClase I",
+  "modelos_solicitados": [
+    "DYM1000M"
+  ]
+}

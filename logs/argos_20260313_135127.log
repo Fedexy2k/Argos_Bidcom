@@ -1,0 +1,285 @@
+2026-03-13 13:51:28 - [INFO] - Cambiando a tab:  verificador
+2026-03-13 13:51:28 - [INFO] - Argos iniciado correctamente
+2026-03-13 13:51:34 - [INFO] - Cambiando a tab:  generador
+2026-03-13 13:51:47 - [INFO] - Certificado cargado: Q-AR-05670-T-0 - BIDCOM - FREIDORA DE AIRE.pdf
+2026-03-13 13:51:47 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-03-13 13:51:47 - [INFO] - [M3] Modo: comun
+2026-03-13 13:51:47 - [INFO] - [M3] Archivo: Q-AR-05670-T-0 - BIDCOM - FREIDORA DE AIRE.pdf
+2026-03-13 13:51:47 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-03-13 13:51:47 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-03-13 13:51:47 - [INFO] - [M3] ── Nro. Certificado : Q-AR-05670-T-0
+2026-03-13 13:51:47 - [INFO] - [M3] ── OEC detectado   : Quektra
+2026-03-13 13:51:47 - [INFO] - [M3] ── Normas          : IEC 60335-2-9:2019 Ed. 7.0
+2026-03-13 13:51:47 - [INFO] - [M3] ── Fecha emisión   : [no encontrada]
+2026-03-13 13:51:47 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-03-13 13:51:47 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)
+2026-03-13 13:51:47 - [INFO] - [M3] Extrayendo datos del producto...
+2026-03-13 13:51:47 - [INFO] - [M3] ── Marca           : Cuk by Gadnic
+2026-03-13 13:51:47 - [INFO] - [M3] ── Fabricante      : ZHONGSHAN GENTECH ELECTRIC APPLIANCE CO., LTD
+2026-03-13 13:51:47 - [INFO] - [M3] ── Producto desc   : Freidora de aire
+2026-03-13 13:51:47 - [INFO] - [M3] ── Modelos         : Ver anexo
+2026-03-13 13:51:47 - [INFO] - [M3] ── Specs           : 220-240 V~; 50/60 Hz; 1200-1400 W; Clase I
+2026-03-13 13:51:47 - [INFO] - [M3] ── Fecha emisión   : 09/03/2026
+2026-03-13 13:51:47 - [INFO] - [M3] ── Fecha venc.     : 08/03/2028
+2026-03-13 13:51:47 - [INFO] - [M3] Armando datos finales DJC...
+2026-03-13 13:51:47 - [INFO] - [M3] Bidcom manual: 'C863' → ID: DJC-SE-0326-C863-QKA-V1
+2026-03-13 13:51:47 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-03-13 13:51:47 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-03-13 13:51:48 - [INFO] - Vista DJC renderizada correctamente
+2026-03-13 13:56:32 - [INFO] - === GENERANDO DJC ===
+2026-03-13 13:56:32 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C863-QKA-V1_djc.docx
+2026-03-13 13:56:44 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C863-QKA-V1.pdf
+2026-03-13 13:56:44 - [INFO] - [M3] DJC Codificada — Fabricante original: 'ZHONGSHAN GENTECH ELECTRIC APPLIANCE CO....'
+2026-03-13 13:56:44 - [INFO] - [M3] DJC Codificada — Texto de resguardo: 'Información Restringida - Res. SIyC 237/2024 (China)'
+2026-03-13 13:56:44 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C863-QKA-V1_djc_2.docx
+2026-03-13 13:56:51 - [INFO] - [M3] Certificado censurado guardado en: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C863-QKA-V1_cert_cod.pdf
+2026-03-13 13:56:55 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C863-QKA-V1_1773421011.pdf
+2026-03-13 13:58:05 - [INFO] - [M3] El usuario descartó las DJC generadas temporalmente.
+2026-03-13 13:58:07 - [INFO] - Cambiando a tab:  generador
+2026-03-13 13:58:32 - [INFO] - Certificado cargado: Q-AR-05671-T-0 - BIDCOM - HORNO ELÉCTRICO.pdf
+2026-03-13 13:58:34 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-03-13 13:58:34 - [INFO] - [M3] Modo: comun
+2026-03-13 13:58:34 - [INFO] - [M3] Archivo: Q-AR-05671-T-0 - BIDCOM - HORNO ELÉCTRICO.pdf
+2026-03-13 13:58:34 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-03-13 13:58:34 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-03-13 13:58:34 - [INFO] - [M3] ── Nro. Certificado : Q-AR-05671-T-0
+2026-03-13 13:58:34 - [INFO] - [M3] ── OEC detectado   : Quektra
+2026-03-13 13:58:34 - [INFO] - [M3] ── Normas          : IEC 60335-2-9:2019 Ed. 7.0, EN18
+2026-03-13 13:58:34 - [INFO] - [M3] ── Fecha emisión   : [no encontrada]
+2026-03-13 13:58:34 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-03-13 13:58:34 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)
+2026-03-13 13:58:34 - [INFO] - [M3] Extrayendo datos del producto...
+2026-03-13 13:58:34 - [INFO] - [M3] ── Marca           : Cuk by Gadnic
+2026-03-13 13:58:34 - [INFO] - [M3] ── Fabricante      : ZHONGSHAN GENTECH ELECTRIC APPLIANCE CO., LTD
+2026-03-13 13:58:34 - [INFO] - [M3] ── Producto desc   : Horno eléctrico
+2026-03-13 13:58:34 - [INFO] - [M3] ── Modelos         : Ver anexo
+2026-03-13 13:58:34 - [INFO] - [M3] ── Specs           : 220-240 V~; 50-60 Hz; 1600 W; Clase I; Ver anexo
+2026-03-13 13:58:34 - [INFO] - [M3] ── Fecha emisión   : 09/03/2026
+2026-03-13 13:58:34 - [INFO] - [M3] ── Fecha venc.     : 08/03/2028
+2026-03-13 13:58:34 - [INFO] - [M3] Armando datos finales DJC...
+2026-03-13 13:58:34 - [INFO] - [M3] Bidcom manual: 'C863' → ID: DJC-SE-0326-C863-QKA-V1
+2026-03-13 13:58:34 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-03-13 13:58:34 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-03-13 13:58:34 - [INFO] - Vista DJC renderizada correctamente
+2026-03-13 14:02:11 - [INFO] - === GENERANDO DJC ===
+2026-03-13 14:02:11 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C863-QKA-V1_djc_3.docx
+2026-03-13 14:02:21 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C863-QKA-V1_1773421338.pdf
+2026-03-13 14:02:21 - [INFO] - [M3] DJC Codificada — Fabricante original: 'ZHONGSHAN GENTECH ELECTRIC APPLIANCE CO....'
+2026-03-13 14:02:21 - [INFO] - [M3] DJC Codificada — Texto de resguardo: 'Información Restringida - Res. SIyC 237/2024 (China)'
+2026-03-13 14:02:21 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C863-QKA-V1_djc_4.docx
+2026-03-13 14:02:27 - [INFO] - [M3] Certificado censurado guardado en: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C863-QKA-V1_cert_cod.pdf
+2026-03-13 14:02:30 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C863-QKA-V1_1773421347.pdf
+2026-03-13 14:02:48 - [INFO] - [M3] Guardado final (solo PDF final): C:\Users\FDean\Documents\DJC generadas\C863\DJC-SE-0326-C863-QKA-V1.pdf
+2026-03-13 14:02:48 - [INFO] - [M3] Guardado final (solo PDF final): C:\Users\FDean\Documents\DJC generadas\C863\DJC-SE-0326-C863-QKA-V1_1773421368.pdf
+2026-03-13 14:02:48 - [INFO] - [M3] === GENERACIÓN FINALIZADA Y GUARDADA ===
+2026-03-13 14:04:28 - [INFO] - Cambiando a tab:  generador
+2026-03-13 14:07:23 - [INFO] - Certificado cargado: Q-AR-05672-T-0 - BIDCOM - ESTACIÓN DE ENERGÍA PORTÁTIL.pdf
+2026-03-13 14:07:24 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-03-13 14:07:24 - [INFO] - [M3] Modo: comun
+2026-03-13 14:07:24 - [INFO] - [M3] Archivo: Q-AR-05672-T-0 - BIDCOM - ESTACIÓN DE ENERGÍA PORTÁTIL.pdf
+2026-03-13 14:07:24 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-03-13 14:07:24 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-03-13 14:07:24 - [INFO] - [M3] ── Nro. Certificado : Q-AR-05672-T-0
+2026-03-13 14:07:24 - [INFO] - [M3] ── OEC detectado   : Quektra
+2026-03-13 14:07:24 - [INFO] - [M3] ── Normas          : IEC 62368-1:2018 Ed. 3.0
+2026-03-13 14:07:24 - [INFO] - [M3] ── Fecha emisión   : [no encontrada]
+2026-03-13 14:07:24 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-03-13 14:07:24 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. IV (Electrónica, Audio, Video)
+2026-03-13 14:07:24 - [INFO] - [M3] Extrayendo datos del producto...
+2026-03-13 14:07:24 - [INFO] - [M3] ── Marca           : ECOFLOW
+2026-03-13 14:07:24 - [INFO] - [M3] ── Fabricante      : ECOFLOW INC.
+2026-03-13 14:07:24 - [INFO] - [M3] ── Producto desc   : Estación de energía portátil
+2026-03-13 14:07:24 - [INFO] - [M3] ── Modelos         : EFR610
+2026-03-13 14:07:24 - [INFO] - [M3] ── Specs           : Ver anexo
+2026-03-13 14:07:24 - [INFO] - [M3] ── Fecha emisión   : 09/03/2026
+2026-03-13 14:07:24 - [INFO] - [M3] ── Fecha venc.     : 08/03/2028
+2026-03-13 14:07:24 - [INFO] - [M3] Armando datos finales DJC...
+2026-03-13 14:07:24 - [INFO] - [M3] Bidcom manual: 'C899' → ID: DJC-SE-0326-C899-QKA-V1
+2026-03-13 14:07:24 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-03-13 14:07:24 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-03-13 14:07:25 - [INFO] - Vista DJC renderizada correctamente
+2026-03-13 14:08:48 - [INFO] - === GENERANDO DJC ===
+2026-03-13 14:08:48 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C899-QKA-V1_djc.docx
+2026-03-13 14:08:59 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C899-QKA-V1.pdf
+2026-03-13 14:08:59 - [INFO] - [M3] DJC Codificada — Fabricante original: 'GUANG ZHOU SEAWITSIN ELECTRONICS CO., LT...'
+2026-03-13 14:08:59 - [INFO] - [M3] DJC Codificada — Texto de resguardo: 'Información Restringida - Res. SIyC 237/2024 (China)'
+2026-03-13 14:08:59 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C899-QKA-V1_djc_2.docx
+2026-03-13 14:09:06 - [INFO] - [M3] Certificado censurado guardado en: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C899-QKA-V1_cert_cod.pdf
+2026-03-13 14:09:09 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C899-QKA-V1_1773421746.pdf
+2026-03-13 14:11:10 - [INFO] - [M3] Guardado final (solo PDF final): C:\Users\FDean\Documents\DJC generadas\C899\DJC-SE-0326-C899-QKA-V1.pdf
+2026-03-13 14:11:10 - [INFO] - [M3] Guardado final (solo PDF final): C:\Users\FDean\Documents\DJC generadas\C899\DJC-SE-0326-C899-QKA-V1_1773421870.pdf
+2026-03-13 14:11:10 - [INFO] - [M3] === GENERACIÓN FINALIZADA Y GUARDADA ===
+2026-03-13 14:15:15 - [INFO] - Copiado: Q-AR-05672-T-0
+2026-03-13 14:15:20 - [INFO] - Copiado: DJC-SE-0326-C899-QKA-V1
+2026-03-13 14:15:28 - [INFO] - Copiado: 09/03/2026
+2026-03-13 14:15:32 - [INFO] - Copiado: 08/03/2028
+2026-03-13 14:15:36 - [INFO] - Copiado: 09/12/2027
+2026-03-13 14:16:19 - [INFO] - Cambiando a tab:  generador
+2026-03-13 14:16:56 - [INFO] - Certificado cargado: Q-AR-05673-T-0 - BIDCOM - ESTACIÓN DE ENERGÍA PORTÁTIL.pdf
+2026-03-13 14:16:57 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-03-13 14:16:57 - [INFO] - [M3] Modo: comun
+2026-03-13 14:16:57 - [INFO] - [M3] Archivo: Q-AR-05673-T-0 - BIDCOM - ESTACIÓN DE ENERGÍA PORTÁTIL.pdf
+2026-03-13 14:16:57 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-03-13 14:16:57 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-03-13 14:16:57 - [INFO] - [M3] ── Nro. Certificado : Q-AR-05673-T-0
+2026-03-13 14:16:57 - [INFO] - [M3] ── OEC detectado   : Quektra
+2026-03-13 14:16:57 - [INFO] - [M3] ── Normas          : IEC 62368-1:2018 Ed. 3.0
+2026-03-13 14:16:57 - [INFO] - [M3] ── Fecha emisión   : [no encontrada]
+2026-03-13 14:16:57 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-03-13 14:16:57 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. IV (Electrónica, Audio, Video)
+2026-03-13 14:16:57 - [INFO] - [M3] Extrayendo datos del producto...
+2026-03-13 14:16:57 - [INFO] - [M3] ── Marca           : ECOFLOW
+2026-03-13 14:16:57 - [INFO] - [M3] ── Fabricante      : ECOFLOW INC.
+2026-03-13 14:16:57 - [INFO] - [M3] ── Producto desc   : Estación de energía portátil
+2026-03-13 14:16:57 - [INFO] - [M3] ── Modelos         : EFD350
+2026-03-13 14:16:57 - [INFO] - [M3] ── Specs           : Ver anexo
+2026-03-13 14:16:57 - [INFO] - [M3] ── Fecha emisión   : 09/03/2026
+2026-03-13 14:16:57 - [INFO] - [M3] ── Fecha venc.     : 08/03/2028
+2026-03-13 14:16:57 - [INFO] - [M3] Armando datos finales DJC...
+2026-03-13 14:16:57 - [INFO] - [M3] Bidcom manual: 'C900' → ID: DJC-SE-0326-C900-QKA-V1
+2026-03-13 14:16:57 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-03-13 14:16:57 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-03-13 14:16:57 - [INFO] - Vista DJC renderizada correctamente
+2026-03-13 14:18:04 - [INFO] - === GENERANDO DJC ===
+2026-03-13 14:18:04 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C900-QKA-V1_djc.docx
+2026-03-13 14:18:14 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C900-QKA-V1.pdf
+2026-03-13 14:18:14 - [INFO] - [M3] DJC Codificada — Fabricante original: 'ECOFLOW INNOVATION LTD....'
+2026-03-13 14:18:14 - [INFO] - [M3] DJC Codificada — Texto de resguardo: 'Información Restringida - Res. SIyC 237/2024 (China)'
+2026-03-13 14:18:14 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C900-QKA-V1_djc_2.docx
+2026-03-13 14:18:21 - [INFO] - [M3] Certificado censurado guardado en: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C900-QKA-V1_cert_cod.pdf
+2026-03-13 14:18:23 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C900-QKA-V1_1773422301.pdf
+2026-03-13 14:18:57 - [INFO] - [M3] Guardado final (solo PDF final): C:\Users\FDean\Documents\DJC generadas\C900\DJC-SE-0326-C900-QKA-V1.pdf
+2026-03-13 14:18:57 - [INFO] - [M3] Guardado final (solo PDF final): C:\Users\FDean\Documents\DJC generadas\C900\DJC-SE-0326-C900-QKA-V1_1773422337.pdf
+2026-03-13 14:18:57 - [INFO] - [M3] === GENERACIÓN FINALIZADA Y GUARDADA ===
+2026-03-13 14:23:34 - [INFO] - Copiado: Q-AR-05673-T-0
+2026-03-13 14:23:45 - [INFO] - Copiado: DJC-SE-0326-C900-QKA-V1
+2026-03-13 14:23:51 - [INFO] - Copiado: 09/03/2026
+2026-03-13 14:23:55 - [INFO] - Copiado: 08/03/2028
+2026-03-13 14:23:57 - [INFO] - Copiado: 08/03/2028
+2026-03-13 14:24:00 - [INFO] - Copiado: 09/12/2027
+2026-03-13 14:25:07 - [INFO] - Cambiando a tab:  generador
+2026-03-13 14:25:20 - [INFO] - Certificado cargado: Q-AR-05674-T-0 - BIDCOM - ESTACIÓN DE ENERGÍA PORTÁTIL.pdf
+2026-03-13 14:25:20 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-03-13 14:25:20 - [INFO] - [M3] Modo: comun
+2026-03-13 14:25:20 - [INFO] - [M3] Archivo: Q-AR-05674-T-0 - BIDCOM - ESTACIÓN DE ENERGÍA PORTÁTIL.pdf
+2026-03-13 14:25:20 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-03-13 14:25:20 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-03-13 14:25:20 - [INFO] - [M3] ── Nro. Certificado : Q-AR-05674-T-0
+2026-03-13 14:25:20 - [INFO] - [M3] ── OEC detectado   : Quektra
+2026-03-13 14:25:20 - [INFO] - [M3] ── Normas          : IEC 62368-1:2018 Ed. 3.0
+2026-03-13 14:25:20 - [INFO] - [M3] ── Fecha emisión   : [no encontrada]
+2026-03-13 14:25:20 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-03-13 14:25:20 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. IV (Electrónica, Audio, Video)
+2026-03-13 14:25:20 - [INFO] - [M3] Extrayendo datos del producto...
+2026-03-13 14:25:20 - [INFO] - [M3] ── Marca           : ECOFLOW
+2026-03-13 14:25:20 - [INFO] - [M3] ── Fabricante      : ECOFLOW INC.
+2026-03-13 14:25:20 - [INFO] - [M3] ── Producto desc   : Estación de energía portátil
+2026-03-13 14:25:20 - [INFO] - [M3] ── Modelos         : EFD500
+2026-03-13 14:25:20 - [INFO] - [M3] ── Specs           : Ver anexo
+2026-03-13 14:25:20 - [INFO] - [M3] ── Fecha emisión   : 09/03/2026
+2026-03-13 14:25:20 - [INFO] - [M3] ── Fecha venc.     : 08/03/2028
+2026-03-13 14:25:20 - [INFO] - [M3] Armando datos finales DJC...
+2026-03-13 14:25:20 - [INFO] - [M3] Bidcom manual: 'C902' → ID: DJC-SE-0326-C902-QKA-V1
+2026-03-13 14:25:20 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-03-13 14:25:20 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-03-13 14:25:21 - [INFO] - Vista DJC renderizada correctamente
+2026-03-13 14:26:30 - [INFO] - === GENERANDO DJC ===
+2026-03-13 14:26:30 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C902-QKA-V1_djc.docx
+2026-03-13 14:26:40 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C902-QKA-V1.pdf
+2026-03-13 14:26:40 - [INFO] - [M3] DJC Codificada — Fabricante original: 'ECOFLOW INNOVATION LTD....'
+2026-03-13 14:26:40 - [INFO] - [M3] DJC Codificada — Texto de resguardo: 'Información Restringida - Res. SIyC 237/2024 (China)'
+2026-03-13 14:26:40 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C902-QKA-V1_djc_2.docx
+2026-03-13 14:26:47 - [INFO] - [M3] Certificado censurado guardado en: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C902-QKA-V1_cert_cod.pdf
+2026-03-13 14:26:50 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C902-QKA-V1_1773422807.pdf
+2026-03-13 14:30:23 - [INFO] - [M3] Guardado final (solo PDF final): C:\Users\FDean\Documents\DJC generadas\C902\DJC-SE-0326-C902-QKA-V1.pdf
+2026-03-13 14:30:23 - [INFO] - [M3] Guardado final (solo PDF final): C:\Users\FDean\Documents\DJC generadas\C902\DJC-SE-0326-C902-QKA-V1_1773423023.pdf
+2026-03-13 14:30:23 - [INFO] - [M3] === GENERACIÓN FINALIZADA Y GUARDADA ===
+2026-03-13 14:37:09 - [INFO] - Copiado: Q-AR-05674-T-0
+2026-03-13 14:37:13 - [INFO] - Copiado: DJC-SE-0326-C902-QKA-V1
+2026-03-13 14:37:21 - [INFO] - Copiado: 09/03/2026
+2026-03-13 14:37:25 - [INFO] - Copiado: 08/03/2028
+2026-03-13 14:37:28 - [INFO] - Copiado: 09/12/2027
+2026-03-13 14:39:05 - [INFO] - Cambiando a tab:  generador
+2026-03-13 14:39:12 - [INFO] - Certificado cargado: Q-AR-05675-T-0 - BIDCOM - PURIFICADOR DE AIRE.pdf
+2026-03-13 14:39:17 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-03-13 14:39:17 - [INFO] - [M3] Modo: comun
+2026-03-13 14:39:17 - [INFO] - [M3] Archivo: Q-AR-05675-T-0 - BIDCOM - PURIFICADOR DE AIRE.pdf
+2026-03-13 14:39:17 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-03-13 14:39:17 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-03-13 14:39:17 - [INFO] - [M3] ── Nro. Certificado : Q-AR-05675-T-0
+2026-03-13 14:39:17 - [INFO] - [M3] ── OEC detectado   : Quektra
+2026-03-13 14:39:17 - [INFO] - [M3] ── Normas          : IEC 60335-2-65:2002 + A1:2008 + A2:2015 Ed. 2.2
+2026-03-13 14:39:17 - [INFO] - [M3] ── Fecha emisión   : [no encontrada]
+2026-03-13 14:39:17 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-03-13 14:39:17 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)
+2026-03-13 14:39:17 - [INFO] - [M3] Extrayendo datos del producto...
+2026-03-13 14:39:17 - [INFO] - [M3] ── Marca           : GADNIC
+2026-03-13 14:39:17 - [INFO] - [M3] ── Fabricante      : SHENZHEN UR-HEALTH TECHNOLOGY CO., LTD.
+2026-03-13 14:39:17 - [INFO] - [M3] ── Producto desc   : Purificador de aire
+2026-03-13 14:39:17 - [INFO] - [M3] ── Modelos         : Ver anexo
+2026-03-13 14:39:17 - [INFO] - [M3] ── Specs           : 220-240 V~; 50/60 Hz; 85 W; Clase II
+2026-03-13 14:39:17 - [INFO] - [M3] ── Fecha emisión   : 09/03/2026
+2026-03-13 14:39:17 - [INFO] - [M3] ── Fecha venc.     : 08/03/2028
+2026-03-13 14:39:17 - [INFO] - [M3] Armando datos finales DJC...
+2026-03-13 14:39:17 - [INFO] - [M3] Bidcom manual: 'C907' → ID: DJC-SE-0326-C907-QKA-V1
+2026-03-13 14:39:17 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-03-13 14:39:17 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-03-13 14:39:17 - [INFO] - Vista DJC renderizada correctamente
+2026-03-13 14:41:26 - [INFO] - === GENERANDO DJC ===
+2026-03-13 14:41:26 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C907-QKA-V1_djc.docx
+2026-03-13 14:41:36 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C907-QKA-V1.pdf
+2026-03-13 14:41:36 - [INFO] - [M3] DJC Codificada — Fabricante original: 'SHENZHEN UR-HEALTH TECHNOLOGY CO., LTD....'
+2026-03-13 14:41:36 - [INFO] - [M3] DJC Codificada — Texto de resguardo: 'Información Restringida - Res. SIyC 237/2024 (China)'
+2026-03-13 14:41:36 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C907-QKA-V1_djc_2.docx
+2026-03-13 14:41:44 - [INFO] - [M3] Certificado censurado guardado en: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C907-QKA-V1_cert_cod.pdf
+2026-03-13 14:41:46 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C907-QKA-V1_1773423703.pdf
+2026-03-13 14:42:21 - [INFO] - [M3] Guardado final (solo PDF final): C:\Users\FDean\Documents\DJC generadas\C907\DJC-SE-0326-C907-QKA-V1.pdf
+2026-03-13 14:42:21 - [INFO] - [M3] Guardado final (solo PDF final): C:\Users\FDean\Documents\DJC generadas\C907\DJC-SE-0326-C907-QKA-V1_1773423741.pdf
+2026-03-13 14:42:21 - [INFO] - [M3] === GENERACIÓN FINALIZADA Y GUARDADA ===
+2026-03-13 14:44:13 - [INFO] - Copiado: Q-AR-05675-T-0
+2026-03-13 14:44:20 - [INFO] - Copiado: DJC-SE-0326-C907-QKA-V1
+2026-03-13 14:44:32 - [INFO] - Copiado: 09/03/2026
+2026-03-13 14:44:37 - [INFO] - Copiado: 08/03/2028
+2026-03-13 14:44:41 - [INFO] - Copiado: 09/12/2027
+2026-03-13 14:46:40 - [INFO] - Cambiando a tab:  generador
+2026-03-13 14:46:47 - [INFO] - Certificado cargado: Q-AR-05676-T-0 - BIDCOM - ENFRIADOR DE AIRE.pdf
+2026-03-13 14:46:48 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-03-13 14:46:48 - [INFO] - [M3] Modo: comun
+2026-03-13 14:46:48 - [INFO] - [M3] Archivo: Q-AR-05676-T-0 - BIDCOM - ENFRIADOR DE AIRE.pdf
+2026-03-13 14:46:48 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-03-13 14:46:48 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-03-13 14:46:48 - [INFO] - [M3] ── Nro. Certificado : Q-AR-05676-T-0
+2026-03-13 14:46:48 - [INFO] - [M3] ── OEC detectado   : Quektra
+2026-03-13 14:46:48 - [INFO] - [M3] ── Normas          : IEC 60335-2-80:2015 Ed. 3.0, IEC 60335-2-98:2002 + A1:2004 + A2:2008 Ed. (2.2)
+2026-03-13 14:46:48 - [INFO] - [M3] ── Fecha emisión   : [no encontrada]
+2026-03-13 14:46:48 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-03-13 14:46:48 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)
+2026-03-13 14:46:48 - [INFO] - [M3] Extrayendo datos del producto...
+2026-03-13 14:46:48 - [INFO] - [M3] ── Marca           : GADNIC
+2026-03-13 14:46:48 - [INFO] - [M3] ── Fabricante      : NINGBO FU ZE ELECTRIC APPLIANCE CO., LTD
+2026-03-13 14:46:48 - [INFO] - [M3] ── Producto desc   : Enfriador de aire
+2026-03-13 14:46:48 - [INFO] - [M3] ── Modelos         : JD-900R
+2026-03-13 14:46:48 - [INFO] - [M3] ── Specs           : 220-240 V~; 50-60 Hz; 80 W; Clase II
+2026-03-13 14:46:48 - [INFO] - [M3] ── Fecha emisión   : 10/03/2026
+2026-03-13 14:46:48 - [INFO] - [M3] ── Fecha venc.     : 09/03/2028
+2026-03-13 14:46:48 - [INFO] - [M3] Armando datos finales DJC...
+2026-03-13 14:46:48 - [INFO] - [M3] Bidcom manual: 'C911' → ID: DJC-SE-0326-C911-QKA-V1
+2026-03-13 14:46:48 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-03-13 14:46:48 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-03-13 14:46:48 - [INFO] - Vista DJC renderizada correctamente
+2026-03-13 14:47:40 - [INFO] - === GENERANDO DJC ===
+2026-03-13 14:47:41 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C911-QKA-V1_djc.docx
+2026-03-13 14:47:48 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C911-QKA-V1.pdf
+2026-03-13 14:47:48 - [INFO] - [M3] DJC Codificada — Fabricante original: 'NINGBO FU ZE ELECTRIC APPLIANCE CO., LTD...'
+2026-03-13 14:47:48 - [INFO] - [M3] DJC Codificada — Texto de resguardo: 'Información Restringida - Res. SIyC 237/2024 (China)'
+2026-03-13 14:47:48 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C911-QKA-V1_djc_2.docx
+2026-03-13 14:47:53 - [INFO] - [M3] Certificado censurado guardado en: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C911-QKA-V1_cert_cod.pdf
+2026-03-13 14:47:55 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C911-QKA-V1_1773424073.pdf
+2026-03-13 14:49:07 - [INFO] - [M3] Guardado final (solo PDF final): C:\Users\FDean\Documents\DJC generadas\C911\DJC-SE-0326-C911-QKA-V1.pdf
+2026-03-13 14:49:07 - [INFO] - [M3] Guardado final (solo PDF final): C:\Users\FDean\Documents\DJC generadas\C911\DJC-SE-0326-C911-QKA-V1_1773424147.pdf
+2026-03-13 14:49:07 - [INFO] - [M3] === GENERACIÓN FINALIZADA Y GUARDADA ===
+2026-03-13 14:51:03 - [INFO] - Copiado: Q-AR-05676-T-0
+2026-03-13 14:51:09 - [INFO] - Copiado: DJC-SE-0326-C911-QKA-V1
+2026-03-13 14:51:20 - [INFO] - Copiado: 10/03/2026
+2026-03-13 14:51:23 - [INFO] - Copiado: 09/03/2028
+2026-03-13 14:51:27 - [INFO] - Copiado: 10/12/2027

@@ -1,0 +1,37 @@
+2026-03-10 12:32:47 - [INFO] - Cambiando a tab:  verificador
+2026-03-10 12:32:47 - [INFO] - Argos iniciado correctamente
+2026-03-10 12:33:04 - [INFO] - Cambiando a tab:  generador
+2026-03-10 12:33:26 - [INFO] - Certificado cargado: LCSH-2259.pdf
+2026-03-10 12:33:29 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-03-10 12:33:29 - [INFO] - [M3] Modo: comun
+2026-03-10 12:33:29 - [INFO] - [M3] Archivo: LCSH-2259.pdf
+2026-03-10 12:33:29 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-03-10 12:33:29 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-03-10 12:33:29 - [INFO] - [M3] ── Nro. Certificado : LCSH-2259
+2026-03-10 12:33:29 - [INFO] - [M3] ── OEC detectado   : Lenor
+2026-03-10 12:33:29 - [INFO] - [M3] ── Normas          : IEC 60335-2-7: 2024 (Ed. 9.0), IEC 60335-1: 2020 (Ed. 6.0)
+2026-03-10 12:33:29 - [INFO] - [M3] ── Fecha emisión   : 10/02/2026
+2026-03-10 12:33:29 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-03-10 12:33:29 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)
+2026-03-10 12:33:29 - [INFO] - [M3] Extrayendo datos del producto...
+2026-03-10 12:33:29 - [INFO] - [M3] ── Marca           : GADNIC
+2026-03-10 12:33:29 - [INFO] - [M3] ── Fabricante      : Jiangsu Konka Smart Electrical Appliances Co., Ltd.
+2026-03-10 12:33:29 - [INFO] - [M3] ── Producto desc   : Lavarropas
+2026-03-10 12:33:29 - [INFO] - [M3] ── Modelos         : GAD-WM60, GAD-WM80, GAD-WM120, GAD-WM60B, GAD-WM80B, GAD-WM120B
+2026-03-10 12:33:29 - [INFO] - [M3] ── Specs           : 220-240 V~; 50 Hz; 1850 W; IPX4; Clase I
+2026-03-10 12:33:29 - [INFO] - [M3] ── Fecha emisión   : 10/02/2026
+2026-03-10 12:33:29 - [INFO] - [M3] ── Fecha venc.     : 10/02/2028
+2026-03-10 12:33:29 - [INFO] - [M3] Armando datos finales DJC...
+2026-03-10 12:33:29 - [INFO] - [M3] Bidcom manual: 'C862' → ID: DJC-SE-0326-C862-LNR-V1
+2026-03-10 12:33:29 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-03-10 12:33:29 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-03-10 12:33:30 - [INFO] - Vista DJC renderizada correctamente
+2026-03-10 12:35:14 - [INFO] - === GENERANDO DJC ===
+2026-03-10 12:35:15 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C862-LNR-V1_djc.docx
+2026-03-10 12:35:32 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C862-LNR-V1.pdf
+2026-03-10 12:39:02 - [INFO] - [M3] El usuario descartó las DJC generadas temporalmente.
+2026-03-10 12:39:28 - [INFO] - === GENERANDO DJC ===
+2026-03-10 12:39:29 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C862-LNR-V1_djc_2.docx
+2026-03-10 12:39:56 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C862-LNR-V1_1773157195.pdf
+2026-03-10 12:40:11 - [INFO] - [M3] Guardado final (solo PDF final): C:\Users\FDean\Documents\DJC generadas\C862\DJC-SE-0326-C862-LNR-V1.pdf
+2026-03-10 12:40:11 - [INFO] - [M3] === GENERACIÓN FINALIZADA Y GUARDADA ===

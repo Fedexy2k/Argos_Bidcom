@@ -1,0 +1,91 @@
+2026-02-10 23:00:01 - [INFO] - Argos iniciado correctamente
+2026-02-10 23:00:08 - [INFO] - Datasheet cargado: C:/Users/FDean/Antigravity/Argos Proyect/Datasheet caso 5 seguridad electrica.xlsx
+2026-02-10 23:00:09 - [INFO] - Parseando datasheet...
+2026-02-10 23:00:09 - [INFO] - Datasheet parseado: SEGURIDAD_ELECTRICA - GADNIC - 1 modelo(s)
+2026-02-10 23:00:13 - [INFO] - 1 certificado(s) agregado(s)
+2026-02-10 23:00:14 - [INFO] - === INICIANDO AUDITORÍA ===
+2026-02-10 23:00:14 - [INFO] - Datasheet: C:/Users/FDean/Antigravity/Argos Proyect/Datasheet caso 5 seguridad electrica.xlsx
+2026-02-10 23:00:14 - [INFO] - Certificados: 1
+2026-02-10 23:00:15 - [INFO] - Mapeado: SEGURIDAD_ELECTRICA -> Certificado Caso 5 seguridad electrica.pdf
+2026-02-10 23:00:15 - [INFO] - Ejecutando auditoría con estrategias adaptativas...
+2026-02-10 23:00:15 - [INFO] - 
+2026-02-10 23:00:15 - [INFO] - ╔══════════════════════════════════════════╗
+2026-02-10 23:00:15 - [INFO] - ║  INICIANDO AUDITORÍA MULTICERTIFICADO   ║
+2026-02-10 23:00:15 - [INFO] - ╚══════════════════════════════════════════╝
+2026-02-10 23:00:15 - [INFO] - 
+2026-02-10 23:00:15 - [INFO] - Certificados requeridos: 1
+2026-02-10 23:00:15 - [INFO] -   1. SEGURIDAD_ELECTRICA
+2026-02-10 23:00:15 - [INFO] - 
+2026-02-10 23:00:15 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-10 23:00:15 - [INFO] - PROCESANDO: SEGURIDAD_ELECTRICA
+2026-02-10 23:00:15 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-10 23:00:15 - [INFO] - 📄 PDF: Certificado Caso 5 seguridad electrica.pdf
+2026-02-10 23:00:15 - [DEBUG] -   Path completo: C:/Users/FDean/Antigravity/Argos Proyect/Certificado Caso 5 seguridad electrica.pdf
+2026-02-10 23:00:15 - [DEBUG] - Extrayendo texto del PDF...
+2026-02-10 23:00:15 - [INFO] - ✓ Texto extraído: 4305 caracteres
+2026-02-10 23:00:15 - [DEBUG] -   Primeros 200 caracteres: Producto
+Masajeador.
+Product 
+BIDCOM S.R.L.
+Av. Bouchard 468 5º I, C.A.B.A., Argentina.
+Fábrica / Dirección
+GADNIC.
+Trade mark
+Model or type
+74621-1527-110605.
+SHITSUKE S.R.L.
+02/08/2024.
+Remarks
+Firm...
+2026-02-10 23:00:15 - [DEBUG] - Tipo de producto: SEGURIDAD_ELECTRICA
+2026-02-10 23:00:15 - [DEBUG] - 
+=== DETECCIÓN DE ESTRATEGIA DE VALIDACIÓN ===
+2026-02-10 23:00:15 - [DEBUG] - Tipo de producto: SEGURIDAD_ELECTRICA
+2026-02-10 23:00:15 - [DEBUG] - Analizando contenido del certificado...
+2026-02-10 23:00:15 - [INFO] - ✓ Estrategia detectada: ESTÁNDAR
+2026-02-10 23:00:15 - [DEBUG] - No se detectaron keywords especiales - Usando validación estándar
+2026-02-10 23:00:15 - [INFO] - 
+2026-02-10 23:00:15 - [INFO] - === Validación con Estrategia Estándar ===
+2026-02-10 23:00:15 - [DEBUG] - 
+>> Validando campo: MARCA (Hard Match)
+2026-02-10 23:00:15 - [DEBUG] -    Esperado: "GADNIC"
+2026-02-10 23:00:15 - [DEBUG] -    Buscando en PDF...
+2026-02-10 23:00:15 - [DEBUG] -    Valores a buscar: ['GADNIC']
+2026-02-10 23:00:15 - [INFO] -    ✓ Marca: Match encontrado - "GADNIC"
+2026-02-10 23:00:15 - [DEBUG] - 
+>> Validando MODELOS (Lista completa)
+2026-02-10 23:00:15 - [DEBUG] -    Modelos esperados: ['MSJE970']
+2026-02-10 23:00:15 - [DEBUG] -    Buscando modelo: "MSJE970"
+2026-02-10 23:00:15 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 23:00:15 - [INFO] -    ✓ MODELOS: Todos encontrados (1 modelos)
+2026-02-10 23:00:15 - [DEBUG] - 
+>> Validando campo: FÁBRICA (Fuzzy Match, threshold=85%)
+2026-02-10 23:00:15 - [DEBUG] -    Esperado: ['Dongyang Xiaoqi Industry & Trade Co., Ltd']
+2026-02-10 23:00:15 - [DEBUG] -    Buscando coincidencias fuzzy...
+2026-02-10 23:00:15 - [DEBUG] -    - "Dongyang Xiaoqi Industry & Trade Co., Ltd": 100% similitud
+2026-02-10 23:00:15 - [INFO] -    ✓ Fábrica: Match aceptable (100% >= 85%)
+2026-02-10 23:00:15 - [DEBUG] - 
+>> Validando campo: DIRECCIÓN FÁBRICA (Fuzzy Match, threshold=85%)
+2026-02-10 23:00:15 - [DEBUG] -    Esperado: ['3rd Floor, No. 77 Ma Xiang Road, Baiyun Street, Dongyang City, Zhejiang Province, China.']
+2026-02-10 23:00:15 - [DEBUG] -    Buscando coincidencias fuzzy...
+2026-02-10 23:00:15 - [DEBUG] -    - "3rd Floor, No. 77 Ma Xiang Road, Baiyun Street, Dongyang City, Zhejiang Province, China.": 100% similitud
+2026-02-10 23:00:15 - [INFO] -    ✓ Dirección Fábrica: Match aceptable (100% >= 85%)
+2026-02-10 23:00:15 - [DEBUG] - 
+>> Validando campo: SPECS TÉCNICAS
+2026-02-10 23:00:15 - [DEBUG] -    Specs individuales a buscar: 1
+2026-02-10 23:00:15 - [INFO] -    ✓ Specs Técnicas: Todas encontradas
+2026-02-10 23:00:15 - [INFO] - 
+2026-02-10 23:00:15 - [INFO] - Estado: ✓ OK - Validación exitosa
+2026-02-10 23:00:15 - [INFO] - 
+2026-02-10 23:00:15 - [INFO] - ════════════════════════════════════════════════════════════
+2026-02-10 23:00:15 - [INFO] - AUDITORÍA COMPLETADA - Estado global: OK
+2026-02-10 23:00:15 - [INFO] - ════════════════════════════════════════════════════════════
+2026-02-10 23:00:15 - [INFO] - 
+2026-02-10 23:00:15 - [INFO] - Auditoría completada. Estado: OK
+2026-02-10 23:00:15 - [INFO] - Mostrando pantalla de resultados...
+2026-02-10 23:00:15 - [INFO] - Main frame oculto correctamente
+2026-02-10 23:00:15 - [INFO] - Estado global auditoría: OK
+2026-02-10 23:00:15 - [INFO] - Scroll frame creado
+2026-02-10 23:00:15 - [INFO] - Procesando 1 certificados en UI
+2026-02-10 23:00:15 - [INFO] - Creando tarjeta para: CERT_SEGURIDAD_ELECTRICA
+2026-02-10 23:00:15 - [INFO] - Pantalla de resultados renderizada completamente

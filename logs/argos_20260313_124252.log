@@ -1,0 +1,68 @@
+2026-03-13 12:42:53 - [INFO] - Cambiando a tab:  verificador
+2026-03-13 12:42:53 - [INFO] - Argos iniciado correctamente
+2026-03-13 12:42:56 - [INFO] - Cambiando a tab:  generador
+2026-03-13 12:43:46 - [INFO] - Certificado cargado: Q-AR-05670-T-0 - BIDCOM - FREIDORA DE AIRE.pdf
+2026-03-13 12:43:47 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-03-13 12:43:47 - [INFO] - [M3] Modo: comun
+2026-03-13 12:43:47 - [INFO] - [M3] Archivo: Q-AR-05670-T-0 - BIDCOM - FREIDORA DE AIRE.pdf
+2026-03-13 12:43:47 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-03-13 12:43:47 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-03-13 12:43:47 - [INFO] - [M3] ── Nro. Certificado : Q-AR-05670
+2026-03-13 12:43:47 - [INFO] - [M3] ── OEC detectado   : Quektra
+2026-03-13 12:43:47 - [INFO] - [M3] ── Normas          : IEC 60335-2-9:2019 Ed. 7.0
+2026-03-13 12:43:47 - [INFO] - [M3] ── Fecha emisión   : [no encontrada]
+2026-03-13 12:43:47 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-03-13 12:43:47 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)
+2026-03-13 12:43:47 - [INFO] - [M3] Extrayendo datos del producto...
+2026-03-13 12:43:47 - [INFO] - [M3] ── Marca           : Cuk by Gadnic
+2026-03-13 12:43:47 - [INFO] - [M3] ── Fabricante      : ZHONGSHAN GENTECH ELECTRIC APPLIANCE CO., LTD
+2026-03-13 12:43:47 - [INFO] - [M3] ── Producto desc   : Freidora de aire
+2026-03-13 12:43:47 - [INFO] - [M3] ── Modelos         : Ver anexo
+2026-03-13 12:43:47 - [INFO] - [M3] ── Specs           : 220-240 V~; 50/60 Hz; 1200-1400 W; Clase I
+2026-03-13 12:43:47 - [INFO] - [M3] ── Fecha emisión   : 09/03/2026
+2026-03-13 12:43:47 - [INFO] - [M3] ── Fecha venc.     : 08/03/2028
+2026-03-13 12:43:47 - [INFO] - [M3] Armando datos finales DJC...
+2026-03-13 12:43:48 - [INFO] - [M3] Bidcom manual: 'C851' → ID: DJC-SE-0326-C851-QKA-V1
+2026-03-13 12:43:48 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-03-13 12:43:48 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-03-13 12:43:48 - [INFO] - Vista DJC renderizada correctamente
+2026-03-13 12:45:40 - [INFO] - === GENERANDO DJC ===
+2026-03-13 12:45:41 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C851-QKA-V1_djc.docx
+2026-03-13 12:45:52 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C851-QKA-V1.pdf
+2026-03-13 12:45:52 - [INFO] - [M3] DJC Codificada — Fabricante original: 'ZHONGSHAN GENTECH ELECTRIC APPLIANCE CO....'
+2026-03-13 12:45:52 - [INFO] - [M3] DJC Codificada — Texto de resguardo: 'Información Restringida - Res. SIyC 237/2024 (China)'
+2026-03-13 12:45:52 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C851-QKA-V1_djc_2.docx
+2026-03-13 12:46:00 - [INFO] - [M3] Certificado censurado guardado en: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C851-QKA-V1_cert_cod.pdf
+2026-03-13 12:46:03 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C851-QKA-V1_1773416760.pdf
+2026-03-13 12:46:50 - [INFO] - [M3] Guardado final (solo PDF final): C:\Users\FDean\Documents\DJC generadas\C851\DJC-SE-0326-C851-QKA-V1.pdf
+2026-03-13 12:46:50 - [INFO] - [M3] Guardado final (solo PDF final): C:\Users\FDean\Documents\DJC generadas\C851\DJC-SE-0326-C851-QKA-V1_1773416810.pdf
+2026-03-13 12:46:50 - [INFO] - [M3] === GENERACIÓN FINALIZADA Y GUARDADA ===
+2026-03-13 12:49:23 - [INFO] - Copiado: 09/03/2026
+2026-03-13 12:49:28 - [INFO] - Copiado: 08/03/2028
+2026-03-13 12:49:32 - [INFO] - Copiado: 09/12/2027
+2026-03-13 12:50:48 - [INFO] - Cambiando a tab:  generador
+2026-03-13 12:50:58 - [INFO] - Certificado cargado: Q-AR-05671-T-0 - BIDCOM - HORNO ELÉCTRICO.pdf
+2026-03-13 12:50:59 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-03-13 12:50:59 - [INFO] - [M3] Modo: comun
+2026-03-13 12:50:59 - [INFO] - [M3] Archivo: Q-AR-05671-T-0 - BIDCOM - HORNO ELÉCTRICO.pdf
+2026-03-13 12:50:59 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-03-13 12:50:59 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-03-13 12:50:59 - [INFO] - [M3] ── Nro. Certificado : Q-AR-05671
+2026-03-13 12:50:59 - [INFO] - [M3] ── OEC detectado   : Intertek
+2026-03-13 12:50:59 - [INFO] - [M3] ── Normas          : IEC 60335-2-9:2019 Ed. 7.0, EN18
+2026-03-13 12:50:59 - [INFO] - [M3] ── Fecha emisión   : [no encontrada]
+2026-03-13 12:50:59 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-03-13 12:50:59 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)
+2026-03-13 12:50:59 - [INFO] - [M3] Extrayendo datos del producto...
+2026-03-13 12:50:59 - [INFO] - [M3] ── Marca           : [vacía]
+2026-03-13 12:50:59 - [INFO] - [M3] ── Fabricante      : [vacío]
+2026-03-13 12:50:59 - [INFO] - [M3] ── Producto desc   : Nombre y dirección del solicitante    BIDCOM S.R.L. (CUIT: 30-71106936-0)
+2026-03-13 12:50:59 - [INFO] - [M3] ── Modelos         : [vacíos]
+2026-03-13 12:50:59 - [INFO] - [M3] ── Specs           : [vacías]
+2026-03-13 12:50:59 - [INFO] - [M3] ── Fecha emisión   : 09/03/2026
+2026-03-13 12:50:59 - [INFO] - [M3] ── Fecha venc.     : 08/03/2028
+2026-03-13 12:50:59 - [INFO] - [M3] Armando datos finales DJC...
+2026-03-13 12:50:59 - [INFO] - [M3] Bidcom manual: 'C863' → ID: DJC-SE-0326-C863-ITK-V1
+2026-03-13 12:50:59 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-03-13 12:50:59 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-03-13 12:50:59 - [INFO] - Vista DJC renderizada correctamente

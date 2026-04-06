@@ -1,0 +1,272 @@
+2026-02-10 17:44:15 - [INFO] - Argos iniciado correctamente
+2026-02-10 17:44:22 - [INFO] - 1 certificado(s) agregado(s)
+2026-02-10 17:44:24 - [INFO] - Datasheet cargado: C:/Users/FDean/Antigravity/Argos Proyect/Datasheet caso 4 convenio.xlsx
+2026-02-10 17:44:24 - [INFO] - Parseando datasheet...
+2026-02-10 17:44:24 - [INFO] - Datasheet parseado: SEGURIDAD_ELECTRICA - DJI - 1 modelo(s)
+2026-02-10 17:44:25 - [INFO] - === INICIANDO AUDITORÍA ===
+2026-02-10 17:44:25 - [INFO] - Datasheet: C:/Users/FDean/Antigravity/Argos Proyect/Datasheet caso 4 convenio.xlsx
+2026-02-10 17:44:25 - [INFO] - Certificados: 1
+2026-02-10 17:44:25 - [INFO] - Mapeado: SEGURIDAD_ELECTRICA -> datasheet caso 4 CE.pdf
+2026-02-10 17:44:25 - [INFO] - Ejecutando auditoría con estrategias adaptativas...
+2026-02-10 17:44:25 - [INFO] - 
+2026-02-10 17:44:25 - [INFO] - ╔══════════════════════════════════════════╗
+2026-02-10 17:44:25 - [INFO] - ║  INICIANDO AUDITORÍA MULTICERTIFICADO   ║
+2026-02-10 17:44:25 - [INFO] - ╚══════════════════════════════════════════╝
+2026-02-10 17:44:25 - [INFO] - 
+2026-02-10 17:44:25 - [INFO] - Certificados requeridos: 1
+2026-02-10 17:44:25 - [INFO] -   1. SEGURIDAD_ELECTRICA
+2026-02-10 17:44:25 - [INFO] - 
+2026-02-10 17:44:25 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-10 17:44:25 - [INFO] - PROCESANDO: SEGURIDAD_ELECTRICA
+2026-02-10 17:44:25 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-10 17:44:25 - [INFO] - 📄 PDF: datasheet caso 4 CE.pdf
+2026-02-10 17:44:25 - [DEBUG] -   Path completo: C:/Users/FDean/Antigravity/Argos Proyect/datasheet caso 4 CE.pdf
+2026-02-10 17:44:25 - [DEBUG] - Extrayendo texto del PDF...
+2026-02-10 17:44:25 - [INFO] - ✓ Texto extraído: 2898 caracteres
+2026-02-10 17:44:25 - [DEBUG] -   Primeros 200 caracteres: 10/061SMD 2024-12 rke-simplified
+ Ref. Certif. No. 
+JPTUV-180629 
+IEC SYSTEM FOR MUTUAL RECOGNITION OF TEST CERTIFICATES FOR ELECTRICAL EQUIPMENT 
+(IECEE) CB SCHEME 
+CB TEST CERTIFICATE 
+Product 
+Port...
+2026-02-10 17:44:25 - [DEBUG] - Tipo de producto: SEGURIDAD_ELECTRICA
+2026-02-10 17:44:25 - [DEBUG] - 
+=== DETECCIÓN DE ESTRATEGIA DE VALIDACIÓN ===
+2026-02-10 17:44:25 - [DEBUG] - Tipo de producto: SEGURIDAD_ELECTRICA
+2026-02-10 17:44:25 - [DEBUG] - Analizando contenido del certificado...
+2026-02-10 17:44:25 - [INFO] - ✓ Estrategia detectada: CB SCHEME
+2026-02-10 17:44:25 - [DEBUG] - Keywords encontradas: CB Scheme / IECEE
+2026-02-10 17:44:25 - [INFO] - 
+2026-02-10 17:44:25 - [INFO] - === Validación con CB SCHEME STRATEGY ===
+2026-02-10 17:44:25 - [INFO] - Tipo de certificado: SEGURIDAD_ELECTRICA
+2026-02-10 17:44:25 - [DEBUG] - CB Scheme: Estructura internacional estandarizada
+2026-02-10 17:44:25 - [DEBUG] - Campo MARCA en CB: Aparece como 'Trademark' o 'Brand'
+2026-02-10 17:44:25 - [DEBUG] - 
+>> Validando campo: MARCA (Hard Match)
+2026-02-10 17:44:25 - [DEBUG] -    Esperado: "DJI"
+2026-02-10 17:44:25 - [DEBUG] -    Buscando en PDF...
+2026-02-10 17:44:25 - [DEBUG] -    Valores a buscar: ['DJI']
+2026-02-10 17:44:25 - [INFO] -    ✓ Marca: Match encontrado - "DJI"
+2026-02-10 17:44:25 - [DEBUG] - Campo MODELO en CB: Aparece como 'Model' o 'Type Reference'
+2026-02-10 17:44:25 - [DEBUG] - 
+>> Validando MODELOS (Lista completa)
+2026-02-10 17:44:25 - [DEBUG] -    Modelos esperados: ['DYM1000M']
+2026-02-10 17:44:25 - [DEBUG] -    Buscando modelo: "DYM1000M"
+2026-02-10 17:44:25 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 17:44:25 - [INFO] -    ✓ MODELOS: Todos encontrados (1 modelos)
+2026-02-10 17:44:25 - [DEBUG] - Campo FÁBRICA: Threshold relajado (70%) por formato variable
+2026-02-10 17:44:25 - [DEBUG] - 
+>> Validando campo: FÁBRICA (Fuzzy Match, threshold=70%)
+2026-02-10 17:44:25 - [DEBUG] -    Esperado: ['Lobby of T2, DJI Sky City, No. 53 Xianyuan Road, Xili Community, Xili Street, Nanshan District, Shenzhen, China.']
+2026-02-10 17:44:25 - [DEBUG] -    Buscando coincidencias fuzzy...
+2026-02-10 17:44:25 - [DEBUG] -    - "Lobby of T2, DJI Sky City, No. 53 Xianyuan Road, Xili Community, Xili Street, Nanshan District, Shenzhen, China.": 96% similitud
+2026-02-10 17:44:25 - [INFO] -    ✓ Fábrica: Match aceptable (96% >= 70%)
+2026-02-10 17:44:25 - [DEBUG] - Validando especificaciones técnicas (voltajes, potencias...)
+2026-02-10 17:44:25 - [DEBUG] - 
+>> Validando ESPECIFICACIONES TÉCNICAS (CB Scheme)
+2026-02-10 17:44:25 - [DEBUG] -    Specs desde datasheet: Estación de energía portátil
+
+- Especificaciones eléctricas:
+
+Entradas:
+
+- CA: 220-240 V~, 50/60Hz, ...
+2026-02-10 17:44:25 - [DEBUG] -    Valores técnicos en datasheet: {'240V~', '960 W', '300W', '2200W', '5A', '1008 W', '100W', '105 A', '9,6V⎓', '20V⎓', '220 V~', '5V⎓', '240 V~', '4,5A', '400W', '60Hz', '60 Hz', '50Hz', '230V~', '12W', '100 A', '1000W', '800W', '2,4A', '28V⎓'}
+2026-02-10 17:44:25 - [DEBUG] -    Valores técnicos en certificado: 26 encontrados
+2026-02-10 17:44:25 - [DEBUG] -    Coincidencias: {'5A', '400W', '300W', '100W', '60Hz', '1000W', '800W', '50Hz', '2200W', '12W'}
+2026-02-10 17:44:25 - [WARNING] -    ⚠️ SPECS: Match parcial (10/25 valores)
+2026-02-10 17:44:25 - [INFO] - 
+2026-02-10 17:44:25 - [WARNING] - Estado: WARNING (1 advertencias)
+2026-02-10 17:44:25 - [INFO] - 
+2026-02-10 17:44:25 - [INFO] - ════════════════════════════════════════════════════════════
+2026-02-10 17:44:25 - [INFO] - AUDITORÍA COMPLETADA - Estado global: WARNING
+2026-02-10 17:44:25 - [INFO] - ════════════════════════════════════════════════════════════
+2026-02-10 17:44:25 - [INFO] - 
+2026-02-10 17:44:25 - [INFO] - Auditoría completada. Estado: WARNING
+2026-02-10 17:44:26 - [INFO] - Resultados mostrados inline
+2026-02-10 17:44:46 - [INFO] - Tema cambiado a: Matrix
+2026-02-10 17:44:49 - [INFO] - Tema cambiado a: Claro
+2026-02-10 17:44:57 - [INFO] - Datasheet cargado: C:/Users/FDean/Antigravity/Argos Proyect/Datasheet caso 4 convenio.xlsx
+2026-02-10 17:44:57 - [INFO] - Parseando datasheet...
+2026-02-10 17:44:57 - [INFO] - Datasheet parseado: SEGURIDAD_ELECTRICA - DJI - 1 modelo(s)
+2026-02-10 17:44:58 - [INFO] - 1 certificado(s) agregado(s)
+2026-02-10 17:45:00 - [INFO] - === INICIANDO AUDITORÍA ===
+2026-02-10 17:45:00 - [INFO] - Datasheet: C:/Users/FDean/Antigravity/Argos Proyect/Datasheet caso 4 convenio.xlsx
+2026-02-10 17:45:00 - [INFO] - Certificados: 2
+2026-02-10 17:45:00 - [INFO] - Mapeado: SEGURIDAD_ELECTRICA -> datasheet caso 4 CE.pdf
+2026-02-10 17:45:00 - [INFO] - Ejecutando auditoría con estrategias adaptativas...
+2026-02-10 17:45:00 - [INFO] - 
+2026-02-10 17:45:00 - [INFO] - ╔══════════════════════════════════════════╗
+2026-02-10 17:45:00 - [INFO] - ║  INICIANDO AUDITORÍA MULTICERTIFICADO   ║
+2026-02-10 17:45:00 - [INFO] - ╚══════════════════════════════════════════╝
+2026-02-10 17:45:00 - [INFO] - 
+2026-02-10 17:45:00 - [INFO] - Certificados requeridos: 1
+2026-02-10 17:45:00 - [INFO] -   1. SEGURIDAD_ELECTRICA
+2026-02-10 17:45:00 - [INFO] - 
+2026-02-10 17:45:00 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-10 17:45:00 - [INFO] - PROCESANDO: SEGURIDAD_ELECTRICA
+2026-02-10 17:45:00 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-10 17:45:00 - [INFO] - 📄 PDF: datasheet caso 4 CE.pdf
+2026-02-10 17:45:00 - [DEBUG] -   Path completo: C:/Users/FDean/Antigravity/Argos Proyect/datasheet caso 4 CE.pdf
+2026-02-10 17:45:00 - [DEBUG] - Extrayendo texto del PDF...
+2026-02-10 17:45:00 - [INFO] - ✓ Texto extraído: 2898 caracteres
+2026-02-10 17:45:00 - [DEBUG] -   Primeros 200 caracteres: 10/061SMD 2024-12 rke-simplified
+ Ref. Certif. No. 
+JPTUV-180629 
+IEC SYSTEM FOR MUTUAL RECOGNITION OF TEST CERTIFICATES FOR ELECTRICAL EQUIPMENT 
+(IECEE) CB SCHEME 
+CB TEST CERTIFICATE 
+Product 
+Port...
+2026-02-10 17:45:00 - [DEBUG] - Tipo de producto: SEGURIDAD_ELECTRICA
+2026-02-10 17:45:00 - [DEBUG] - 
+=== DETECCIÓN DE ESTRATEGIA DE VALIDACIÓN ===
+2026-02-10 17:45:00 - [DEBUG] - Tipo de producto: SEGURIDAD_ELECTRICA
+2026-02-10 17:45:00 - [DEBUG] - Analizando contenido del certificado...
+2026-02-10 17:45:00 - [INFO] - ✓ Estrategia detectada: CB SCHEME
+2026-02-10 17:45:00 - [DEBUG] - Keywords encontradas: CB Scheme / IECEE
+2026-02-10 17:45:00 - [INFO] - 
+2026-02-10 17:45:00 - [INFO] - === Validación con CB SCHEME STRATEGY ===
+2026-02-10 17:45:00 - [INFO] - Tipo de certificado: SEGURIDAD_ELECTRICA
+2026-02-10 17:45:00 - [DEBUG] - CB Scheme: Estructura internacional estandarizada
+2026-02-10 17:45:00 - [DEBUG] - Campo MARCA en CB: Aparece como 'Trademark' o 'Brand'
+2026-02-10 17:45:00 - [DEBUG] - 
+>> Validando campo: MARCA (Hard Match)
+2026-02-10 17:45:00 - [DEBUG] -    Esperado: "DJI"
+2026-02-10 17:45:00 - [DEBUG] -    Buscando en PDF...
+2026-02-10 17:45:00 - [DEBUG] -    Valores a buscar: ['DJI']
+2026-02-10 17:45:00 - [INFO] -    ✓ Marca: Match encontrado - "DJI"
+2026-02-10 17:45:00 - [DEBUG] - Campo MODELO en CB: Aparece como 'Model' o 'Type Reference'
+2026-02-10 17:45:00 - [DEBUG] - 
+>> Validando MODELOS (Lista completa)
+2026-02-10 17:45:00 - [DEBUG] -    Modelos esperados: ['DYM1000M']
+2026-02-10 17:45:00 - [DEBUG] -    Buscando modelo: "DYM1000M"
+2026-02-10 17:45:00 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 17:45:00 - [INFO] -    ✓ MODELOS: Todos encontrados (1 modelos)
+2026-02-10 17:45:00 - [DEBUG] - Campo FÁBRICA: Threshold relajado (70%) por formato variable
+2026-02-10 17:45:00 - [DEBUG] - 
+>> Validando campo: FÁBRICA (Fuzzy Match, threshold=70%)
+2026-02-10 17:45:00 - [DEBUG] -    Esperado: ['Lobby of T2, DJI Sky City, No. 53 Xianyuan Road, Xili Community, Xili Street, Nanshan District, Shenzhen, China.']
+2026-02-10 17:45:00 - [DEBUG] -    Buscando coincidencias fuzzy...
+2026-02-10 17:45:00 - [DEBUG] -    - "Lobby of T2, DJI Sky City, No. 53 Xianyuan Road, Xili Community, Xili Street, Nanshan District, Shenzhen, China.": 96% similitud
+2026-02-10 17:45:00 - [INFO] -    ✓ Fábrica: Match aceptable (96% >= 70%)
+2026-02-10 17:45:00 - [DEBUG] - Validando especificaciones técnicas (voltajes, potencias...)
+2026-02-10 17:45:00 - [DEBUG] - 
+>> Validando ESPECIFICACIONES TÉCNICAS (CB Scheme)
+2026-02-10 17:45:00 - [DEBUG] -    Specs desde datasheet: Estación de energía portátil
+
+- Especificaciones eléctricas:
+
+Entradas:
+
+- CA: 220-240 V~, 50/60Hz, ...
+2026-02-10 17:45:00 - [DEBUG] -    Valores técnicos en datasheet: {'240V~', '960 W', '300W', '2200W', '5A', '1008 W', '100W', '105 A', '9,6V⎓', '20V⎓', '220 V~', '5V⎓', '240 V~', '4,5A', '400W', '60Hz', '60 Hz', '50Hz', '230V~', '12W', '100 A', '1000W', '800W', '2,4A', '28V⎓'}
+2026-02-10 17:45:00 - [DEBUG] -    Valores técnicos en certificado: 26 encontrados
+2026-02-10 17:45:00 - [DEBUG] -    Coincidencias: {'5A', '400W', '300W', '100W', '60Hz', '1000W', '800W', '50Hz', '2200W', '12W'}
+2026-02-10 17:45:00 - [WARNING] -    ⚠️ SPECS: Match parcial (10/25 valores)
+2026-02-10 17:45:00 - [INFO] - 
+2026-02-10 17:45:00 - [WARNING] - Estado: WARNING (1 advertencias)
+2026-02-10 17:45:00 - [INFO] - 
+2026-02-10 17:45:00 - [INFO] - ════════════════════════════════════════════════════════════
+2026-02-10 17:45:00 - [INFO] - AUDITORÍA COMPLETADA - Estado global: WARNING
+2026-02-10 17:45:00 - [INFO] - ════════════════════════════════════════════════════════════
+2026-02-10 17:45:00 - [INFO] - 
+2026-02-10 17:45:00 - [INFO] - Auditoría completada. Estado: WARNING
+2026-02-10 17:45:00 - [INFO] - Resultados mostrados inline
+2026-02-10 17:45:26 - [INFO] - Volviendo a pantalla principal
+2026-02-10 17:45:28 - [INFO] - Certificado eliminado: datasheet caso 4 CE.pdf
+2026-02-10 17:48:12 - [INFO] - Tema cambiado a: Oscuro
+2026-02-10 17:48:13 - [INFO] - Tema cambiado a: Matrix
+2026-02-10 17:48:16 - [INFO] - Tema cambiado a: Claro
+2026-02-10 17:48:17 - [INFO] - Tema cambiado a: Oscuro
+2026-02-10 17:48:18 - [INFO] - Tema cambiado a: Matrix
+2026-02-10 17:48:19 - [INFO] - Tema cambiado a: Claro
+2026-02-10 17:52:22 - [INFO] - Datasheet cargado: C:/Users/FDean/Antigravity/Argos Proyect/Datasheet caso 4 convenio.xlsx
+2026-02-10 17:52:22 - [INFO] - Parseando datasheet...
+2026-02-10 17:52:23 - [INFO] - Datasheet parseado: SEGURIDAD_ELECTRICA - DJI - 1 modelo(s)
+2026-02-10 17:52:24 - [INFO] - 1 certificado(s) agregado(s)
+2026-02-10 17:52:25 - [INFO] - === INICIANDO AUDITORÍA ===
+2026-02-10 17:52:25 - [INFO] - Datasheet: C:/Users/FDean/Antigravity/Argos Proyect/Datasheet caso 4 convenio.xlsx
+2026-02-10 17:52:25 - [INFO] - Certificados: 2
+2026-02-10 17:52:25 - [INFO] - Mapeado: SEGURIDAD_ELECTRICA -> datasheet caso 4 CE.pdf
+2026-02-10 17:52:25 - [INFO] - Ejecutando auditoría con estrategias adaptativas...
+2026-02-10 17:52:25 - [INFO] - 
+2026-02-10 17:52:25 - [INFO] - ╔══════════════════════════════════════════╗
+2026-02-10 17:52:25 - [INFO] - ║  INICIANDO AUDITORÍA MULTICERTIFICADO   ║
+2026-02-10 17:52:25 - [INFO] - ╚══════════════════════════════════════════╝
+2026-02-10 17:52:25 - [INFO] - 
+2026-02-10 17:52:25 - [INFO] - Certificados requeridos: 1
+2026-02-10 17:52:25 - [INFO] -   1. SEGURIDAD_ELECTRICA
+2026-02-10 17:52:25 - [INFO] - 
+2026-02-10 17:52:25 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-10 17:52:25 - [INFO] - PROCESANDO: SEGURIDAD_ELECTRICA
+2026-02-10 17:52:25 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-10 17:52:25 - [INFO] - 📄 PDF: datasheet caso 4 CE.pdf
+2026-02-10 17:52:25 - [DEBUG] -   Path completo: C:/Users/FDean/Antigravity/Argos Proyect/datasheet caso 4 CE.pdf
+2026-02-10 17:52:25 - [DEBUG] - Extrayendo texto del PDF...
+2026-02-10 17:52:25 - [INFO] - ✓ Texto extraído: 2898 caracteres
+2026-02-10 17:52:25 - [DEBUG] -   Primeros 200 caracteres: 10/061SMD 2024-12 rke-simplified
+ Ref. Certif. No. 
+JPTUV-180629 
+IEC SYSTEM FOR MUTUAL RECOGNITION OF TEST CERTIFICATES FOR ELECTRICAL EQUIPMENT 
+(IECEE) CB SCHEME 
+CB TEST CERTIFICATE 
+Product 
+Port...
+2026-02-10 17:52:25 - [DEBUG] - Tipo de producto: SEGURIDAD_ELECTRICA
+2026-02-10 17:52:25 - [DEBUG] - 
+=== DETECCIÓN DE ESTRATEGIA DE VALIDACIÓN ===
+2026-02-10 17:52:25 - [DEBUG] - Tipo de producto: SEGURIDAD_ELECTRICA
+2026-02-10 17:52:25 - [DEBUG] - Analizando contenido del certificado...
+2026-02-10 17:52:25 - [INFO] - ✓ Estrategia detectada: CB SCHEME
+2026-02-10 17:52:25 - [DEBUG] - Keywords encontradas: CB Scheme / IECEE
+2026-02-10 17:52:25 - [INFO] - 
+2026-02-10 17:52:25 - [INFO] - === Validación con CB SCHEME STRATEGY ===
+2026-02-10 17:52:25 - [INFO] - Tipo de certificado: SEGURIDAD_ELECTRICA
+2026-02-10 17:52:25 - [DEBUG] - CB Scheme: Estructura internacional estandarizada
+2026-02-10 17:52:25 - [DEBUG] - Campo MARCA en CB: Aparece como 'Trademark' o 'Brand'
+2026-02-10 17:52:25 - [DEBUG] - 
+>> Validando campo: MARCA (Hard Match)
+2026-02-10 17:52:25 - [DEBUG] -    Esperado: "DJI"
+2026-02-10 17:52:25 - [DEBUG] -    Buscando en PDF...
+2026-02-10 17:52:25 - [DEBUG] -    Valores a buscar: ['DJI']
+2026-02-10 17:52:25 - [INFO] -    ✓ Marca: Match encontrado - "DJI"
+2026-02-10 17:52:25 - [DEBUG] - Campo MODELO en CB: Aparece como 'Model' o 'Type Reference'
+2026-02-10 17:52:25 - [DEBUG] - 
+>> Validando MODELOS (Lista completa)
+2026-02-10 17:52:25 - [DEBUG] -    Modelos esperados: ['DYM1000M']
+2026-02-10 17:52:25 - [DEBUG] -    Buscando modelo: "DYM1000M"
+2026-02-10 17:52:25 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 17:52:25 - [INFO] -    ✓ MODELOS: Todos encontrados (1 modelos)
+2026-02-10 17:52:25 - [DEBUG] - Campo FÁBRICA: Threshold relajado (70%) por formato variable
+2026-02-10 17:52:25 - [DEBUG] - 
+>> Validando campo: FÁBRICA (Fuzzy Match, threshold=70%)
+2026-02-10 17:52:25 - [DEBUG] -    Esperado: ['Lobby of T2, DJI Sky City, No. 53 Xianyuan Road, Xili Community, Xili Street, Nanshan District, Shenzhen, China.']
+2026-02-10 17:52:25 - [DEBUG] -    Buscando coincidencias fuzzy...
+2026-02-10 17:52:25 - [DEBUG] -    - "Lobby of T2, DJI Sky City, No. 53 Xianyuan Road, Xili Community, Xili Street, Nanshan District, Shenzhen, China.": 96% similitud
+2026-02-10 17:52:25 - [INFO] -    ✓ Fábrica: Match aceptable (96% >= 70%)
+2026-02-10 17:52:25 - [DEBUG] - Validando especificaciones técnicas (voltajes, potencias...)
+2026-02-10 17:52:25 - [DEBUG] - 
+>> Validando ESPECIFICACIONES TÉCNICAS (CB Scheme)
+2026-02-10 17:52:25 - [DEBUG] -    Specs desde datasheet: Estación de energía portátil
+
+- Especificaciones eléctricas:
+
+Entradas:
+
+- CA: 220-240 V~, 50/60Hz, ...
+2026-02-10 17:52:25 - [DEBUG] -    Valores técnicos en datasheet: {'240V~', '960 W', '300W', '2200W', '5A', '1008 W', '100W', '105 A', '9,6V⎓', '20V⎓', '220 V~', '5V⎓', '240 V~', '4,5A', '400W', '60Hz', '60 Hz', '50Hz', '230V~', '12W', '100 A', '1000W', '800W', '2,4A', '28V⎓'}
+2026-02-10 17:52:25 - [DEBUG] -    Valores técnicos en certificado: 26 encontrados
+2026-02-10 17:52:25 - [DEBUG] -    Coincidencias: {'5A', '400W', '300W', '100W', '60Hz', '1000W', '800W', '50Hz', '2200W', '12W'}
+2026-02-10 17:52:25 - [WARNING] -    ⚠️ SPECS: Match parcial (10/25 valores)
+2026-02-10 17:52:25 - [INFO] - 
+2026-02-10 17:52:25 - [WARNING] - Estado: WARNING (1 advertencias)
+2026-02-10 17:52:25 - [INFO] - 
+2026-02-10 17:52:25 - [INFO] - ════════════════════════════════════════════════════════════
+2026-02-10 17:52:25 - [INFO] - AUDITORÍA COMPLETADA - Estado global: WARNING
+2026-02-10 17:52:25 - [INFO] - ════════════════════════════════════════════════════════════
+2026-02-10 17:52:25 - [INFO] - 
+2026-02-10 17:52:25 - [INFO] - Auditoría completada. Estado: WARNING
+2026-02-10 17:52:25 - [INFO] - Resultados mostrados inline

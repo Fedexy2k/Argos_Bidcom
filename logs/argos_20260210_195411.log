@@ -1,0 +1,138 @@
+2026-02-10 19:54:12 - [INFO] - Argos iniciado correctamente
+2026-02-10 19:54:26 - [INFO] - Datasheet cargado: C:/Users/FDean/Downloads/Datasheet caso 2 juguetes.xlsx
+2026-02-10 19:54:27 - [INFO] - Parseando datasheet...
+2026-02-10 19:54:27 - [INFO] - Datasheet parseado: JUGUETES - GADNIC - 1 modelo(s)
+2026-02-10 19:54:29 - [INFO] - 1 certificado(s) agregado(s)
+2026-02-10 19:54:32 - [INFO] - 1 certificado(s) agregado(s)
+2026-02-10 19:54:34 - [INFO] - === INICIANDO AUDITORÍA ===
+2026-02-10 19:54:34 - [INFO] - Datasheet: C:/Users/FDean/Downloads/Datasheet caso 2 juguetes.xlsx
+2026-02-10 19:54:34 - [INFO] - Certificados: 2
+2026-02-10 19:54:34 - [INFO] - Mapeado: SEGURIDAD_JUGUETES -> certificado caso 2 juguetes.PDF
+2026-02-10 19:54:34 - [INFO] - Mapeado: FTALATOS -> certificado caso 2 ftalatos.PDF
+2026-02-10 19:54:34 - [INFO] - Ejecutando auditoría con estrategias adaptativas...
+2026-02-10 19:54:34 - [INFO] - 
+2026-02-10 19:54:34 - [INFO] - ╔══════════════════════════════════════════╗
+2026-02-10 19:54:34 - [INFO] - ║  INICIANDO AUDITORÍA MULTICERTIFICADO   ║
+2026-02-10 19:54:34 - [INFO] - ╚══════════════════════════════════════════╝
+2026-02-10 19:54:34 - [INFO] - 
+2026-02-10 19:54:34 - [INFO] - Certificados requeridos: 2
+2026-02-10 19:54:34 - [INFO] -   1. SEGURIDAD_JUGUETES
+2026-02-10 19:54:34 - [INFO] -   2. FTALATOS
+2026-02-10 19:54:34 - [INFO] - 
+2026-02-10 19:54:34 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-10 19:54:34 - [INFO] - PROCESANDO: SEGURIDAD_JUGUETES
+2026-02-10 19:54:34 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-10 19:54:34 - [INFO] - 📄 PDF: certificado caso 2 juguetes.PDF
+2026-02-10 19:54:34 - [DEBUG] -   Path completo: C:/Users/FDean/Downloads/certificado caso 2 juguetes.PDF
+2026-02-10 19:54:34 - [DEBUG] - Extrayendo texto del PDF...
+2026-02-10 19:54:34 - [INFO] - ✓ Texto extraído: 6024 caracteres
+2026-02-10 19:54:34 - [DEBUG] -   Primeros 200 caracteres: 1 
+ 
+DECLARACIÓN JURADA DE 
+CONFORMIDAD (DJC) 
+Número de Identificación de DJC 
+13937 JJ 
+ 
+Resolución SCT 163/2005 
+ 
+ 
+  
+Información del Fabricante o Importador 
+   
+● Razón Social 
+BIDCOM S.R.L 
+●...
+2026-02-10 19:54:34 - [DEBUG] - Tipo de producto: JUGUETES
+2026-02-10 19:54:34 - [DEBUG] - 
+=== DETECCIÓN DE ESTRATEGIA DE VALIDACIÓN ===
+2026-02-10 19:54:34 - [DEBUG] - Tipo de producto: JUGUETES
+2026-02-10 19:54:34 - [DEBUG] - Analizando contenido del certificado...
+2026-02-10 19:54:34 - [INFO] - ✓ Estrategia detectada: LENOR TOY
+2026-02-10 19:54:34 - [DEBUG] - Keywords: Lenor + Producto tipo JUGUETES
+2026-02-10 19:54:34 - [INFO] - 
+2026-02-10 19:54:34 - [INFO] - === Validación con LENOR TOY STRATEGY ===
+2026-02-10 19:54:34 - [INFO] - Tipo de certificado: SEGURIDAD_JUGUETES
+2026-02-10 19:54:34 - [DEBUG] - 
+>> Validando campo: MARCA (Hard Match)
+2026-02-10 19:54:34 - [DEBUG] -    Esperado: "GADNIC"
+2026-02-10 19:54:34 - [DEBUG] -    Buscando en PDF...
+2026-02-10 19:54:34 - [DEBUG] -    Valores a buscar: ['GADNIC']
+2026-02-10 19:54:34 - [INFO] -    ✓ Marca: Match encontrado - "GADNIC"
+2026-02-10 19:54:34 - [DEBUG] - 
+>> Validando MODELOS (Lista completa)
+2026-02-10 19:54:34 - [DEBUG] -    Modelos esperados: ['MGN2100B']
+2026-02-10 19:54:34 - [DEBUG] -    Buscando modelo: "MGN2100B"
+2026-02-10 19:54:34 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 19:54:34 - [INFO] -    ✓ MODELOS: Todos encontrados (1 modelos)
+2026-02-10 19:54:34 - [DEBUG] - 
+>> Validando campo: FÁBRICA (Fuzzy Match, threshold=85%)
+2026-02-10 19:54:34 - [DEBUG] -    Esperado: ['Yongkang Zhihao Technology Co., Ltd.']
+2026-02-10 19:54:34 - [DEBUG] -    Buscando coincidencias fuzzy...
+2026-02-10 19:54:34 - [DEBUG] -    - "Yongkang Zhihao Technology Co., Ltd.": 100% similitud
+2026-02-10 19:54:34 - [INFO] -    ✓ Fábrica: Match aceptable (100% >= 85%)
+2026-02-10 19:54:34 - [DEBUG] - 
+>> Validando campo: DIRECCIÓN FÁBRICA (Fuzzy Match, threshold=85%)
+2026-02-10 19:54:34 - [DEBUG] -    Esperado: ['No. 26, Jinshan East Road, Yongkang City, Jin Hua Shi, Zhejiang Sheng Province, China.']
+2026-02-10 19:54:34 - [DEBUG] -    Buscando coincidencias fuzzy...
+2026-02-10 19:54:34 - [DEBUG] -    - "No. 26, Jinshan East Road, Yongkang City, Jin Hua Shi, Zhejiang Sheng Province, China.": 100% similitud
+2026-02-10 19:54:34 - [INFO] -    ✓ Dirección Fábrica: Match aceptable (100% >= 85%)
+2026-02-10 19:54:34 - [DEBUG] - 
+>> Validando campo: TECHNICAL SPECS
+2026-02-10 19:54:34 - [DEBUG] -    Campo 'Technical Specs' vacío en datasheet - Omitido
+2026-02-10 19:54:34 - [INFO] - 
+2026-02-10 19:54:34 - [INFO] - Estado: ✓ OK - Validación exitosa
+2026-02-10 19:54:34 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-10 19:54:34 - [INFO] - PROCESANDO: FTALATOS
+2026-02-10 19:54:34 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-10 19:54:34 - [INFO] - 📄 PDF: certificado caso 2 ftalatos.PDF
+2026-02-10 19:54:34 - [DEBUG] -   Path completo: C:/Users/FDean/Downloads/certificado caso 2 ftalatos.PDF
+2026-02-10 19:54:34 - [DEBUG] - Extrayendo texto del PDF...
+2026-02-10 19:54:34 - [INFO] - ✓ Texto extraído: 2422 caracteres
+2026-02-10 19:54:34 - [DEBUG] -   Primeros 200 caracteres:  
+ 
+ 
+ 
+ 
+NOTA DE NO APLICABILIDAD 
+ 
+ 
+Lenor S.R.L. – Organismo de Certificación – Fraga 1371, C1427BUA, Ciudad Autónoma de Buenos Aires, Argentina  
+email: info@lenorcert.com                        ...
+2026-02-10 19:54:34 - [DEBUG] - Tipo de producto: JUGUETES
+2026-02-10 19:54:34 - [DEBUG] - 
+=== DETECCIÓN DE ESTRATEGIA DE VALIDACIÓN ===
+2026-02-10 19:54:34 - [DEBUG] - Tipo de producto: JUGUETES
+2026-02-10 19:54:34 - [DEBUG] - Analizando contenido del certificado...
+2026-02-10 19:54:34 - [INFO] - ✓ Estrategia detectada: LENOR TOY
+2026-02-10 19:54:34 - [DEBUG] - Keywords: Lenor + Producto tipo JUGUETES
+2026-02-10 19:54:34 - [INFO] - 
+2026-02-10 19:54:34 - [INFO] - === Validación con LENOR TOY STRATEGY ===
+2026-02-10 19:54:34 - [INFO] - Tipo de certificado: FTALATOS
+2026-02-10 19:54:34 - [DEBUG] - Certificado de Ftalatos detectado - Marca es warning (no critical)
+2026-02-10 19:54:34 - [WARNING] - ⚠️ Marca 'GADNIC' no encontrada en Ftalatos (común en Lenor/Químicos)
+2026-02-10 19:54:34 - [DEBUG] - 
+>> Validando MODELOS (Lista completa)
+2026-02-10 19:54:34 - [DEBUG] -    Modelos esperados: ['MGN2100B']
+2026-02-10 19:54:34 - [DEBUG] -    Buscando modelo: "MGN2100B"
+2026-02-10 19:54:34 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 19:54:34 - [INFO] -    ✓ MODELOS: Todos encontrados (1 modelos)
+2026-02-10 19:54:34 - [DEBUG] - 
+>> Validando campo: TECHNICAL SPECS
+2026-02-10 19:54:34 - [DEBUG] -    Campo 'Technical Specs' vacío en datasheet - Omitido
+2026-02-10 19:54:34 - [INFO] - 
+2026-02-10 19:54:34 - [WARNING] - Estado: WARNING (1 advertencias)
+2026-02-10 19:54:34 - [INFO] - 
+2026-02-10 19:54:34 - [INFO] - ════════════════════════════════════════════════════════════
+2026-02-10 19:54:34 - [INFO] - AUDITORÍA COMPLETADA - Estado global: WARNING
+2026-02-10 19:54:34 - [INFO] - ════════════════════════════════════════════════════════════
+2026-02-10 19:54:34 - [INFO] - 
+2026-02-10 19:54:34 - [INFO] - Auditoría completada. Estado: WARNING
+2026-02-10 19:54:34 - [INFO] - Mostrando pantalla de resultados...
+2026-02-10 19:54:34 - [INFO] - Main frame oculto correctamente
+2026-02-10 19:54:34 - [INFO] - Estado global auditoría: WARNING
+2026-02-10 19:54:34 - [INFO] - Scroll frame creado
+2026-02-10 19:54:34 - [INFO] - Procesando 2 certificados en UI
+2026-02-10 19:54:34 - [INFO] - Creando tarjeta para: CERT_SEGURIDAD_JUGUETES
+2026-02-10 19:54:34 - [INFO] - Creando tarjeta para: CERT_FTALATOS
+2026-02-10 19:54:34 - [INFO] - Pantalla de resultados renderizada completamente
+2026-02-10 19:54:49 - [INFO] - ✅ Aprobar: Marca

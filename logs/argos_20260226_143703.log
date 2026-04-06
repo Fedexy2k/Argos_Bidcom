@@ -1,0 +1,369 @@
+2026-02-26 14:37:04 - [INFO] - Cambiando a tab:  verificador
+2026-02-26 14:37:04 - [INFO] - Argos iniciado correctamente
+2026-02-26 14:38:17 - [INFO] - Datasheet cargado: C:/Users/FDean/Downloads/CAFEXP07-08 Datasheet.xlsx
+2026-02-26 14:38:18 - [INFO] - Parseando datasheet...
+2026-02-26 14:38:19 - [INFO] - Datasheet parseado: SEGURIDAD_ELECTRICA - Cuk by Gadnic - 41 modelo(s)
+2026-02-26 14:38:59 - [INFO] - 1 certificado(s) agregado(s)
+2026-02-26 14:39:02 - [INFO] - === INICIANDO AUDITORÍA ===
+2026-02-26 14:39:02 - [INFO] - Datasheet: C:/Users/FDean/Downloads/CAFEXP07-08 Datasheet.xlsx
+2026-02-26 14:39:02 - [INFO] - Certificados: 1
+2026-02-26 14:39:03 - [INFO] - Mapeado: SEGURIDAD_ELECTRICA -> DJC13688SE - BIDCOM - TCSE-IACSA-0146329.1R1.pdf
+2026-02-26 14:39:03 - [INFO] - Ejecutando auditoría con estrategias adaptativas...
+2026-02-26 14:39:03 - [INFO] - 
+2026-02-26 14:39:03 - [INFO] - ╔══════════════════════════════════════════╗
+2026-02-26 14:39:03 - [INFO] - ║  INICIANDO AUDITORÍA MULTICERTIFICADO   ║
+2026-02-26 14:39:03 - [INFO] - ╚══════════════════════════════════════════╝
+2026-02-26 14:39:03 - [INFO] - 
+2026-02-26 14:39:03 - [INFO] - Certificados requeridos: 1
+2026-02-26 14:39:03 - [INFO] -   1. SEGURIDAD_ELECTRICA
+2026-02-26 14:39:03 - [INFO] - 
+2026-02-26 14:39:03 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-26 14:39:03 - [INFO] - PROCESANDO: SEGURIDAD_ELECTRICA
+2026-02-26 14:39:03 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-26 14:39:03 - [INFO] - 📄 PDF: DJC13688SE - BIDCOM - TCSE-IACSA-0146329.1R1.pdf
+2026-02-26 14:39:03 - [DEBUG] -   Path completo: C:/Users/FDean/Downloads/DJC13688SE - BIDCOM - TCSE-IACSA-0146329.1R1.pdf
+2026-02-26 14:39:03 - [DEBUG] - Extrayendo texto del PDF...
+2026-02-26 14:39:03 - [INFO] - ✓ Texto extraído: 5014 caracteres
+2026-02-26 14:39:03 - [DEBUG] -   Primeros 200 caracteres: Producto
+Máquina Automática de Café Expresso.
+Product 
+BIDCOM S.R.L.
+Av. Bouchard 468, Piso n° 5, Depto. N° 1, C.A.B.A., Argentina.
+Fábrica / Dirección
+Cuk by Gadnic.
+Trade mark
+Model or type
+75622-15...
+2026-02-26 14:39:03 - [DEBUG] - Tipo de producto: SEGURIDAD_ELECTRICA
+2026-02-26 14:39:03 - [DEBUG] - 
+=== DETECCIÓN DE ESTRATEGIA DE VALIDACIÓN ===
+2026-02-26 14:39:03 - [DEBUG] - Tipo de producto: SEGURIDAD_ELECTRICA
+2026-02-26 14:39:03 - [DEBUG] - Analizando contenido del certificado...
+2026-02-26 14:39:03 - [INFO] - ✓ Estrategia detectada: QUEKTRA
+2026-02-26 14:39:03 - [DEBUG] - Keywords encontradas: Q-AR- / ISO/IEC 17067 / Conformidad de Tipo
+2026-02-26 14:39:03 - [INFO] - 
+2026-02-26 14:39:03 - [INFO] - === Validación con QUEKTRA STRATEGY ===
+2026-02-26 14:39:03 - [INFO] - Tipo de certificado: SEGURIDAD_ELECTRICA
+2026-02-26 14:39:03 - [DEBUG] - Quektra: Certificadora nacional argentina (ISO/IEC 17067 Sistema Nº 2)
+2026-02-26 14:39:03 - [DEBUG] - Campo MARCA: Aparece como 'Trademark' o directamente en sección
+2026-02-26 14:39:03 - [DEBUG] - 
+>> Validando campo: MARCA (Hard Match)
+2026-02-26 14:39:03 - [DEBUG] -    Esperado: "Cuk by Gadnic"
+2026-02-26 14:39:03 - [DEBUG] -    Buscando en PDF...
+2026-02-26 14:39:03 - [DEBUG] -    Valores a buscar: ['Cuk by Gadnic']
+2026-02-26 14:39:03 - [INFO] -    ✓ Marca: Match encontrado - "Cuk by Gadnic"
+2026-02-26 14:39:03 - [DEBUG] - Campo MODELOS: Pueden aparecer en 'Model or type' o tabla separada
+2026-02-26 14:39:03 - [DEBUG] - 
+>> Validando MODELOS (Lista completa)
+2026-02-26 14:39:03 - [DEBUG] -    Modelos esperados: ['KFP44GE', 'KFX4200', 'Características técnicas /\nTechnical characteristics', 'CMP208', 'CMP280', 'CMPC208', 'CMPC280', 'CMS89', 'CMS890', 'CMSC89', 'CMSC890', 'CMCQ71', 'CMCQ710', 'CMQ71', 'CMQ710', 'CMP206', 'CMP260', 'CME11', 'CME110', 'KFX10U', 'FEK10H', 'CME07', 'CME70', 'GER700', 'KF360', 'CME08', 'CME80', 'KFCTO3', 'JD1050', 'CME04', 'CME40', 'CAFX20', 'TRRD2.0', 'CFHY4', 'CTPF40', 'FX4.0QP', 'COFFE4', 'CME01', 'CME10', 'FEX50', 'KOFF850']
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "KFP44GE"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "KFX4200"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "Características técnicas /
+Technical characteristics"
+2026-02-26 14:39:03 - [DEBUG] -       → No encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "CMP208"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "CMP280"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "CMPC208"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "CMPC280"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "CMS89"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "CMS890"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "CMSC89"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "CMSC890"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "CMCQ71"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "CMCQ710"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "CMQ71"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "CMQ710"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "CMP206"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "CMP260"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "CME11"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "CME110"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "KFX10U"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "FEK10H"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "CME07"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "CME70"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "GER700"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "KF360"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "CME08"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "CME80"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "KFCTO3"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "JD1050"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "CME04"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "CME40"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "CAFX20"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "TRRD2.0"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "CFHY4"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "CTPF40"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "FX4.0QP"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "COFFE4"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "CME01"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "CME10"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "FEX50"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [DEBUG] -    Buscando modelo: "KOFF850"
+2026-02-26 14:39:03 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 14:39:03 - [ERROR] -    ❌ MODELOS: Faltan 1 de 41
+2026-02-26 14:39:03 - [DEBUG] -    Faltantes: ['Características técnicas /\nTechnical characteristics']
+2026-02-26 14:39:03 - [DEBUG] - Campo FÁBRICA: Nombre completo del fabricante
+2026-02-26 14:39:03 - [DEBUG] - 
+>> Validando campo: FÁBRICA (Fuzzy Match, threshold=85%)
+2026-02-26 14:39:03 - [DEBUG] -    Esperado: ['Eternal (Guangdong) Tech Electric Co., Ltd.']
+2026-02-26 14:39:03 - [DEBUG] -    Buscando coincidencias fuzzy...
+2026-02-26 14:39:03 - [DEBUG] -    - "Eternal (Guangdong) Tech Electric Co., Ltd.": 100% similitud
+2026-02-26 14:39:03 - [INFO] -    ✓ Fábrica: Match aceptable (100% >= 85%)
+2026-02-26 14:39:03 - [DEBUG] - Campo DIRECCIÓN: Dirección completa con provincia/país
+2026-02-26 14:39:03 - [DEBUG] - 
+>> Validando campo: DIRECCIÓN FÁBRICA (Fuzzy Match, threshold=85%)
+2026-02-26 14:39:03 - [DEBUG] -    Esperado: ['B5 South of Longzhou Road, Longjiang Residential Committee, Longjiang Town, Shunde District, Foshan City, Guangdong Province']
+2026-02-26 14:39:03 - [DEBUG] -    Buscando coincidencias fuzzy...
+2026-02-26 14:39:03 - [DEBUG] -    - "B5 South of Longzhou Road, Longjiang Residential Committee, Longjiang Town, Shunde District, Foshan City, Guangdong Province": 100% similitud
+2026-02-26 14:39:03 - [INFO] -    ✓ Dirección Fábrica: Match aceptable (100% >= 85%)
+2026-02-26 14:39:03 - [DEBUG] - Validando especificaciones técnicas (voltajes, corrientes, potencias...)
+2026-02-26 14:39:03 - [DEBUG] - 
+>> Validando campo: SPECS TÉCNICAS
+2026-02-26 14:39:03 - [DEBUG] -    Specs individuales a buscar: 2
+2026-02-26 14:39:03 - [WARNING] -    ⚠️ Specs Técnicas: Encontradas 1/2
+2026-02-26 14:39:03 - [INFO] -    [DETALLE] Items NO encontrados:
+2026-02-26 14:39:03 - [WARNING] -      [FALTA] SKU
+2026-02-26 14:39:03 - [INFO] -    Specs tradicionales fallaron. Intentando validación con IA...
+2026-02-26 14:39:11 - [WARNING] -    IA tampoco validó specs (confianza: 98%)
+2026-02-26 14:39:11 - [INFO] - 
+2026-02-26 14:39:11 - [ERROR] - Estado: FAIL (1 errores críticos)
+2026-02-26 14:39:11 - [INFO] - 
+2026-02-26 14:39:11 - [INFO] - ════════════════════════════════════════════════════════════
+2026-02-26 14:39:11 - [INFO] - AUDITORÍA COMPLETADA - Estado global: FAIL
+2026-02-26 14:39:11 - [INFO] - ════════════════════════════════════════════════════════════
+2026-02-26 14:39:11 - [INFO] - 
+2026-02-26 14:39:11 - [INFO] - Auditoría completada. Estado: FAIL
+2026-02-26 14:39:11 - [INFO] - Mostrando pantalla de resultados...
+2026-02-26 14:39:11 - [INFO] - Tab bar oculto
+2026-02-26 14:39:11 - [INFO] - Content container oculto correctamente
+2026-02-26 14:39:11 - [INFO] - Estado global auditoría: FAIL
+2026-02-26 14:39:11 - [INFO] - Scroll frame creado
+2026-02-26 14:39:11 - [INFO] - Procesando 1 certificados en UI
+2026-02-26 14:39:11 - [INFO] - Creando tarjeta para: CERT_SEGURIDAD_ELECTRICA
+2026-02-26 14:39:14 - [INFO] - Pantalla de resultados renderizada completamente
+2026-02-26 14:40:00 - [INFO] - Volviendo a pantalla principal
+2026-02-26 14:40:01 - [INFO] - Tab bar restaurado
+2026-02-26 14:40:01 - [INFO] - Content container restaurado
+2026-02-26 14:40:01 - [INFO] - Cambiando a tab:  verificador
+2026-02-26 15:33:36 - [INFO] - Cambiando a tab:  generador
+2026-02-26 16:18:03 - [INFO] - Cambiando a tab:  verificador
+2026-02-26 16:18:17 - [INFO] - Datasheet cargado: C:/Users/FDean/Desktop/Muestra/CAFEXP07-08 Datasheet.xlsx
+2026-02-26 16:18:17 - [INFO] - Parseando datasheet...
+2026-02-26 16:18:17 - [INFO] - Datasheet parseado: SEGURIDAD_ELECTRICA - Cuk by Gadnic - 41 modelo(s)
+2026-02-26 16:18:24 - [INFO] - 1 certificado(s) agregado(s)
+2026-02-26 16:18:29 - [INFO] - Certificado eliminado: DJC13688SE - BIDCOM - TCSE-IACSA-0146329.1R1.pdf
+2026-02-26 16:18:32 - [INFO] - === INICIANDO AUDITORÍA ===
+2026-02-26 16:18:32 - [INFO] - Datasheet: C:/Users/FDean/Desktop/Muestra/CAFEXP07-08 Datasheet.xlsx
+2026-02-26 16:18:32 - [INFO] - Certificados: 1
+2026-02-26 16:18:32 - [INFO] - Mapeado: SEGURIDAD_ELECTRICA -> DJC13688SE - BIDCOM - TCSE-IACSA-0146329.1R1.pdf
+2026-02-26 16:18:32 - [INFO] - Ejecutando auditoría con estrategias adaptativas...
+2026-02-26 16:18:32 - [INFO] - 
+2026-02-26 16:18:32 - [INFO] - ╔══════════════════════════════════════════╗
+2026-02-26 16:18:32 - [INFO] - ║  INICIANDO AUDITORÍA MULTICERTIFICADO   ║
+2026-02-26 16:18:32 - [INFO] - ╚══════════════════════════════════════════╝
+2026-02-26 16:18:32 - [INFO] - 
+2026-02-26 16:18:32 - [INFO] - Certificados requeridos: 1
+2026-02-26 16:18:32 - [INFO] -   1. SEGURIDAD_ELECTRICA
+2026-02-26 16:18:32 - [INFO] - 
+2026-02-26 16:18:32 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-26 16:18:32 - [INFO] - PROCESANDO: SEGURIDAD_ELECTRICA
+2026-02-26 16:18:32 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-26 16:18:32 - [INFO] - 📄 PDF: DJC13688SE - BIDCOM - TCSE-IACSA-0146329.1R1.pdf
+2026-02-26 16:18:32 - [DEBUG] -   Path completo: C:/Users/FDean/Desktop/Muestra/DJC13688SE - BIDCOM - TCSE-IACSA-0146329.1R1.pdf
+2026-02-26 16:18:32 - [DEBUG] - Extrayendo texto del PDF...
+2026-02-26 16:18:32 - [INFO] - ✓ Texto extraído: 5014 caracteres
+2026-02-26 16:18:32 - [DEBUG] -   Primeros 200 caracteres: Producto
+Máquina Automática de Café Expresso.
+Product 
+BIDCOM S.R.L.
+Av. Bouchard 468, Piso n° 5, Depto. N° 1, C.A.B.A., Argentina.
+Fábrica / Dirección
+Cuk by Gadnic.
+Trade mark
+Model or type
+75622-15...
+2026-02-26 16:18:32 - [DEBUG] - Tipo de producto: SEGURIDAD_ELECTRICA
+2026-02-26 16:18:32 - [DEBUG] - 
+=== DETECCIÓN DE ESTRATEGIA DE VALIDACIÓN ===
+2026-02-26 16:18:32 - [DEBUG] - Tipo de producto: SEGURIDAD_ELECTRICA
+2026-02-26 16:18:32 - [DEBUG] - Analizando contenido del certificado...
+2026-02-26 16:18:32 - [INFO] - ✓ Estrategia detectada: QUEKTRA
+2026-02-26 16:18:32 - [DEBUG] - Keywords encontradas: Q-AR- / ISO/IEC 17067 / Conformidad de Tipo
+2026-02-26 16:18:32 - [INFO] - 
+2026-02-26 16:18:32 - [INFO] - === Validación con QUEKTRA STRATEGY ===
+2026-02-26 16:18:32 - [INFO] - Tipo de certificado: SEGURIDAD_ELECTRICA
+2026-02-26 16:18:32 - [DEBUG] - Quektra: Certificadora nacional argentina (ISO/IEC 17067 Sistema Nº 2)
+2026-02-26 16:18:32 - [DEBUG] - Campo MARCA: Aparece como 'Trademark' o directamente en sección
+2026-02-26 16:18:32 - [DEBUG] - 
+>> Validando campo: MARCA (Hard Match)
+2026-02-26 16:18:32 - [DEBUG] -    Esperado: "Cuk by Gadnic"
+2026-02-26 16:18:32 - [DEBUG] -    Buscando en PDF...
+2026-02-26 16:18:32 - [DEBUG] -    Valores a buscar: ['Cuk by Gadnic']
+2026-02-26 16:18:32 - [INFO] -    ✓ Marca: Match encontrado - "Cuk by Gadnic"
+2026-02-26 16:18:32 - [DEBUG] - Campo MODELOS: Pueden aparecer en 'Model or type' o tabla separada
+2026-02-26 16:18:32 - [DEBUG] - 
+>> Validando MODELOS (Lista completa)
+2026-02-26 16:18:32 - [DEBUG] -    Modelos esperados: ['KFP44GE', 'KFX4200', 'Características técnicas /\nTechnical characteristics', 'CMP208', 'CMP280', 'CMPC208', 'CMPC280', 'CMS89', 'CMS890', 'CMSC89', 'CMSC890', 'CMCQ71', 'CMCQ710', 'CMQ71', 'CMQ710', 'CMP206', 'CMP260', 'CME11', 'CME110', 'KFX10U', 'FEK10H', 'CME07', 'CME70', 'GER700', 'KF360', 'CME08', 'CME80', 'KFCTO3', 'JD1050', 'CME04', 'CME40', 'CAFX20', 'TRRD2.0', 'CFHY4', 'CTPF40', 'FX4.0QP', 'COFFE4', 'CME01', 'CME10', 'FEX50', 'KOFF850']
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "KFP44GE"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "KFX4200"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "Características técnicas /
+Technical characteristics"
+2026-02-26 16:18:32 - [DEBUG] -       → No encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "CMP208"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "CMP280"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "CMPC208"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "CMPC280"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "CMS89"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "CMS890"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "CMSC89"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "CMSC890"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "CMCQ71"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "CMCQ710"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "CMQ71"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "CMQ710"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "CMP206"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "CMP260"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "CME11"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "CME110"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "KFX10U"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "FEK10H"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "CME07"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "CME70"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "GER700"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "KF360"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "CME08"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "CME80"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "KFCTO3"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "JD1050"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "CME04"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "CME40"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "CAFX20"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "TRRD2.0"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "CFHY4"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "CTPF40"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "FX4.0QP"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "COFFE4"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "CME01"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "CME10"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "FEX50"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [DEBUG] -    Buscando modelo: "KOFF850"
+2026-02-26 16:18:32 - [DEBUG] -       → ✓ Encontrado
+2026-02-26 16:18:32 - [ERROR] -    ❌ MODELOS: Faltan 1 de 41
+2026-02-26 16:18:32 - [DEBUG] -    Faltantes: ['Características técnicas /\nTechnical characteristics']
+2026-02-26 16:18:32 - [DEBUG] - Campo FÁBRICA: Nombre completo del fabricante
+2026-02-26 16:18:32 - [DEBUG] - 
+>> Validando campo: FÁBRICA (Fuzzy Match, threshold=85%)
+2026-02-26 16:18:32 - [DEBUG] -    Esperado: ['Eternal (Guangdong) Tech Electric Co., Ltd.']
+2026-02-26 16:18:32 - [DEBUG] -    Buscando coincidencias fuzzy...
+2026-02-26 16:18:32 - [DEBUG] -    - "Eternal (Guangdong) Tech Electric Co., Ltd.": 100% similitud
+2026-02-26 16:18:32 - [INFO] -    ✓ Fábrica: Match aceptable (100% >= 85%)
+2026-02-26 16:18:32 - [DEBUG] - Campo DIRECCIÓN: Dirección completa con provincia/país
+2026-02-26 16:18:32 - [DEBUG] - 
+>> Validando campo: DIRECCIÓN FÁBRICA (Fuzzy Match, threshold=85%)
+2026-02-26 16:18:32 - [DEBUG] -    Esperado: ['B5 South of Longzhou Road, Longjiang Residential Committee, Longjiang Town, Shunde District, Foshan City, Guangdong Province']
+2026-02-26 16:18:32 - [DEBUG] -    Buscando coincidencias fuzzy...
+2026-02-26 16:18:32 - [DEBUG] -    - "B5 South of Longzhou Road, Longjiang Residential Committee, Longjiang Town, Shunde District, Foshan City, Guangdong Province": 100% similitud
+2026-02-26 16:18:32 - [INFO] -    ✓ Dirección Fábrica: Match aceptable (100% >= 85%)
+2026-02-26 16:18:32 - [DEBUG] - Validando especificaciones técnicas (voltajes, corrientes, potencias...)
+2026-02-26 16:18:32 - [DEBUG] - 
+>> Validando campo: SPECS TÉCNICAS
+2026-02-26 16:18:32 - [DEBUG] -    Specs individuales a buscar: 2
+2026-02-26 16:18:32 - [WARNING] -    ⚠️ Specs Técnicas: Encontradas 1/2
+2026-02-26 16:18:32 - [INFO] -    [DETALLE] Items NO encontrados:
+2026-02-26 16:18:32 - [WARNING] -      [FALTA] SKU
+2026-02-26 16:18:32 - [INFO] -    Specs tradicionales fallaron. Intentando validación con IA...
+2026-02-26 16:18:38 - [WARNING] -    IA tampoco validó specs (confianza: 98%)
+2026-02-26 16:18:38 - [INFO] - 
+2026-02-26 16:18:38 - [ERROR] - Estado: FAIL (1 errores críticos)
+2026-02-26 16:18:38 - [INFO] - 
+2026-02-26 16:18:38 - [INFO] - ════════════════════════════════════════════════════════════
+2026-02-26 16:18:38 - [INFO] - AUDITORÍA COMPLETADA - Estado global: FAIL
+2026-02-26 16:18:38 - [INFO] - ════════════════════════════════════════════════════════════
+2026-02-26 16:18:38 - [INFO] - 
+2026-02-26 16:18:38 - [INFO] - Auditoría completada. Estado: FAIL
+2026-02-26 16:18:38 - [INFO] - Mostrando pantalla de resultados...
+2026-02-26 16:18:38 - [INFO] - Tab bar oculto
+2026-02-26 16:18:38 - [INFO] - Content container oculto correctamente
+2026-02-26 16:18:38 - [INFO] - Estado global auditoría: FAIL
+2026-02-26 16:18:38 - [INFO] - Scroll frame creado
+2026-02-26 16:18:38 - [INFO] - Procesando 1 certificados en UI
+2026-02-26 16:18:38 - [INFO] - Creando tarjeta para: CERT_SEGURIDAD_ELECTRICA
+2026-02-26 16:18:41 - [INFO] - Pantalla de resultados renderizada completamente

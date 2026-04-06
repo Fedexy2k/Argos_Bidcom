@@ -1,0 +1,12 @@
+2026-02-10 16:53:10 - [INFO] - Argos iniciado correctamente
+2026-02-10 16:53:27 - [INFO] - Datasheet cargado: C:/Users/FDean/Antigravity/Argos Proyect/Datasheet caso 4 convenio.xlsx
+2026-02-10 16:53:27 - [INFO] - Parseando datasheet...
+2026-02-10 16:53:27 - [INFO] - Datasheet parseado: SEGURIDAD_ELECTRICA - DJI - 1 modelo(s)
+2026-02-10 16:53:30 - [INFO] - 1 certificado(s) agregado(s)
+2026-02-10 16:56:02 - [INFO] - === INICIANDO AUDITORÍA ===
+2026-02-10 16:56:02 - [INFO] - Datasheet: C:/Users/FDean/Antigravity/Argos Proyect/Datasheet caso 4 convenio.xlsx
+2026-02-10 16:56:02 - [INFO] - Certificados: 1
+2026-02-10 16:56:03 - [INFO] - Mapeado: SEGURIDAD_ELECTRICA -> datasheet caso 4 CE.pdf
+2026-02-10 16:56:03 - [INFO] - Ejecutando auditoría con estrategias adaptativas...
+2026-02-10 16:56:03 - [INFO] - Auditoría completada. Estado: WARNING
+2026-02-10 16:56:03 - [INFO] - Ventana de resultados mostrada

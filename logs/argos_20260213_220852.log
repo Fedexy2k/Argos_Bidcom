@@ -1,0 +1,106 @@
+2026-02-13 22:08:53 - [INFO] - Cambiando a tab:  verificador
+2026-02-13 22:08:53 - [INFO] - Argos iniciado correctamente
+2026-02-13 22:08:55 - [INFO] - Cambiando a tab:  generador
+2026-02-13 22:09:00 - [INFO] - Cambiando a tab:  verificador
+2026-02-13 22:09:03 - [INFO] - Cambiando a tab:  solicitud
+2026-02-13 22:09:05 - [INFO] - Cambiando a tab:  verificador
+2026-02-13 22:09:16 - [INFO] - Datasheet cargado: C:/Users/FDean/Antigravity/Argos Proyect/Caso 8 Seguridad electrica.xlsx
+2026-02-13 22:09:17 - [INFO] - Parseando datasheet...
+2026-02-13 22:09:17 - [INFO] - Datasheet parseado: SEGURIDAD_ELECTRICA - GADNIC - 5 modelo(s)
+2026-02-13 22:09:18 - [INFO] - 1 certificado(s) agregado(s)
+2026-02-13 22:09:43 - [INFO] - === INICIANDO AUDITORÍA ===
+2026-02-13 22:09:43 - [INFO] - Datasheet: C:/Users/FDean/Antigravity/Argos Proyect/Caso 8 Seguridad electrica.xlsx
+2026-02-13 22:09:43 - [INFO] - Certificados: 1
+2026-02-13 22:09:44 - [INFO] - Mapeado: SEGURIDAD_ELECTRICA -> CASO 8 Seguridad electrica.pdf
+2026-02-13 22:09:44 - [INFO] - Ejecutando auditoría con estrategias adaptativas...
+2026-02-13 22:09:44 - [INFO] - 
+2026-02-13 22:09:44 - [INFO] - ╔══════════════════════════════════════════╗
+2026-02-13 22:09:44 - [INFO] - ║  INICIANDO AUDITORÍA MULTICERTIFICADO   ║
+2026-02-13 22:09:44 - [INFO] - ╚══════════════════════════════════════════╝
+2026-02-13 22:09:44 - [INFO] - 
+2026-02-13 22:09:44 - [INFO] - Certificados requeridos: 1
+2026-02-13 22:09:44 - [INFO] -   1. SEGURIDAD_ELECTRICA
+2026-02-13 22:09:44 - [INFO] - 
+2026-02-13 22:09:44 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-13 22:09:44 - [INFO] - PROCESANDO: SEGURIDAD_ELECTRICA
+2026-02-13 22:09:44 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-13 22:09:44 - [INFO] - 📄 PDF: CASO 8 Seguridad electrica.pdf
+2026-02-13 22:09:44 - [DEBUG] -   Path completo: C:/Users/FDean/Antigravity/Argos Proyect/CASO 8 Seguridad electrica.pdf
+2026-02-13 22:09:44 - [DEBUG] - Extrayendo texto del PDF...
+2026-02-13 22:09:44 - [INFO] - ✓ Texto extraído: 3895 caracteres
+2026-02-13 22:09:44 - [DEBUG] -   Primeros 200 caracteres: Certificado de Tipo 
+Type Certificate 
+ 
+Sistema N°2 ISO/IEC 17067 
+System N°2 ISO/IEC 17067 
+Referencia de Certificado: 
+Certificate reference: 
+LCSH-2058 
+Lenor S.R.L. – Organismo de certificación  ...
+2026-02-13 22:09:44 - [DEBUG] - Tipo de producto: SEGURIDAD_ELECTRICA
+2026-02-13 22:09:44 - [DEBUG] - 
+=== DETECCIÓN DE ESTRATEGIA DE VALIDACIÓN ===
+2026-02-13 22:09:44 - [DEBUG] - Tipo de producto: SEGURIDAD_ELECTRICA
+2026-02-13 22:09:44 - [DEBUG] - Analizando contenido del certificado...
+2026-02-13 22:09:44 - [INFO] - ✓ Estrategia detectada: QUEKTRA
+2026-02-13 22:09:44 - [DEBUG] - Keywords encontradas: Q-AR- / ISO/IEC 17067 / Conformidad de Tipo
+2026-02-13 22:09:44 - [INFO] - 
+2026-02-13 22:09:44 - [INFO] - === Validación con QUEKTRA STRATEGY ===
+2026-02-13 22:09:44 - [INFO] - Tipo de certificado: SEGURIDAD_ELECTRICA
+2026-02-13 22:09:44 - [DEBUG] - Quektra: Certificadora nacional argentina (ISO/IEC 17067 Sistema Nº 2)
+2026-02-13 22:09:44 - [DEBUG] - Campo MARCA: Aparece como 'Trademark' o directamente en sección
+2026-02-13 22:09:44 - [DEBUG] - 
+>> Validando campo: MARCA (Hard Match)
+2026-02-13 22:09:44 - [DEBUG] -    Esperado: "GADNIC"
+2026-02-13 22:09:44 - [DEBUG] -    Buscando en PDF...
+2026-02-13 22:09:44 - [DEBUG] -    Valores a buscar: ['GADNIC']
+2026-02-13 22:09:44 - [INFO] -    ✓ Marca: Match encontrado - "GADNIC"
+2026-02-13 22:09:44 - [DEBUG] - Campo MODELOS: Pueden aparecer en 'Model or type' o tabla separada
+2026-02-13 22:09:44 - [DEBUG] - 
+>> Validando MODELOS (Lista completa)
+2026-02-13 22:09:44 - [DEBUG] -    Modelos esperados: ['BA6800', 'BMBE35', 'PSC74', 'PROY56', 'BAM953']
+2026-02-13 22:09:44 - [DEBUG] -    Buscando modelo: "BA6800"
+2026-02-13 22:09:44 - [DEBUG] -       → ✓ Encontrado
+2026-02-13 22:09:44 - [DEBUG] -    Buscando modelo: "BMBE35"
+2026-02-13 22:09:44 - [DEBUG] -       → ✓ Encontrado
+2026-02-13 22:09:44 - [DEBUG] -    Buscando modelo: "PSC74"
+2026-02-13 22:09:44 - [DEBUG] -       → ✓ Encontrado
+2026-02-13 22:09:44 - [DEBUG] -    Buscando modelo: "PROY56"
+2026-02-13 22:09:44 - [DEBUG] -       → ✓ Encontrado
+2026-02-13 22:09:44 - [DEBUG] -    Buscando modelo: "BAM953"
+2026-02-13 22:09:44 - [DEBUG] -       → ✓ Encontrado
+2026-02-13 22:09:44 - [INFO] -    ✓ MODELOS: Todos encontrados (5 modelos)
+2026-02-13 22:09:44 - [DEBUG] - Campo FÁBRICA: Nombre completo del fabricante
+2026-02-13 22:09:44 - [DEBUG] - 
+>> Validando campo: FÁBRICA (Fuzzy Match, threshold=85%)
+2026-02-13 22:09:44 - [DEBUG] -    Esperado: ['Jiaxing Quancheng Inflatable Products Co., Ltd.']
+2026-02-13 22:09:44 - [DEBUG] -    Buscando coincidencias fuzzy...
+2026-02-13 22:09:44 - [DEBUG] -    - "Jiaxing Quancheng Inflatable Products Co., Ltd.": 100% similitud
+2026-02-13 22:09:44 - [INFO] -    ✓ Fábrica: Match aceptable (100% >= 85%)
+2026-02-13 22:09:44 - [DEBUG] - Campo DIRECCIÓN: Dirección completa con provincia/país
+2026-02-13 22:09:44 - [DEBUG] - 
+>> Validando campo: DIRECCIÓN FÁBRICA (Fuzzy Match, threshold=85%)
+2026-02-13 22:09:44 - [DEBUG] -    Esperado: ['2nd Floor, Wanqing Textile Co., Ltd., North Side of Shuangqiao Gas Station, Xiuzhou District, Jiaxing City, Zhejiang Province, China.']
+2026-02-13 22:09:44 - [DEBUG] -    Buscando coincidencias fuzzy...
+2026-02-13 22:09:44 - [DEBUG] -    - "2nd Floor, Wanqing Textile Co., Ltd., North Side of Shuangqiao Gas Station, Xiuzhou District, Jiaxing City, Zhejiang Province, China.": 99% similitud
+2026-02-13 22:09:44 - [INFO] -    ✓ Dirección Fábrica: Match aceptable (99% >= 85%)
+2026-02-13 22:09:44 - [DEBUG] - Validando especificaciones técnicas (voltajes, corrientes, potencias...)
+2026-02-13 22:09:44 - [DEBUG] - 
+>> Validando campo: SPECS TÉCNICAS
+2026-02-13 22:09:44 - [DEBUG] -    Specs individuales a buscar: 1
+2026-02-13 22:09:44 - [INFO] -    ✓ Specs Técnicas: Todas encontradas
+2026-02-13 22:09:44 - [INFO] - 
+2026-02-13 22:09:44 - [INFO] - Estado: ✓ OK - Validación exitosa
+2026-02-13 22:09:44 - [INFO] - 
+2026-02-13 22:09:44 - [INFO] - ════════════════════════════════════════════════════════════
+2026-02-13 22:09:44 - [INFO] - AUDITORÍA COMPLETADA - Estado global: OK
+2026-02-13 22:09:44 - [INFO] - ════════════════════════════════════════════════════════════
+2026-02-13 22:09:44 - [INFO] - 
+2026-02-13 22:09:44 - [INFO] - Auditoría completada. Estado: OK
+2026-02-13 22:09:44 - [INFO] - Mostrando pantalla de resultados...
+2026-02-13 22:09:44 - [INFO] - Main frame oculto correctamente
+2026-02-13 22:09:44 - [INFO] - Estado global auditoría: OK
+2026-02-13 22:09:44 - [INFO] - Scroll frame creado
+2026-02-13 22:09:44 - [INFO] - Procesando 1 certificados en UI
+2026-02-13 22:09:44 - [INFO] - Creando tarjeta para: CERT_SEGURIDAD_ELECTRICA
+2026-02-13 22:09:44 - [INFO] - Pantalla de resultados renderizada completamente

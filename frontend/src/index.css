@@ -1,0 +1,71 @@
+﻿@import "tailwindcss";
+
+@theme {
+  --color-bg-base:     #0d0d18;
+  --color-bg-card:     #12121f;
+  --color-bg-card2:    #1f1e2a;
+  --color-border:      #1e1e35;
+  --color-accent:      #8b5cf6;
+  --color-accent-dim:  #a078ff;
+  --color-secondary:   #6bd8cb;
+  --color-tertiary:    #4ae176;
+  --color-surface-low: #1b1a26;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+  background-color: #0d0d18;
+  color: #e3e0f1;
+  overflow: hidden;
+  height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;
+  font-family: "Material Symbols Outlined";
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+}
+
+.gradient-button {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  transition: all 0.2s ease;
+}
+.gradient-button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(139,92,246,0.4);
+}
+
+.custom-scrollbar::-webkit-scrollbar { width: 4px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: #0d0d18; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #343440; border-radius: 10px; }
+
+.glow-purple {
+  position: fixed; top: -10%; right: -10%;
+  width: 40%; height: 40%;
+  background: rgba(139,92,246,0.09);
+  filter: blur(120px);
+  border-radius: 50%;
+  pointer-events: none; z-index: 0;
+}
+.glow-teal {
+  position: fixed; bottom: -10%; left: 15%;
+  width: 30%; height: 30%;
+  background: rgba(107,216,203,0.04);
+  filter: blur(100px);
+  border-radius: 50%;
+  pointer-events: none; z-index: 0;
+}

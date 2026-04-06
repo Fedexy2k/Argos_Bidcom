@@ -1,0 +1,127 @@
+2026-02-11 17:15:59 - [INFO] - Argos iniciado correctamente
+2026-02-11 17:20:44 - [INFO] - Datasheet cargado: C:/Users/FDean/Downloads/Certificado 337 Ampliación.xlsx
+2026-02-11 17:20:45 - [INFO] - Parseando datasheet...
+2026-02-11 17:20:45 - [INFO] - Datasheet parseado: SEGURIDAD_ELECTRICA - GADNIC - 18 modelo(s)
+2026-02-11 17:20:46 - [INFO] - 1 certificado(s) agregado(s)
+2026-02-11 17:20:48 - [INFO] - === INICIANDO AUDITORÍA ===
+2026-02-11 17:20:48 - [INFO] - Datasheet: C:/Users/FDean/Downloads/Certificado 337 Ampliación.xlsx
+2026-02-11 17:20:48 - [INFO] - Certificados: 1
+2026-02-11 17:20:48 - [INFO] - Mapeado: SEGURIDAD_ELECTRICA -> DJC14203SE - BIDCOM - TCSE-IACSA-0146310.1R2 (1).pdf
+2026-02-11 17:20:48 - [INFO] - Ejecutando auditoría con estrategias adaptativas...
+2026-02-11 17:20:48 - [INFO] - 
+2026-02-11 17:20:48 - [INFO] - ╔══════════════════════════════════════════╗
+2026-02-11 17:20:48 - [INFO] - ║  INICIANDO AUDITORÍA MULTICERTIFICADO   ║
+2026-02-11 17:20:48 - [INFO] - ╚══════════════════════════════════════════╝
+2026-02-11 17:20:48 - [INFO] - 
+2026-02-11 17:20:48 - [INFO] - Certificados requeridos: 1
+2026-02-11 17:20:48 - [INFO] -   1. SEGURIDAD_ELECTRICA
+2026-02-11 17:20:48 - [INFO] - 
+2026-02-11 17:20:48 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-11 17:20:48 - [INFO] - PROCESANDO: SEGURIDAD_ELECTRICA
+2026-02-11 17:20:48 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-11 17:20:48 - [INFO] - 📄 PDF: DJC14203SE - BIDCOM - TCSE-IACSA-0146310.1R2 (1).pdf
+2026-02-11 17:20:48 - [DEBUG] -   Path completo: C:/Users/FDean/Downloads/DJC14203SE - BIDCOM - TCSE-IACSA-0146310.1R2 (1).pdf
+2026-02-11 17:20:48 - [DEBUG] - Extrayendo texto del PDF...
+2026-02-11 17:20:49 - [INFO] - ✓ Texto extraído: 2816 caracteres
+2026-02-11 17:20:49 - [DEBUG] -   Primeros 200 caracteres: Producto
+Máscara Facial LED.
+Product 
+BIDCOM S.R.L.
+Av. Bouchard 468 5º I, C.A.B.A., Argentina.
+Fábrica / Dirección
+GADNIC.
+Trade mark
+Model or type
+MMN-02-23-8732.
+LENOR S.R.L.
+06/12/2023.
+Remarks
+Fi...
+2026-02-11 17:20:49 - [DEBUG] - Tipo de producto: SEGURIDAD_ELECTRICA
+2026-02-11 17:20:49 - [DEBUG] - 
+=== DETECCIÓN DE ESTRATEGIA DE VALIDACIÓN ===
+2026-02-11 17:20:49 - [DEBUG] - Tipo de producto: SEGURIDAD_ELECTRICA
+2026-02-11 17:20:49 - [DEBUG] - Analizando contenido del certificado...
+2026-02-11 17:20:49 - [INFO] - ✓ Estrategia detectada: ESTÁNDAR
+2026-02-11 17:20:49 - [DEBUG] - No se detectaron keywords especiales - Usando validación estándar
+2026-02-11 17:20:49 - [INFO] - 
+2026-02-11 17:20:49 - [INFO] - === Validación con Estrategia Estándar ===
+2026-02-11 17:20:49 - [DEBUG] - 
+>> Validando campo: MARCA (Hard Match)
+2026-02-11 17:20:49 - [DEBUG] -    Esperado: "GADNIC"
+2026-02-11 17:20:49 - [DEBUG] -    Buscando en PDF...
+2026-02-11 17:20:49 - [DEBUG] -    Valores a buscar: ['GADNIC']
+2026-02-11 17:20:49 - [INFO] -    ✓ Marca: Match encontrado - "GADNIC"
+2026-02-11 17:20:49 - [DEBUG] - 
+>> Validando MODELOS (Lista completa)
+2026-02-11 17:20:49 - [DEBUG] -    Modelos esperados: ['LM1010', 'LDM1010', 'LEDSK10A', 'LDHN502', 'LMF654P', 'LFZP92', 'MJC572', 'GRSR75', 'LDM110', 'DL406', 'FRM815', 'LD294F', 'PHT137', 'VF61RJ', 'ETYQ5', 'WVF061R', 'SHM329', 'DZT482']
+2026-02-11 17:20:49 - [DEBUG] -    Buscando modelo: "LM1010"
+2026-02-11 17:20:49 - [DEBUG] -       → ✓ Encontrado
+2026-02-11 17:20:49 - [DEBUG] -    Buscando modelo: "LDM1010"
+2026-02-11 17:20:49 - [DEBUG] -       → ✓ Encontrado
+2026-02-11 17:20:49 - [DEBUG] -    Buscando modelo: "LEDSK10A"
+2026-02-11 17:20:49 - [DEBUG] -       → ✓ Encontrado
+2026-02-11 17:20:49 - [DEBUG] -    Buscando modelo: "LDHN502"
+2026-02-11 17:20:49 - [DEBUG] -       → ✓ Encontrado
+2026-02-11 17:20:49 - [DEBUG] -    Buscando modelo: "LMF654P"
+2026-02-11 17:20:49 - [DEBUG] -       → ✓ Encontrado
+2026-02-11 17:20:49 - [DEBUG] -    Buscando modelo: "LFZP92"
+2026-02-11 17:20:49 - [DEBUG] -       → ✓ Encontrado
+2026-02-11 17:20:49 - [DEBUG] -    Buscando modelo: "MJC572"
+2026-02-11 17:20:49 - [DEBUG] -       → ✓ Encontrado
+2026-02-11 17:20:49 - [DEBUG] -    Buscando modelo: "GRSR75"
+2026-02-11 17:20:49 - [DEBUG] -       → ✓ Encontrado
+2026-02-11 17:20:49 - [DEBUG] -    Buscando modelo: "LDM110"
+2026-02-11 17:20:49 - [DEBUG] -       → ✓ Encontrado
+2026-02-11 17:20:49 - [DEBUG] -    Buscando modelo: "DL406"
+2026-02-11 17:20:49 - [DEBUG] -       → ✓ Encontrado
+2026-02-11 17:20:49 - [DEBUG] -    Buscando modelo: "FRM815"
+2026-02-11 17:20:49 - [DEBUG] -       → ✓ Encontrado
+2026-02-11 17:20:49 - [DEBUG] -    Buscando modelo: "LD294F"
+2026-02-11 17:20:49 - [DEBUG] -       → ✓ Encontrado
+2026-02-11 17:20:49 - [DEBUG] -    Buscando modelo: "PHT137"
+2026-02-11 17:20:49 - [DEBUG] -       → ✓ Encontrado
+2026-02-11 17:20:49 - [DEBUG] -    Buscando modelo: "VF61RJ"
+2026-02-11 17:20:49 - [DEBUG] -       → ✓ Encontrado
+2026-02-11 17:20:49 - [DEBUG] -    Buscando modelo: "ETYQ5"
+2026-02-11 17:20:49 - [DEBUG] -       → ✓ Encontrado
+2026-02-11 17:20:49 - [DEBUG] -    Buscando modelo: "WVF061R"
+2026-02-11 17:20:49 - [DEBUG] -       → ✓ Encontrado
+2026-02-11 17:20:49 - [DEBUG] -    Buscando modelo: "SHM329"
+2026-02-11 17:20:49 - [DEBUG] -       → ✓ Encontrado
+2026-02-11 17:20:49 - [DEBUG] -    Buscando modelo: "DZT482"
+2026-02-11 17:20:49 - [DEBUG] -       → ✓ Encontrado
+2026-02-11 17:20:49 - [INFO] -    ✓ MODELOS: Todos encontrados (18 modelos)
+2026-02-11 17:20:49 - [DEBUG] - 
+>> Validando campo: FÁBRICA (Fuzzy Match, threshold=85%)
+2026-02-11 17:20:49 - [DEBUG] -    Esperado: ['Guangzhou Konmison Electronic Technology Co., Ltd.']
+2026-02-11 17:20:49 - [DEBUG] -    Buscando coincidencias fuzzy...
+2026-02-11 17:20:49 - [DEBUG] -    - "Guangzhou Konmison Electronic Technology Co., Ltd.": 100% similitud
+2026-02-11 17:20:49 - [INFO] -    ✓ Fábrica: Match aceptable (100% >= 85%)
+2026-02-11 17:20:49 - [DEBUG] - 
+>> Validando campo: DIRECCIÓN FÁBRICA (Fuzzy Match, threshold=85%)
+2026-02-11 17:20:49 - [DEBUG] -    Esperado: ['6th Floor, Building C, No. 1, Taohong West Street, Shima Village, Junhe Street, Baiyun District, Guangzhou City, Guangdong Province, China.']
+2026-02-11 17:20:49 - [DEBUG] -    Buscando coincidencias fuzzy...
+2026-02-11 17:20:49 - [DEBUG] -    - "6th Floor, Building C, No. 1, Taohong West Street, Shima Village, Junhe Street, Baiyun District, Guangzhou City, Guangdong Province, China.": 94% similitud
+2026-02-11 17:20:49 - [INFO] -    ✓ Dirección Fábrica: Match aceptable (94% >= 85%)
+2026-02-11 17:20:49 - [DEBUG] - 
+>> Validando campo: SPECS TÉCNICAS
+2026-02-11 17:20:49 - [DEBUG] -    Specs individuales a buscar: 1
+2026-02-11 17:20:49 - [WARNING] -    ⚠️ Specs Técnicas: Encontradas 0/1
+2026-02-11 17:20:49 - [INFO] -    [DETALLE] Items NO encontrados:
+2026-02-11 17:20:49 - [WARNING] -      [FALTA] ESPECIFICACIONES:: 17,9Vcc; 0,35A; 6,2W; Clase III
+2026-02-11 17:20:49 - [INFO] - 
+2026-02-11 17:20:49 - [WARNING] - Estado: WARNING (1 advertencias)
+2026-02-11 17:20:49 - [INFO] - 
+2026-02-11 17:20:49 - [INFO] - ════════════════════════════════════════════════════════════
+2026-02-11 17:20:49 - [INFO] - AUDITORÍA COMPLETADA - Estado global: WARNING
+2026-02-11 17:20:49 - [INFO] - ════════════════════════════════════════════════════════════
+2026-02-11 17:20:49 - [INFO] - 
+2026-02-11 17:20:49 - [INFO] - Auditoría completada. Estado: WARNING
+2026-02-11 17:20:49 - [INFO] - Mostrando pantalla de resultados...
+2026-02-11 17:20:49 - [INFO] - Main frame oculto correctamente
+2026-02-11 17:20:49 - [INFO] - Estado global auditoría: WARNING
+2026-02-11 17:20:49 - [INFO] - Scroll frame creado
+2026-02-11 17:20:49 - [INFO] - Procesando 1 certificados en UI
+2026-02-11 17:20:49 - [INFO] - Creando tarjeta para: CERT_SEGURIDAD_ELECTRICA
+2026-02-11 17:20:49 - [INFO] - Pantalla de resultados renderizada completamente

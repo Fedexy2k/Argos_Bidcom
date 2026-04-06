@@ -1,0 +1,62 @@
+2026-03-02 15:24:48 - [INFO] - Cambiando a tab:  verificador
+2026-03-02 15:24:49 - [INFO] - Argos iniciado correctamente
+2026-03-02 15:25:14 - [INFO] - Cambiando a tab:  generador
+2026-03-02 15:25:56 - [INFO] - Nota de extensión cargada: Nota Extension.pdf
+2026-03-02 15:26:55 - [INFO] - Certificado cargado: DC-E-S285-009.1 - Seg.Elec. Cocinas.pdf
+2026-03-02 15:26:57 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-03-02 15:26:57 - [INFO] - [M3] Modo: extension
+2026-03-02 15:26:57 - [INFO] - [M3] Archivo: DC-E-S285-009.1 - Seg.Elec. Cocinas.pdf
+2026-03-02 15:26:57 - [INFO] - [M3] Extensiones seleccionadas: Libre / Otra
+2026-03-02 15:26:57 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-03-02 15:26:57 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-03-02 15:26:57 - [INFO] - [M3] ── Nro. Certificado : BE-11274
+2026-03-02 15:26:57 - [INFO] - [M3] ── OEC detectado   : [desconocido]
+2026-03-02 15:26:57 - [INFO] - [M3] ── Normas          : IEC 60335-2-6:2014 + A1:2018 & IEC 60335-1:2010 + A1:2013 + A2:2016
+2026-03-02 15:26:57 - [INFO] - [M3] ── Fecha emisión   : [no encontrada]
+2026-03-02 15:26:57 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-03-02 15:26:57 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)
+2026-03-02 15:26:57 - [INFO] - [M3] Extrayendo datos del producto...
+2026-03-02 15:26:57 - [INFO] - [M3] ── Marca           : [vacía]
+2026-03-02 15:26:57 - [INFO] - [M3] ── Fabricante      : [vacío]
+2026-03-02 15:26:57 - [INFO] - [M3] ── Producto desc   : [vacío]
+2026-03-02 15:26:57 - [INFO] - [M3] ── Modelos         : [vacíos]
+2026-03-02 15:26:57 - [INFO] - [M3] ── Specs           : [vacías]
+2026-03-02 15:26:57 - [INFO] - [M3] ── Fecha emisión   : [no extraída]
+2026-03-02 15:26:57 - [INFO] - [M3] ── Fecha venc.     : [no extraída]
+2026-03-02 15:26:57 - [INFO] - [M3] Armando datos finales DJC...
+2026-03-02 15:26:57 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-03-02 15:26:57 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-03-02 15:26:57 - [INFO] - Vista DJC renderizada correctamente
+2026-03-02 15:30:15 - [INFO] - Cambiando a tab:  generador
+2026-03-02 15:31:08 - [INFO] - Certificado cargado: DC-E-S285-009.1 - Seg.Elec. Cocinas.pdf
+2026-03-02 15:31:19 - [INFO] - Nota de extensión cargada: Nota Extension.pdf
+2026-03-02 15:31:21 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-03-02 15:31:21 - [INFO] - [M3] Modo: extension
+2026-03-02 15:31:21 - [INFO] - [M3] Archivo: DC-E-S285-009.1 - Seg.Elec. Cocinas.pdf
+2026-03-02 15:31:21 - [INFO] - [M3] Extensiones seleccionadas: Libre / Otra
+2026-03-02 15:31:21 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-03-02 15:31:21 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-03-02 15:31:21 - [INFO] - [M3] ── Nro. Certificado : BE-11274
+2026-03-02 15:31:21 - [INFO] - [M3] ── OEC detectado   : [desconocido]
+2026-03-02 15:31:21 - [INFO] - [M3] ── Normas          : IEC 60335-2-6:2014 + A1:2018 & IEC 60335-1:2010 + A1:2013 + A2:2016
+2026-03-02 15:31:21 - [INFO] - [M3] ── Fecha emisión   : [no encontrada]
+2026-03-02 15:31:21 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-03-02 15:31:21 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)
+2026-03-02 15:31:21 - [INFO] - [M3] Extrayendo datos del producto...
+2026-03-02 15:31:21 - [INFO] - [M3] ── Marca           : [vacía]
+2026-03-02 15:31:21 - [INFO] - [M3] ── Fabricante      : [vacío]
+2026-03-02 15:31:21 - [INFO] - [M3] ── Producto desc   : [vacío]
+2026-03-02 15:31:21 - [INFO] - [M3] ── Modelos         : [vacíos]
+2026-03-02 15:31:21 - [INFO] - [M3] ── Specs           : [vacías]
+2026-03-02 15:31:21 - [INFO] - [M3] ── Fecha emisión   : [no extraída]
+2026-03-02 15:31:21 - [INFO] - [M3] ── Fecha venc.     : [no extraída]
+2026-03-02 15:31:21 - [INFO] - [M3] Armando datos finales DJC...
+2026-03-02 15:31:21 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-03-02 15:31:21 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-03-02 15:31:21 - [INFO] - Vista DJC renderizada correctamente
+2026-03-02 15:37:21 - [INFO] - === GENERANDO DJC ===
+2026-03-02 15:37:22 - [INFO] - [M3] DJC Word guardada en: C:\Users\FDean\Documents\DJC generadas\C\Extensiones\Libre - Otra\DJC-SE-0326-C-BIDC-LIBR-V1_djc.docx
+2026-03-02 15:37:34 - [INFO] - [M3] ✓ PDF final: C:\Users\FDean\Documents\DJC generadas\C\Extensiones\Libre - Otra\DJC-SE-0326-C-BIDC-LIBR-V1.pdf
+2026-03-02 15:37:34 - [INFO] - [M3] ✓ Extensión Libre / Otra completada
+2026-03-02 15:37:34 - [INFO] - [M3] === 1 extensiones generadas ===
+2026-03-02 15:37:34 - [INFO] -   → DJC-SE-0326-C-BIDC-LIBR-V1.pdf

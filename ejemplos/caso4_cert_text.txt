@@ -1,0 +1,96 @@
+=== Certificado CB Caso 4 ===
+Total caracteres: 2898
+Total páginas: 2
+
+--- TEXTO COMPLETO ---
+10/061SMD 2024-12 rke-simplified
+ Ref. Certif. No. 
+JPTUV-180629 
+IEC SYSTEM FOR MUTUAL RECOGNITION OF TEST CERTIFICATES FOR ELECTRICAL EQUIPMENT 
+(IECEE) CB SCHEME 
+CB TEST CERTIFICATE 
+Product 
+Portable power station (DJI Power 1000 Mini) 
+Name and address of the applicant 
+SZ DJI TECHNOLOGY CO., LTD.  
+Lobby of T2, DJI Sky City, No. 53 Xianyuan Road, Xili 
+Community, Xili Street, Nanshan District, Shenzhen, 
+Guangdong, P.R. China 
+Name and address of the manufacturer 
+SZ DJI TECHNOLOGY CO., LTD.  
+Lobby of T2, DJI Sky City, No. 53 Xianyuan Road, Xili 
+Community, Xili Street, Nanshan District, Shenzhen, 
+Guangdong, P.R. China 
+Name and address of the factory 
+Note: When more than one factory, please report on page 2
+CK TELECOM LIMITED  
+North on Road 9 of Technology, High Technology Development 
+District, Heyuan City 517003 Guangdong, P.R. China 
+Ratings and principal characteristics 
+See page 2 
+Trademark / Brand (if any) 
+DJI 
+Customer’s Testing Facility (CTF) Stage used 
+N/A 
+Model / Type Ref. 
+DYM1000M 
+Additional information (if necessary may also be 
+reported on page 2) 
+See additional page(s) for further Additional information. 
+Additionally evaluated to IEC 62040-1:2017+A1:2021 
+A sample of the product was tested and found 
+to be in conformity with 
+IEC 62368-1:2018 
+See Test Report for National Differences 
+As shown in the Test Report Ref. No. which 
+forms part of this Certificate 
+CN25THVO  001
+This CB Test Certificate is issued by the National Certification Body 
+TÜV Rheinland Japan Ltd. 
+4-25-2 Kita-Yamata, Tsuzuki-ku
+Yokohama 224-0021, Japan
+Mail: info@jpn.tuv.com
+ Date: 
+2025-11-28 
+Signature: 
+Tim Feng 
+Disclaimer: This is an electronically released document. The authenticity can be verified on the IECEE Website "http://certificates.iecee.org" (1.3s / 23) 
+10/061SMD 2024-12 rke-simplified
+  Ref. Certif. No. 
+ 
+     
+JPTUV-180629 
+ 
+ 
+Page 2 of 2 
+Additional information : 
+ 
+Ratings: 
+Input: 
+SDC Input: 9-28VDC, 400W max; 
+AC Input: 220-240Vac, 50Hz/60Hz, 4.5A max; 
+AC Input (Bypass): 220-240Vac, 50Hz/60Hz, 10A max; 
+USB-C Input: 5/9/12/15/20VDC 5A, 100W max; 
+USB-C Cable Input: 5/9/12/15/20VDC 5A, 100W max; 
+Output: 
+SDC Output: 9-28VDC, 300W max; 
+AC Output (x2): CN: 220Vac, 50Hz/60Hz, 800W (1000W max); EU/UK/AU:230Vac, 50/60Hz, 
+800W (1000W max); 
+USB-A Output (x2): 5VDC 2.4A, 12W max; 
+USB-C Output: 5/9/12/15/20VDC 5A, 100W max; 
+USB-C Cable Output: 5/9/12/15/20VDC 5A, 100W max; 
+Total output: 1000W; 
+AC output (Bypass)(x2): 220-240Vac, 50Hz/60Hz, 2200W max. (total); 
+Battery Capacity: Typical 105Ah, 1008Wh/ Rated 100Ah, 960Wh, 9.6VDC; 
+Charge temperature range: -10-45°C 
+Discharge temperature range: -10-45°C 
+Class I 
+ 
+ 
+ 
+ 
+   Date: 
+2025-11-28 
+Signature: 
+as on page 1 
+Disclaimer: This is an electronically released document. The authenticity can be verified on the IECEE Website "http://certificates.iecee.org"  (p2/1.10) 

@@ -1,0 +1,190 @@
+2026-03-04 17:28:16 - [INFO] - Cambiando a tab:  verificador
+2026-03-04 17:28:16 - [INFO] - Argos iniciado correctamente
+2026-03-04 17:56:43 - [INFO] - Cambiando a tab:  generador
+2026-03-04 20:38:57 - [INFO] - Certificado cargado: DJC11611SE - BIDCOM - TCSE-IACSA-0146316.1.pdf
+2026-03-04 20:39:10 - [INFO] - Nota de extensión cargada: Nota de ExtensiÃ³n Bidcom SRL 02-26 (2).pdf
+2026-03-04 20:39:35 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-03-04 20:39:35 - [INFO] - [M3] Modo: extension
+2026-03-04 20:39:35 - [INFO] - [M3] Archivo: DJC11611SE - BIDCOM - TCSE-IACSA-0146316.1.pdf
+2026-03-04 20:39:35 - [INFO] - [M3] Extensiones seleccionadas: Bemotec S.R.L., Caba Innovaciones S.R.L.
+2026-03-04 20:39:35 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-03-04 20:39:35 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-03-04 20:39:35 - [INFO] - [M3] ── Nro. Certificado : IACSA-0146/316
+2026-03-04 20:39:35 - [INFO] - [M3] ── OEC detectado   : Intertek
+2026-03-04 20:39:35 - [INFO] - [M3] ── Normas          : IEC 62368-1:2018 (Ed. 3.0)
+2026-03-04 20:39:35 - [INFO] - [M3] ── Fecha emisión   : [no encontrada]
+2026-03-04 20:39:35 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-03-04 20:39:35 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. IV (Electrónica, Audio, Video)
+2026-03-04 20:39:35 - [INFO] - [M3] Extrayendo datos del producto...
+2026-03-04 20:39:35 - [INFO] - [M3] ── Marca           : GADNIC.
+2026-03-04 20:39:35 - [INFO] - [M3] ── Fabricante      : Guangzhou Rigal Electronics Co., Ltd. // No.3 Ruixiang Road,
+2026-03-04 20:39:35 - [INFO] - [M3] ── Producto desc   : Proyector.
+2026-03-04 20:39:35 - [INFO] - [M3] ── Modelos         : 1) PJ980U; 2) PR3000R; 3) MK34S; 4) FCU501; 5) ME2298; 6) PRP100J; 7) PL100RG; 8
+2026-03-04 20:39:35 - [INFO] - [M3] ── Specs           : 100-240V~; 50/60Hz; Clase II; 1-10) 70W; 11-20) 40W.
+2026-03-04 20:39:35 - [INFO] - [M3] ── Fecha emisión   : 28/5/2025
+2026-03-04 20:39:35 - [INFO] - [M3] ── Fecha venc.     : 28/05/2027
+2026-03-04 20:39:35 - [INFO] - [M3] Armando datos finales DJC...
+2026-03-04 20:39:35 - [INFO] - [M3] Bidcom manual: 'C763' → ID: DJC-SE-0326-C763-ITK-V1
+2026-03-04 20:39:35 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-03-04 20:39:35 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-03-04 20:39:36 - [INFO] - Vista DJC renderizada correctamente
+2026-03-05 11:42:10 - [INFO] - Cambiando a tab:  generador
+2026-03-05 11:47:09 - [INFO] - Nota de extensión cargada: Nota de ExtensiÃ³n Bidcom SRL 02-26 (2).pdf
+2026-03-05 11:47:15 - [INFO] - Certificado cargado: DJC13688SE_COD - BIDCOM - TCSE-IACSA-0146329.1R1.pdf
+2026-03-05 11:47:18 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-03-05 11:47:18 - [INFO] - [M3] Modo: extension
+2026-03-05 11:47:18 - [INFO] - [M3] Archivo: DJC13688SE_COD - BIDCOM - TCSE-IACSA-0146329.1R1.pdf
+2026-03-05 11:47:18 - [INFO] - [M3] Extensiones seleccionadas: Calitec S.R.L., Foretec S.R.L.
+2026-03-05 11:47:18 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-03-05 11:47:18 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-03-05 11:47:18 - [INFO] - [M3] ── Nro. Certificado : IACSA-0146/329
+2026-03-05 11:47:18 - [INFO] - [M3] ── OEC detectado   : Intertek
+2026-03-05 11:47:18 - [INFO] - [M3] ── Normas          : IEC 60335-1: 2010 + A1: 2013 + A2: 2016 (Ed. 5.2) + IEC 60335-2-15: 2002 + A1: 2005 + A2: 2008 (Ed 5.2)
+2026-03-05 11:47:18 - [INFO] - [M3] ── Fecha emisión   : [no encontrada]
+2026-03-05 11:47:18 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-03-05 11:47:18 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)
+2026-03-05 11:47:18 - [INFO] - [M3] Extrayendo datos del producto...
+2026-03-05 11:47:18 - [INFO] - [M3] ── Marca           : Cuk by Gadnic.
+2026-03-05 11:47:18 - [INFO] - [M3] ── Fabricante      : TCSE-IACSA-0146/329.1R1 - F35.
+2026-03-05 11:47:18 - [INFO] - [M3] ── Producto desc   : Máquina Automática de Café Expresso.
+2026-03-05 11:47:18 - [INFO] - [M3] ── Modelos         : Características técnicas Nº Technical caracteristics 1                    CMP208
+2026-03-05 11:47:18 - [INFO] - [M3] ── Specs           : 220-240V~; 50-60Hz; Clase I + Anexo I.
+2026-03-05 11:47:18 - [INFO] - [M3] ── Fecha emisión   : 05/06/2024
+2026-03-05 11:47:18 - [INFO] - [M3] ── Fecha venc.     : 05/06/2026
+2026-03-05 11:47:18 - [INFO] - [M3] Armando datos finales DJC...
+2026-03-05 11:47:18 - [INFO] - [M3] Bidcom manual: 'C397' → ID: DJC-SE-0326-C397-ITK-V1
+2026-03-05 11:47:18 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-03-05 11:47:18 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-03-05 11:47:18 - [INFO] - Vista DJC renderizada correctamente
+2026-03-05 11:48:32 - [INFO] - === GENERANDO DJC ===
+2026-03-05 11:48:32 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C397-ITK-CALI-V1_djc.docx
+2026-03-05 11:48:43 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C397-ITK-CALI-V1.pdf
+2026-03-05 11:48:43 - [INFO] - [M3] ✓ Extensión Calitec S.R.L. completada
+2026-03-05 11:48:43 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C397-ITK-FORE-V1_djc.docx
+2026-03-05 11:48:51 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C397-ITK-FORE-V1.pdf
+2026-03-05 11:48:51 - [INFO] - [M3] ✓ Extensión Foretec S.R.L. completada
+2026-03-05 11:50:19 - [INFO] - [M3] El usuario descartó las DJC generadas temporalmente.
+2026-03-05 11:51:38 - [INFO] - === GENERANDO DJC ===
+2026-03-05 11:51:38 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C397-ITK-CALI-V1_djc_2.docx
+2026-03-05 11:51:42 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C397-ITK-CALI-V1_1772722302.pdf
+2026-03-05 11:51:42 - [INFO] - [M3] ✓ Extensión Calitec S.R.L. completada
+2026-03-05 11:51:42 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C397-ITK-FORE-V1_djc_2.docx
+2026-03-05 11:51:48 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C397-ITK-FORE-V1_1772722307.pdf
+2026-03-05 11:51:48 - [INFO] - [M3] ✓ Extensión Foretec S.R.L. completada
+2026-03-05 15:16:01 - [INFO] - [M3] Guardado final (solo PDF final): C:\Users\FDean\Documents\DJC generadas\C397\Extensiones\Calitec S.R.L.\DJC-SE-0326-C397-ITK-CALI-V1.pdf
+2026-03-05 15:16:01 - [INFO] - [M3] Guardado final (solo PDF final): C:\Users\FDean\Documents\DJC generadas\C397\Extensiones\Foretec S.R.L.\DJC-SE-0326-C397-ITK-FORE-V1.pdf
+2026-03-05 15:16:01 - [INFO] - [M3] === GENERACIÓN FINALIZADA Y GUARDADA ===
+2026-03-05 15:16:06 - [INFO] - Cambiando a tab:  generador
+2026-03-05 15:19:02 - [INFO] - Certificado cargado: DJC13688SE_COD - BIDCOM - TCSE-IACSA-0146329.1R1.pdf
+2026-03-05 15:19:06 - [INFO] - Nota de extensión cargada: Nota de ExtensiÃ³n Bidcom SRL 02-26 (2).pdf
+2026-03-05 15:19:10 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-03-05 15:19:10 - [INFO] - [M3] Modo: extension
+2026-03-05 15:19:10 - [INFO] - [M3] Archivo: DJC13688SE_COD - BIDCOM - TCSE-IACSA-0146329.1R1.pdf
+2026-03-05 15:19:10 - [INFO] - [M3] Extensiones seleccionadas: Bemotec S.R.L., Caba Innovaciones S.R.L.
+2026-03-05 15:19:10 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-03-05 15:19:10 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-03-05 15:19:10 - [INFO] - [M3] ── Nro. Certificado : IACSA-0146/329
+2026-03-05 15:19:10 - [INFO] - [M3] ── OEC detectado   : Intertek
+2026-03-05 15:19:10 - [INFO] - [M3] ── Normas          : IEC 60335-1: 2010 + A1: 2013 + A2: 2016 (Ed. 5.2) + IEC 60335-2-15: 2002 + A1: 2005 + A2: 2008 (Ed 5.2)
+2026-03-05 15:19:10 - [INFO] - [M3] ── Fecha emisión   : [no encontrada]
+2026-03-05 15:19:10 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-03-05 15:19:10 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)
+2026-03-05 15:19:10 - [INFO] - [M3] Extrayendo datos del producto...
+2026-03-05 15:19:10 - [INFO] - [M3] ── Marca           : Cuk by Gadnic.
+2026-03-05 15:19:10 - [INFO] - [M3] ── Fabricante      : TCSE-IACSA-0146/329.1R1 - F35.
+2026-03-05 15:19:10 - [INFO] - [M3] ── Producto desc   : Máquina Automática de Café Expresso.
+2026-03-05 15:19:10 - [INFO] - [M3] ── Modelos         : Características técnicas Nº Technical caracteristics 1                    CMP208
+2026-03-05 15:19:10 - [INFO] - [M3] ── Specs           : 220-240V~; 50-60Hz; Clase I + Anexo I.
+2026-03-05 15:19:10 - [INFO] - [M3] ── Fecha emisión   : 05/06/2024
+2026-03-05 15:19:10 - [INFO] - [M3] ── Fecha venc.     : 05/06/2026
+2026-03-05 15:19:10 - [INFO] - [M3] Armando datos finales DJC...
+2026-03-05 15:19:10 - [INFO] - [M3] Bidcom manual: 'C397' → ID: DJC-SE-0326-C397-ITK-V1
+2026-03-05 15:19:10 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-03-05 15:19:10 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-03-05 15:19:10 - [INFO] - Vista DJC renderizada correctamente
+2026-03-05 15:20:04 - [INFO] - === GENERANDO DJC ===
+2026-03-05 15:20:04 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C397-ITK-BEMO-V1_djc.docx
+2026-03-05 15:20:13 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C397-ITK-BEMO-V1.pdf
+2026-03-05 15:20:13 - [INFO] - [M3] ✓ Extensión Bemotec S.R.L. completada
+2026-03-05 15:20:14 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C397-ITK-CABA-V1_djc.docx
+2026-03-05 15:20:19 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C397-ITK-CABA-V1.pdf
+2026-03-05 15:20:19 - [INFO] - [M3] ✓ Extensión Caba Innovaciones S.R.L. completada
+2026-03-05 15:21:14 - [INFO] - [M3] El usuario descartó las DJC generadas temporalmente.
+2026-03-05 15:21:17 - [INFO] - Cambiando a tab:  generador
+2026-03-05 15:21:51 - [INFO] - Certificado cargado: DJC13688SE_COD - BIDCOM - TCSE-IACSA-0146329.1R1.pdf
+2026-03-05 15:21:54 - [INFO] - Nota de extensión cargada: Nota de ExtensiÃ³n Bidcom SRL 02-26 (2).pdf
+2026-03-05 15:21:56 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-03-05 15:21:56 - [INFO] - [M3] Modo: extension
+2026-03-05 15:21:56 - [INFO] - [M3] Archivo: DJC13688SE_COD - BIDCOM - TCSE-IACSA-0146329.1R1.pdf
+2026-03-05 15:21:56 - [INFO] - [M3] Extensiones seleccionadas: Bemotec S.R.L., Calitec S.R.L., Caba Innovaciones S.R.L., Foretec S.R.L.
+2026-03-05 15:21:56 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-03-05 15:21:56 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-03-05 15:21:56 - [INFO] - [M3] ── Nro. Certificado : IACSA-0146/329
+2026-03-05 15:21:56 - [INFO] - [M3] ── OEC detectado   : Intertek
+2026-03-05 15:21:56 - [INFO] - [M3] ── Normas          : IEC 60335-1: 2010 + A1: 2013 + A2: 2016 (Ed. 5.2) + IEC 60335-2-15: 2002 + A1: 2005 + A2: 2008 (Ed 5.2)
+2026-03-05 15:21:56 - [INFO] - [M3] ── Fecha emisión   : [no encontrada]
+2026-03-05 15:21:56 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-03-05 15:21:56 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)
+2026-03-05 15:21:56 - [INFO] - [M3] Extrayendo datos del producto...
+2026-03-05 15:21:56 - [INFO] - [M3] ── Marca           : Cuk by Gadnic.
+2026-03-05 15:21:56 - [INFO] - [M3] ── Fabricante      : TCSE-IACSA-0146/329.1R1 - F35.
+2026-03-05 15:21:56 - [INFO] - [M3] ── Producto desc   : Máquina Automática de Café Expresso.
+2026-03-05 15:21:56 - [INFO] - [M3] ── Modelos         : Características técnicas Nº Technical caracteristics 1                    CMP208
+2026-03-05 15:21:56 - [INFO] - [M3] ── Specs           : 220-240V~; 50-60Hz; Clase I + Anexo I.
+2026-03-05 15:21:56 - [INFO] - [M3] ── Fecha emisión   : 05/06/2024
+2026-03-05 15:21:56 - [INFO] - [M3] ── Fecha venc.     : 05/06/2026
+2026-03-05 15:21:56 - [INFO] - [M3] Armando datos finales DJC...
+2026-03-05 15:21:56 - [INFO] - [M3] Bidcom manual: 'C397' → ID: DJC-SE-0326-C397-ITK-V1
+2026-03-05 15:21:56 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-03-05 15:21:56 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-03-05 15:21:56 - [INFO] - Vista DJC renderizada correctamente
+2026-03-05 15:22:22 - [INFO] - === GENERANDO DJC ===
+2026-03-05 15:22:22 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C397-ITK-BEMO-V1_djc_2.docx
+2026-03-05 15:22:30 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C397-ITK-BEMO-V1_1772734950.pdf
+2026-03-05 15:22:30 - [INFO] - [M3] ✓ Extensión Bemotec S.R.L. completada
+2026-03-05 15:22:30 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C397-ITK-CALI-V1_djc_3.docx
+2026-03-05 15:22:36 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C397-ITK-CALI-V1_1772734956.pdf
+2026-03-05 15:22:36 - [INFO] - [M3] ✓ Extensión Calitec S.R.L. completada
+2026-03-05 15:22:37 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C397-ITK-CABA-V1_djc_2.docx
+2026-03-05 15:22:40 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C397-ITK-CABA-V1_1772734960.pdf
+2026-03-05 15:22:40 - [INFO] - [M3] ✓ Extensión Caba Innovaciones S.R.L. completada
+2026-03-05 15:22:40 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C397-ITK-FORE-V1_djc_3.docx
+2026-03-05 15:22:47 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C397-ITK-FORE-V1_1772734967.pdf
+2026-03-05 15:22:47 - [INFO] - [M3] ✓ Extensión Foretec S.R.L. completada
+2026-03-05 15:25:07 - [INFO] - [M3] Guardado final (solo PDF final): C:\Users\FDean\Documents\DJC generadas\C397\Extensiones\Bemotec S.R.L.\DJC-SE-0326-C397-ITK-BEMO-V1.pdf
+2026-03-05 15:25:07 - [INFO] - [M3] Guardado final (solo PDF final): C:\Users\FDean\Documents\DJC generadas\C397\Extensiones\Calitec S.R.L.\DJC-SE-0326-C397-ITK-CALI-V1.pdf
+2026-03-05 15:25:07 - [INFO] - [M3] Guardado final (solo PDF final): C:\Users\FDean\Documents\DJC generadas\C397\Extensiones\Caba Innovaciones S.R.L.\DJC-SE-0326-C397-ITK-CABA-V1.pdf
+2026-03-05 15:25:07 - [INFO] - [M3] Guardado final (solo PDF final): C:\Users\FDean\Documents\DJC generadas\C397\Extensiones\Foretec S.R.L.\DJC-SE-0326-C397-ITK-FORE-V1.pdf
+2026-03-05 15:25:07 - [INFO] - [M3] === GENERACIÓN FINALIZADA Y GUARDADA ===
+2026-03-05 15:25:09 - [INFO] - Cambiando a tab:  generador
+2026-03-05 15:29:29 - [INFO] - Certificado cargado: DJC13271SE_COD - BIDCOM - TCSE-IACSA-014647.1R2.pdf
+2026-03-05 15:29:32 - [INFO] - Nota de extensión cargada: Nota de ExtensiÃ³n Bidcom SRL 02-26 (2).pdf
+2026-03-05 15:29:55 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-03-05 15:29:55 - [INFO] - [M3] Modo: extension
+2026-03-05 15:29:55 - [INFO] - [M3] Archivo: DJC13271SE_COD - BIDCOM - TCSE-IACSA-014647.1R2.pdf
+2026-03-05 15:29:55 - [INFO] - [M3] Extensiones seleccionadas: Caba Innovaciones S.R.L.
+2026-03-05 15:29:55 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-03-05 15:29:55 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-03-05 15:29:55 - [INFO] - [M3] ── Nro. Certificado : IACSA-0146/147
+2026-03-05 15:29:55 - [INFO] - [M3] ── OEC detectado   : Intertek
+2026-03-05 15:29:55 - [INFO] - [M3] ── Normas          : IEC 60335-1: 2010 + A1: 2013 + A2: 2016 (Ed. 5.2)
+2026-03-05 15:29:55 - [INFO] - [M3] ── Fecha emisión   : [no encontrada]
+2026-03-05 15:29:55 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-03-05 15:29:55 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)
+2026-03-05 15:29:55 - [INFO] - [M3] Extrayendo datos del producto...
+2026-03-05 15:29:55 - [INFO] - [M3] ── Marca           : GADNIC.
+2026-03-05 15:29:55 - [INFO] - [M3] ── Fabricante      : TCSE-IACSA-0146/147.1R2 - F90.
+2026-03-05 15:29:55 - [INFO] - [M3] ── Producto desc   : Bomba de Aire para Vehículos.
+2026-03-05 15:29:55 - [INFO] - [M3] ── Modelos         : 1) SD23GF; 2) SD90GF; 3) SD33IR; 4) FG75GF; 5) FG23PR; 6) FG74SW
+2026-03-05 15:29:55 - [INFO] - [M3] ── Specs           : 12Vdc / 110-230V; 50Hz; 120W; 25l/min; 10.8 BAR; Clase II.
+2026-03-05 15:29:55 - [INFO] - [M3] ── Fecha emisión   : 19/12/2022
+2026-03-05 15:29:55 - [INFO] - [M3] ── Fecha venc.     : 18/12/2024
+2026-03-05 15:29:55 - [INFO] - [M3] Armando datos finales DJC...
+2026-03-05 15:29:55 - [INFO] - [M3] Bidcom manual: 'C292' → ID: DJC-SE-0326-C292-ITK-V1
+2026-03-05 15:29:55 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-03-05 15:29:55 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-03-05 15:29:56 - [INFO] - Vista DJC renderizada correctamente
+2026-03-05 15:31:36 - [INFO] - === GENERANDO DJC ===
+2026-03-05 15:31:36 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C292-ITK-CABA-V1_djc.docx
+2026-03-05 15:31:44 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C292-ITK-CABA-V1.pdf
+2026-03-05 15:31:44 - [INFO] - [M3] ✓ Extensión Caba Innovaciones S.R.L. completada

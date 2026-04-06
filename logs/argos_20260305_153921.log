@@ -1,0 +1,147 @@
+2026-03-05 15:39:22 - [INFO] - Cambiando a tab:  verificador
+2026-03-05 15:39:22 - [INFO] - Argos iniciado correctamente
+2026-03-05 15:39:25 - [INFO] - Cambiando a tab:  generador
+2026-03-05 15:46:22 - [INFO] - Certificado cargado: DJC13271SE_COD - BIDCOM - TCSE-IACSA-014647.1R2.pdf
+2026-03-05 15:46:27 - [INFO] - Nota de extensión cargada: Nota de ExtensiÃ³n Bidcom SRL 02-26 (2).pdf
+2026-03-05 15:46:31 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-03-05 15:46:31 - [INFO] - [M3] Modo: extension
+2026-03-05 15:46:31 - [INFO] - [M3] Archivo: DJC13271SE_COD - BIDCOM - TCSE-IACSA-014647.1R2.pdf
+2026-03-05 15:46:31 - [INFO] - [M3] Extensiones seleccionadas: Caba Innovaciones S.R.L.
+2026-03-05 15:46:31 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-03-05 15:46:31 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-03-05 15:46:31 - [INFO] - [M3] ── Nro. Certificado : IACSA-0146/147
+2026-03-05 15:46:31 - [INFO] - [M3] ── OEC detectado   : Intertek
+2026-03-05 15:46:31 - [INFO] - [M3] ── Normas          : IEC 60335-1: 2010 + A1: 2013 + A2: 2016 (Ed. 5.2)
+2026-03-05 15:46:31 - [INFO] - [M3] ── Fecha emisión   : [no encontrada]
+2026-03-05 15:46:31 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-03-05 15:46:31 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)
+2026-03-05 15:46:31 - [INFO] - [M3] Extrayendo datos del producto...
+2026-03-05 15:46:31 - [INFO] - [M3] ── Marca           : GADNIC.
+2026-03-05 15:46:31 - [INFO] - [M3] ── Fabricante      : TCSE-IACSA-0146/147.1R2 - F90.
+2026-03-05 15:46:31 - [INFO] - [M3] ── Producto desc   : Bomba de Aire para Vehículos.
+2026-03-05 15:46:31 - [INFO] - [M3] ── Modelos         : 1) SD23GF; 2) SD90GF; 3) SD33IR; 4) FG75GF; 5) FG23PR; 6) FG74SW
+2026-03-05 15:46:31 - [INFO] - [M3] ── Specs           : 12Vdc / 110-230V; 50Hz; 120W; 25l/min; 10.8 BAR; Clase II.
+2026-03-05 15:46:31 - [INFO] - [M3] ── Fecha emisión   : 19/12/2022
+2026-03-05 15:46:31 - [INFO] - [M3] ── Fecha venc.     : 18/12/2024
+2026-03-05 15:46:31 - [INFO] - [M3] Armando datos finales DJC...
+2026-03-05 15:46:31 - [INFO] - [M3] Bidcom manual: 'C292' → ID: DJC-SE-0326-C292-ITK-V1
+2026-03-05 15:46:31 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-03-05 15:46:31 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-03-05 15:46:32 - [INFO] - Vista DJC renderizada correctamente
+2026-03-05 15:49:01 - [INFO] - === GENERANDO DJC ===
+2026-03-05 15:49:01 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C292-ITK-CABA-V1_djc_2.docx
+2026-03-05 15:49:05 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C292-ITK-CABA-V1_1772736545.pdf
+2026-03-05 15:49:05 - [INFO] - [M3] ✓ Extensión Caba Innovaciones S.R.L. completada
+2026-03-05 15:54:01 - [INFO] - [M3] Guardado final (solo PDF final): C:\Users\FDean\Documents\DJC generadas\C292\Extensiones\Caba Innovaciones S.R.L.\DJC-SE-0326-C292-ITK-CABA-V1.pdf
+2026-03-05 15:54:01 - [INFO] - [M3] === GENERACIÓN FINALIZADA Y GUARDADA ===
+2026-03-05 16:01:22 - [INFO] - Cambiando a tab:  generador
+2026-03-05 16:02:59 - [INFO] - Certificado cargado: DJC13906SE_COD - BIDCOM - TCSE-IACSA-0146292.1R4 (1).pdf
+2026-03-05 16:03:02 - [INFO] - Nota de extensión cargada: Nota de ExtensiÃ³n Bidcom SRL 02-26 (2).pdf
+2026-03-05 16:03:12 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-03-05 16:03:12 - [INFO] - [M3] Modo: extension
+2026-03-05 16:03:12 - [INFO] - [M3] Archivo: DJC13906SE_COD - BIDCOM - TCSE-IACSA-0146292.1R4 (1).pdf
+2026-03-05 16:03:12 - [ERROR] - [M3] Seleccioná al menos una sociedad para extender
+2026-03-05 16:04:47 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-03-05 16:04:47 - [INFO] - [M3] Modo: extension
+2026-03-05 16:04:47 - [INFO] - [M3] Archivo: DJC13906SE_COD - BIDCOM - TCSE-IACSA-0146292.1R4 (1).pdf
+2026-03-05 16:04:47 - [INFO] - [M3] Extensiones seleccionadas: Calitec S.R.L.
+2026-03-05 16:04:47 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-03-05 16:04:47 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-03-05 16:04:47 - [INFO] - [M3] ── Nro. Certificado : IACSA-0146/292
+2026-03-05 16:04:47 - [INFO] - [M3] ── OEC detectado   : Intertek
+2026-03-05 16:04:47 - [INFO] - [M3] ── Normas          : IEC 60335-1: 2010 + A1: 2013 + A2: 2016 (Ed. 5.2) + IEC 60335-2-23: 2016 + A1: 2019 (Ed. 6.1), NM7015
+2026-03-05 16:04:47 - [INFO] - [M3] ── Fecha emisión   : [no encontrada]
+2026-03-05 16:04:47 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-03-05 16:04:47 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)
+2026-03-05 16:04:47 - [INFO] - [M3] Extrayendo datos del producto...
+2026-03-05 16:04:47 - [INFO] - [M3] ── Marca           : GADNIC.
+2026-03-05 16:04:47 - [INFO] - [M3] ── Fabricante      : TCSE-IACSA-0146/292.1R4 - F05
+2026-03-05 16:04:47 - [INFO] - [M3] ── Producto desc   : Cabina para Uñas.
+2026-03-05 16:04:47 - [INFO] - [M3] ── Modelos         : Ver Anexo I.
+2026-03-05 16:04:47 - [INFO] - [M3] ── Specs           : 24,3Vcc; 0,80A; 18,8W; Clase III.
+2026-03-05 16:04:47 - [INFO] - [M3] ── Fecha emisión   : 15/4/2025
+2026-03-05 16:04:47 - [INFO] - [M3] ── Fecha venc.     : 15/04/2027
+2026-03-05 16:04:47 - [INFO] - [M3] Armando datos finales DJC...
+2026-03-05 16:04:47 - [INFO] - [M3] Bidcom manual: 'C324' → ID: DJC-SE-0326-C324-ITK-V1
+2026-03-05 16:04:47 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-03-05 16:04:47 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-03-05 16:04:47 - [INFO] - Vista DJC renderizada correctamente
+2026-03-05 16:06:44 - [INFO] - === GENERANDO DJC ===
+2026-03-05 16:06:44 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C324-ITK-CALI-V1_djc.docx
+2026-03-05 16:06:52 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C324-ITK-CALI-V1.pdf
+2026-03-05 16:06:52 - [INFO] - [M3] ✓ Extensión Calitec S.R.L. completada
+2026-03-05 16:09:39 - [INFO] - [M3] Guardado final (solo PDF final): C:\Users\FDean\Documents\DJC generadas\C324\Extensiones\Calitec S.R.L.\DJC-SE-0326-C324-ITK-CALI-V1.pdf
+2026-03-05 16:09:39 - [INFO] - [M3] === GENERACIÓN FINALIZADA Y GUARDADA ===
+2026-03-05 16:42:27 - [INFO] - Cambiando a tab:  generador
+2026-03-05 16:42:55 - [INFO] - Certificado cargado: DJC13906SE_COD - BIDCOM - TCSE-IACSA-0146292.1R4 (1).pdf
+2026-03-05 16:42:59 - [INFO] - Nota de extensión cargada: Nota de ExtensiÃ³n Bidcom SRL 02-26 (2).pdf
+2026-03-05 16:43:03 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-03-05 16:43:03 - [INFO] - [M3] Modo: extension
+2026-03-05 16:43:03 - [INFO] - [M3] Archivo: DJC13906SE_COD - BIDCOM - TCSE-IACSA-0146292.1R4 (1).pdf
+2026-03-05 16:43:03 - [INFO] - [M3] Extensiones seleccionadas: Calitec S.R.L., Caba Innovaciones S.R.L.
+2026-03-05 16:43:03 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-03-05 16:43:03 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-03-05 16:43:03 - [INFO] - [M3] ── Nro. Certificado : IACSA-0146/292
+2026-03-05 16:43:03 - [INFO] - [M3] ── OEC detectado   : Intertek
+2026-03-05 16:43:03 - [INFO] - [M3] ── Normas          : IEC 60335-1: 2010 + A1: 2013 + A2: 2016 (Ed. 5.2) + IEC 60335-2-23: 2016 + A1: 2019 (Ed. 6.1), NM7015
+2026-03-05 16:43:03 - [INFO] - [M3] ── Fecha emisión   : [no encontrada]
+2026-03-05 16:43:03 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-03-05 16:43:03 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)
+2026-03-05 16:43:03 - [INFO] - [M3] Extrayendo datos del producto...
+2026-03-05 16:43:03 - [INFO] - [M3] ── Marca           : GADNIC.
+2026-03-05 16:43:03 - [INFO] - [M3] ── Fabricante      : TCSE-IACSA-0146/292.1R4 - F05
+2026-03-05 16:43:03 - [INFO] - [M3] ── Producto desc   : Cabina para Uñas.
+2026-03-05 16:43:03 - [INFO] - [M3] ── Modelos         : Ver Anexo I.
+2026-03-05 16:43:03 - [INFO] - [M3] ── Specs           : 24,3Vcc; 0,80A; 18,8W; Clase III.
+2026-03-05 16:43:03 - [INFO] - [M3] ── Fecha emisión   : 15/4/2025
+2026-03-05 16:43:03 - [INFO] - [M3] ── Fecha venc.     : 15/04/2027
+2026-03-05 16:43:03 - [INFO] - [M3] Armando datos finales DJC...
+2026-03-05 16:43:03 - [INFO] - [M3] Bidcom manual: 'C324' → ID: DJC-SE-0326-C324-ITK-V1
+2026-03-05 16:43:03 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-03-05 16:43:03 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-03-05 16:43:04 - [INFO] - Vista DJC renderizada correctamente
+2026-03-05 16:43:54 - [INFO] - === GENERANDO DJC ===
+2026-03-05 16:43:54 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C324-ITK-CALI-V1_djc_2.docx
+2026-03-05 16:44:06 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C324-ITK-CALI-V1_1772739845.pdf
+2026-03-05 16:44:06 - [INFO] - [M3] ✓ Extensión Calitec S.R.L. completada
+2026-03-05 16:44:06 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C324-ITK-CABA-V1_djc.docx
+2026-03-05 16:44:14 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C324-ITK-CABA-V1.pdf
+2026-03-05 16:44:14 - [INFO] - [M3] ✓ Extensión Caba Innovaciones S.R.L. completada
+2026-03-05 16:45:30 - [INFO] - [M3] Guardado final (solo PDF final): C:\Users\FDean\Documents\DJC generadas\C324\Extensiones\Calitec S.R.L.\DJC-SE-0326-C324-ITK-CALI-V1.pdf
+2026-03-05 16:45:30 - [INFO] - [M3] Guardado final (solo PDF final): C:\Users\FDean\Documents\DJC generadas\C324\Extensiones\Caba Innovaciones S.R.L.\DJC-SE-0326-C324-ITK-CABA-V1.pdf
+2026-03-05 16:45:30 - [INFO] - [M3] === GENERACIÓN FINALIZADA Y GUARDADA ===
+2026-03-05 16:45:40 - [INFO] - Cambiando a tab:  generador
+2026-03-05 16:51:31 - [INFO] - Certificado cargado: certi.pdf
+2026-03-05 16:51:51 - [INFO] - Nota de extensión cargada: Nota de ExtensiÃ³n Bidcom SRL 02-26 (2).pdf
+2026-03-05 16:52:00 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-03-05 16:52:00 - [INFO] - [M3] Modo: extension
+2026-03-05 16:52:00 - [INFO] - [M3] Archivo: certi.pdf
+2026-03-05 16:52:00 - [INFO] - [M3] Extensiones seleccionadas: Calitec S.R.L.
+2026-03-05 16:52:00 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-03-05 16:52:00 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-03-05 16:52:00 - [INFO] - [M3] ── Nro. Certificado : IACSA-0146/444
+2026-03-05 16:52:00 - [INFO] - [M3] ── OEC detectado   : Intertek
+2026-03-05 16:52:00 - [INFO] - [M3] ── Normas          : IEC 60335-1: 2010 + A1: 2013 + A2: 2016 (Ed. 5.2) + IEC 60335-2-23: 2016 + A1: 2019 (Ed, NM1801, NM1108
+2026-03-05 16:52:00 - [INFO] - [M3] ── Fecha emisión   : [no encontrada]
+2026-03-05 16:52:00 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-03-05 16:52:00 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)
+2026-03-05 16:52:00 - [INFO] - [M3] Extrayendo datos del producto...
+2026-03-05 16:52:00 - [INFO] - [M3] ── Marca           : GADNIC.
+2026-03-05 16:52:00 - [INFO] - [M3] ── Fabricante      : TCSE-IACSA-0146/444.1 - F05.
+2026-03-05 16:52:00 - [INFO] - [M3] ── Producto desc   : Cabina para Uñas.
+2026-03-05 16:52:00 - [INFO] - [M3] ── Modelos         : 1) AJS522; 2) CB24K; 3) MAN12; 4) ACMDK220; 5) CB24K; 6) AJS522; 7) 18UFG; 8) K4
+2026-03-05 16:52:00 - [INFO] - [M3] ── Specs           : 12,8Vcc; 1,52A; 22W; Clase III.
+2026-03-05 16:52:00 - [INFO] - [M3] ── Fecha emisión   : 28/04/2023
+2026-03-05 16:52:00 - [INFO] - [M3] ── Fecha venc.     : 27/04/2025
+2026-03-05 16:52:00 - [INFO] - [M3] Armando datos finales DJC...
+2026-03-05 16:52:00 - [INFO] - [M3] Bidcom manual: 'C322' → ID: DJC-SE-0326-C322-ITK-V1
+2026-03-05 16:52:00 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-03-05 16:52:00 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-03-05 16:52:01 - [INFO] - Vista DJC renderizada correctamente
+2026-03-05 16:53:46 - [INFO] - === GENERANDO DJC ===
+2026-03-05 16:53:46 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C322-ITK-CALI-V1_djc.docx
+2026-03-05 16:54:00 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C322-ITK-CALI-V1.pdf
+2026-03-05 16:54:00 - [INFO] - [M3] ✓ Extensión Calitec S.R.L. completada
+2026-03-05 17:00:28 - [INFO] - [M3] Guardado final (solo PDF final): C:\Users\FDean\Documents\DJC generadas\C322\Extensiones\Calitec S.R.L.\DJC-SE-0326-C322-ITK-CALI-V1.pdf
+2026-03-05 17:00:28 - [INFO] - [M3] === GENERACIÓN FINALIZADA Y GUARDADA ===
+2026-03-05 17:16:21 - [INFO] - Cambiando a tab:  generador

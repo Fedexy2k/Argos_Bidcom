@@ -1,0 +1,95 @@
+2026-03-30 08:55:02 - [INFO] - Cambiando a tab:  verificador
+2026-03-30 08:55:02 - [INFO] - Argos iniciado correctamente
+2026-03-30 08:55:06 - [INFO] - Cambiando a tab:  generador
+2026-03-30 08:58:16 - [INFO] - Certificado cargado: 07 LCSH-2466 - Certificado FIRMADO.pdf
+2026-03-30 08:58:18 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-03-30 08:58:18 - [INFO] - [M3] Modo: comun
+2026-03-30 08:58:18 - [INFO] - [M3] Archivo: 07 LCSH-2466 - Certificado FIRMADO.pdf
+2026-03-30 08:58:18 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-03-30 08:58:18 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-03-30 08:58:18 - [INFO] - [M3] ── Nro. Certificado : LCSH-2466
+2026-03-30 08:58:18 - [INFO] - [M3] ── OEC detectado   : Lenor
+2026-03-30 08:58:18 - [INFO] - [M3] ── Normas          : IEC 60335-1: 2020 (Ed. 6.0), IEC 60335-2-8: 2018 (Ed. 6.2)
+2026-03-30 08:58:18 - [INFO] - [M3] ── Fecha emisión   : [no encontrada]
+2026-03-30 08:58:18 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-03-30 08:58:18 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)
+2026-03-30 08:58:18 - [INFO] - [M3] Extrayendo datos del producto...
+2026-03-30 08:58:18 - [INFO] - [M3] ── Marca           : [vacía]
+2026-03-30 08:58:18 - [INFO] - [M3] ── Fabricante      : NINGBO HOMEBEAUTY ELECTRICAL APPLIANCES CO.,
+2026-03-30 08:58:18 - [INFO] - [M3] ── Producto desc   : Maquinas De Corte De Pelo
+2026-03-30 08:58:18 - [INFO] - [M3] ── Modelos         : [vacíos]
+2026-03-30 08:58:18 - [INFO] - [M3] ── Specs           : [vacías]
+2026-03-30 08:58:18 - [INFO] - [M3] ── Fecha emisión   : 27/03/2026
+2026-03-30 08:58:18 - [INFO] - [M3] ── Fecha venc.     : 27/03/2028
+2026-03-30 08:58:18 - [INFO] - [M3] Armando datos finales DJC...
+2026-03-30 08:58:19 - [INFO] - [M3] Bidcom manual: 'C929' → ID: DJC-SE-0326-C929-LNR-V1
+2026-03-30 08:58:19 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-03-30 08:58:19 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-03-30 08:58:19 - [INFO] - Vista DJC renderizada correctamente
+2026-03-30 09:02:06 - [INFO] - === GENERANDO DJC ===
+2026-03-30 09:02:06 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C929-LNR-V1_djc.docx
+2026-03-30 09:02:24 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C929-LNR-V1.pdf
+2026-03-30 09:03:53 - [INFO] - [M3] Guardado final (solo PDF final): C:\Users\FDean\Documents\DJC generadas\C929\DJC-SE-0326-C929-LNR-V1.pdf
+2026-03-30 09:03:53 - [INFO] - [M3] === GENERACIÓN FINALIZADA Y GUARDADA ===
+2026-03-30 09:03:57 - [INFO] - Cambiando a tab:  generador
+2026-03-30 09:10:53 - [INFO] - Certificado cargado: 08 LCSH-2466 - Certificado VERSION SIMPLIFICADA FIRMADO.pdf
+2026-03-30 09:10:55 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-03-30 09:10:55 - [INFO] - [M3] Modo: comun
+2026-03-30 09:10:55 - [INFO] - [M3] Archivo: 08 LCSH-2466 - Certificado VERSION SIMPLIFICADA FIRMADO.pdf
+2026-03-30 09:10:55 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-03-30 09:10:55 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-03-30 09:10:55 - [INFO] - [M3] ── Nro. Certificado : LCSH-2466
+2026-03-30 09:10:55 - [INFO] - [M3] ── OEC detectado   : Lenor
+2026-03-30 09:10:55 - [INFO] - [M3] ── Normas          : IEC 60335-1: 2020 (Ed. 6.0), IEC 60335-2-8: 2018 (Ed. 6.2)
+2026-03-30 09:10:55 - [INFO] - [M3] ── Fecha emisión   : [no encontrada]
+2026-03-30 09:10:55 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-03-30 09:10:55 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)
+2026-03-30 09:10:55 - [INFO] - [M3] Extrayendo datos del producto...
+2026-03-30 09:10:55 - [INFO] - [M3] ── Marca           : [vacía]
+2026-03-30 09:10:55 - [INFO] - [M3] ── Fabricante      : AAB382
+2026-03-30 09:10:55 - [INFO] - [M3] ── Producto desc   : Maquinas De Corte De Pelo
+2026-03-30 09:10:55 - [INFO] - [M3] ── Modelos         : [vacíos]
+2026-03-30 09:10:55 - [INFO] - [M3] ── Specs           : [vacías]
+2026-03-30 09:10:55 - [INFO] - [M3] ── Fecha emisión   : 27/03/2026
+2026-03-30 09:10:55 - [INFO] - [M3] ── Fecha venc.     : 27/03/2028
+2026-03-30 09:10:55 - [INFO] - [M3] Armando datos finales DJC...
+2026-03-30 09:10:55 - [INFO] - [M3] Bidcom manual: 'C929' → ID: DJC-SE-0326-C929-LNR-V1
+2026-03-30 09:10:55 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-03-30 09:10:55 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-03-30 09:10:56 - [INFO] - Vista DJC renderizada correctamente
+2026-03-30 09:12:04 - [INFO] - === GENERANDO DJC ===
+2026-03-30 09:12:04 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C929-LNR-V1_djc_2.docx
+2026-03-30 09:12:16 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C929-LNR-V1_1774872731.pdf
+2026-03-30 09:13:58 - [INFO] - [M3] Guardado final (solo PDF final): C:\Users\FDean\Documents\DJC generadas\C929\DJC-SE-0326-C929-LNR-V1_1774872838.pdf
+2026-03-30 09:13:58 - [INFO] - [M3] === GENERACIÓN FINALIZADA Y GUARDADA ===
+2026-03-30 11:19:22 - [INFO] - Cambiando a tab:  generador
+2026-03-30 11:19:44 - [INFO] - Certificado cargado: PCE-03 F1 R07 Certificado 163-2005 TIPO LCJ-16300.pdf
+2026-03-30 11:19:46 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-03-30 11:19:46 - [INFO] - [M3] Modo: comun
+2026-03-30 11:19:46 - [INFO] - [M3] Archivo: PCE-03 F1 R07 Certificado 163-2005 TIPO LCJ-16300.pdf
+2026-03-30 11:19:46 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-03-30 11:19:46 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-03-30 11:19:46 - [INFO] - [M3] ── Nro. Certificado : LCJ-16300
+2026-03-30 11:19:46 - [INFO] - [M3] ── OEC detectado   : Lenor
+2026-03-30 11:19:46 - [INFO] - [M3] ── Normas          : NM 300-1, NM 300-2, NM 300-3, NM 300-6
+2026-03-30 11:19:46 - [INFO] - [M3] ── Fecha emisión   : [no encontrada]
+2026-03-30 11:19:46 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-03-30 11:19:46 - [INFO] - [M3] ── Reglamento      : Res. SCT Nº 163/2004 (Juguetes – vigente)
+2026-03-30 11:19:46 - [INFO] - [M3] Extrayendo datos del producto...
+2026-03-30 11:19:46 - [INFO] - [M3] ── Marca           : GADNIC; HUALE; WLTOYS
+2026-03-30 11:19:46 - [INFO] - [M3] ── Fabricante      : Hong Xin Toys Factory
+2026-03-30 11:19:46 - [INFO] - [M3] ── Producto desc   : VEHICULO A CONTROL REMOTO
+2026-03-30 11:19:46 - [INFO] - [M3] ── Modelos         : TWIST19, TW-370JF, MTG31, TWE-205
+2026-03-30 11:19:46 - [INFO] - [M3] ── Specs           : [vacías]
+2026-03-30 11:19:46 - [INFO] - [M3] ── Fecha emisión   : 26/03/2026
+2026-03-30 11:19:46 - [INFO] - [M3] ── Fecha venc.     : 25/03/2027
+2026-03-30 11:19:46 - [INFO] - [M3] Armando datos finales DJC...
+2026-03-30 11:19:46 - [INFO] - [M3] Bidcom manual: 'C928' → ID: DJC-SJ-0326-C928-LNR-V1
+2026-03-30 11:19:46 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-03-30 11:19:46 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-03-30 11:19:47 - [INFO] - Vista DJC renderizada correctamente
+2026-03-30 11:22:15 - [INFO] - === GENERANDO DJC ===
+2026-03-30 11:22:15 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SJ-0326-C928-LNR-V1_djc.docx
+2026-03-30 11:22:35 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SJ-0326-C928-LNR-V1.pdf
+2026-03-30 11:30:13 - [INFO] - [M3] Guardado final (solo PDF final): C:\Users\FDean\Documents\DJC generadas\C928\DJC-SJ-0326-C928-LNR-V1.pdf
+2026-03-30 11:30:14 - [INFO] - [M3] === GENERACIÓN FINALIZADA Y GUARDADA ===

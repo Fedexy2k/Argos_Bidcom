@@ -1,0 +1,37 @@
+2026-03-25 10:23:36 - [INFO] - Cambiando a tab:  verificador
+2026-03-25 10:23:36 - [INFO] - Argos iniciado correctamente
+2026-03-25 10:23:39 - [INFO] - Cambiando a tab:  generador
+2026-03-25 10:25:28 - [INFO] - Certificado cargado: 1.pdf
+2026-03-25 10:25:32 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-03-25 10:25:32 - [INFO] - [M3] Modo: comun
+2026-03-25 10:25:32 - [INFO] - [M3] Archivo: 1.pdf
+2026-03-25 10:25:32 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-03-25 10:25:32 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-03-25 10:25:32 - [INFO] - [M3] ── Nro. Certificado : IACSA-0146/445
+2026-03-25 10:25:32 - [INFO] - [M3] ── OEC detectado   : Intertek
+2026-03-25 10:25:32 - [INFO] - [M3] ── Normas          : IEC 60335-1: 2020 (Ed. 6.0) + IEC 60335-2-9: 2019 (Ed. 7.0)
+2026-03-25 10:25:32 - [INFO] - [M3] ── Fecha emisión   : [no encontrada]
+2026-03-25 10:25:32 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-03-25 10:25:32 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)
+2026-03-25 10:25:32 - [INFO] - [M3] Extrayendo datos del producto...
+2026-03-25 10:25:32 - [INFO] - [M3] ── Marca           : [vacía]
+2026-03-25 10:25:32 - [INFO] - [M3] ── Fabricante      : [vacío]
+2026-03-25 10:25:32 - [INFO] - [M3] ── Producto desc   : [vacío]
+2026-03-25 10:25:32 - [INFO] - [M3] ── Modelos         : 1) BRED1905; 2) HPAN301; 3) BRVE55; 4) AUF71; 5) PE550; 6) SAJ253; 7) TRX390; 8)
+2026-03-25 10:25:32 - [INFO] - [M3] ── Specs           : 220V~; 50Hz; 550W; Clase I.
+2026-03-25 10:25:32 - [INFO] - [M3] ── Fecha emisión   : 25/02/2025
+2026-03-25 10:25:32 - [INFO] - [M3] ── Fecha venc.     : 25/02/2027
+2026-03-25 10:25:32 - [INFO] - [M3] Armando datos finales DJC...
+2026-03-25 10:25:32 - [INFO] - [M3] Bidcom manual: 'C841' → ID: DJC-SE-0326-C841-ITK-V1
+2026-03-25 10:25:32 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-03-25 10:25:32 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-03-25 10:25:32 - [INFO] - Vista DJC renderizada correctamente
+2026-03-25 10:26:28 - [INFO] - === GENERANDO DJC ===
+2026-03-25 10:26:29 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C841-ITK-V1_djc.docx
+2026-03-25 10:26:50 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C841-ITK-V1.pdf
+2026-03-25 10:26:50 - [INFO] - [M3] DJC Codificada — Fabricante original: 'GuangDong XinBao Electrical Appliances H...'
+2026-03-25 10:26:50 - [INFO] - [M3] DJC Codificada — Texto de resguardo: 'Información Restringida - Res. SIyC 237/2024 (China)'
+2026-03-25 10:26:50 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C841-ITK-V1_djc_2.docx
+2026-03-25 10:26:58 - [INFO] - [M3] Certificado censurado guardado en: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C841-ITK-V1_cert_cod.pdf
+2026-03-25 10:27:01 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C841-ITK-V1_1774445218.pdf
+2026-03-25 11:02:31 - [INFO] - [M3] El usuario descartó las DJC generadas temporalmente.

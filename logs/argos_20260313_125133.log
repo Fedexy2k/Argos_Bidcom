@@ -1,0 +1,36 @@
+2026-03-13 12:51:34 - [INFO] - Cambiando a tab:  verificador
+2026-03-13 12:51:34 - [INFO] - Argos iniciado correctamente
+2026-03-13 12:51:36 - [INFO] - Cambiando a tab:  generador
+2026-03-13 12:51:56 - [INFO] - Certificado cargado: Q-AR-05671-T-0 - BIDCOM - HORNO ELÉCTRICO.pdf
+2026-03-13 12:51:57 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-03-13 12:51:57 - [INFO] - [M3] Modo: comun
+2026-03-13 12:51:57 - [INFO] - [M3] Archivo: Q-AR-05671-T-0 - BIDCOM - HORNO ELÉCTRICO.pdf
+2026-03-13 12:51:57 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-03-13 12:51:57 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-03-13 12:51:57 - [INFO] - [M3] ── Nro. Certificado : Q-AR-05671
+2026-03-13 12:51:57 - [INFO] - [M3] ── OEC detectado   : Intertek
+2026-03-13 12:51:57 - [INFO] - [M3] ── Normas          : IEC 60335-2-9:2019 Ed. 7.0, EN18
+2026-03-13 12:51:57 - [INFO] - [M3] ── Fecha emisión   : [no encontrada]
+2026-03-13 12:51:57 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-03-13 12:51:57 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)
+2026-03-13 12:51:57 - [INFO] - [M3] Extrayendo datos del producto...
+2026-03-13 12:51:57 - [INFO] - [M3] ── Marca           : [vacía]
+2026-03-13 12:51:57 - [INFO] - [M3] ── Fabricante      : [vacío]
+2026-03-13 12:51:57 - [INFO] - [M3] ── Producto desc   : Nombre y dirección del solicitante    BIDCOM S.R.L. (CUIT: 30-71106936-0)
+2026-03-13 12:51:57 - [INFO] - [M3] ── Modelos         : [vacíos]
+2026-03-13 12:51:57 - [INFO] - [M3] ── Specs           : [vacías]
+2026-03-13 12:51:57 - [INFO] - [M3] ── Fecha emisión   : 09/03/2026
+2026-03-13 12:51:57 - [INFO] - [M3] ── Fecha venc.     : 08/03/2028
+2026-03-13 12:51:57 - [INFO] - [M3] Armando datos finales DJC...
+2026-03-13 12:51:57 - [INFO] - [M3] Bidcom manual: 'C863' → ID: DJC-SE-0326-C863-ITK-V1
+2026-03-13 12:51:57 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-03-13 12:51:57 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-03-13 12:51:58 - [INFO] - Vista DJC renderizada correctamente
+2026-03-13 12:54:45 - [INFO] - === GENERANDO DJC ===
+2026-03-13 12:54:46 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C863-QKT-V1_djc.docx
+2026-03-13 12:55:01 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C863-QKT-V1.pdf
+2026-03-13 12:55:01 - [INFO] - [M3] DJC Codificada — Fabricante original: 'ZHONGSHAN GENTECH ELECTRIC APPLIANCE CO....'
+2026-03-13 12:55:01 - [INFO] - [M3] DJC Codificada — Texto de resguardo: 'Información Restringida - Res. SIyC 237/2024 (China)'
+2026-03-13 12:55:01 - [INFO] - [M3] DJC Word guardada en temp: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C863-QKT-V1_djc_2.docx
+2026-03-13 12:55:10 - [INFO] - [M3] Certificado censurado guardado en: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C863-QKT-V1_cert_cod.pdf
+2026-03-13 12:55:15 - [INFO] - [M3] ✓ PDF borrador listo: C:\Users\FDean\AppData\Local\Temp\argos_djc_preview\DJC-SE-0326-C863-QKT-V1_1773417310.pdf

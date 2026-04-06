@@ -1,0 +1,93 @@
+2026-02-10 20:48:59 - [INFO] - Argos iniciado correctamente
+2026-02-10 20:49:08 - [INFO] - Datasheet cargado: C:/Users/FDean/Downloads/BANERA7B datasheeet.xlsx
+2026-02-10 20:49:08 - [INFO] - Parseando datasheet...
+2026-02-10 20:49:08 - [INFO] - Datasheet parseado: SEGURIDAD_ELECTRICA - SOUTHPORT - 5 modelo(s)
+2026-02-10 20:49:10 - [INFO] - 1 certificado(s) agregado(s)
+2026-02-10 20:49:11 - [INFO] - === INICIANDO AUDITORÍA ===
+2026-02-10 20:49:11 - [INFO] - Datasheet: C:/Users/FDean/Downloads/BANERA7B datasheeet.xlsx
+2026-02-10 20:49:11 - [INFO] - Certificados: 1
+2026-02-10 20:49:11 - [INFO] - Mapeado: SEGURIDAD_ELECTRICA -> DJC12643SE - BIDCOM - TCSE-IACSA-0146-378.1 (1).pdf
+2026-02-10 20:49:11 - [INFO] - Ejecutando auditoría con estrategias adaptativas...
+2026-02-10 20:49:11 - [INFO] - 
+2026-02-10 20:49:11 - [INFO] - ╔══════════════════════════════════════════╗
+2026-02-10 20:49:11 - [INFO] - ║  INICIANDO AUDITORÍA MULTICERTIFICADO   ║
+2026-02-10 20:49:11 - [INFO] - ╚══════════════════════════════════════════╝
+2026-02-10 20:49:11 - [INFO] - 
+2026-02-10 20:49:11 - [INFO] - Certificados requeridos: 1
+2026-02-10 20:49:11 - [INFO] -   1. SEGURIDAD_ELECTRICA
+2026-02-10 20:49:11 - [INFO] - 
+2026-02-10 20:49:11 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-10 20:49:11 - [INFO] - PROCESANDO: SEGURIDAD_ELECTRICA
+2026-02-10 20:49:11 - [INFO] - ────────────────────────────────────────────────────────────
+2026-02-10 20:49:11 - [INFO] - 📄 PDF: DJC12643SE - BIDCOM - TCSE-IACSA-0146-378.1 (1).pdf
+2026-02-10 20:49:11 - [DEBUG] -   Path completo: C:/Users/FDean/Downloads/DJC12643SE - BIDCOM - TCSE-IACSA-0146-378.1 (1).pdf
+2026-02-10 20:49:11 - [DEBUG] - Extrayendo texto del PDF...
+2026-02-10 20:49:11 - [INFO] - ✓ Texto extraído: 2318 caracteres
+2026-02-10 20:49:11 - [DEBUG] -   Primeros 200 caracteres: Producto
+Product 
+Trade mark
+Model or type 
+Remarks
+Firma
+Signature
+Intertek Argentina Certificaciones S.A.
+Cerrito 1136, 4° Piso CF
+(C1010AAX) - Buenos Aires - Argentina
+Oficina: +54 (11) 5217-9487
+S...
+2026-02-10 20:49:11 - [DEBUG] - Tipo de producto: SEGURIDAD_ELECTRICA
+2026-02-10 20:49:11 - [DEBUG] - 
+=== DETECCIÓN DE ESTRATEGIA DE VALIDACIÓN ===
+2026-02-10 20:49:11 - [DEBUG] - Tipo de producto: SEGURIDAD_ELECTRICA
+2026-02-10 20:49:11 - [DEBUG] - Analizando contenido del certificado...
+2026-02-10 20:49:11 - [INFO] - ✓ Estrategia detectada: ESTÁNDAR
+2026-02-10 20:49:11 - [DEBUG] - No se detectaron keywords especiales - Usando validación estándar
+2026-02-10 20:49:11 - [INFO] - 
+2026-02-10 20:49:11 - [INFO] - === Validación con Estrategia Estándar ===
+2026-02-10 20:49:11 - [DEBUG] - 
+>> Validando campo: MARCA (Hard Match)
+2026-02-10 20:49:11 - [DEBUG] -    Esperado: "SOUTHPORT"
+2026-02-10 20:49:11 - [DEBUG] -    Buscando en PDF...
+2026-02-10 20:49:11 - [DEBUG] -    Valores a buscar: ['SOUTHPORT']
+2026-02-10 20:49:11 - [INFO] -    ✓ Marca: Match encontrado - "SOUTHPORT"
+2026-02-10 20:49:11 - [DEBUG] - 
+>> Validando MODELOS (Lista completa)
+2026-02-10 20:49:11 - [DEBUG] -    Modelos esperados: ['LG-CY500', 'LG-CY002', 'LG-CY003', 'LG-CY004', 'LG-CY005']
+2026-02-10 20:49:11 - [DEBUG] -    Buscando modelo: "LG-CY500"
+2026-02-10 20:49:11 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 20:49:11 - [DEBUG] -    Buscando modelo: "LG-CY002"
+2026-02-10 20:49:11 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 20:49:11 - [DEBUG] -    Buscando modelo: "LG-CY003"
+2026-02-10 20:49:11 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 20:49:11 - [DEBUG] -    Buscando modelo: "LG-CY004"
+2026-02-10 20:49:11 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 20:49:11 - [DEBUG] -    Buscando modelo: "LG-CY005"
+2026-02-10 20:49:11 - [DEBUG] -       → ✓ Encontrado
+2026-02-10 20:49:11 - [INFO] -    ✓ MODELOS: Todos encontrados (5 modelos)
+2026-02-10 20:49:11 - [DEBUG] - 
+>> Validando campo: FÁBRICA (Fuzzy Match, threshold=85%)
+2026-02-10 20:49:11 - [DEBUG] -    Esperado: ['Shenzhen Xinniu Technology Co., Ltd.']
+2026-02-10 20:49:11 - [DEBUG] -    Buscando coincidencias fuzzy...
+2026-02-10 20:49:11 - [DEBUG] -    - "Shenzhen Xinniu Technology Co., Ltd.": 100% similitud
+2026-02-10 20:49:11 - [INFO] -    ✓ Fábrica: Match aceptable (100% >= 85%)
+2026-02-10 20:49:11 - [DEBUG] - 
+>> Validando campo: DIRECCIÓN FÁBRICA (Fuzzy Match, threshold=85%)
+2026-02-10 20:49:11 - [DEBUG] -    Esperado: ["No. 304, No. 6 Industrial Avenue, Tangwei Community, Fuhai Street, Bao'an District, Shenzhen"]
+2026-02-10 20:49:11 - [DEBUG] -    Buscando coincidencias fuzzy...
+2026-02-10 20:49:11 - [DEBUG] -    - "No. 304, No. 6 Industrial Avenue, Tangwei Community, Fuhai Street, Bao'an District, Shenzhen": 100% similitud
+2026-02-10 20:49:11 - [INFO] -    ✓ Dirección Fábrica: Match aceptable (100% >= 85%)
+2026-02-10 20:49:11 - [INFO] - 
+2026-02-10 20:49:11 - [INFO] - Estado: ✓ OK - Validación exitosa
+2026-02-10 20:49:11 - [INFO] - 
+2026-02-10 20:49:11 - [INFO] - ════════════════════════════════════════════════════════════
+2026-02-10 20:49:11 - [INFO] - AUDITORÍA COMPLETADA - Estado global: OK
+2026-02-10 20:49:11 - [INFO] - ════════════════════════════════════════════════════════════
+2026-02-10 20:49:11 - [INFO] - 
+2026-02-10 20:49:11 - [INFO] - Auditoría completada. Estado: OK
+2026-02-10 20:49:11 - [INFO] - Mostrando pantalla de resultados...
+2026-02-10 20:49:11 - [INFO] - Main frame oculto correctamente
+2026-02-10 20:49:11 - [INFO] - Estado global auditoría: OK
+2026-02-10 20:49:11 - [INFO] - Scroll frame creado
+2026-02-10 20:49:11 - [INFO] - Procesando 1 certificados en UI
+2026-02-10 20:49:11 - [INFO] - Creando tarjeta para: CERT_SEGURIDAD_ELECTRICA
+2026-02-10 20:49:11 - [INFO] - Pantalla de resultados renderizada completamente

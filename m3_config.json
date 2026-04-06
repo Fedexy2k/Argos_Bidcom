@@ -1,0 +1,110 @@
+{
+    "empresa": {
+        "razon_social": "BIDCOM SRL",
+        "cuit": "30-71106936-0",
+        "marca_registrada": "BIDCOM SRL",
+        "domicilio_legal": "Bouchard 468, 5° I, CABA. CP 1004",
+        "domicilio_deposito": "Caldas 1535, CABA, ARGENTINA",
+        "telefono": "3960-0184",
+        "email": "emanuel@bidcom.com.ar"
+    },
+    "representante_autorizado": {
+        "nombre": "No Aplica",
+        "cuit": "No Aplica",
+        "domicilio": "No Aplica"
+    },
+    "sociedades_extension": {
+        "Bemotec S.R.L.": {
+            "nombre": "BEMOTEC S.R.L.",
+            "cuit": "30-71504511-3",
+            "domicilio": "Bouchard 468, 5° I, CABA. CP 1004",
+            "codigo": "BEMO"
+        },
+        "Calitec S.R.L.": {
+            "nombre": "CALITEC S.R.L.",
+            "cuit": "30-71494140-9",
+            "domicilio": "Bouchard 468, 5° I, CABA. CP 1004",
+            "codigo": "CALI"
+        },
+        "Caba Innovaciones S.R.L.": {
+            "nombre": "CABA INNOVACIONES S.R.L.",
+            "cuit": "30-71648562-1",
+            "domicilio": "Bouchard 468, 5° I, CABA. CP 1004",
+            "codigo": "CABA"
+        },
+        "Eucaforest S.R.L.": {
+            "nombre": "Eucaforest SRL",
+            "cuit": "33-71073798-9",
+            "domicilio": "Bouchard 468, 5° I, CABA. CP 1004",
+            "codigo": "EUCA"
+        },
+        "Bfoot S.R.L.": {
+            "nombre": "BFOOT S.R.L.",
+            "cuit": "30-71206548-2",
+            "domicilio": "Bouchard 468, 5° I, CABA. CP 1004",
+            "codigo": "BFOO"
+        },
+        "Foretec S.R.L.": {
+            "nombre": "FORETEC S.R.L.",
+            "cuit": "30-71243492-5",
+            "domicilio": "Bouchard 468, 5° I, CABA. CP 1004",
+            "codigo": "FORE"
+        },
+        "Compra Rápido S.R.L.": {
+            "nombre": "COMPRA RAPIDO S.R.L.",
+            "cuit": "30-71649135-4",
+            "domicilio": "Bouchard 468, 5° I, CABA. CP 1004",
+            "codigo": "COMP"
+        }
+    },
+    "emision": {
+        "lugar": "Ciudad de Buenos Aires"
+    },
+    "firma": {
+        "aclaracion": "BARNA, Emanuel Lucas"
+    },
+    "enlace_djc_base": "https://qr.gadnic.com/certifications/certificado-",
+    "oec_options": {
+        "Intertek": {
+            "nombre": "Intertek Argentina Certificaciones S.A.",
+            "contacto": "https://www.intertek.com/"
+        },
+        "Bureau Veritas": {
+            "nombre": "Bureau Veritas Argentina",
+            "contacto": "https://www.bureauveritas.com.ar/"
+        },
+        "TÜV": {
+            "nombre": "TÜV Rheinland Argentina S.A.",
+            "contacto": "https://www.tuv.com/argentina/"
+        },
+        "Lenor": {
+            "nombre": "Lenor SRL",
+            "contacto": "info@lenorcert.com"
+        },
+        "Quektra": {
+            "nombre": "Quektra S.R.L.",
+            "contacto": "https://www.quektra.com.ar/"
+        },
+        "IRAM": {
+            "nombre": "IRAM - Instituto Argentino de Normalización y Certificación",
+            "contacto": "https://www.iram.org.ar/"
+        }
+    },
+    "esquema_options": [
+        "Esquema 2 según ISO 17067",
+        "Esquema 5 según ISO 17067"
+    ],
+    "reglamento_options": [
+        "Res. SIyC Nº 16/2025 – Ap. I (Fuentes y Cargadores)",
+        "Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)",
+        "Res. SIyC Nº 16/2025 – Ap. III (Iluminación)",
+        "Res. SIyC Nº 16/2025 – Ap. IV (Electrónica, Audio, Video)",
+        "Res. SIyC Nº 17/2025 – Ap. I (Máquinas y Herramientas)",
+        "Res. SIyC Nº 26/2025 (= 236/2024) – Materiales Inst. Eléctricas",
+        "Res. SIyC Nº 313/2025 – Ap. I (Encendedores)",
+        "Res. SIyC Nº 313/2025 – Ap. II (Anteojos de Sol)",
+        "Res. SIyC Nº 313/2025 – Ap. III (Juguetes)",
+        "Res. SIyC Nº 313/2025 – Ap. IV (Bicicletas Infantiles)",
+        "Res. SCT Nº 163/2004 (Juguetes – vigente)"
+    ]
+}

@@ -1,0 +1,68 @@
+ 
+    Certificado Nro:  
+Certificate No.  
+Q-AR-02839-T-1 
+ 
+CERTIFICADO DE CONFORMIDAD DE TIPO  
+(ISO/IEC 17067 Sistema Nº 2)  
+Según Resoluciones S.I.yC. N° 236/2024, 16/2025 y/o 17/2025  
+CERTIFICATE OF TYPE CONFORMITY (ISO/IEC 17067 System Nº 2)  
+According to Res. S.I.y.C. Nr. 236/2024, 16/2025 and/or 17/2025  
+  
+ 
+Producto  
+Product Cargador de batería para taladro inalámbrico  
+Battery charger for cordless drill   
+Nombre y dirección del solicitante  
+Name and address of the applicant  BIDCOM S.R.L. (CUIT: 30 -71106936 -0) 
+Av. Bouchard 468 piso 5, Dpto. 1, Ciudad Autónoma de Buenos Aires, Argentina   
+Nombre y dirección del fabricante  
+Name and address of the manufacturer  ZHEJIANG QIMO INTELLIGENT TECHNOLOGY CO., LTD.  
+No.292 Cangling Road, Huzhen Town, Jinyun County, Lishui City, Zhejiang Province, China   
+Nombre y dirección de la fábrica  
+Name and address of the factory  ZHEJIANG QIMO INTELLIGENT TECHNOLOGY CO., LTD.  
+No.292 Cangling Road, Huzhen Town, Jinyun County, Lishui City, Zhejiang Province, China   
+Valores nominales y características  
+principales  
+Ratings and principal characteristics  Entrada: 100 -240 V~; 50 -60 Hz; 2 A   
+Salida: 18 V⎓ ; 1,5 A  
+Clase II     
+Marca  
+Trademark  GADNIC  
+ 
+Modelo / Referencia de Tipo  
+Model / Type Ref.  D35R; DESE8130R; DL350; PER3.5; TAL35; VKKDN3992  
+ 
+Información adicional  
+Additional information  Este certificado reemplaza al ce rtificado Q-AR-02839 -T-0 
+ 
+En conformidad con  
+In confortmity with   IEC 60335 -2-29:2016 + A1:2019 Ed. 5.1  
+ 
+Laboratorio / Reporte de ensayo  
+Laboratory / Test Report  SHITSUKE S.R.L. / 73806 -1527 -109826   
+ 
+ 
+  
+ 
+El Titular de este Certificado deberá cumplir con las condiciones establecidas en el Contrato Marco de Servicios de Certificación (F10.2), 
+así como con las Resoluciones S.I.yC. N° 237/2024, 236/2024, 16/2025 y/o 17/2025, y sus modificatorias.  
+The Certificate Holder shall meet the conditions established  by the Service Certification Agreement (F10.2), together with the Resolutions S.I.yC. N° 
+237/2024, 236/2024, 16/2025 y/0  17/20255  and amendments.  
+ 
+ 
+  
+Firma:  
+Signature   
+ 
+ 
+ Fecha de emisión:  
+Issuance date (dd/mm/yyyy)  21/04/2025 
+ 
+Fecha de emisión original:  
+Original issuance date  (dd/mm/yyyy) 09/09/2024  
+ Qetkra S.R.L. | Av. Corrientes 456, Piso 22, CABA, Argentina | Tel. +54 11 5239 5077 | www.qetkra.com  Proceso:  
+Q25-00623 -01 
+F10.7 Rev. 3 
+Pag.  1/1  
+ 

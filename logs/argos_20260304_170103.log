@@ -1,0 +1,36 @@
+2026-03-04 17:01:04 - [INFO] - Cambiando a tab:  verificador
+2026-03-04 17:01:04 - [INFO] - Argos iniciado correctamente
+2026-03-04 17:01:06 - [INFO] - Cambiando a tab:  generador
+2026-03-04 17:01:16 - [INFO] - Certificado cargado: DJC14205SE_COD - BIDCOM - TCSE-IACSA-0146325.1R1.pdf
+2026-03-04 17:01:20 - [INFO] - Nota de extensión cargada: Nota de ExtensiÃ³n Bidcom SRL 02-26 (2).pdf
+2026-03-04 17:01:22 - [INFO] - === GENERANDO DJC DIRECTO ===
+2026-03-04 17:01:22 - [INFO] - [M3] Modo: extension
+2026-03-04 17:01:22 - [INFO] - [M3] Archivo: DJC14205SE_COD - BIDCOM - TCSE-IACSA-0146325.1R1.pdf
+2026-03-04 17:01:22 - [INFO] - [M3] Extensiones seleccionadas: Compra Rápido S.R.L.
+2026-03-04 17:01:22 - [INFO] - [M3] Inicializando DJCGenerator...
+2026-03-04 17:01:22 - [INFO] - [M3] Extrayendo texto del PDF...
+2026-03-04 17:01:22 - [INFO] - [M3] ── Nro. Certificado : IACSA-0146/325
+2026-03-04 17:01:22 - [INFO] - [M3] ── OEC detectado   : Intertek
+2026-03-04 17:01:22 - [INFO] - [M3] ── Normas          : IEC 60335-1: 2020 (Ed. 6.0) + IEC 60335-2-2: 2019 (Ed. 7.0)
+2026-03-04 17:01:22 - [INFO] - [M3] ── Fecha emisión   : [no encontrada]
+2026-03-04 17:01:22 - [INFO] - [M3] ── Fecha venc.     : [no encontrada]
+2026-03-04 17:01:22 - [INFO] - [M3] ── Reglamento      : Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)
+2026-03-04 17:01:22 - [INFO] - [M3] Extrayendo datos del producto...
+2026-03-04 17:01:22 - [INFO] - [M3] ── Marca           : GADNIC.
+2026-03-04 17:01:22 - [INFO] - [M3] ── Fabricante      : TCSE-IACSA-0146/325.1R1 - F13.
+2026-03-04 17:01:22 - [INFO] - [M3] ── Producto desc   : Aspiradora Eléctrica.
+2026-03-04 17:01:22 - [INFO] - [M3] ── Modelos         : 1) VACM480; 2) INC80; 3) ASTCH48; 4) VAM1200; 5) CLNE802; 6) VC1248; 7) MG500; 8
+2026-03-04 17:01:22 - [INFO] - [M3] ── Specs           : 220V~; 50Hz; Clase II; 1-12) 41) 1200W; 13-22) 1000W; 23-28) 600W; 29-34) 450W; 35-40) 330W.
+2026-03-04 17:01:22 - [INFO] - [M3] ── Fecha emisión   : 15/08/2024
+2026-03-04 17:01:22 - [INFO] - [M3] ── Fecha venc.     : 15/08/2026
+2026-03-04 17:01:22 - [INFO] - [M3] Armando datos finales DJC...
+2026-03-04 17:01:22 - [INFO] - [M3] Bidcom manual: 'C601' → ID: DJC-SE-0326-C601-ITK-V1
+2026-03-04 17:01:22 - [INFO] - [M3] ✓ Datos listos — abriendo formulario DJC
+2026-03-04 17:01:22 - [INFO] - === ABRIENDO VISTA DJC ===
+2026-03-04 17:01:23 - [INFO] - Vista DJC renderizada correctamente
+2026-03-04 17:02:05 - [INFO] - === GENERANDO DJC ===
+2026-03-04 17:02:05 - [INFO] - [M3] DJC Word guardada en: C:\Users\FDean\Documents\DJC generadas\C601\Extensiones\Compra Rápido S.R.L.\DJC-SE-0326-C601-ITK-COMP-COMP-V1_djc.docx
+2026-03-04 17:02:15 - [INFO] - [M3] ✓ PDF final: C:\Users\FDean\Documents\DJC generadas\C601\Extensiones\Compra Rápido S.R.L.\DJC-SE-0326-C601-ITK-COMP-COMP-V1.pdf
+2026-03-04 17:02:15 - [INFO] - [M3] ✓ Extensión Compra Rápido S.R.L. completada
+2026-03-04 17:02:15 - [INFO] - [M3] === 1 extensiones generadas ===
+2026-03-04 17:02:15 - [INFO] -   → DJC-SE-0326-C601-ITK-COMP-COMP-V1.pdf
