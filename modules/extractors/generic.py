@@ -35,7 +35,7 @@ def extract(lines: list[str], text_sorted: str = "", log_fn=None) -> dict:
             if val:
                 result[key] = val
 
-    # Fabricante
+    # Fabricante + Dirección
     idx = find_line(lines, [
         "Name and address of the manufacturer",
         "Nombre y dirección del fabricante",
@@ -45,6 +45,12 @@ def extract(lines: list[str], text_sorted: str = "", log_fn=None) -> dict:
         _, val = next_non_empty(lines, idx, GENERIC_SKIP)
         if val:
             result["fabricante"] = val
+            # Capturar la dirección en la línea siguiente al nombre
+            fab_line = find_line(lines, [val], start=idx)
+            if fab_line >= 0 and fab_line + 1 < len(lines):
+                addr = lines[fab_line + 1].strip()
+                if addr and addr.lower() not in GENERIC_SKIP:
+                    result["direccion"] = addr
 
     # Modelos
     idx = find_line(lines, [
@@ -56,6 +62,30 @@ def extract(lines: list[str], text_sorted: str = "", log_fn=None) -> dict:
         if val:
             items = [x.strip() for x in re.split(r'[;,]+', val) if x.strip()]
             result["modelos"] = ", ".join(items)
+
+    # Normas
+    idx = find_line(lines, [
+        "Norma(s) / Standard(s)", "Norma",
+        "Standard(s) used", "Standards used",
+        "EN CONFORMIDAD CON LA(S) NORMA(S)",
+    ])
+    if idx >= 0:
+        normas_lines = []
+        j = idx + 1
+        while j < len(lines):
+            val = lines[j].strip()
+            if not val:
+                break
+            low = val.rstrip(':').lower()
+            if low.startswith("standard") or low.startswith("in conformity") or low in GENERIC_SKIP:
+                j += 1
+                continue
+            if low.startswith("fecha") or low.startswith("issue") or low.startswith("additional"):
+                break
+            normas_lines.append(val)
+            j += 1
+        if normas_lines:
+            result["normas"] = " ".join(normas_lines)
 
     # Specs
     idx = find_line(lines, [

@@ -146,6 +146,59 @@ def _parse_annex_formato_b(ll: list[str], annex_start: int, result: dict) -> dic
     return result
 
 
+def _parse_annex_formato_c(ll: list[str], annex_start: int, result: dict) -> dict:
+    """Formato C: nuevo tabular (Caso 14) — Marca, Modelo, Specs en la misma línea separados por múltiples espacios."""
+    n = len(ll)
+    data_start = -1
+
+    for idx in range(annex_start, min(annex_start + 40, n)):
+        if "Caracter" in ll[idx] or "Main ratings" in ll[idx]:
+            data_start = idx + 1
+            break
+
+    if data_start < 0:
+        return result
+
+    modelos: list[str] = []
+    marcas: set[str] = set()
+    specs_set: set[str] = set()
+    
+    for idx in range(data_start, n):
+        line = ll[idx].strip()
+        # Cortar si encontramos pie de página o nueva sección
+        if "Página" in line or "CERTIFICADO DE CONFORMIDAD" in line or "lenorgroup.com" in line or "Laboratorio:" in line or "Fábrica:" in line:
+            break
+        if not line:
+            continue
+            
+        # Ignorar lineas de header
+        low_line = line.lower()
+        if "model:" in low_line or "brandname:" in low_line or "main ratings:" in low_line:
+            continue
+            
+        parts = re.split(r'\s{2,}', line) # Usamos splits de espacios múltiples
+        if len(parts) >= 2:
+            mod_val = parts[0].strip()
+            if mod_val not in ("DE", "CERTIFICADO"):
+                modelos.append(mod_val)
+            marc_val = parts[1].strip()
+            if marc_val not in ("DE", "CERTIFICADO"):
+                marcas.add(marc_val)
+            if len(parts) >= 3:
+                specs_set.add(parts[2].strip().replace("CONFORMIDAD", ""))
+        elif "GADNIC" in line:
+            parts = line.split(" GADNIC ")
+            if len(parts) == 2:
+                modelos.append(parts[0].strip())
+                marcas.add("GADNIC")
+                specs_set.add(parts[1].strip().replace("CONFORMIDAD", ""))
+                
+    result["modelos"] = ", ".join(modelos)
+    result["marca"] = list(marcas)[0] if marcas else ""
+    result["specs"] = list(specs_set)[0] if specs_set else ""
+    return result
+
+
 def _parse_lenor_annex(lines: list[str]) -> dict:
     """Detecta el formato del Anexo y delega al parser correspondiente."""
     result: dict = {"modelos": "", "marca": "", "specs": ""}
@@ -167,8 +220,11 @@ def _parse_lenor_annex(lines: list[str]) -> dict:
         or "Producto (descripción breve)" in window_text
         or "Product (brief description)" in window_text
     )
+    is_formato_c = "Main ratings" in window_text and "Brandname" in window_text and "Model" in window_text
 
-    if is_formato_b:
+    if is_formato_c:
+        return _parse_annex_formato_c(ll, annex_start, result)
+    elif is_formato_b:
         return _parse_annex_formato_b(ll, annex_start, result)
     else:
         return _parse_annex_formato_a(ll, annex_start, result)
@@ -297,9 +353,14 @@ def extract(lines: list[str], text_sorted: str = "", log_fn=None) -> dict:
     # ── FÁBRICA + DIRECCIÓN ──
     fab_idx = find_line(detect_lines, ["Fábrica"])
     if fab_idx >= 0:
-        _, fab_name = next_non_empty(detect_lines, fab_idx, LENOR_SKIP)
+        fab_sub_idx, fab_name = next_non_empty(detect_lines, fab_idx, LENOR_SKIP)
         if fab_name:
+            # Acaparar siguientes líneas para fábrica por si salto a otro renglón
+            if fab_sub_idx + 1 < len(detect_lines) and detect_lines[fab_sub_idx+1].strip() == "LTD.":
+                fab_name += " LTD."
+                fab_sub_idx += 1
             result["fabricante"] = fab_name
+            
             dir_idx = find_line(detect_lines, ["Dirección"], start=fab_idx + 1)
             if dir_idx >= 0:
                 _, dir_val = next_non_empty(detect_lines, dir_idx, LENOR_SKIP)
@@ -310,9 +371,19 @@ def extract(lines: list[str], text_sorted: str = "", log_fn=None) -> dict:
                         if (next_line and len(next_line) > 3
                                 and next_line.rstrip(':').lower() not in
                                 {"producto", "product", "norma(s)", "standard(s)",
-                                 "c.u.i.t", "fábrica", "factory", "dirección", "address"}):
+                                 "c.u.i.t", "fábrica", "factory", "dirección", "address", "laboratorio:", "testing laboratory:"}):
                             dir_val = dir_val + " " + next_line
                     result["direccion"] = dir_val
+            else:
+                # Si no hay "Dirección", generalmente sigue justo abajo de "LTD." o el fin del nombre
+                dir_lines = []
+                for j in range(fab_sub_idx + 1, min(fab_sub_idx + 5, len(detect_lines))):
+                    line = detect_lines[j].strip()
+                    if not line or line.lower().startswith(("laboratorio:", "testing laboratory:", "informe", "test report")):
+                        break
+                    dir_lines.append(line)
+                if dir_lines:
+                    result["direccion"] = " ".join(dir_lines)
 
     # ── PRODUCTO ──
     idx = find_line(detect_lines, ["Producto"])
@@ -321,8 +392,27 @@ def extract(lines: list[str], text_sorted: str = "", log_fn=None) -> dict:
         if val:
             result["producto_desc"] = val
 
+    # ── NORMAS ──
+    # Lenor SE usa dos variantes de label según el formato:
+    #   - Formato clásico (LCSH):  "Norma(s):" / "Standard(s):"
+    #   - Formato tabular (caso 14): "Documento(s) normativo(s):" / "Normative document(s):"
+    idx = find_line(detect_lines, [
+        "Norma(s)", "Norma(s):",
+        "Documento(s) normativo(s)", "Documento(s) normativo(s):",
+    ])
+    if idx >= 0:
+        # LENOR_SKIP incluye "standard(s)" y "standard(s):" — salta el bilingüe automáticamente
+        _, val = next_non_empty(detect_lines, idx, LENOR_SKIP | {"normative document(s)"})
+        if val:
+            result["normas"] = val
+
     # ── MODELOS, MARCA, SPECS desde ANEXO ──
-    annex = _parse_lenor_annex(detect_lines)
+    # Para el Anexo C (tabular) dependemos de text_sorted porque el layout raw destruye las tablas
+    annex = _parse_lenor_annex(detect_lines_sorted)
+    # Si detect_lines_sorted no sacó nada, fallback a detect_lines
+    if not annex["modelos"]:
+        annex = _parse_lenor_annex(detect_lines)
+    
     if annex["modelos"]:
         result["modelos"] = annex["modelos"]
     if annex["marca"]:

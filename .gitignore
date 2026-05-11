@@ -1,0 +1,22 @@
+# Python / Entornos
+__pycache__/
+*.pyc
+venv/
+env/
+.env
+
+# Secretos
+m3_config.json
+oec_rules.json
+
+# Compilación y ejecutables
+build/
+dist/
+*.spec
+*.exe
+*.log
+logs/
+
+# IDEs
+.vscode/
+.idea/

@@ -15,6 +15,7 @@ export interface CertExtractResult {
   producto_desc: string
   specs: string
   reglamento: string
+  djc_id?: string
 }
 
 export interface GenerateResult {
@@ -69,9 +70,19 @@ export async function extractCert(file: File): Promise<CertExtractResult> {
 
 // ── Generate ──────────────────────────────────────────────────────────────────
 
+export interface EmpresaOverride {
+  razon_social: string
+  cuit: string
+  marca_registrada: string
+  domicilio_legal: string
+  domicilio_deposito: string
+  telefono: string
+  email: string
+}
+
 export interface GenerateParams {
   versiones: string[]       // ['normal'] | ['codificada'] | ['normal','codificada']
-  modo: string              // 'comun' | 'extension'
+  modo: string              // 'comun' | 'extension' | 'extension_terceros'
   sociedades: string[]
   djc_id: string
   enlace_djc: string
@@ -80,6 +91,7 @@ export interface GenerateParams {
   normas: string
   fecha_emision: string
   fecha_vencimiento: string
+  fecha_vigilancia: string  // '———' si cert nuevo, fecha real si hubo vigilancia previa
   fabricante: string
   direccion: string
   marca: string
@@ -91,6 +103,7 @@ export interface GenerateParams {
   esquema: string
   output_dir: string
   save_to_disk: boolean
+  empresa_override?: EmpresaOverride  // solo en modo extension_terceros
 }
 
 export async function generateDJC(

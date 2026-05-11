@@ -21,13 +21,24 @@ from fastapi import (
     WebSocketDisconnect
 )
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse, StreamingResponse
+from fastapi.responses import JSONResponse, StreamingResponse, FileResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 import uvicorn
 
 # ── Path setup ────────────────────────────────────────────────────────────────
 ROOT = Path(__file__).resolve().parent.parent   # → Argos Proyect/
 sys.path.insert(0, str(ROOT))
+
+# Cargar variables de entorno desde .env si existe (para API keys locales)
+_env_file = ROOT / ".env"
+if _env_file.exists():
+    with open(_env_file, encoding="utf-8") as _f:
+        for _line in _f:
+            _line = _line.strip()
+            if _line and not _line.startswith("#") and "=" in _line:
+                _k, _v = _line.split("=", 1)
+                os.environ.setdefault(_k.strip(), _v.strip())
 
 from modules.m3_djc_generator import DJCGenerator
 from modules.m2_multiaudit import MultiCertAuditor
@@ -76,7 +87,16 @@ log_broadcaster = LogBroadcaster()
 
 
 class GUILogger:
-    """Adapter: makes DJCGenerator / MultiAudit log into the broadcaster."""
+    """Adapter: makes DJCGenerator / MultiAudit / dispatcher log into the broadcaster."""
+
+    def log(self, msg: str, level: str = "INFO"):
+        """Método que llama DJCGenerator._log() → gui_logger.log(msg, level).
+        Sin este método, todos los logs del dispatcher y de la IA se tragaban silenciosamente."""
+        level_lower = level.lower()
+        log_broadcaster.push(
+            level_lower if level_lower in ("info", "warning", "error", "debug") else "info",
+            msg
+        )
 
     def info(self, msg: str):
         log_broadcaster.push("info", msg)
@@ -86,6 +106,9 @@ class GUILogger:
 
     def error(self, msg: str):
         log_broadcaster.push("error", msg)
+
+    def debug(self, msg: str):
+        log_broadcaster.push("debug", msg)
 
 
 # ── App startup ───────────────────────────────────────────────────────────────
@@ -186,7 +209,7 @@ async def extract_cert(file: UploadFile = File(...)):
 class GenerateRequest(BaseModel):
     # Versiones a generar
     versiones: list[str]          # ["normal", "codificada"]
-    modo: str                     # "comun" | "extension"
+    modo: str                     # "comun" | "extension" | "extension_terceros"
     # Identificación (editada por el usuario en el formulario)
     djc_id: str = ""              # ID editado en el frontend
     enlace_djc: str = ""          # Enlace QR editado en el frontend
@@ -196,6 +219,7 @@ class GenerateRequest(BaseModel):
     normas: str = ""
     fecha_emision: str = ""
     fecha_vencimiento: str = ""
+    fecha_vigilancia: str = "---"  # '---' si cert nuevo, fecha real si hubo vigilancia previa
     fabricante: str = ""
     direccion: str = ""
     marca: str = ""
@@ -207,6 +231,7 @@ class GenerateRequest(BaseModel):
     esquema: str = ""
     # Extension options
     sociedades: list[str] = []    # ["Bemotec S.R.L.", ...]
+    empresa_override: dict = {}   # solo en modo extension_terceros: sobreescribe config["empresa"]
     # Output
     output_dir: str = ""          # "" = temp dir (preview mode)
     save_to_disk: bool = False
@@ -264,7 +289,7 @@ async def generate_djc(
         for version in req.versiones:
             is_codificada = (version == "codificada")
 
-            if req.modo == "comun":
+            if req.modo in ("comun", "extension_terceros"):
                 societies_list = [None]   # single run, no society injection
             else:
                 societies_list = req.sociedades or []
@@ -484,7 +509,7 @@ def _build_data_dict(req: GenerateRequest, gen: DJCGenerator) -> dict:
         or f"https://qr.gadnic.com/certifications/certificacion-{num_bidcom}" if num_bidcom \
         else ""
 
-    return {
+    data = {
         "djc_id": djc_id,
         "fabricante": req.fabricante,
         "direccion_fabrica": req.direccion,
@@ -497,12 +522,38 @@ def _build_data_dict(req: GenerateRequest, gen: DJCGenerator) -> dict:
         "cert_number": req.cert_number,
         "esquema": req.esquema,
         "fecha_emision": req.fecha_emision,
-        "fecha_vigilancia": req.fecha_vencimiento,
+        "fecha_vigilancia": req.fecha_vigilancia or "---",
         "fecha_proxima_vigilancia": req.fecha_vencimiento,
         "oec_nombre": oec_info.get("nombre", req.oec_key),
         "oec_contacto": oec_info.get("contacto", ""),
         "enlace_djc": enlace_djc,
     }
+
+    # Modo extensión de terceros: BIDCOM como importador/representante autorizado
+    # y opcionalmente datos de empresa sobreescritos (los 7 campos editables)
+    if req.modo == "extension_terceros":
+        # 1. Representante Autorizado fijo (Tabla 2)
+        data["representante"] = {
+            "nombre":    "BIDCOM SRL",
+            "cuit":      "30-71106936-0",
+            "domicilio": "Bouchard 468, 5° I, CABA. CP 1004",
+        }
+        
+        # 2. Información del Importador / Empresa editable (Tabla 1)
+        if req.empresa_override:
+            data["empresa_override"] = req.empresa_override
+        else:
+            data["empresa_override"] = {
+                "razon_social":     "BIDCOM SRL",
+                "cuit":             "30-71106936-0",
+                "marca_registrada": "BIDCOM SRL",
+                "domicilio_legal":  "Bouchard 468, 5° I, CABA. CP 1004",
+                "domicilio_deposito": "Caldas 1535, CABA, ARGENTINA",
+                "telefono":         "3960-0184",
+                "email":            "emanuel@bidcom.com.ar",
+            }
+
+    return data
 
 
 def _apply_codificada(data: dict, gen: DJCGenerator) -> tuple[dict, dict]:
@@ -517,13 +568,16 @@ def _apply_codificada(data: dict, gen: DJCGenerator) -> tuple[dict, dict]:
         "india": "India", "vietnam": "Vietnam", "japan": "Japón",
         "japon": "Japón", "usa": "EE.UU.",
     }
-    pais = "País"
+    pais = ""
+    # Buscar país en dirección Y en nombre del fabricante (igual que legacy)
+    search_text = (dir_original + " " + fab_original).lower()
     for kw, label in country_map.items():
-        if kw in dir_original.lower():
+        if kw in search_text:
             pais = label
             break
 
-    restricted = f"Información Restringida - Res. SIyC 237/2024 ({pais})"
+    restricted = f"Información Restringida - Res. SIyC 237/2024 ({pais})" if pais \
+        else "Información Restringida - Res. SIyC 237/2024"
     new_data = dict(data)
     new_data["fabricante"] = restricted
     new_data["direccion_fabrica"] = restricted
@@ -536,14 +590,30 @@ def _apply_codificada(data: dict, gen: DJCGenerator) -> tuple[dict, dict]:
 
 
 def _inject_society(data: dict, society_key: str, gen: DJCGenerator) -> dict:
-    """Injects the extension society as representante in data."""
+    """Injects the extension society as representante in data, and appends its
+    code to the DJC-ID (e.g. DJC-SE-0226-C912-ITK-V1 → DJC-SE-0226-C912-ITK-BEMO-V1)."""
+    import re as _re
     soc = gen.config.get("sociedades_extension", {}).get(society_key, {})
     new_data = dict(data)
+
+    # Inyectar representante
     new_data["representante"] = {
-        "nombre": soc.get("nombre", society_key),
-        "cuit": soc.get("cuit", ""),
+        "nombre":   soc.get("nombre", society_key),
+        "cuit":     soc.get("cuit", ""),
         "domicilio": soc.get("domicilio", ""),
     }
+
+    # Actualizar DJC-ID: insertar codigo ANTES del sufijo -Vx
+    # DJC-SE-0226-C912-ITK-V1 + BEMO  →  DJC-SE-0226-C912-ITK-BEMO-V1
+    soc_codigo = soc.get("codigo", "")
+    if soc_codigo:
+        base_id = new_data.get("djc_id", "")
+        m = _re.match(r'^(.*?)(-V\d+)$', base_id)
+        if m:
+            new_data["djc_id"] = f"{m.group(1)}-{soc_codigo}{m.group(2)}"
+        elif base_id:
+            new_data["djc_id"] = f"{base_id}-{soc_codigo}"
+
     return new_data
 
 
@@ -627,6 +697,30 @@ def _run_generation(
     finally:
         shutil.rmtree(tmp_dir, ignore_errors=True)
 
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  Frontend Static Files
+# ─────────────────────────────────────────────────────────────────────────────
+
+frontend_path = ROOT / "frontend" / "dist"
+if frontend_path.exists():
+    # Solo montamos /assets directamente
+    assets_path = frontend_path / "assets"
+    if assets_path.exists():
+        app.mount("/assets", StaticFiles(directory=str(assets_path)), name="assets")
+    
+    @app.get("/{full_path:path}")
+    async def serve_frontend(full_path: str):
+        # Ignorar rutas API y WS
+        if full_path.startswith("api/") or full_path.startswith("ws/"):
+            raise HTTPException(status_code=404, detail="Not Found")
+            
+        target_file = frontend_path / full_path
+        if full_path and target_file.exists() and target_file.is_file():
+            return FileResponse(target_file)
+            
+        # Fallback a index.html para react-router
+        return FileResponse(frontend_path / "index.html")
 
 # ─────────────────────────────────────────────────────────────────────────────
 #  Entry point

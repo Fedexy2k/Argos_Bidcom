@@ -92,6 +92,28 @@ def extract(lines: list[str], text_sorted: str = "", log_fn=None) -> dict:
             items = [x.strip() for x in re.split(r'[;,]+', val) if x.strip()]
             result["modelos"] = ", ".join(items)
 
+    # ── NORMAS ──
+    # En certs Quektra el label es "En conformidad con" / "In conformity with"
+    idx = find_line(lines, ["En conformidad con", "In conformity with", "In confortmity with"])
+    if idx >= 0:
+        normas_lines = []
+        j = idx + 1
+        while j < len(lines):
+            val = lines[j].strip()
+            if not val:
+                break
+            low = val.rstrip(':').lower()
+            # Saltar el label bilingüe
+            if low.startswith("in con") or low.startswith("en con"):
+                j += 1
+                continue
+            if low in BILINGUAL_SKIP:
+                break
+            normas_lines.append(val)
+            j += 1
+        if normas_lines:
+            result["normas"] = " ".join(normas_lines)
+
     # ── FECHAS ──
     result["fecha_emision"] = find_date_after_label(lines, ["Fecha de emisión"])
     result["fecha_vencimiento"] = calc_vencimiento(result["fecha_emision"])

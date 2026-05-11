@@ -1,4 +1,4 @@
-﻿// Sidebar — v3: inline styles for consistent font + spacing
+// Sidebar — v3: inline styles for consistent font + spacing
 const NAV = [
   { icon: 'description', label: 'Generador DJC', id: 'generador' },
   { icon: 'fact_check',  label: 'Verificador',   id: 'verificador' },
@@ -126,7 +126,7 @@ export default function Sidebar({ activeTab, onTabChange }: SidebarProps) {
       {/* Version */}
       <div style={{ padding: '16px 28px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
         <span style={{ fontSize: 10, fontFamily: 'monospace', color: 'rgba(255,255,255,0.15)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
-          v2.0.0_STABLE
+          v2.0.2_STABLE
         </span>
       </div>
     </aside>

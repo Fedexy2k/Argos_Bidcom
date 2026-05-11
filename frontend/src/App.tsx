@@ -57,7 +57,9 @@ export default function App() {
   // WebSocket live logs — auto-reconnects every 3s
   useEffect(() => {
     const connect = () => {
-      const ws = new WebSocket(`ws://127.0.0.1:8742/ws/log`)
+      const host = window.location.host;
+      const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+      const ws = new WebSocket(`${wsProtocol}//${host}/ws/log`)
       wsRef.current = ws
       ws.onmessage = (e) => {
         try {

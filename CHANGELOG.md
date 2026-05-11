@@ -1,5 +1,47 @@
 # ARGOS - Changelog
 
+## v2.0.2 (2026-04-23) - AI OEC Context & Extractor Refinements
+
+### ✨ Nuevas Características
+- **Contexto OEC Dinámico**: Se implementó un motor de inyección de contexto (`oec_rules.json`) que guía la revisión semántica de Gemini según las reglas estructurales de cada organismo (Intertek, Lenor, Quektra, IRAM, CB Scheme), evitando alucinaciones de roles (ej. confundir un laboratorio de ensayo con el fabricante).
+
+### 🐛 Correcciones
+- **Certificados Codificados (Intertek)**: Se previno que Gemini invente direcciones en certificados simplificados (Disposición 1/24). El sistema ahora asigna automáticamente "China" y retira el campo de la evaluación inteligente.
+- **División Fábrica/Dirección (Intertek)**: Actualizado el extractor para detectar correctamente el formato moderno de unificación en la misma línea separados por doble barra (`//`).
+- **Códigos de Revisión (R1)**: Mejorada la expresión regular global de Nro. de Certificado en el generador para capturar los sufijos de revisión (ej. `TCSE-IACSA-0146/365.1R1`).
+
+---
+
+## v2.0.1 (2026-04-22) - IA Review & Extension Fixes
+
+### ✨ Nuevas Características
+- **Revisión Semántica con IA (Gemini)**: Integración de capa de validación inteligente para datos extraídos de certificados.
+- **Modo Extensión Terceros**: Implementación de flujo para extensiones de fabricantes externos con datos de BIDCOM fijos como importador/representante.
+
+### 🐛 Correcciones
+- **Fix DJC-ID en Extensiones**: Ahora el código de la sociedad se inserta correctamente en el ID (ej: BEMO-V1) para evitar duplicados en carpetas.
+- **Detección de País Mejorada**: El motor de codificación ahora busca el origen tanto en la dirección como en el nombre del fabricante.
+- **UI Drag & Drop**: Corregido el drop zone de la Nota de Extensión en el generador.
+
+### 🔧 Mejoras Técnicas
+- **Formulario Editable de Empresa**: Panel dinámico para editar los 7 campos de la empresa en modo Terceros.
+- **Optimización de Inyección**: Refactorizado el diccionario de datos para asegurar la inyección correcta de representantes en el documento Word.
+
+---
+
+## v2.0.0_STABLE (2026-04-15) - Web Architecture & Desktop Installer
+
+### ✨ Nuevas Características
+- **Arquitectura Web Local**: Migración completa del framework UI de CustomTkinter a una SPA React moderna (TypeScript, Tailwind V4, Vite).
+- **Backend Robusto**: Implementación de servidor FastAPI local para orquestar la comunicación entre los módulos Python core locales (M1, M2, M3) y el nuevo Frontend React .
+- **Contenedor Desktop (PyWebview)**: El sistema corre localmente disfrazado como aplicación de escritorio nativa mediante el uso del módulo `pywebview`, abriendo en una ventana dedicada con comportamientos nativos de Windows (minimizar, pantalla completa, cierre con aspas).
+- **Instalador Profesional (Inno Setup)**: Nuevo paquete `Setup.exe` autocontenido y simple, con rutinas de desinstalación limpias y acceso directo a Escritorio. 
+
+### 🔧 Mejoras Técnicas
+- Frontend SPA estático autoalojado desde los static-assets servidos por FastAPI.  
+
+---
+
 ## v1.0.0 (2026-02-10) - Release Inicial
 
 ### ✨ Nuevas Características

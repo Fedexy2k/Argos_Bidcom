@@ -76,6 +76,22 @@ def extract(lines: list[str], text_sorted: str = "", log_fn=None) -> dict:
         if val:
             result["specs"] = val
 
+    # ── NORMAS ──
+    # En CB certs el formato es: "...found to be in conformity with\n IEC 62368-1:2018"
+    # No está en el inicio de línea, así que buscamos substring en vez de startswith
+    for i, line in enumerate(detect_lines):
+        low = line.lower()
+        if "conformity with" in low or ("standard" in low and "used" in low):
+            # El valor puede estar en la misma línea o en la siguiente
+            inline_match = re.search(r'(?:conformity with|standard[s]? used)\s+([A-Z][^\n]+)', line, re.IGNORECASE)
+            if inline_match:
+                result["normas"] = inline_match.group(1).strip()
+            elif i + 1 < len(detect_lines):
+                next_line = detect_lines[i + 1].strip()
+                if next_line and re.match(r'^[A-Z]{2,5}[\s\-]?\d', next_line):
+                    result["normas"] = next_line
+            break
+
     # ── FECHAS ──
     iso_date_re = re.compile(r'(\d{4}-\d{2}-\d{2})')
     result["fecha_emision"] = find_date_after_label(

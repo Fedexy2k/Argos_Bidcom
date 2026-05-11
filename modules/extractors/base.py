@@ -12,6 +12,7 @@ EMPTY_RESULT: dict = {
     "modelos": "",
     "specs": "",
     "producto_desc": "",
+    "normas": "",
     "fecha_emision": "",
     "fecha_vencimiento": "",
     "fecha_inicio_tramite": "",

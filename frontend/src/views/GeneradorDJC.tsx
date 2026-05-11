@@ -6,7 +6,7 @@
 import { useState, useRef, useCallback } from 'react'
 import {
   extractCert, generateDJC, confirmDJC, downloadPdf, makeBlobUrl,
-  type Config, type GenerateParams, type GenerateResult,
+  type Config, type GenerateParams, type GenerateResult, type EmpresaOverride,
 } from '../api/client'
 
 interface Props {
@@ -31,6 +31,7 @@ interface DJCFormData {
   normas: string
   fecha_emision: string
   fecha_vencimiento: string
+  fecha_vigilancia: string  // '---' si cert nuevo (<1 año), fecha real si hubo vigilancia previa
   // Certificación
   reglamento: string
   esquema: string
@@ -45,6 +46,16 @@ export default function GeneradorDJC({ config, onLog }: Props) {
   // ── Fase 1: config ──────────────────────────────────────────────
   const [bidcom, setBidcom]         = useState('')
   const [modo, setModo]             = useState<'comun' | 'extension'>('comun')
+  const [isTerceros, setIsTerceros] = useState(false)
+  const [bidcomData, setBidcomData] = useState<EmpresaOverride>({
+    razon_social:     'BIDCOM SRL',
+    cuit:             '30-71106936-0',
+    marca_registrada: 'BIDCOM SRL',
+    domicilio_legal:  'Bouchard 468, 5° I, CABA. CP 1004',
+    domicilio_deposito: 'Caldas 1535, CABA, ARGENTINA',
+    telefono:         '3960-0184',
+    email:            'emanuel@bidcom.com.ar',
+  })
   const [sociedades, setSociedades] = useState<string[]>([])
   const [notaFile, setNotaFile]     = useState<File | null>(null)
 
@@ -99,7 +110,7 @@ export default function GeneradorDJC({ config, onLog }: Props) {
       'TÜV':            'TUV',
       'IRAM':           'IRM',
     }
-    const oecAbrev = oecAbrevMap[oec_key] ?? (oec_key.slice(0, 3).toUpperCase() || 'OEC')
+    const oecAbrev = oecAbrevMap[oec_key] ?? 'ORG'
 
     // Formato fecha: MMAA (mes primero, 2 dígitos año) — ej: 0426
     const now = new Date()
@@ -136,9 +147,19 @@ export default function GeneradorDJC({ config, onLog }: Props) {
 
       const bidVal = bidcom.trim() ? (bidcom.trim().match(/^\d+$/) ? `C${bidcom.trim()}` : bidcom.trim()) : ''
       const numBidcom = bidVal.replace(/^C/i, '')
-      const djcId = buildDjcId(r.reglamento, r.oec_key, numBidcom)
-      // Siempre certificacion- + nro bidcom (no certificado- y no nro de cert)
-      const enlace = numBidcom ? `https://qr.gadnic.com/certifications/certificacion-${numBidcom}` : ''
+      // Tomamos el ID que devolvió el backend o armamos un fallback
+      const djcId = r.djc_id || buildDjcId(r.reglamento, r.oec_key, numBidcom)
+      const enlace = numBidcom ? `https://qr.gadnic.com/certifications/certificado-${numBidcom}` : ''
+
+      const reglamentoVal = r.reglamento || (reglamentoOptions[0] ?? '')
+      let fv = r.fecha_vencimiento
+      if (fv && r.fecha_emision && reglamentoVal.includes("Ap. IV") && reglamentoVal.includes("Electrónica")) {
+        // Si el backend devolvio 730 dias por defecto sin conocer el reglamento, lo forzamos a 4 años acá
+        const fvTemp = calcVencimiento(r.fecha_emision, "") // 730 dias calc
+        if (fv === fvTemp) fv = calcVencimiento(r.fecha_emision, reglamentoVal)
+      } else if (!fv && r.fecha_emision) {
+        fv = calcVencimiento(r.fecha_emision, reglamentoVal)
+      }
 
       setForm({
         djc_id: djcId,
@@ -152,8 +173,9 @@ export default function GeneradorDJC({ config, onLog }: Props) {
         cert_number: r.cert_number,
         normas: r.normas,
         fecha_emision: r.fecha_emision,
-        fecha_vencimiento: r.fecha_vencimiento,
-        reglamento: r.reglamento || (reglamentoOptions[0] ?? ''),
+        fecha_vencimiento: fv,
+        fecha_vigilancia: calcFechaVigilancia(r.fecha_emision),
+        reglamento: reglamentoVal,
         esquema: esquemaOptions[0] ?? '',
         oec_key: r.oec_key || (oecOptions[0] ?? ''),
       })
@@ -176,6 +198,17 @@ export default function GeneradorDJC({ config, onLog }: Props) {
   const setField = (key: keyof DJCFormData, val: string) =>
     setForm(prev => prev ? { ...prev, [key]: val } : prev)
 
+  const handleReglamentoChange = (v: string) => {
+    setForm(prev => {
+      if (!prev) return prev
+      const updated = { ...prev, reglamento: v }
+      if (prev.fecha_emision) {
+        updated.fecha_vencimiento = calcVencimiento(prev.fecha_emision, v)
+      }
+      return updated
+    })
+  }
+
   // Cuando cambia Bidcom → recalcular djc_id y enlace si ya hay form
   const handleBidcomChange = (val: string) => {
     setBidcom(val)
@@ -197,7 +230,7 @@ export default function GeneradorDJC({ config, onLog }: Props) {
     if (!certFile || !form) { onLog('warning', 'Primero cargá un certificado'); return }
     const versiones = [...(wantNormal ? ['normal'] : []), ...(wantCodificada ? ['codificada'] : [])]
     if (versiones.length === 0) { onLog('warning', 'Seleccioná al menos una versión (Normal o Codificada)'); return }
-    if (modo === 'extension' && sociedades.length === 0) { onLog('warning', '[M3] Seleccioná al menos una sociedad para extender'); return }
+    if (modo === 'extension' && sociedades.length === 0 && !isTerceros) { onLog('warning', '[M3] Seleccioná al menos una sociedad o Terceros para extender'); return }
     if (modo === 'extension' && !notaFile) { onLog('warning', '[M3] Cargá la Nota de Extensión (PDF) antes de generar'); return }
 
     const bidComStr = bidcom.trim().match(/^\d+$/) ? `C${bidcom.trim()}` : bidcom.trim()
@@ -211,7 +244,7 @@ export default function GeneradorDJC({ config, onLog }: Props) {
 
     const params: GenerateParams = {
       versiones,
-      modo,
+      modo: isTerceros && modo === 'extension' ? 'extension_terceros' : modo,
       sociedades: modo === 'extension' ? sociedades : [],
       djc_id: form.djc_id,
       enlace_djc: form.enlace_djc,
@@ -220,6 +253,7 @@ export default function GeneradorDJC({ config, onLog }: Props) {
       normas: form.normas,
       fecha_emision: form.fecha_emision,
       fecha_vencimiento: form.fecha_vencimiento,
+      fecha_vigilancia: form.fecha_vigilancia,
       fabricante: form.fabricante,
       direccion: form.direccion,
       marca: form.marca,
@@ -229,8 +263,10 @@ export default function GeneradorDJC({ config, onLog }: Props) {
       bidcom_num: bidComStr,
       reglamento: form.reglamento,
       esquema: form.esquema,
+      empresa_override: isTerceros ? bidcomData : undefined,
       output_dir: '',
       save_to_disk: false,
+
     }
 
     try {
@@ -344,7 +380,7 @@ export default function GeneradorDJC({ config, onLog }: Props) {
           <FormField label="Tipo de DJC">
             <div style={{ display: 'flex', gap: 8 }}>
               {(['comun', 'extension'] as const).map(m => (
-                <button key={m} onClick={() => setModo(m)} style={modoBtnStyle(modo === m)}>
+                <button key={m} onClick={() => { setModo(m); if (m === 'comun') setIsTerceros(false) }} style={modoBtnStyle(modo === m)}>
                   {m === 'comun' ? '📋 Común' : '🔗 Extensión'}
                 </button>
               ))}
@@ -370,11 +406,58 @@ export default function GeneradorDJC({ config, onLog }: Props) {
                   >{cleanSocName(key)}</button>
                 )
               })}
+              
+              <button onClick={() => setIsTerceros(!isTerceros)}
+                style={{ padding: '7px 14px', borderRadius: 7, fontSize: 12, fontWeight: 700, textTransform: 'uppercase', cursor: 'pointer', transition: 'all 0.15s', marginLeft: 8,
+                  background: isTerceros ? '#f59e0b' : 'transparent',
+                  color: isTerceros ? '#fff' : '#f59e0b',
+                  border: isTerceros ? 'none' : '1px solid rgba(245,158,11,0.35)' }}
+              >🏭 TERCEROS</button>
             </div>
+
+            {isTerceros && (() => {
+              const bd = (key: keyof EmpresaOverride, label: string, placeholder?: string) => (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                  <label style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: '#a3845a', textTransform: 'uppercase' }}>{label}</label>
+                  <input
+                    value={bidcomData[key]}
+                    onChange={e => setBidcomData(prev => ({ ...prev, [key]: e.target.value }))}
+                    placeholder={placeholder}
+                    style={{ background: 'rgba(245,158,11,0.06)', border: '1px solid rgba(245,158,11,0.3)', borderRadius: 7,
+                      padding: '7px 10px', fontSize: 12, color: '#f8fafc', outline: 'none', width: '100%' }}
+                  />
+                </div>
+              )
+              return (
+                <div style={{ marginBottom: 14, padding: '14px', background: 'rgba(245,158,11,0.07)', border: '1px solid rgba(245,158,11,0.25)', borderRadius: 8 }}>
+                  <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: '#f59e0b', textTransform: 'uppercase', marginBottom: 10 }}>
+                    🏭 Datos de BIDCOM (Importador / Rep. Autorizado en la DJC)
+                  </p>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                    {bd('razon_social',      'i. Razón Social')}
+                    {bd('cuit',              'ii. CUIT N°')}
+                    {bd('marca_registrada',  'iii. Nombre Comercial / Marca Registrada')}
+                    {bd('domicilio_legal',   'iv. Domicilio Legal')}
+                    {bd('domicilio_deposito','v. Domicilio Depósito del Importador')}
+                    {bd('telefono',          'vi. Teléfono')}
+                    {bd('email',             'vii. Correo Electrónico')}
+                  </div>
+                </div>
+              )
+            })()}
+
 
             {/* Nota de extensión */}
             <div
               onClick={() => notaInputRef.current?.click()}
+              onDragOver={e => { e.preventDefault(); e.currentTarget.style.borderColor = 'rgba(139,92,246,0.7)' }}
+              onDragLeave={e => { e.currentTarget.style.borderColor = notaFile ? 'rgba(139,92,246,0.6)' : 'rgba(73,68,84,0.4)' }}
+              onDrop={e => {
+                e.preventDefault()
+                e.currentTarget.style.borderColor = notaFile ? 'rgba(139,92,246,0.6)' : 'rgba(73,68,84,0.4)'
+                const file = e.dataTransfer.files[0]
+                if (file?.name.toLowerCase().endsWith('.pdf')) setNotaFile(file)
+              }}
               style={{ border: `2px dashed ${notaFile ? 'rgba(139,92,246,0.6)' : 'rgba(73,68,84,0.4)'}`,
                 borderRadius: 8, padding: '14px 18px', display: 'flex', alignItems: 'center', gap: 10,
                 cursor: 'pointer', background: notaFile ? 'rgba(139,92,246,0.06)' : 'transparent' }}
@@ -391,11 +474,15 @@ export default function GeneradorDJC({ config, onLog }: Props) {
                 {!notaFile && <p style={{ fontSize: 11, color: '#475569', marginTop: 1 }}>PDF requerido para modo Extensión</p>}
               </div>
             </div>
+
             <input ref={notaInputRef} type="file" accept=".pdf" style={{ display: 'none' }}
               onChange={e => setNotaFile(e.target.files?.[0] ?? null)} />
           </div>
         )}
+
+  
       </Card>
+
 
       {/* ══════════════════════════════════════════════════════
           BLOQUE 2: CERTIFICADO PDF
@@ -464,9 +551,15 @@ export default function GeneradorDJC({ config, onLog }: Props) {
             </div>
           </Card>
 
-          {/* Sección: Datos del Producto */}
           <Card>
-            <SectionTitle icon="inventory_2" text="Datos del Producto" hint="Extraídos del PDF — verificá que coincidan" />
+            <SectionTitle icon="inventory_2" text="Información del Fabricante"
+              hint={isTerceros && modo === 'extension' ? '🏭 Tercero — completá los datos del fabricante del cert' : 'Extraídos del PDF — verificá que coincidan'} />
+            {isTerceros && modo === 'extension' && (
+              <div style={{ marginBottom: 12, padding: '10px 14px', background: 'rgba(245,158,11,0.08)', border: '1px solid rgba(245,158,11,0.25)', borderRadius: 8, fontSize: 12, color: '#e2c87a' }}>
+                <strong>Modo Extensión Terceros</strong> — estos campos corresponden al fabricante del certificado (no a BIDCOM).
+                &nbsp;BIDCOM figurará como Importador / Rep. Autorizado.
+              </div>
+            )}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
               <EditField label="Marca" value={form.marca} onChange={v => setField('marca', v)} />
               <EditField label="Fabricante" value={form.fabricante} onChange={v => setField('fabricante', v)} />
@@ -484,8 +577,22 @@ export default function GeneradorDJC({ config, onLog }: Props) {
               <EditField label="Nro. Certificado (PDF)" value={form.cert_number} onChange={v => setField('cert_number', v)}
                 hint="Ref. según la certificadora (ej: LCSH-2058)" />
               <EditField label="Normas Aplicadas" value={form.normas} onChange={v => setField('normas', v)} multiline />
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 14 }}>
                 <EditField label="Fecha Emisión" value={form.fecha_emision} onChange={v => setField('fecha_emision', v)} />
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
+                  <label style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: '#958ea0', textTransform: 'uppercase' }}
+                  >Fecha Últ. Vigilancia
+                    <span style={{ marginLeft: 6, fontSize: 10, color: '#6b647a', fontWeight: 400, textTransform: 'none' }}>
+                      {form.fecha_vigilancia === '---' ? '↳ cert nuevo' : form.fecha_vigilancia ? '' : '↳ ingresá si aplica'}
+                    </span>
+                  </label>
+                  <input
+                    value={form.fecha_vigilancia}
+                    onChange={e => setField('fecha_vigilancia', e.target.value)}
+                    placeholder="dd/mm/aaaa ó ---"
+                    style={{ ...inputStyle({}), ...(form.fecha_vigilancia && form.fecha_vigilancia !== '---' ? { borderColor: '#f59e0b' } : {}) }}
+                  />
+                </div>
                 <EditField label="Próx. Vigilancia" value={form.fecha_vencimiento} onChange={v => setField('fecha_vencimiento', v)} />
               </div>
             </div>
@@ -496,11 +603,34 @@ export default function GeneradorDJC({ config, onLog }: Props) {
             <SectionTitle icon="workspace_premium" text="Datos de Certificación" hint="Detectados automáticamente — podés cambiarlos si es necesario" />
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
               <SelectField label="Reglamento Aplicable" value={form.reglamento}
-                options={reglamentoOptions} onChange={v => setField('reglamento', v)} />
+                options={reglamentoOptions} onChange={handleReglamentoChange} />
               <SelectField label="Esquema" value={form.esquema}
                 options={esquemaOptions} onChange={v => setField('esquema', v)} />
-              <SelectField label="OEC (Organismo)" value={form.oec_key}
-                options={oecOptions} onChange={v => setField('oec_key', v)} />
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
+                <label style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: '#958ea0', textTransform: 'uppercase' }}>OEC (Organismo)</label>
+                <input
+                  list="oec-options-list"
+                  value={form.oec_key}
+                  onChange={e => setField('oec_key', e.target.value)}
+                  style={inputStyle({})}
+                  placeholder="Escribí o seleccioná un organismo"
+                />
+                <datalist id="oec-options-list">
+                  {oecOptions.map(o => <option key={o} value={o} />)}
+                </datalist>
+              </div>
+            </div>
+          </Card>
+
+          {/* Sección: Panel de Información Copiable */}
+          <Card>
+            <SectionTitle icon="content_copy" text="Panel de Copiado Rápido" hint="Datos resumen listos para pegar en el expediente (INAL / DB)" />
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+              <CopyField label="Nro de Certificado" value={form.cert_number} />
+              <CopyField label="Nro de Expediente (DJC)" value={form.djc_id} />
+              <CopyField label="Fecha de Inicio" value={form.fecha_emision} />
+              <CopyField label="Fecha de Vencimiento" value={form.fecha_vencimiento} />
+              <CopyField label="Fecha Inicio Trámite" value={calcInicioTramite(form.fecha_vencimiento)} />
             </div>
           </Card>
 
@@ -794,6 +924,110 @@ function PreviewPanel({
           }
         </button>
       </div>
+    </div>
+  )
+}
+
+function calcFechaVigilancia(fechaEmision: string): string {
+  // Si la fecha de emisión es en el último año → cert nuevo, sin vigilancia previa
+  // Si es más antigua → puede haber habido una vigilancia, dejar editable vacío
+  if (!fechaEmision) return '---';
+  try {
+    const parts = fechaEmision.split(/[-/]/);
+    let d: Date;
+    if (parts.length === 3) {
+      d = parts[0].length === 4
+        ? new Date(parseInt(parts[0]), parseInt(parts[1])-1, parseInt(parts[2]))
+        : new Date(parseInt(parts[2]), parseInt(parts[1])-1, parseInt(parts[0]));
+    } else {
+      d = new Date(fechaEmision);
+    }
+    if (isNaN(d.getTime())) return '---';
+    const ageMs = Date.now() - d.getTime();
+    const ageYears = ageMs / (1000 * 60 * 60 * 24 * 365.25);
+    // Menos de 1 año desde la emisión → cert nuevo, sin vigilancia
+    return ageYears < 1 ? '---' : '';
+  } catch {
+    return '---';
+  }
+}
+
+function calcInicioTramite(vencimiento: string): string {
+  if (!vencimiento) return '';
+  try {
+    const parts = vencimiento.split(/[-/]/);
+    let d: Date;
+    if (parts.length === 3) {
+      if (parts[0].length === 4) {
+        d = new Date(parseInt(parts[0]), parseInt(parts[1])-1, parseInt(parts[2]));
+      } else {
+        d = new Date(parseInt(parts[2]), parseInt(parts[1])-1, parseInt(parts[0]));
+      }
+    } else {
+      d = new Date(vencimiento);
+    }
+    if (isNaN(d.getTime())) return '';
+    d.setDate(d.getDate() - 90);
+    const day = String(d.getDate()).padStart(2, '0');
+    const mon = String(d.getMonth() + 1).padStart(2, '0');
+    return `${day}/${mon}/${d.getFullYear()}`;
+  } catch(e) {
+    return '';
+  }
+}
+
+function calcVencimiento(fechaEmision: string, reglamento: string): string {
+  if (!fechaEmision) return '';
+  try {
+    const parts = fechaEmision.split(/[-/]/);
+    let d: Date;
+    if (parts.length === 3) {
+      if (parts[0].length === 4) {
+        d = new Date(parseInt(parts[0]), parseInt(parts[1])-1, parseInt(parts[2]));
+      } else {
+        d = new Date(parseInt(parts[2]), parseInt(parts[1])-1, parseInt(parts[0]));
+      }
+    } else {
+      d = new Date(fechaEmision);
+    }
+    if (isNaN(d.getTime())) return '';
+    
+    let vigenciaDays = 730;
+    if (reglamento && reglamento.includes("Ap. IV") && reglamento.includes("Electrónica")) {
+      vigenciaDays = 1460;
+    }
+    
+    d.setDate(d.getDate() + vigenciaDays);
+    const day = String(d.getDate()).padStart(2, '0');
+    const mon = String(d.getMonth() + 1).padStart(2, '0');
+    return `${day}/${mon}/${d.getFullYear()}`;
+  } catch(e) {
+    return '';
+  }
+}
+
+function CopyField({ label, value }: { label: string; value: string }) {
+  const [copied, setCopied] = useState(false)
+  const handleCopy = () => {
+    if (!value) return
+    navigator.clipboard.writeText(value)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+  
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', 
+      padding: '8px 16px', background: 'rgba(255,255,255,0.02)', borderRadius: 8, border: '1px solid rgba(255,255,255,0.05)' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        <span style={{ fontSize: 12, fontWeight: 700, color: '#958ea0', width: 220, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{label}:</span>
+        <span style={{ fontSize: 13, color: '#f1eeff', fontWeight: 500 }}>{value || '-'}</span>
+      </div>
+      <button onClick={handleCopy} title="Haz clic para copiar"
+        style={{ background: 'transparent', border: `1px solid ${copied ? 'rgba(74,222,128,0.3)' : 'rgba(139,92,246,0.3)'}`, borderRadius: 6, color: copied ? '#4ade80' : '#8b5cf6', 
+               cursor: 'pointer', padding: '4px 10px', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: 6, transition: 'all 0.2s' }}>
+        <span className="material-symbols-outlined" style={{ fontSize: 14 }}>{copied ? 'check' : 'content_copy'}</span>
+        {copied ? 'Copiado' : 'Copiar'}
+      </button>
     </div>
   )
 }

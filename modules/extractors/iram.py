@@ -69,7 +69,28 @@ def extract(lines: list[str], text_sorted: str = "", log_fn=None) -> dict:
         if val:
             result["marca"] = re.sub(r'[\'\""]', '', val).strip()
 
-    # 6. Fechas — regex sobre todo el texto (ignora saltos de línea y bilingüismo)
+    # 6. Normas — label completo bilingüe con slash
+    idx = find_line(lines, [
+        "EN CONFORMIDAD CON LA(S) NORMA(S) / IN CONFORMITY WITH THE STANDARD(S)",
+        "EN CONFORMIDAD CON LA(S) NORMA(S) / IN CONFORMITY WITH THE STANDARD(S):",
+        "IN CONFORMITY WITH THE STANDARD(S)",
+    ])
+    if idx >= 0:
+        normas_lines = []
+        j = idx + 1
+        while j < len(lines):
+            val = lines[j].strip()
+            if not val:
+                break
+            low = val.lower()
+            if low.startswith("esta certificacion") or low.startswith("this iram") or low.startswith("fecha") or low.startswith("issue"):
+                break
+            normas_lines.append(val)
+            j += 1
+        if normas_lines:
+            result["normas"] = " ".join(normas_lines)
+
+    # 7. Fechas — regex sobre todo el texto (ignora saltos de línea y bilingüismo)
     full_text = "\n".join(lines)
 
     m_emi = re.search(
