@@ -240,12 +240,20 @@ def merge_pdfs(
         has_tesseract = False
         try:
             import pytesseract  # type: ignore[import-untyped]
+            import sys
             posibles_rutas = [
                 r'C:\Program Files\Tesseract-OCR\tesseract.exe',
                 r'C:\Program Files (x86)\Tesseract-OCR\tesseract.exe',
                 os.path.expanduser(r'~\AppData\Local\Tesseract-OCR\tesseract.exe'),
                 os.path.expanduser(r'~\Tesseract-OCR\tesseract.exe'),
             ]
+            
+            if getattr(sys, 'frozen', False):
+                posibles_rutas.insert(0, os.path.join(sys._MEIPASS, 'tesseract', 'tesseract.exe'))
+            else:
+                local_dev = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'bin', 'tesseract', 'tesseract.exe')
+                posibles_rutas.insert(0, local_dev)
+
             for ruta in posibles_rutas:
                 if os.path.exists(ruta):
                     pytesseract.pytesseract.tesseract_cmd = ruta
@@ -260,15 +268,28 @@ def merge_pdfs(
             page = cert_src[page_num]
             mat = fitz.Matrix(2.0, 2.0)
             pix = page.get_pixmap(matrix=mat, alpha=False)
-            img_bytes = pix.tobytes("png")
+            img_bytes = pix.tobytes("jpeg")
             inserted_ocr = False
 
             if has_tesseract:
                 try:
                     from PIL import Image  # type: ignore[import-untyped]
                     import io
+                    import tempfile
                     img_pil = Image.open(io.BytesIO(img_bytes))
-                    pdf_ocr_bytes = pytesseract.image_to_pdf_or_hocr(img_pil, extension='pdf', lang='spa+eng')  # type: ignore[reportPossiblyUnbound]
+                    # Usar directorio temporal explícito para evitar errores de ruta
+                    with tempfile.TemporaryDirectory() as tess_tmp:
+                        old_tmp = os.environ.get("TMPDIR") or os.environ.get("TMP") or os.environ.get("TEMP", "")
+                        os.environ["TMPDIR"] = tess_tmp
+                        os.environ["TMP"] = tess_tmp
+                        os.environ["TEMP"] = tess_tmp
+                        try:
+                            pdf_ocr_bytes = pytesseract.image_to_pdf_or_hocr(img_pil, extension='pdf', lang='spa+eng')  # type: ignore[reportPossiblyUnbound]
+                        finally:
+                            if old_tmp:
+                                os.environ["TMPDIR"] = old_tmp
+                                os.environ["TMP"] = old_tmp
+                                os.environ["TEMP"] = old_tmp
                     ocr_doc = fitz.open("pdf", pdf_ocr_bytes)
                     rect = page.rect
                     new_page = merged.new_page(width=rect.width, height=rect.height)

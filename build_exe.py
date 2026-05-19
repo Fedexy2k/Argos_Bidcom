@@ -52,6 +52,7 @@ def main():
         '--add-data="m3_config.json;."',
         '--add-data="DJ Conformidad Modelo SE LIMPIO.docx;."',
         '--add-data="DJ Conformidad Modelo SE.docx;."',
+        '--add-data="C:\\Users\\FDean\\Antigravity\\Auto_INAL\\bin\\tesseract;tesseract"',
         'launcher.py'
     ]
     

@@ -1,5 +1,15 @@
 # ARGOS - Changelog
 
+## v2.0.3 (2026-05-19) - Optimización de Rasterizado y Empaquetado OCR
+
+### ✨ Nuevas Características
+- **Empaquetado de Tesseract OCR**: Se modificó `build_exe.py` y `pdf_ops.py` para incluir Tesseract automáticamente en el `.exe` compilado por PyInstaller (vía `sys._MEIPASS`), permitiendo OCR local y sin dependencias adicionales en cualquier PC.
+
+### 🐛 Correcciones
+- **Optimización de PDFs (OOM Fix)**: Se cambió el formato de rasterizado de `png` a `jpeg` (con compresión) en la generación de DJs, reduciendo drásticamente el tamaño de los PDFs de ~74 MB a ~3 MB, y resolviendo los cuelgues del frontend (Unexpected end of JSON input).
+
+---
+
 ## v2.0.2 (2026-04-23) - AI OEC Context & Extractor Refinements
 
 ### ✨ Nuevas Características

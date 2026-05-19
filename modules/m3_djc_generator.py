@@ -871,66 +871,86 @@ class DJCGenerator:
     def export_to_pdf(self, docx_path: str, pdf_path: Optional[str] = None) -> str:
         if pdf_path is None:
             pdf_path = docx_path.replace(".docx", ".pdf")
-        
-        # Intentar primero con docx2pdf (requiere MS Word)
+
+        docx_abs = os.path.abspath(docx_path)
+        pdf_abs  = os.path.abspath(pdf_path)
+
+        # ── Intento 1: MS Word via COM (control manual del ciclo de vida) ──────
         try:
-            from docx2pdf import convert  # type: ignore[import-untyped]
-            convert(docx_path, pdf_path)
-            self._log("info", f"DJC PDF generado (via MS Word): {pdf_path}")
-            return pdf_path
+            import comtypes.client  # type: ignore[import-untyped]
+            import comtypes
+            wdFormatPDF = 17
+            word = None
+            doc  = None
+            try:
+                word = comtypes.client.CreateObject("Word.Application")
+                word.Visible = False
+                doc = word.Documents.Open(docx_abs)
+                doc.SaveAs(pdf_abs, FileFormat=wdFormatPDF)
+                self._log("info", f"DJC PDF generado (via MS Word): {pdf_abs}")
+                return pdf_abs
+            finally:
+                if doc is not None:
+                    try:
+                        doc.Close(False)
+                    except Exception:
+                        pass
+                if word is not None:
+                    try:
+                        word.Quit()
+                    except Exception:
+                        pass
+                    try:
+                        del word
+                    except Exception:
+                        pass
         except Exception as e:
             self._log("warning", f"docx2pdf (MS Word) falló o no está disponible: {e}. Intentando LibreOffice...")
-            
-            # Fallback a LibreOffice
-            import subprocess
-            import os
-            
-            libreoffice_paths = [
-                r"C:\Program Files\LibreOffice\program\soffice.exe",
-                r"C:\Program Files (x86)\LibreOffice\program\soffice.exe",
-                "soffice" # En caso de que esté en el PATH
-            ]
-            
-            soffice_exe = None
-            for path in libreoffice_paths:
-                if path == "soffice":
-                    try:
-                        subprocess.run([path, "--version"], capture_output=True, check=True)
-                        soffice_exe = path
-                        break
-                    except Exception:
-                        continue
-                elif os.path.exists(path):
+
+        # ── Intento 2: LibreOffice ────────────────────────────────────────────
+        import subprocess
+
+        libreoffice_paths = [
+            r"C:\Program Files\LibreOffice\program\soffice.exe",
+            r"C:\Program Files (x86)\LibreOffice\program\soffice.exe",
+            "soffice",  # Si está en el PATH
+        ]
+
+        soffice_exe = None
+        for path in libreoffice_paths:
+            if path == "soffice":
+                try:
+                    subprocess.run([path, "--version"], capture_output=True, check=True)
                     soffice_exe = path
                     break
-            
-            if soffice_exe:
-                try:
-                    outdir = os.path.dirname(pdf_path)
-                    # Comando de LibreOffice para convertir a PDF
-                    subprocess.run(
-                        [soffice_exe, "--headless", "--convert-to", "pdf", "--outdir", outdir, docx_path],
-                        check=True,
-                        capture_output=True
-                    )
-                    
-                    # LibreOffice genera el archivo con el mismo nombre que el docx pero extensión .pdf
-                    lo_output_path = os.path.join(outdir, os.path.splitext(os.path.basename(docx_path))[0] + ".pdf")
-                    
-                    # Renombrar si el nombre destino solicitado (pdf_path) es distinto
-                    if lo_output_path != pdf_path and os.path.exists(lo_output_path):
-                        if os.path.exists(pdf_path):
-                            os.remove(pdf_path)
-                        os.rename(lo_output_path, pdf_path)
-                        
-                    self._log("info", f"DJC PDF generado (via LibreOffice): {pdf_path}")
-                    return pdf_path
-                except Exception as lo_err:
-                    self._log("error", f"Error convirtiendo con LibreOffice: {lo_err}")
-                    raise RuntimeError(f"Error MS Word: {e} | Error LibreOffice: {lo_err}")
-            else:
-                self._log("error", "No se encontró Microsoft Word ni LibreOffice instalados en el sistema.")
-                raise RuntimeError(f"No se pudo generar PDF. Error MS Word: {e}. LibreOffice no instalado.")
+                except Exception:
+                    continue
+            elif os.path.exists(path):
+                soffice_exe = path
+                break
+
+        if soffice_exe:
+            try:
+                outdir = os.path.dirname(pdf_abs)
+                subprocess.run(
+                    [soffice_exe, "--headless", "--convert-to", "pdf", "--outdir", outdir, docx_abs],
+                    check=True,
+                    capture_output=True,
+                )
+                lo_output_path = os.path.join(outdir, os.path.splitext(os.path.basename(docx_abs))[0] + ".pdf")
+                if lo_output_path != pdf_abs and os.path.exists(lo_output_path):
+                    if os.path.exists(pdf_abs):
+                        os.remove(pdf_abs)
+                    os.rename(lo_output_path, pdf_abs)
+
+                self._log("info", f"DJC PDF generado (via LibreOffice): {pdf_abs}")
+                return pdf_abs
+            except Exception as lo_err:
+                self._log("error", f"Error convirtiendo con LibreOffice: {lo_err}")
+                raise RuntimeError(f"Error MS Word: {e} | Error LibreOffice: {lo_err}")  # type: ignore[reportPossiblyUnbound]
+        else:
+            self._log("error", "No se encontró Microsoft Word ni LibreOffice instalados en el sistema.")
+            raise RuntimeError(f"No se pudo generar PDF. Error MS Word: {e}. LibreOffice no instalado.")  # type: ignore[reportPossiblyUnbound]
 
 
 
