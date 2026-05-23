@@ -120,7 +120,7 @@ async def lifespan(app: FastAPI):
     task.cancel()
 
 
-app = FastAPI(title="Argos API", version="2.0.0", lifespan=lifespan)
+app = FastAPI(title="Argos API", version="2.0.3", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
@@ -460,7 +460,7 @@ async def verify_certs(files: list[UploadFile] = File(...)):
 
 @app.get("/api/health")
 async def health():
-    return {"status": "ok", "version": "2.0.0"}
+    return {"status": "ok", "version": "2.0.3"}
 
 
 # ─────────────────────────────────────────────────────────────────────────────
