@@ -28,6 +28,12 @@
 
 > **Regla simple:** ¿El usuario ve algo nuevo que antes no existía? → MINOR. ¿Se arregló algo roto? → PATCH. ¿Se refactorizó todo? → MAJOR.
 
+> [!IMPORTANT]
+> **Control estricto de versiones en desarrollo:**
+> - **NO** se debe incrementar la versión del software en ningún archivo (`launcher.py`, `api/main.py`, etc.) por cada pequeño cambio o commit intermedio durante el desarrollo de una feature o bugfix.
+> - La versión debe permanecer **fija** en la última versión oficial (ej. `v2.5.0`) durante toda la etapa de desarrollo y pruebas.
+> - La versión solo se sube de número al finalizar por completo el desarrollo, haberlo verificado con éxito, y estar listos para consolidar una **Release Oficial** y compilar el instalador.
+
 ### Archivos que actualizar en CADA release
 
 Estos 6 archivos siempre van juntos. Sin excepción:
@@ -53,4 +59,4 @@ Estos 6 archivos siempre van juntos. Sin excepción:
 
 ---
 
-## Versión actual: v2.0.3
+## Versión actual: v2.5.0

@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import Sidebar from './components/Sidebar'
 import LogBar from './components/LogBar'
 import GeneradorDJC from './views/GeneradorDJC'
+import EficienciaEnergetica from './views/EficienciaEnergetica'
+import Solicitudes from './views/Solicitudes'
 import { checkHealth, getConfig, type Config } from './api/client'
 import './index.css'
 
@@ -18,6 +20,7 @@ function now() {
 export default function App() {
   const [activeTab, setActiveTab] = useState('generador')
   const [apiOk, setApiOk]         = useState<boolean | null>(null)
+  const [apiVersion, setApiVersion] = useState<string | null>(null)
   const [config, setConfig]       = useState<Config | null>(null)
   const [logs, setLogs]           = useState<LogEntry[]>([])
   const [logsExpanded, setLogsExpanded] = useState(false)
@@ -34,13 +37,17 @@ export default function App() {
 
     const poll = async () => {
       if (cancelled) return
-      const ok = await checkHealth()
+      const ver = await checkHealth()
+      const ok = ver !== null
       if (cancelled) return
       setApiOk(prev => {
         if (prev === false && ok) addLog('info', 'Backend conectado')
         if (prev !== false && !ok && prev !== null) addLog('error', 'Backend no disponible — iniciá Iniciar API.bat')
         return ok
       })
+      if (ok && ver) {
+        setApiVersion(ver)
+      }
       // Load config once API is up
       if (ok && !configLoaded) {
         configLoaded = true
@@ -83,7 +90,7 @@ export default function App() {
       <div className="glow-teal" />
 
       {/* Sidebar */}
-      <Sidebar activeTab={activeTab} onTabChange={setActiveTab} />
+      <Sidebar activeTab={activeTab} onTabChange={setActiveTab} apiVersion={apiVersion} />
 
       {/* Main */}
       <main className="flex-1 flex flex-col h-screen relative" style={{ marginLeft: 220 }}>
@@ -100,8 +107,10 @@ export default function App() {
           }}
         >
           <h1 className="text-2xl font-bold tracking-tight text-white">
-            {activeTab === 'generador'    ? 'Generador DJC'
+          {activeTab === 'generador'     ? 'Generador DJC'
              : activeTab === 'verificador' ? 'Verificador'
+             : activeTab === 'ee'          ? 'Eficiencia Energética'
+             : activeTab === 'solicitudes' ? 'Solicitudes'
              : activeTab === 'info'        ? 'Info Panel'
              : 'Configuracion'}
           </h1>
@@ -138,6 +147,12 @@ export default function App() {
         >
           {activeTab === 'generador' && (
             <GeneradorDJC config={config} onLog={addLog} />
+          )}
+          {activeTab === 'ee' && (
+            <EficienciaEnergetica onLog={addLog} />
+          )}
+          {activeTab === 'solicitudes' && (
+            <Solicitudes onLog={addLog} />
           )}
           {activeTab === 'verificador' && (
             <PlaceholderView title="Verificador" icon="fact_check" msg="Modulo en construccion" />

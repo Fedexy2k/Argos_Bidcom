@@ -20,3 +20,13 @@ logs/
 # IDEs
 .vscode/
 .idea/
+
+# Herramientas de agentes y temporales locales
+.agents/
+Solicitudes/
+scratch/
+inspect_*.py
+prepare_templates.py
+qa_*.py
+qa_output_*.docx
+qa_output_test.docx

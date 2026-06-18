@@ -104,7 +104,7 @@ export default function GeneradorDJC({ config, onLog }: Props) {
     // OEC — mismo mapa que el backend
     const oecAbrevMap: Record<string, string> = {
       'Lenor':          'LNR',
-      'Quektra':        'QKA',
+      'qetkra':          'QKA',
       'Intertek':       'ITK',
       'Bureau Veritas': 'BVA',
       'TÜV':            'TUV',

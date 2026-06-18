@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import asyncio
 import base64
+import io
 import json
 import os
 import sys
@@ -42,6 +43,7 @@ if _env_file.exists():
 
 from modules.m3_djc_generator import DJCGenerator
 from modules.m2_multiaudit import MultiCertAuditor
+from modules.m4_djc_ee_generator import DJCEEGenerator
 
 # ── Config ────────────────────────────────────────────────────────────────────
 CONFIG_PATH = ROOT / "m3_config.json"
@@ -120,7 +122,7 @@ async def lifespan(app: FastAPI):
     task.cancel()
 
 
-app = FastAPI(title="Argos API", version="2.0.3", lifespan=lifespan)
+app = FastAPI(title="Argos API", version="2.5.0", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
@@ -427,6 +429,185 @@ async def confirm_djc(req: ConfirmRequest):
 
 
 # ─────────────────────────────────────────────────────────────────────────────
+#  Eficiencia Energética (EE) Endpoints
+# ─────────────────────────────────────────────────────────────────────────────
+
+class EEGenerateRequest(BaseModel):
+    family_id: str
+    bidcom_num: str
+    marca: str
+    modelo: str
+    producto_desc: str
+    base_specs: dict[str, str]
+    ee_fields: dict[str, Any]
+    normas: str = ""
+    cert_number: str = ""
+    oec_nombre: str = ""
+    oec_contacto: str = ""  # Datos de contacto del laboratorio (web / email)
+    fecha_emision: str = ""
+    fecha_proxima_vigilancia: str = ""
+    fecha_emision_djc: str = ""
+    label_images_base64: list[str] = []  # array de PNGs base64, uno por modelo (hasta 6)
+
+
+@app.get("/api/ee/families")
+async def get_ee_families():
+    """Returns all efficiency energy product families and their dynamic fields."""
+    ee_path = ROOT / "ee_families.json"
+    with open(ee_path, encoding="utf-8") as f:
+        return json.load(f)
+
+
+@app.post("/api/ee/generate")
+async def generate_ee_djc(req: EEGenerateRequest):
+    """Generates DJC-EE preview, returns PDF and DOCX in base64."""
+    try:
+        # Decode Base64 images (one per model, up to 6)
+        images_bytes: list[bytes] = []
+        for b64_img in req.label_images_base64:
+            if not b64_img:
+                continue
+            try:
+                _header, encoded = b64_img.split(";base64,")
+                images_bytes.append(base64.b64decode(encoded))
+            except Exception as e:
+                _gui_logger.warning(f"Error al decodificar imagen de etiqueta: {e}")
+        _gui_logger.info(f"[API] {len(images_bytes)} imagen(es) de etiqueta decodificada(s).")
+
+        # Initialize generator
+        ee_gen = DJCEEGenerator(config_path=str(CONFIG_PATH), ee_config_path=str(ROOT / "ee_families.json"))
+
+        # Calculate expiration date (+4 years from emission)
+        fecha_emision = (req.fecha_emision or "").strip()
+        fecha_vencimiento = (req.fecha_proxima_vigilancia or "").strip()
+        if not fecha_vencimiento and fecha_emision:
+            try:
+                from datetime import datetime
+                dt = datetime.strptime(fecha_emision, "%d/%m/%Y")
+                dt_venc = dt.replace(year=dt.year + 4)
+                fecha_vencimiento = dt_venc.strftime("%d/%m/%Y")
+            except Exception as e:
+                _gui_logger.warning(f"Error al calcular fecha vencimiento: {e}")
+
+        # DJC ID
+        djc_id = ee_gen.generate_djc_id(req.bidcom_num, fecha_emision)
+
+        # Specs multiline text
+        specs_text = ee_gen.build_specs_text(req.family_id, req.base_specs, req.ee_fields)
+
+        # Default normas if empty
+        normas = req.normas
+        if not normas:
+            fam = ee_gen.get_family_by_id(req.family_id)
+            if fam:
+                normas = fam.get("norma_base", "")
+
+        # Build data dictionary for generator
+        data = {
+            "djc_id": djc_id,
+            "producto_desc": req.producto_desc,
+            "marca": req.marca,
+            "modelo": req.modelo,
+            "specs": specs_text,
+            "normas": normas,
+            "cert_number": req.cert_number,
+            "fecha_emision": fecha_emision,
+            "fecha_proxima_vigilancia": fecha_vencimiento,
+            "oec_nombre": req.oec_nombre,
+            "oec_contacto": req.oec_contacto,  # Datos de contacto del laboratorio
+            "enlace_djc": f"https://qr.gadnic.com/certifications/certificado-{req.bidcom_num.lstrip('Cc')}-ee" if req.bidcom_num else "",
+            "fecha_emision_djc": req.fecha_emision_djc,
+        }
+
+        _gui_logger.info(f"[API] Generando previsualización DJC-EE ID: {djc_id}")
+
+        # Run generation in temporary folder
+        tmp_dir = tempfile.mkdtemp()
+        try:
+            doc_word = ee_gen.fill_template_ee(data, images_bytes)
+            stem = djc_id.replace("/", "-").replace("\\", "-")
+            word_path = os.path.join(tmp_dir, f"{stem}.docx")
+            doc_word.save(word_path)
+
+            # Word → PDF
+            pdf_path = os.path.join(tmp_dir, f"{stem}.pdf")
+            pdf_final_path = ee_gen.export_to_pdf(word_path, pdf_path)
+
+            # Read files
+            with open(pdf_final_path, "rb") as f:
+                pdf_data = f.read()
+            with open(word_path, "rb") as f:
+                docx_data = f.read()
+
+            return {
+                "djc_id": djc_id,
+                "filename": stem,
+                "pdf_b64": base64.b64encode(pdf_data).decode(),
+                "docx_b64": base64.b64encode(docx_data).decode(),
+            }
+        finally:
+            shutil.rmtree(tmp_dir, ignore_errors=True)
+
+    except Exception as e:
+        _gui_logger.error(f"[API] Error generando DJC-EE: {e}\n{traceback.format_exc()}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+class EEConfirmRequest(BaseModel):
+    filename: str
+    bidcom_num: str
+    pdf_b64: str
+    docx_b64: str
+
+
+@app.post("/api/ee/confirm")
+async def confirm_ee_djc(req: EEConfirmRequest):
+    """Saves confirmed DJC-EE (both Word and PDF) to user's Documents/DJC folder."""
+    try:
+        pdf_bytes = base64.b64decode(req.pdf_b64)
+        docx_bytes = base64.b64decode(req.docx_b64)
+
+        raw_bidcom = (req.bidcom_num or "").strip()
+        num_only = raw_bidcom.lstrip("Cc") if raw_bidcom else ""
+        bidcom_folder = f"C{num_only}" if num_only else "SIN-NUMERO"
+
+        # Carpeta de salida
+        save_dir = os.path.join(
+            os.path.expanduser("~"), "Documents", "DJC generadas", bidcom_folder
+        )
+        os.makedirs(save_dir, exist_ok=True)
+
+        import re as _re
+        safe_fname = _re.sub(r'[\\/:*?"<>|]', "-", req.filename)
+        
+        # Guardar PDF
+        pdf_save_path = os.path.join(save_dir, f"{safe_fname}.pdf")
+        if os.path.exists(pdf_save_path):
+            import time as _t
+            pdf_save_path = os.path.join(save_dir, f"{safe_fname}_{int(_t.time())}.pdf")
+
+        with open(pdf_save_path, "wb") as f:
+            f.write(pdf_bytes)
+
+        # Guardar Word (Docx)
+        docx_save_path = os.path.join(save_dir, f"{safe_fname}.docx")
+        if os.path.exists(docx_save_path):
+            import time as _t
+            docx_save_path = os.path.join(save_dir, f"{safe_fname}_{int(_t.time())}.docx")
+
+        with open(docx_save_path, "wb") as f:
+            f.write(docx_bytes)
+
+        _gui_logger.info(f"[API] ✓ Guardado DJC-EE Word: {docx_save_path}")
+        _gui_logger.info(f"[API] ✓ Guardado DJC-EE PDF: {pdf_save_path}")
+
+        return {"saved": [pdf_save_path, docx_save_path]}
+    except Exception as e:
+        _gui_logger.error(f"[API] Error al confirmar DJC-EE {req.filename}: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# ─────────────────────────────────────────────────────────────────────────────
 #  Verification (M2)
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -460,7 +641,7 @@ async def verify_certs(files: list[UploadFile] = File(...)):
 
 @app.get("/api/health")
 async def health():
-    return {"status": "ok", "version": "2.0.3"}
+    return {"status": "ok", "version": "2.5.0"}
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -696,6 +877,156 @@ def _run_generation(
         raise
     finally:
         shutil.rmtree(tmp_dir, ignore_errors=True)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  Solicitud Endpoints (M5)
+# ─────────────────────────────────────────────────────────────────────────────
+
+from modules.m5_solicitud_generator import parse_datasheet, generate_solicitud
+
+
+@app.post("/api/solicitud/parse")
+async def solicitud_parse(file: UploadFile = File(...)):
+    """
+    Carga el Excel de ingeniería y retorna un JSON estructurado con:
+      - oec_detected: 'lenor' | 'qetkra'
+      - certificado, producto, normas, laboratorio, fabrica, ...
+      - skus: lista de bloques con modelos y especificaciones técnicas
+    """
+    if not file.filename:
+        raise HTTPException(status_code=400, detail="No se recibió archivo.")
+
+    suffix = Path(file.filename).suffix.lower()
+    if suffix not in (".xlsx", ".xlsm", ".xls", ".pdf"):
+        raise HTTPException(status_code=400, detail=f"Formato no soportado: {suffix}. Use .xlsx, .xlsm o .pdf")
+
+    tmp_path: str | None = None
+    try:
+        content = await file.read()
+        with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as tmp:
+            tmp.write(content)
+            tmp_path = tmp.name
+
+        logger = GUILogger()
+        logger.info(f"[Solicitud/Parse] Parseando archivo subido: {file.filename}")
+        
+        if suffix == ".pdf":
+            from modules.m3_djc_generator import DJCGenerator
+            from modules.m5_solicitud_generator import parse_specs_string
+            
+            logger.info("[Solicitud/Parse] Detectado archivo PDF de certificado. Ejecutando motor de extracción...")
+            gen = DJCGenerator(config_path=str(CONFIG_PATH), gui_logger=logger)
+            cert_data = gen.prepare_from_certificate(tmp_path)
+            
+            oec_key = cert_data.get("oec_key", "")
+            oec_detected = "lenor"
+            if oec_key and oec_key.lower() == "quektra":
+                oec_detected = "qetkra"
+                
+            modelos_str = cert_data.get("modelos", "")
+            modelos_list = [m.strip() for m in modelos_str.split(",") if m.strip()]
+            first_model = modelos_list[0] if modelos_list else "MODELO_BASE"
+            
+            raw_specs = cert_data.get("specs", "")
+            parsed_specs = parse_specs_string(raw_specs) if raw_specs else {}
+            
+            sku_block = {
+                "sku": first_model,
+                "marca": cert_data.get("marca", "") or "SIN_MARCA",
+                "modelos": modelos_list,
+                "modelo_fabrica": "---",
+                "tension": parsed_specs.get("tension", "") or "---",
+                "frecuencia": parsed_specs.get("frecuencia", "") or "---",
+                "corriente": parsed_specs.get("corriente", "") or "---",
+                "potencia": parsed_specs.get("potencia", "") or "---",
+                "aislacion": parsed_specs.get("aislacion", "") or "---",
+                "specs": raw_specs or "---"
+            }
+            
+            data = {
+                "oec_detected": oec_detected,
+                "certificado": cert_data.get("cert_number", "") or "SIN_NRO",
+                "producto": cert_data.get("producto_desc", "") or "---",
+                "motivo": "Renovación / Certificación documental",
+                "oec": cert_data.get("oec_key", "") or "LENOR",
+                "normas": cert_data.get("normas", "") or "---",
+                "laboratorio": cert_data.get("oec_key", "") or "LENOR",
+                "reglamento": cert_data.get("reglamento", "") or "---",
+                "fabrica": cert_data.get("fabricante", "") or "---",
+                "direccion": cert_data.get("direccion_fabrica", "") or "---",
+                "contacto": "",
+                "email": "",
+                "telefono": "",
+                "skus": [sku_block]
+            }
+        else:
+            data = parse_datasheet(tmp_path, logger=logger)
+            
+        return JSONResponse(content=data)
+
+    except Exception as e:
+        log_broadcaster.push("error", f"[Solicitud/Parse] {type(e).__name__}: {e}")
+        raise HTTPException(status_code=500, detail=f"Error al parsear el datasheet: {e}")
+    finally:
+        try:
+            if tmp_path:
+                os.unlink(tmp_path)
+        except Exception:
+            pass
+
+
+@app.post("/api/solicitud/generate")
+async def solicitud_generate(
+    request_json: str = Form(...),
+    svg_file: Optional[UploadFile] = File(default=None),
+):
+    """
+    Genera los archivos de solicitud (Excel + Word + PDF QR opcional) y
+    retorna el ZIP en streaming.
+
+    Body (multipart/form-data):
+      request_json: JSON string con {data, oec, esquema}
+      svg_file:     (opcional) SVG del QR para Lenor
+    """
+    try:
+        req = json.loads(request_json)
+    except json.JSONDecodeError as e:
+        raise HTTPException(status_code=400, detail=f"JSON inválido: {e}")
+
+    data = req.get("data", {})
+    oec = req.get("oec", "lenor").lower()
+    esquema = req.get("esquema", "")
+
+    if not data:
+        raise HTTPException(status_code=400, detail="El campo 'data' es requerido.")
+
+    svg_bytes: Optional[bytes] = None
+    if svg_file and svg_file.filename:
+        svg_bytes = await svg_file.read()
+
+    try:
+        logger = GUILogger()
+        logger.info(f"[Solicitud/Generate] Iniciando generación OEC={oec}, Nro={data.get('certificado','?')}")
+        result = generate_solicitud(data=data, oec=oec, esquema=esquema, svg_bytes=svg_bytes, logger=logger)
+        logger.info(f"[Solicitud/Generate] Generado en {result['output_dir']} — {len(result['files'])} archivos")
+
+        zip_bytes = result["zip_bytes"]
+        nro = data.get("certificado", "solicitud")
+        filename = f"Solicitud_{nro}.zip"
+
+        return StreamingResponse(
+            io.BytesIO(zip_bytes),
+            media_type="application/zip",
+            headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+        )
+
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        log_broadcaster.push("error", f"[Solicitud/Generate] {type(e).__name__}: {e}")
+        log_broadcaster.push("error", traceback.format_exc())
+        raise HTTPException(status_code=500, detail=f"Error al generar la solicitud: {e}")
 
 
 # ─────────────────────────────────────────────────────────────────────────────

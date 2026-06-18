@@ -151,3 +151,159 @@ def detect_reglamento(
 
     _log("warning", f"No se detectó reglamento para normas: {str(normas_text)[:80]}")
     return ""
+
+
+# ─────────────────────────────────────────────────────────────
+#  Base de datos de Clasificación de Productos y Normas Sugeridas
+# ─────────────────────────────────────────────────────────────
+
+PRODUCT_CLASSIFICATION_DB = [
+    # --- Fuentes y Cargadores (Res 16/2025 Ap. I) ---
+    {
+        "keywords": [r"\bups\b", r"\bsai\b", r"\balimentacion ininterrumpida\b", r"\bestacion ups\b"],
+        "reglamento": "Res. SIyC Nº 16/2025 – Ap. I (Fuentes y Cargadores)",
+        "norma_sugerida": "IEC 62040-1",
+    },
+    {
+        "keywords": [r"\bcargador\b", r"\bcharger\b", r"\bbattery charger\b"],
+        "reglamento": "Res. SIyC Nº 16/2025 – Ap. I (Fuentes y Cargadores)",
+        "norma_sugerida": "IEC 60335-2-29",
+    },
+    {
+        "keywords": [r"\bfuente\b", r"\badaptador\b", r"\bpower supply\b", r"\badaptador de tension\b"],
+        "reglamento": "Res. SIyC Nº 16/2025 – Ap. I (Fuentes y Cargadores)",
+        "norma_sugerida": "IEC 61558-2-16",
+    },
+    # --- Iluminación (Res 16/2025 Ap. III) ---
+    {
+        "keywords": [
+            r"\bluminaria\b", r"\blampara\b", r"\breflector\b", r"\bproyector led\b",
+            r"\btubo led\b", r"\bgu10\b", r"\be27\b", r"\biluminacion\b"
+        ],
+        "reglamento": "Res. SIyC Nº 16/2025 – Ap. III (Iluminación)",
+        "norma_sugerida": "IEC 60598-1",
+    },
+    # --- Electrónica, Audio y Video (Res 16/2025 Ap. IV) ---
+    {
+        "keywords": [
+            r"\bparlante\b", r"\bauricular\b", r"\btelevisor\b", r"\btv\b",
+            r"\bmonitor\b", r"\baudio\b", r"\bvideo\b", r"\bcamara\b",
+            r"\bproyector\b", r"\bconsola\b", r"\bcontrolador\b", r"\bheadphone\b"
+        ],
+        "reglamento": "Res. SIyC Nº 16/2025 – Ap. IV (Electrónica, Audio, Video)",
+        "norma_sugerida": "IEC 62368-1",
+    },
+    # --- Máquinas y Herramientas (Res 17/2025 Ap. I) ---
+    {
+        "keywords": [
+            r"\btaladro\b", r"\batornillador\b", r"\bamoladora\b", r"\bsierra\b",
+            r"\bherramienta\b", r"\blijadora\b", r"\bsoldadora\b", r"\bcompresor\b",
+            r"\bbomba\b", r"\bmotor\b", r"\bgarlopa\b", r"\brotabator\b"
+        ],
+        "reglamento": "Res. SIyC Nº 17/2025 – Ap. I (Máquinas y Herramientas)",
+        "norma_sugerida": "IEC 62841-1",
+    },
+    # --- Materiales de Instalación Eléctrica (Res 26/2025) ---
+    {
+        "keywords": [
+            r"\bcable\b", r"\bconector\b", r"\binterruptor\b", r"\btomacorriente\b",
+            r"\benchufe\b", r"\bficha\b", r"\bllave de luz\b", r"\bcanalizacion\b"
+        ],
+        "reglamento": "Res. SIyC Nº 26/2025 (= 236/2024) – Materiales Inst. Eléctricas",
+        "norma_sugerida": "IRAM 2073",
+    },
+    # --- Encendedores (Res 313/2025 Ap. I) ---
+    {
+        "keywords": [r"\bencendedor\b", r"\blighter\b"],
+        "reglamento": "Res. SIyC Nº 313/2025 – Ap. I (Encendedores)",
+        "norma_sugerida": "ISO 9994",
+    },
+    # --- Anteojos de Sol (Res 313/2025 Ap. II) ---
+    {
+        "keywords": [r"\banteojos\b", r"\bgafas\b", r"\blentes de sol\b"],
+        "reglamento": "Res. SIyC Nº 313/2025 – Ap. II (Anteojos de Sol)",
+        "norma_sugerida": "ISO 12312-1",
+    },
+    # --- Bicicletas Infantiles (Res 313/2025 Ap. IV) ---
+    {
+        "keywords": [r"\bbicicleta\b", r"\bbici\b", r"\bbicicleta infantil\b"],
+        "reglamento": "Res. SIyC Nº 313/2025 – Ap. IV (Bicicletas Infantiles)",
+        "norma_sugerida": "IRAM NM 301",
+    },
+    # --- Juguetes (Res 163/2004) ---
+    {
+        "keywords": [r"\bjuguete\b", r"\btoy\b", r"\bmuneca\b", r"\bautito\b", r"\bjuego de mesa\b"],
+        "reglamento": "Res. SCT Nº 163/2004 (Juguetes – vigente)",
+        "norma_sugerida": "IRAM NM 300",
+    },
+    # --- Eficiencia Energética - Acondicionadores (Res 438/2024 / Res EE) ---
+    {
+        "keywords": [r"\baire acondicionado\b", r"\bacondicionador de aire\b", r"\bacondicionador\b"],
+        "reglamento": "Resolución 438/2024 (Eficiencia Energética)",
+        "norma_sugerida": "IRAM 62406",
+    },
+    # --- Eficiencia Energética - Refrigeración (Res 438/2024 / Res EE) ---
+    {
+        "keywords": [r"\bheladera\b", r"\brefrigerador\b", r"\bfreezer\b", r"\bcongelador\b"],
+        "reglamento": "Resolución 438/2024 (Eficiencia Energética)",
+        "norma_sugerida": "IRAM 2404-3",
+    },
+    # --- Electrodomésticos - Cuidado Personal (Res 16/2025 Ap. II) ---
+    {
+        "keywords": [
+            r"\bsecador de pelo\b", r"\bplancha de pelo\b", r"\bbucleadora\b",
+            r"\bdepiladora\b", r"\bafeitadora\b", r"\bbarbera\b"
+        ],
+        "reglamento": "Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)",
+        "norma_sugerida": "IEC 60335-2-23",
+    },
+    # --- Electrodomésticos - Calentamiento de Líquidos (Res 16/2025 Ap. II) ---
+    {
+        "keywords": [
+            r"\bpava\b", r"\bjarra\b", r"\bcafetera\b", r"\bcalentador\b",
+            r"\btermo electrico\b", r"\bpava electrica\b"
+        ],
+        "reglamento": "Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)",
+        "norma_sugerida": "IEC 60335-2-15",
+    },
+    # --- Electrodomésticos - Limpieza con Líquidos/Vapor (Res 16/2025 Ap. II) ---
+    {
+        "keywords": [
+            r"\blimpiador a vapor\b", r"\blimpiadora a vapor\b", r"\bmopa a vapor\b",
+            r"\bvapor\b", r"\bsteam cleaner\b"
+        ],
+        "reglamento": "Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)",
+        "norma_sugerida": "IEC 60335-2-54",
+    },
+    # --- Electrodomésticos - General (Res 16/2025 Ap. II) ---
+    {
+        "keywords": [
+            r"\belectrodomestico\b", r"\btostadora\b", r"\blicuadora\b", r"\bhorno\b",
+            r"\bventilador\b", r"\baspiradora\b", r"\bestufa\b", r"\bcaloventor\b",
+            r"\bcocina\b", r"\bmultiprocesadora\b", r"\bmicroondas\b", r"\bplancha\b"
+        ],
+        "reglamento": "Res. SIyC Nº 16/2025 – Ap. II (Aparatos Eléctricos Domésticos)",
+        "norma_sugerida": "IEC 60335-1",
+    },
+]
+
+
+def suggest_reg_and_norm(producto_desc: str) -> dict:
+    """
+    Sugiere un reglamento y una norma recomendada basándose en palabras clave
+    dentro de la descripción del producto.
+    Retorna un diccionario con {"reglamento": str, "norma": str}.
+    """
+    res = {"reglamento": "", "norma": ""}
+    if not producto_desc:
+        return res
+        
+    desc_lower = producto_desc.lower()
+    for entry in PRODUCT_CLASSIFICATION_DB:
+        for kw in entry["keywords"]:
+            if re.search(kw, desc_lower, re.IGNORECASE):
+                res["reglamento"] = entry["reglamento"]
+                res["norma"] = entry["norma_sugerida"]
+                return res
+                
+    return res

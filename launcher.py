@@ -108,8 +108,12 @@ def main():
             return
         if is_server_running():
             launched = True
-            status_label.configure(text="¡Servidor Activo y Escuchando!", text_color="green" if not hasattr(ctk, 'CTkLabel') else "#00FF41")
-            open_btn.configure(state="normal")
+            if hasattr(ctk, 'CTkLabel'):
+                status_label.configure(text="¡Servidor Activo y Escuchando!", text_color="#00FF41")
+                open_btn.configure(state="normal")
+            else:
+                status_label.configure(text="¡Servidor Activo y Escuchando!", fg="green")
+                open_btn.configure(state="normal")
             open_app_mode()
         else:
             root.after(1000, check_and_launch)
@@ -117,7 +121,7 @@ def main():
     # UI Elements
     if hasattr(ctk, 'CTkLabel'):
         title_font = ctk.CTkFont(size=22, weight="bold")
-        ctk.CTkLabel(root, text="Argos V2.0.3", font=title_font).pack(pady=(15, 5))
+        ctk.CTkLabel(root, text="Argos V2.5.0", font=title_font).pack(pady=(15, 5))
         
         status_label = ctk.CTkLabel(root, text="Servidor Apagado.", text_color="gray")
         status_label.pack(pady=5)
@@ -130,7 +134,7 @@ def main():
         
         ctk.CTkLabel(root, text="Este panel lanzará la interfaz principal de Argos.", font=ctk.CTkFont(size=11), text_color="gray").pack(side="bottom", pady=10)
     else:
-        ctk.Label(root, text="Argos V2.0.3", font=("Arial", 16, "bold")).pack(pady=(20, 5))
+        ctk.Label(root, text="Argos V2.5.0", font=("Arial", 16, "bold")).pack(pady=(20, 5))
         status_label = ctk.Label(root, text="Iniciando servidor...", fg="orange")
         status_label.pack(pady=5)
         
@@ -138,6 +142,11 @@ def main():
         open_btn.pack(pady=10)
         
         ctk.Label(root, text="Cierre esta ventana para apagar el sistema completamente.", font=("Arial", 9), fg="gray").pack(side="bottom", pady=10)
+
+    if not hasattr(ctk, 'CTkLabel'):
+        # Fallback de Tkinter: iniciar el servidor de red automáticamente en un hilo
+        server_thread = threading.Thread(target=start_server, daemon=True)
+        server_thread.start()
 
     root.after(500, check_and_launch)
     root.mainloop()

@@ -86,7 +86,7 @@ def _parse_annex_formato_a(ll: list[str], annex_start: int, result: dict) -> dic
 
     result["specs"] = list(specs_set)[0] if specs_set else ""
     result["modelos"] = ", ".join(modelos)
-    result["marca"] = list(marcas)[0] if marcas else ""
+    result["marca"] = "; ".join(sorted(list(marcas))) if marcas else ""
     return result
 
 
@@ -142,7 +142,7 @@ def _parse_annex_formato_b(ll: list[str], annex_start: int, result: dict) -> dic
             cur += 1
 
     result["modelos"] = ", ".join(modelos)
-    result["marca"] = list(marcas)[0] if marcas else ""
+    result["marca"] = "; ".join(sorted(list(marcas))) if marcas else ""
     return result
 
 
@@ -194,7 +194,7 @@ def _parse_annex_formato_c(ll: list[str], annex_start: int, result: dict) -> dic
                 specs_set.add(parts[1].strip().replace("CONFORMIDAD", ""))
                 
     result["modelos"] = ", ".join(modelos)
-    result["marca"] = list(marcas)[0] if marcas else ""
+    result["marca"] = "; ".join(sorted(list(marcas))) if marcas else ""
     result["specs"] = list(specs_set)[0] if specs_set else ""
     return result
 

@@ -1,5 +1,43 @@
 # ARGOS - Changelog
 
+## v2.5.0 (2026-06-18) - Planilla de Fotos Datasheet, Reordenamiento de UI y Múltiples Marcas
+
+### ✨ Nuevas Características
+- **Planilla de Fotos (Datasheet) Autogenerada**: El orquestador de solicitudes para Lenor ahora genera y adjunta automáticamente en el ZIP de salida la planilla Excel precargada (`Datasheet_[Nro].xlsx`) con las tablas de modelos y especificaciones de todos los SKUs, combinando celdas de marcas/especificaciones/imagen y aplicando bordes negros estéticos listos para pegar fotos.
+- **Reordenamiento del Menú UI**: Se reorganizó el sidebar lateral del frontend para que refleje el flujo secuencial real de los procesos: *Solicitudes* arriba (primer proceso), *Verificador* en el medio y *Generador DJC* abajo.
+- **Soporte Completo de Múltiples Marcas**: La función `split_marcas` ahora soporta la separación por comas (`,`) y puntos y comas (`;`), permitiendo la correcta duplicación de modelos para marcas declaradas en conjunto como `GADNIC; CARE BY GADNIC`.
+- **Extracción de Marcas Combinadas de Anexos**: Modificados los extractores del anexo de Lenor para unir todas las marcas únicas detectadas con punto y coma en lugar de descartar la segunda.
+- **Formato Calibri 12 en Word**: Configurada la tabla de la nota comercial Word para Lenor para forzar la tipografía **Calibri** en tamaño **12**.
+
+### 🐛 Correcciones
+- **Celdas C51 y C53 de Lenor**: Se eliminó la escritura forzada del script sobre las celdas C51 ("Tipo de solicitud") y C53 ("Esquema de certificación (*)") para conservar los valores estáticos preconfigurados en la plantilla por el usuario.
+
+---
+
+## v2.4.0 (2026-06-09) - Corrección de Fallback openpyxl y Mappings de Celdas
+
+### ✨ Nuevas Características
+- **Versión Dinámica en UI**: El panel lateral (sidebar) del frontend ahora consulta el número de versión directamente al backend mediante la llamada de salud (health check), evitando inconsistencias y hardcoding.
+
+### 🐛 Correcciones
+- **Alineación de Mappings en Fallback openpyxl**: Se actualizaron por completo las coordenadas de escritura en el generador openpyxl (usado si win32com no está disponible) para coincidir con la automatización win32, solucionando problemas de celdas vacías (`C51`, `C53`, `C57`, `C59`), contacto de fábrica limpio (`C46`) e email/teléfono invertidos (`E46`/`G46`).
+- **Renombrado y Duplicado de Marcas**: Se refinó la lógica de marcas múltiples y duplicación de filas (sólo para Lenor) en ambos generadores.
+
+---
+
+## v2.1.0 (2026-05-23) - Módulo de Eficiencia Energética (EE) Integrado
+
+### ✨ Nuevas Características
+- **Módulo de Eficiencia Energética Completo**: Implementado el soporte para las 11 familias de la Resolución SIyC 438/2024 a través de un esquema dinámico de características técnicas (`ee_families.json`).
+- **Autogeneración e Integración de Etiquetas EE**: El sistema dibuja y renderiza la etiqueta oficial de eficiencia energética en tiempo real en base a los datos cargados en el formulario, eliminando la necesidad de descargas o cargas manuales secundarias.
+- **Formato de ID Simplificado**: Ajustado el formato a `DJC-EE-MMYY-CXXX-V1` sin abreviatura de laboratorios por directiva del usuario.
+- **Inserción Automática en Word**: Modificado el motor docx para inyectar automáticamente la etiqueta renderizada (PNG) y las características compuestas en la Tabla 5 y Tabla 3 de la plantilla oficial.
+
+### 🐛 Correcciones
+- **Compilación estricta del Frontend**: Resueltos errores del compilador tsc de TypeScript relacionados a declaraciones redundantes o variables no utilizadas.
+
+---
+
 ## v2.0.3 (2026-05-19) - Optimización de Rasterizado y Empaquetado OCR
 
 ### ✨ Nuevas Características

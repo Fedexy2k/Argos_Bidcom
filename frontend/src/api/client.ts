@@ -37,13 +37,13 @@ export interface Config {
 
 // ── Health ────────────────────────────────────────────────────────────────────
 
-export async function checkHealth(): Promise<boolean> {
+export async function checkHealth(): Promise<string | null> {
   try {
     const r = await fetch(`${BASE}/health`)
     const d = await r.json()
-    return d.status === 'ok'
+    return d.status === 'ok' ? d.version : null
   } catch {
-    return false
+    return null
   }
 }
 

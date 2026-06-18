@@ -81,9 +81,9 @@
             "nombre": "Lenor SRL",
             "contacto": "info@lenorcert.com"
         },
-        "Quektra": {
-            "nombre": "Quektra S.R.L.",
-            "contacto": "https://www.quektra.com.ar/"
+        "qetkra": {
+            "nombre": "qetkra S.R.L.",
+            "contacto": "https://www.qetkra.com.ar/"
         },
         "IRAM": {
             "nombre": "IRAM - Instituto Argentino de Normalización y Certificación",
@@ -105,6 +105,7 @@
         "Res. SIyC Nº 313/2025 – Ap. II (Anteojos de Sol)",
         "Res. SIyC Nº 313/2025 – Ap. III (Juguetes)",
         "Res. SIyC Nº 313/2025 – Ap. IV (Bicicletas Infantiles)",
-        "Res. SCT Nº 163/2004 (Juguetes – vigente)"
+        "Res. SCT Nº 163/2004 (Juguetes – vigente)",
+        "Resolución 438/2024 (Eficiencia Energética)"
     ]
 }

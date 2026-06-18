@@ -1,7 +1,9 @@
-// Sidebar — v3: inline styles for consistent font + spacing
+// Sidebar — v4: inline styles for consistent font + spacing
 const NAV = [
-  { icon: 'description', label: 'Generador DJC', id: 'generador' },
+  { icon: 'assignment',  label: 'Solicitudes',   id: 'solicitudes' },
   { icon: 'fact_check',  label: 'Verificador',   id: 'verificador' },
+  { icon: 'description', label: 'Generador DJC', id: 'generador' },
+  { icon: 'electric_bolt', label: 'Eficiencia Energética', id: 'ee' },
   { icon: 'info',        label: 'Info Panel',     id: 'info' },
   { icon: 'settings',    label: 'Configuracion',  id: 'config' },
 ]
@@ -9,9 +11,10 @@ const NAV = [
 interface SidebarProps {
   activeTab: string
   onTabChange: (id: string) => void
+  apiVersion?: string | null
 }
 
-export default function Sidebar({ activeTab, onTabChange }: SidebarProps) {
+export default function Sidebar({ activeTab, onTabChange, apiVersion }: SidebarProps) {
   return (
     <aside style={{
       width: 220,
@@ -71,13 +74,13 @@ export default function Sidebar({ activeTab, onTabChange }: SidebarProps) {
                 width: '100%',
                 transition: 'all 0.15s',
                 background: isActive ? '#1f1e2a' : 'transparent',
-                color: isActive ? '#d0bcff' : '#64748b',
-                borderLeft: isActive ? '3px solid #8b5cf6' : '3px solid transparent',
+                color: isActive ? (item.id === 'ee' ? '#6bd8cb' : '#d0bcff') : '#64748b',
+                borderLeft: isActive ? (item.id === 'ee' ? '3px solid #6bd8cb' : '3px solid #8b5cf6') : '3px solid transparent',
               }}
               onMouseEnter={e => {
                 if (!isActive) {
                   (e.currentTarget as HTMLButtonElement).style.background = '#1a1929'
-                  ;(e.currentTarget as HTMLButtonElement).style.color = '#cbc3d7'
+                  ;(e.currentTarget as HTMLButtonElement).style.color = item.id === 'ee' ? '#6bd8cb' : '#cbc3d7'
                 }
               }}
               onMouseLeave={e => {
@@ -95,38 +98,12 @@ export default function Sidebar({ activeTab, onTabChange }: SidebarProps) {
 
         {/* Divider */}
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', margin: '8px 0' }} />
-
-        {/* Etiquetas EE */}
-        <button
-          onClick={() => window.open('http://localhost:3000', '_blank')}
-          style={{
-            display: 'flex', alignItems: 'center', gap: 12,
-            padding: '11px 14px',
-            borderRadius: 10,
-            border: 'none',
-            cursor: 'pointer',
-            fontFamily: 'inherit',
-            fontWeight: 500,
-            fontSize: 13,
-            textAlign: 'left',
-            width: '100%',
-            transition: 'all 0.15s',
-            background: 'transparent',
-            color: '#6bd8cb',
-            borderLeft: '3px solid transparent',
-          }}
-          onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = '#0d1e1c' }}
-          onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = 'transparent' }}
-        >
-          <span className="material-symbols-outlined" style={{ fontSize: 20, lineHeight: 1 }}>electric_bolt</span>
-          Etiquetas EE
-        </button>
       </nav>
 
       {/* Version */}
       <div style={{ padding: '16px 28px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-        <span style={{ fontSize: 10, fontFamily: 'monospace', color: 'rgba(255,255,255,0.15)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
-          v2.0.3
+        <span style={{ fontSize: 10, fontFamily: 'monospace', color: 'rgba(255,255,255,0.35)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
+          v{apiVersion || '2.5.0'}
         </span>
       </div>
     </aside>
