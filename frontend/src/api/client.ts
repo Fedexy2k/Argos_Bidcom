@@ -168,3 +168,40 @@ export function makeBlobUrl(b64: string): string {
   const blob = new Blob([arr], { type: 'application/pdf' })
   return URL.createObjectURL(blob)
 }
+
+// ── Budget & AI Ledger ────────────────────────────────────────────────────────
+
+export interface BudgetSummary {
+  periodo: string
+  limite_mensual_usd: number
+  gasto_acumulado_usd: number
+  saldo_disponible_usd: number
+  porcentaje_usado: number
+  permite_solicitud?: boolean
+}
+
+export interface BudgetLedgerItem {
+  timestamp: string
+  provider: string
+  model_id: string
+  gestion: string
+  documento: string
+  prompt_tokens: number
+  completion_tokens: number
+  total_tokens: number
+  costo_usd: number
+  cached: boolean
+}
+
+export async function getBudgetSummary(): Promise<BudgetSummary> {
+  const r = await fetch(`${BASE}/budget/summary`)
+  if (!r.ok) throw new Error('Error al obtener presupuesto')
+  return r.json()
+}
+
+export async function getBudgetLedger(): Promise<{ entries: BudgetLedgerItem[] }> {
+  const r = await fetch(`${BASE}/budget/ledger`)
+  if (!r.ok) throw new Error('Error al obtener registro de consumos')
+  return r.json()
+}
+

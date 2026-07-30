@@ -41,7 +41,7 @@ if _env_file.exists():
                 _k, _v = _line.split("=", 1)
                 os.environ.setdefault(_k.strip(), _v.strip())
 
-from modules.m3_djc_generator import DJCGenerator
+from modules.m3_djc_generator import DJCGenerator, normalize_oec_key
 from modules.m2_multiaudit import MultiCertAuditor
 from modules.m4_djc_ee_generator import DJCEEGenerator
 
@@ -122,7 +122,13 @@ async def lifespan(app: FastAPI):
     task.cancel()
 
 
-app = FastAPI(title="Argos API", version="2.5.0", lifespan=lifespan)
+app = FastAPI(title="Argos API", version="3.1.0", lifespan=lifespan)
+
+
+
+
+
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -640,8 +646,13 @@ async def verify_certs(files: list[UploadFile] = File(...)):
 # ─────────────────────────────────────────────────────────────────────────────
 
 @app.get("/api/health")
-async def health():
-    return {"status": "ok", "version": "2.5.0"}
+def health_check():
+    return {"status": "ok", "version": "3.1.0"}
+
+
+
+
+
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -671,7 +682,8 @@ def _cleanup(path: Optional[str]):
 def _build_data_dict(req: GenerateRequest, gen: DJCGenerator) -> dict:
     """Builds the data dict expected by DJCGenerator.fill_template()."""
     cfg = gen.config
-    oec_info = cfg.get("oec_options", {}).get(req.oec_key, {})
+    normalized_oec_key = normalize_oec_key(req.oec_key)
+    oec_info = cfg.get("oec_options", {}).get(normalized_oec_key, {})
 
     # Normalizar bidcom: siempre C + número
     raw_bidcom = (req.bidcom_num or "").strip()
@@ -921,7 +933,7 @@ async def solicitud_parse(file: UploadFile = File(...)):
             
             oec_key = cert_data.get("oec_key", "")
             oec_detected = "lenor"
-            if oec_key and oec_key.lower() == "quektra":
+            if oec_key and oec_key.lower() in ("quektra", "qetkra"):
                 oec_detected = "qetkra"
                 
             modelos_str = cert_data.get("modelos", "")
@@ -1030,8 +1042,82 @@ async def solicitud_generate(
 
 
 # ─────────────────────────────────────────────────────────────────────────────
+#  Budget & EE Auto-Extraction Endpoints
+# ─────────────────────────────────────────────────────────────────────────────
+
+@app.get("/api/budget/summary")
+def get_budget_summary():
+    """Retorna el resumen de gasto acumulado en el mes, saldo disponible y límite."""
+    try:
+        from modules.budget_manager import BudgetManager
+        mgr = BudgetManager()
+        return mgr.get_summary()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error al obtener resumen de presupuesto: {e}")
+
+
+@app.get("/api/budget/ledger")
+def get_budget_ledger():
+    """Retorna las entradas registradas en el ledger de gestiones de IA."""
+    try:
+        from modules.budget_manager import BudgetManager
+        mgr = BudgetManager()
+        ledger_file = mgr.ledger_path
+        if os.path.exists(ledger_file):
+            with open(ledger_file, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        return {"entries": []}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error al obtener ledger de gestiones: {e}")
+
+
+class EEExtractRequest(BaseModel):
+    report_text: str
+
+
+@app.post("/api/ee/auto-extract")
+def auto_extract_ee(req: EEExtractRequest):
+    """Extrae automáticamente la familia y métricas de Eficiencia Energética usando IA."""
+    try:
+        generator = DJCEEGenerator()
+        result = generator.auto_extract_ee_from_report(req.report_text)
+        if not result:
+            raise HTTPException(status_code=400, detail="No se pudo extraer información del informe EE.")
+        return result
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error al extraer Eficiencia Energética: {e}")
+
+
+@app.post("/api/ee/auto-extract-file")
+async def auto_extract_ee_file(file: UploadFile = File(...)):
+    """Extrae automáticamente la familia y métricas de Eficiencia Energética desde un archivo PDF subido."""
+    try:
+        import pypdf
+        pdf_bytes = await file.read()
+        reader = pypdf.PdfReader(io.BytesIO(pdf_bytes))
+        full_text = "\n".join([page.extract_text() for page in reader.pages if page.extract_text()])
+
+        if not full_text.strip():
+            raise HTTPException(status_code=400, detail="El archivo PDF no contiene texto legible.")
+
+        generator = DJCEEGenerator()
+        result = generator.auto_extract_ee_from_report(full_text)
+        if not result:
+            raise HTTPException(status_code=400, detail="No se pudo extraer información del informe EE.")
+        return result
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error al procesar archivo PDF de EE: {e}")
+
+
+
+# ─────────────────────────────────────────────────────────────────────────────
 #  Frontend Static Files
 # ─────────────────────────────────────────────────────────────────────────────
+
 
 frontend_path = ROOT / "frontend" / "dist"
 if frontend_path.exists():

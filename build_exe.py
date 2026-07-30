@@ -47,14 +47,19 @@ def main():
         "--collect-all=fastapi",
         "--collect-all=uvicorn",
         "--collect-all=pydantic",
+        "--collect-all=customtkinter",
+        "--collect-all=fitz",
         '--add-data="frontend/dist;frontend/dist"',
         '--add-data="modules;modules"',
+        '--add-data="assets;assets"',
+        '--add-data="ee_families.json;."',
         '--add-data="m3_config.json;."',
         '--add-data="DJ Conformidad Modelo SE LIMPIO.docx;."',
         '--add-data="DJ Conformidad Modelo SE.docx;."',
-        '--add-data="C:\\Users\\FDean\\Antigravity\\Auto_INAL\\bin\\tesseract;tesseract"',
+        '--add-data="DJ Conformidad Modelo EE.docx;."',
         'launcher.py'
     ]
+
     
     run_step("Empaquetar Backend y Frontend (PyInstaller)", " ".join(pyinstaller_cmd), cwd=root_dir)
     

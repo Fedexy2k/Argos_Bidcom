@@ -14,9 +14,9 @@ logger = logging.getLogger(__name__)
 # Keywords para detección de OEC (orden de prioridad)
 # NOTA: se aplica .lower() al texto antes de comparar, así que las keys deben ser minúsculas.
 OEC_KEYWORDS: dict[str, str] = {
-    "q-ar":           "Quektra",
-    "quektra":        "Quektra",
-    "qetkra":         "Quektra",
+    "q-ar":           "Qetkra",
+    "quektra":        "Qetkra",
+    "qetkra":         "Qetkra",
     "intertek":       "Intertek",
     "bureau veritas": "Bureau Veritas",
     "bv ":            "Bureau Veritas",
@@ -86,8 +86,8 @@ def extract_product_data(
     lines = [l.strip() for l in text.replace('\r\n', '\n').split('\n')]
     _log("info", f"[M3] Despachando extractor para OEC='{oec_key or 'Desconocido'}'")
 
-    if oec_key == "Quektra":
-        _log("info", "[M3] Usando extractor QUEKTRA")
+    if oec_key == "Qetkra":
+        _log("info", "[M3] Usando extractor QETKRA")
         from modules.extractors import quektra
         result = quektra.extract(lines, text_sorted, log_fn)
 
@@ -150,7 +150,7 @@ def extract_product_data(
             _log("info", "[M3]   direccion asignada por defecto a 'China' (cert simplificado)")
 
     # ── Contexto OEC para IA (cargado una vez, pasado a ambas llamadas) ─────────
-    api_key = os.getenv("GEMINI_API_KEY")
+    api_key = os.getenv("OPENAI_API_KEY") or os.getenv("GEMINI_API_KEY")
     text_disponible = bool(text.strip())
     oec_ctx = ""
     if api_key:
@@ -169,9 +169,9 @@ def extract_product_data(
             if not text_disponible:
                 _log("warning",
                      f"[M3] Campos vacíos {regex_missing} — texto del cert VACÍO, "
-                     "Gemini no puede extraer (PDF escaneado sin OCR?)")
+                     "IA no puede extraer (PDF escaneado sin OCR?)")
             else:
-                _log("info", f"[M3] Paso 1 — Gemini completando campos vacíos: {regex_missing}")
+                _log("info", f"[M3] Paso 1 — IA completando campos vacíos: {regex_missing}")
                 try:
                     from modules.ai_helper import fill_missing_fields_ai
                     filled = fill_missing_fields_ai(
@@ -190,20 +190,21 @@ def extract_product_data(
                         else:
                             ai_empty.append(field)
                     if ai_filled:
-                        _log("info",  f"[M3] Gemini → completó: {', '.join(ai_filled)}")
+                        _log("info",  f"[M3] IA → completó: {', '.join(ai_filled)}")
                     if ai_empty:
-                        _log("warning", f"[M3] Gemini → no encontró: {ai_empty}")
+                        _log("warning", f"[M3] IA → no encontró: {ai_empty}")
                 except Exception as e:
                     _log("warning", f"[M3] Error en fallback IA: {e}")
         else:
-            _log("warning", f"[M3] Campos vacíos {regex_missing} — GEMINI_API_KEY no configurada")
+            _log("warning", f"[M3] Campos vacíos {regex_missing} — API Key de IA no configurada")
     else:
         _log("info", "[M3] Todos los campos críticos detectados por regex")
 
-    # ── PASO 2: Revisión semántica — Gemini verifica que todo sea correcto ──────
+    # ── PASO 2: Revisión semántica — IA verifica que todo sea correcto ────────
     # Corre SIEMPRE (no solo cuando hay campos vacíos) para detectar valores
     # mal asignados, truncados o incorrectos aunque el regex haya "encontrado algo".
     if api_key and text_disponible:
+
         try:
             from modules.ai_helper import review_extraction_ai
             campos_para_revisar = {

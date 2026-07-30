@@ -6,7 +6,7 @@
       "norma_base": "IRAM 2404-3",
       "fields": [
         { "key": "categoria", "label": "Categoría de aparato", "type": "select", "options": ["Categoría 1: Refrigerador doméstico", "Categoría 2: Refrigerador-congelador doméstico", "Categoría 3: Conservador de alimentos", "Categoría 4: Freezer vertical doméstico", "Categoría 5: Freezer horizontal doméstico"] },
-        { "key": "clase_ee", "label": "Clase de eficiencia energética", "type": "select", "options": ["A+++", "A++", "A+", "A", "B", "C", "D", "E", "F", "G"] },
+        { "key": "clase_ee", "label": "Clase de eficiencia energética", "type": "select", "options": ["A", "B", "C", "D", "E", "F", "G"] },
         { "key": "iee", "label": "Índice de Eficiencia Energética (IEE)", "type": "number" },
         { "key": "consumo_anual", "label": "Consumo de energía (kWh/año)", "type": "number", "unit": "kWh/año" },
         { "key": "vol_frescos", "label": "Volumen alimentos frescos (L)", "type": "number", "unit": "L" },
@@ -21,7 +21,7 @@
       "label": "Lavarropas eléctricos",
       "norma_base": "IRAM 2141-3",
       "fields": [
-        { "key": "clase_ee", "label": "Clase de eficiencia energética", "type": "select", "options": ["A+++", "A++", "A+", "A", "B", "C", "D", "E", "F", "G"] },
+        { "key": "clase_ee", "label": "Clase de eficiencia energética", "type": "select", "options": ["A", "B", "C", "D", "E", "F", "G"] },
         { "key": "consumo_ee", "label": "Consumo de energía específico (kWh/kg)", "type": "number", "unit": "kWh/kg" },
         { "key": "consumo_ciclo", "label": "Consumo de energía por ciclo (kWh/ciclo)", "type": "number", "unit": "kWh/ciclo" },
         { "key": "agua_ciclo", "label": "Consumo de agua por ciclo (L/ciclo)", "type": "number", "unit": "L/ciclo" },
@@ -41,11 +41,11 @@
       "norma_base": "IRAM 62406",
       "fields": [
         { "key": "tipo", "label": "Tipo de equipo", "type": "select", "options": ["Compacto On-Off", "Dividido (Split) On-Off", "Dividido (Split) Inverter", "Multi-split Inverter"] },
-        { "key": "clase_ee_refrig", "label": "Clase de eficiencia en modo Refrigeración", "type": "select", "options": ["A+++", "A++", "A+", "A", "B", "C", "D", "E", "F", "G"] },
+        { "key": "clase_ee_refrig", "label": "Clase de eficiencia en modo Refrigeración", "type": "select", "options": ["A", "B", "C", "D", "E", "F", "G"] },
         { "key": "ieee_refrig", "label": "IEEE en modo Refrigeración", "type": "number" },
         { "key": "consumo_anual_refrig", "label": "Consumo anual en modo Refrigeración", "type": "number", "unit": "kWh" },
         { "key": "cap_refrig", "label": "Capacidad de refrigeración nominal", "type": "number", "unit": "kW" },
-        { "key": "clase_ee_calef", "label": "Clase de eficiencia en modo Calefacción", "type": "select", "options": ["A+++", "A++", "A+", "A", "B", "C", "D", "E", "F", "G"], "optional": true },
+        { "key": "clase_ee_calef", "label": "Clase de eficiencia en modo Calefacción", "type": "select", "options": ["A", "B", "C", "D", "E", "F", "G"], "optional": true },
         { "key": "cop", "label": "COP (Coeficiente de Performance Calefacción)", "type": "number", "optional": true },
         { "key": "consumo_anual_calef", "label": "Consumo anual en modo Calefacción", "type": "number", "unit": "kWh", "optional": true },
         { "key": "cap_calef", "label": "Capacidad de calefacción nominal", "type": "number", "unit": "kW", "optional": true },
@@ -86,7 +86,7 @@
       "norma_base": "IRAM 62404",
       "fields": [
         { "key": "tecnologia", "label": "Tecnología de la lámpara", "type": "select", "options": ["LED", "Lámpara Fluorescente Compacta (LFC)", "Halógena", "Incandescente"] },
-        { "key": "clase_ee", "label": "Clase de eficiencia energética", "type": "select", "options": ["A++", "A+", "A", "B", "C", "D", "E", "F", "G"] },
+        { "key": "clase_ee", "label": "Clase de eficiencia energética", "type": "select", "options": ["A", "B", "C", "D", "E", "F", "G"] },
         { "key": "eficacia_luminosa", "label": "Eficacia luminosa declarada", "type": "number", "unit": "lm/W" },
         { "key": "potencia", "label": "Potencia eléctrica nominal", "type": "number", "unit": "W" },
         { "key": "flujo", "label": "Flujo luminoso nominal", "type": "number", "unit": "lm" },
@@ -100,7 +100,7 @@
       "label": "Televisores",
       "norma_base": "IRAM 62411",
       "fields": [
-        { "key": "clase_ee", "label": "Clase de eficiencia energética", "type": "select", "options": ["A+++", "A++", "A+", "A", "B", "C", "D", "E", "F", "G"] },
+        { "key": "clase_ee", "label": "Clase de eficiencia energética", "type": "select", "options": ["A", "B", "C", "D", "E", "F", "G"] },
         { "key": "iee", "label": "Índice de Eficiencia Energética (IEE)", "type": "number" },
         { "key": "consumo_encendido", "label": "Consumo de potencia en modo encendido", "type": "number", "unit": "W" },
         { "key": "consumo_anual", "label": "Consumo de energía anual estimado", "type": "number", "unit": "kWh/año" },

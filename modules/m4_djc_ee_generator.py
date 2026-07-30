@@ -23,6 +23,8 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH  # type: ignore[import-untyped]
 
 logger = logging.getLogger(__name__)
 
+from modules.m3_djc_generator import normalize_oec_key
+
 class DJCEEGenerator:
     """Genera Declaraciones Juradas de Conformidad de Eficiencia Energética (DJC-EE)."""
 
@@ -57,6 +59,51 @@ class DJCEEGenerator:
             if fam["id"] == family_id:
                 return fam
         return None
+
+    def auto_extract_ee_from_report(self, report_text: str) -> Optional[dict]:
+        """
+        Usa la IA para extraer automáticamente la familia y los campos de Eficiencia Energética
+        desde el texto de un informe de ensayo o certificado EE.
+        """
+        try:
+            from modules.ai_helper import extract_ee_specs_ai
+            res = extract_ee_specs_ai(report_text, self.ee_families)
+            if not res:
+                return None
+
+            # Cálculo automático de Fecha de Próxima Vigilancia (+4 años desde emisión)
+            fem = res.get("fecha_emision")
+            if fem and not res.get("fecha_proxima_vigilancia"):
+                try:
+                    parts = fem.split('/')
+                    if len(parts) == 3:
+                        d, m, y = parts
+                        res["fecha_proxima_vigilancia"] = f"{d}/{m}/{int(y)+4}"
+                except Exception:
+                    pass
+
+            # Cálculos automáticos de métricas EE si faltan
+            ee_fields = res.get("ee_fields", {})
+            if res.get("family_id") == "lavavajillas":
+                # Consumo anual de agua: 280 x consumo por ciclo
+                if ee_fields.get("agua_ciclo") and not ee_fields.get("agua_anual"):
+                    try:
+                        ee_fields["agua_anual"] = round(float(ee_fields["agua_ciclo"]) * 280, 1)
+                    except Exception:
+                        pass
+                # Consumo anual de energía si falta: 280 x consumo por ciclo
+                if ee_fields.get("consumo_ciclo") and not ee_fields.get("consumo_anual"):
+                    try:
+                        ee_fields["consumo_anual"] = round(float(ee_fields["consumo_ciclo"]) * 280, 2)
+                    except Exception:
+                        pass
+
+            return res
+        except Exception as e:
+            logger.error(f"Error en extracción automática de EE por IA: {e}")
+            return None
+
+
 
     def build_specs_text(self, family_id: str, base_specs: dict, ee_fields_data: dict) -> str:
         """
@@ -208,7 +255,9 @@ class DJCEEGenerator:
         contacto = data.get("oec_contacto", "").strip()
         if not contacto:
             # Fallback al config por compatibilidad si se usa oec_key
-            lab_info = self.config["oec_options"].get(data.get("oec_key", ""), {})
+            oec_key = data.get("oec_key", "")
+            normalized_oec_key = normalize_oec_key(oec_key)
+            lab_info = self.config["oec_options"].get(normalized_oec_key, {})
             contacto = lab_info.get("contacto", "")
         self._set_cell(tables[4], 9, 2, contacto)
 

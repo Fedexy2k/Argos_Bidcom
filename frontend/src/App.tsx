@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import Sidebar from './components/Sidebar'
 import LogBar from './components/LogBar'
+import BudgetModal from './components/BudgetModal'
 import GeneradorDJC from './views/GeneradorDJC'
 import EficienciaEnergetica from './views/EficienciaEnergetica'
 import Solicitudes from './views/Solicitudes'
-import { checkHealth, getConfig, type Config } from './api/client'
+import { checkHealth, getConfig, getBudgetSummary, type Config, type BudgetSummary } from './api/client'
 import './index.css'
 
 interface LogEntry {
@@ -24,6 +25,8 @@ export default function App() {
   const [config, setConfig]       = useState<Config | null>(null)
   const [logs, setLogs]           = useState<LogEntry[]>([])
   const [logsExpanded, setLogsExpanded] = useState(false)
+  const [budgetModalOpen, setBudgetModalOpen] = useState(false)
+  const [budget, setBudget]       = useState<BudgetSummary | null>(null)
   const wsRef = useRef<WebSocket | null>(null)
 
   const addLog = (level: string, msg: string) => {
@@ -47,6 +50,7 @@ export default function App() {
       })
       if (ok && ver) {
         setApiVersion(ver)
+        getBudgetSummary().then(setBudget).catch(() => {})
       }
       // Load config once API is up
       if (ok && !configLoaded) {
@@ -60,6 +64,7 @@ export default function App() {
     poll()
     return () => { cancelled = true }
   }, [])
+
 
   // WebSocket live logs — auto-reconnects every 3s
   useEffect(() => {
@@ -114,7 +119,24 @@ export default function App() {
              : activeTab === 'info'        ? 'Info Panel'
              : 'Configuracion'}
           </h1>
-          <div className="flex items-center gap-5" style={{ marginRight: 4 }}>
+          <div className="flex items-center gap-3" style={{ marginRight: 4 }}>
+            {/* BOTÓN CONSUMO Y REGISTRO IA */}
+            <button
+              onClick={() => setBudgetModalOpen(true)}
+              className="flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-semibold tracking-wide hover:bg-purple-500/10 transition-all cursor-pointer"
+              style={{
+                background: 'rgba(139,92,246,0.06)',
+                borderColor: 'rgba(139,92,246,0.2)',
+                color: '#a78bfa',
+              }}
+              title="Ver Control de Consumo y Registro de IA"
+            >
+              <span className="material-symbols-outlined text-sm">payments</span>
+              <span>
+                {budget ? `$${budget.gasto_acumulado_usd.toFixed(4)} / $${budget.limite_mensual_usd.toFixed(2)} USD` : 'Consumo IA'}
+              </span>
+            </button>
+
             <div
               className="flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-semibold tracking-wide uppercase"
               style={{
@@ -165,12 +187,16 @@ export default function App() {
           )}
         </div>
 
+        {/* Modal de Presupuesto y Registro IA */}
+        <BudgetModal isOpen={budgetModalOpen} onClose={() => setBudgetModalOpen(false)} />
+
         {/* Log bar */}
         <LogBar logs={logs} expanded={logsExpanded} onToggle={() => setLogsExpanded(v => !v)} />
       </main>
     </div>
   )
 }
+
 
 function PlaceholderView({ title, icon, msg }: { title: string; icon: string; msg: string }) {
   return (

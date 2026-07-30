@@ -46,7 +46,8 @@ from modules.regulations import detect_reglamento
 
 from modules.extractors.dispatcher import detect_oec, extract_product_data
 
-from modules.pdf_ops import censor_cert_pdf, merge_pdfs, strip_old_djc
+from modules.pdf_ops import censor_cert_pdf, merge_pdfs, strip_old_djc, extract_pdf_clean_text
+
 
 from modules.extractors.shared import parse_date, calc_vencimiento, calc_inicio_tramite
 
@@ -56,6 +57,14 @@ logger = logging.getLogger(__name__)
 
 
 
+def normalize_oec_key(oec_key: str) -> str:
+    """Normaliza las variaciones del nombre OEC (como Quektra/Qetkra) a la clave estándar de m3_config.json."""
+    if not oec_key:
+        return ""
+    k_lower = oec_key.lower().strip()
+    if k_lower in ("quektra", "qetkra"):
+        return "Qetkra"
+    return oec_key
 
 
 class DJCGenerator:
@@ -182,19 +191,16 @@ class DJCGenerator:
 
 
 
+        full_text_sorted = extract_pdf_clean_text(pdf_path)
         doc = fitz.open(pdf_path)
-
         full_text = ""
-
-        full_text_sorted = ""
-
         for page in doc:
-
             full_text += page.get_text()
-
-            full_text_sorted += page.get_text("text", sort=True)
-
         doc.close()
+
+        if not full_text_sorted.strip():
+            full_text_sorted = full_text
+
 
 
 
@@ -277,8 +283,8 @@ class DJCGenerator:
         reglamento = self.detect_reglamento(normas)
 
         oec_key = cert_data.get("oec_key", "")
-
-        oec_info = self.config["oec_options"].get(oec_key, {})
+        normalized_oec_key = normalize_oec_key(oec_key)
+        oec_info = self.config["oec_options"].get(normalized_oec_key, {})
 
         cert_number = cert_data.get("cert_number", "")
 
@@ -379,8 +385,8 @@ class DJCGenerator:
         reglamento = self.detect_reglamento(normas, producto_desc)
 
         oec_key = cert_data.get("oec_key", "")
-
-        oec_info = self.config["oec_options"].get(oec_key, {})
+        normalized_oec_key = normalize_oec_key(oec_key)
+        oec_info = self.config["oec_options"].get(normalized_oec_key, {})
 
 
 
@@ -503,19 +509,13 @@ class DJCGenerator:
 
 
         oec_abrev_map = {
-
             "Lenor":          "LNR",
-
             "Quektra":        "QKA",
-
+            "Qetkra":         "QKA",
             "Intertek":       "ITK",
-
             "Bureau Veritas": "BVA",
-
             "TÜV":            "TUV",
-
             "IRAM":           "IRM",
-
         }
 
         oec_raw = (oec_nombre or "").strip()

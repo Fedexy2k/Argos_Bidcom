@@ -1,29 +1,39 @@
 """
-Módulo de ayuda con IA (Gemini) para Argos
-Maneja extracción y validación inteligente de especificaciones técnicas
+Módulo de Inteligencia Artificial para Argos (OpenAI / Multi-proveedor).
+Maneja extracción inteligente, revisión semántica, validación de especificaciones técnicas
+y automatización de Eficiencia Energética (EE) con control de presupuesto y caché.
 """
-from google import genai
-from google.genai import types
+
 import os
 import json
 import logging
 import time
-from typing import Dict, Optional, List
+from typing import Dict, Optional, List, Tuple, Any
 
+# Cargar automáticamente variables de entorno desde .env en la raíz del proyecto
+_root_env = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".env")
+if os.path.exists(_root_env):
+    try:
+        with open(_root_env, encoding="utf-8") as _f:
+            for _line in _f:
+                _line = _line.strip()
+                if _line and not _line.startswith("#") and "=" in _line:
+                    _k, _v = _line.split("=", 1)
+                    os.environ[_k.strip()] = _v.strip()
+    except Exception:
+        pass
+
+from modules.budget_manager import BudgetManager
+from modules.ai_cache import AICacheManager
+
+logger = logging.getLogger(__name__)
 
 # ── Carga de contexto por OEC ─────────────────────────────────────────────────
 
 def load_oec_context(oec_key: str, rules_path: Optional[str] = None) -> str:
     """
     Carga las reglas del OEC desde oec_rules.json y las formatea como bloque
-    de texto legible para inyectar al inicio del prompt de Gemini.
-
-    Args:
-        oec_key:    Clave del OEC (ej: 'Intertek', 'Quektra', 'Lenor').
-        rules_path: Ruta al archivo JSON (por defecto: oec_rules.json en raíz del proyecto).
-
-    Returns:
-        String con el contexto formateado, o cadena vacía si no hay reglas para ese OEC.
+    de texto legible para inyectar al inicio del prompt de la IA.
     """
     if not oec_key:
         return ""
@@ -53,9 +63,9 @@ def load_oec_context(oec_key: str, rules_path: Optional[str] = None) -> str:
 
     mapeo = oec_data.get('mapeo', {})
     if mapeo:
-        lines.append("MAPEO DE ETIQUETAS DEL CERT \u2192 CAMPO DESTINO:")
+        lines.append("MAPEO DE ETIQUETAS DEL CERT → CAMPO DESTINO:")
         for label, campo in mapeo.items():
-            lines.append(f'  - "{label}" \u2192 {campo}')
+            lines.append(f'  - "{label}" → {campo}')
 
     advertencias = oec_data.get('advertencias', [])
     if advertencias:
@@ -64,60 +74,163 @@ def load_oec_context(oec_key: str, rules_path: Optional[str] = None) -> str:
             lines.append(f"  ! {adv}")
 
     lines.append("=== FIN CONTEXTO ===")
-    lines.append("")  # línea en blanco de separación
+    lines.append("")
     return "\n".join(lines)
 
-class AISpecsHelper:
-    """Helper para extracción y validación de specs usando Gemini 2.0 Flash (gratis)."""
-    
-    def __init__(self, api_key: Optional[str] = None, delay_seconds: float = 2.0):
+
+# ── Motor Central de Ejecución de IA ─────────────────────────────────────────
+
+class AIEngine:
+    """Motor unificado que gestiona llamadas a OpenAI/Gemini con presupuesto y caché."""
+
+    def __init__(self):
+        self.provider = os.getenv("AI_PROVIDER", "openai").lower()
+        self.openai_key = os.getenv("OPENAI_API_KEY")
+        self.gemini_key = os.getenv("GEMINI_API_KEY")
+        self.model_id = os.getenv("OPENAI_MODEL", "gpt-4o-mini") if self.provider == "openai" else "gemini-2.5-flash-lite"
+        self.budget_mgr = BudgetManager()
+        self.cache_mgr = AICacheManager()
+
+    def generate_json(self, prompt: str, gestion: str = "AI_Task", documento: str = "document.pdf") -> Tuple[Optional[Dict], str]:
         """
-        Inicializa el helper de IA.
-        
-        Args:
-            api_key: API key de Gemini. Si no se provee, busca en variable de entorno.
-            delay_seconds: Segundos de espera entre requests para evitar rate limits (default: 2.0)
-        """
-        self.logger = logging.getLogger(__name__)
-        
-        # Configurar API key
-        key = api_key or os.getenv('GEMINI_API_KEY')
-        if not key:
-            raise ValueError(
-                "GEMINI_API_KEY no encontrada. "
-                "Configurala en variable de entorno o pásala al constructor."
-            )
-        
-        # Crear cliente con la nueva API
-        self.client = genai.Client(api_key=key)
-        
-        # Usar Gemini 2.5 Flash Lite (límites más altos que 2.0)
-        self.model_id = "gemini-2.5-flash-lite"
-        
-        # Delay entre requests para evitar saturar API (como en INAL Suite)
-        self.delay_seconds = delay_seconds
-        
-        self.logger.info(f"AISpecsHelper inicializado con {self.model_id} (delay: {delay_seconds}s)")
-    
-    def extract_specs_from_text(self, text: str, context: str = "datasheet") -> Optional[Dict]:
-        """
-        Extrae especificaciones técnicas de texto usando IA.
-        
-        Args:
-            text: Texto del cual extraer specs (puede ser Excel crudo, fragmentos, etc.)
-            context: Contexto del texto ("datasheet", "certificado", etc.)
-        
+        Ejecuta una consulta a la IA esperando una respuesta JSON.
+        Verifica caché y presupuesto antes de llamar a la API.
+
         Returns:
-            Dict con specs extraídas o None si falla
-            {
-                'voltage': '17,9Vcc',
-                'current': '0,35A', 
-                'power': '6,2W',
-                'class': 'Clase III',
-                'full_spec': '17,9Vcc; 0,35A; 6,2W; Clase III',
-                'raw_specs': ['spec1', 'spec2', ...]
-            }
+            (dict_resultado, fuente_info) -> ("cache", "openai", "gemini", "blocked_budget", "error")
         """
+        # 1. Verificar Caché Local
+        cached_result = self.cache_mgr.get(self.model_id, prompt)
+        if cached_result is not None:
+            self.budget_mgr.record_request(
+                provider=self.provider,
+                model_id=self.model_id,
+                gestion=gestion,
+                documento=documento,
+                prompt_tokens=0,
+                completion_tokens=0,
+                cached=True
+            )
+            return cached_result, "cache"
+
+        # 2. Verificar Presupuesto Mensual
+        allowed, block_msg = self.budget_mgr.can_make_request()
+        if not allowed:
+            logger.warning(f"[AI] Solicitud bloqueada por presupuesto: {block_msg}")
+            return None, "blocked_budget"
+
+        # 3. Ejecutar llamada al Proveedor
+        if self.provider == "openai" and self.openai_key and self.openai_key != "tu_openai_key_aqui":
+            return self._call_openai(prompt, gestion, documento)
+        elif self.gemini_key:
+            return self._call_gemini(prompt, gestion, documento)
+        elif self.openai_key and self.openai_key != "tu_openai_key_aqui":
+            return self._call_openai(prompt, gestion, documento)
+        else:
+            logger.error("[AI] Ninguna API Key válida configurada en .env (OPENAI_API_KEY / GEMINI_API_KEY)")
+            return None, "error"
+
+    def _call_openai(self, prompt: str, gestion: str, documento: str) -> Tuple[Optional[Dict], str]:
+        """Llamada nativa a OpenAI API con response_format json_object."""
+        try:
+            import openai
+            client = openai.OpenAI(api_key=self.openai_key)
+
+            system_msg = (
+                "Sos un auditor experto en certificación de productos eléctricos y documentación aduanera. "
+                "Responde SIEMPRE única y exclusivamente con un objeto JSON válido, sin bloques markdown ```json ni texto adicional."
+            )
+
+            response = client.chat.completions.create(
+                model=self.model_id,
+                messages=[
+                    {"role": "system", "content": system_msg},
+                    {"role": "user", "content": prompt}
+                ],
+                response_format={"type": "json_object"},
+                temperature=0.1
+            )
+
+            response_text = response.choices[0].message.content.strip()
+            result = json.loads(response_text)
+
+            prompt_tokens = response.usage.prompt_tokens
+            completion_tokens = response.usage.completion_tokens
+
+            # Guardar en caché y en el ledger
+            self.cache_mgr.set(self.model_id, prompt, result)
+            self.budget_mgr.record_request(
+                provider="openai",
+                model_id=self.model_id,
+                gestion=gestion,
+                documento=documento,
+                prompt_tokens=prompt_tokens,
+                completion_tokens=completion_tokens,
+                cached=False
+            )
+
+            return result, "openai"
+
+        except Exception as e:
+            logger.error(f"[AI] Error ejecutando OpenAI: {e}")
+            # Fallback a Gemini si está disponible
+            if self.gemini_key:
+                logger.info("[AI] Intentando fallback a Gemini...")
+                return self._call_gemini(prompt, gestion, documento)
+            return None, "error"
+
+    def _call_gemini(self, prompt: str, gestion: str, documento: str) -> Tuple[Optional[Dict], str]:
+        """Llamada a Google GenAI SDK (Gemini)."""
+        try:
+            from google import genai
+            client = genai.Client(api_key=self.gemini_key)
+            model_id = "gemini-2.5-flash-lite"
+
+            response = client.models.generate_content(
+                model=model_id,
+                contents=prompt
+            )
+
+            response_text = response.text.strip()
+            if response_text.startswith('```'):
+                lines = response_text.split('\n')
+                response_text = '\n'.join(lines[1:-1])
+
+            result = json.loads(response_text)
+
+            # Estimado para Gemini
+            p_tokens = len(prompt) // 4
+            c_tokens = len(response_text) // 4
+
+            self.cache_mgr.set(model_id, prompt, result)
+            self.budget_mgr.record_request(
+                provider="gemini",
+                model_id=model_id,
+                gestion=gestion,
+                documento=documento,
+                prompt_tokens=p_tokens,
+                completion_tokens=c_tokens,
+                cached=False
+            )
+
+            return result, "gemini"
+
+        except Exception as e:
+            logger.error(f"[AI] Error ejecutando Gemini: {e}")
+            return None, "error"
+
+
+# ── AISpecsHelper (Compatibilidad con módulos M1/M2) ─────────────────────────
+
+class AISpecsHelper:
+    """Helper para extracción y validación de specs usando la IA configurada."""
+
+    def __init__(self, api_key: Optional[str] = None, delay_seconds: float = 0.5):
+        self.logger = logging.getLogger(__name__)
+        self.engine = AIEngine()
+        self.delay_seconds = delay_seconds
+
+    def extract_specs_from_text(self, text: str, context: str = "datasheet") -> Optional[Dict]:
         prompt = f'''Sos un experto en análisis de documentación técnica de productos eléctricos.
 
 Analiza el siguiente texto de un {context} y extrae TODAS las especificaciones técnicas eléctricas.
@@ -130,14 +243,9 @@ Busca especialmente:
 - Clase de protección (Clase I, Clase II, Clase III, Class I, Class II, Class III)
 
 TEXTO A ANALIZAR:
-{text}
+{text[:6000]}
 
-IMPORTANTE:
-- Si ves una línea tipo "ESPECIFICACIONES: 17,9Vcc; 0,35A; 6,2W; Clase III", tómala completa.
-- Respeta el formato original (comas, puntos, espacios).
-- Si no hay specs eléctricas claras, retorna null en los campos.
-
-Responde SOLO con este JSON exacto (sin markdown, sin explicaciones):
+Responde SOLO con este JSON exacto:
 {{
   "voltage": "valor con unidad o null",
   "current": "valor con unidad o null",
@@ -148,203 +256,54 @@ Responde SOLO con este JSON exacto (sin markdown, sin explicaciones):
   "raw_specs": ["lista", "de", "todas", "las", "specs", "encontradas"]
 }}'''
 
+        result, source = self.engine.generate_json(prompt, gestion="Extracción Specs", documento="datasheet")
+        return result
 
-        try:
-            self.logger.debug(f"Solicitando extracción de specs a Gemini...")
-            
-            # Usar nueva API con el cliente
-            response = self.client.models.generate_content(
-                model=self.model_id,
-                contents=prompt
-            )
-            
-            # Delay para evitar saturar API (como en INAL Suite)
-            time.sleep(self.delay_seconds)
-            
-            # Limpiar respuesta (por si tiene markdown)
-            response_text = response.text.strip()
-            if response_text.startswith('```'):
-                # Remover bloques de código markdown
-                lines = response_text.split('\n')
-                response_text = '\n'.join(lines[1:-1])
-            
-            result = json.loads(response_text)
-            self.logger.info(f"✓ Specs extraídas por IA: {result.get('full_spec', 'N/A')}")
-            
-            return result
-            
-        except json.JSONDecodeError as e:
-            self.logger.error(f"Error parseando respuesta JSON de IA: {e}")
-            self.logger.error(f"Respuesta recibida: {response.text[:200]}")
-            return None
-        except Exception as e:
-            # Si es error de rate limit, loguear específicamente
-            error_msg = str(e)
-            if '429' in error_msg or 'RESOURCE_EXHAUSTED' in error_msg:
-                self.logger.warning(f"Rate limit alcanzado. Esperando {self.delay_seconds * 2}s...")
-                time.sleep(self.delay_seconds * 2)  # Esperar el doble en caso de rate limit
-            
-            self.logger.error(f"Error en extracción con IA: {e}")
-            return None
-    
-    def validate_specs_in_text(
-        self, 
-        pdf_text: str, 
-        expected_specs: Dict[str, str],
-        strict: bool = False
-    ) -> Dict:
-        """
-        Valida si las specs esperadas están presentes en el texto del certificado.
-        
-        Args:
-            pdf_text: Texto extraído del PDF del certificado
-            expected_specs: Dict con specs que se esperan encontrar
-            strict: Si True, requiere match exacto. Si False, permite variaciones.
-        
-        Returns:
-            {
-                'found': True/False,
-                'matches': {'voltage': True, 'current': False, ...},
-                'missing': ['current', ...],
-                'confidence': 0.0-1.0,
-                'reasoning': 'explicación breve'
-            }
-        """
-        prompt = f'''Sos un auditor técnico experto. Debes verificar si un certificado contiene las especificaciones técnicas requeridas.
+    def validate_specs_in_text(self, pdf_text: str, expected_specs: Dict[str, str], strict: bool = False) -> Dict:
+        prompt = f'''Sos un auditor técnico experto. Verifica si un certificado contiene las especificaciones técnicas requeridas.
 
 ESPECIFICACIONES ESPERADAS:
 {json.dumps(expected_specs, indent=2, ensure_ascii=False)}
 
 TEXTO DEL CERTIFICADO:
-{pdf_text}
+{pdf_text[:7000]}
 
 REGLAS DE VALIDACIÓN:
 - Tolerá variaciones mínimas de formato: "17,9Vcc" = "17.9 Vcc" = "17,9 Vcc"
 - Los valores numéricos y unidades DEBEN estar presentes
 - {"STRICT MODE: Match exacto requerido" if strict else "FLEXIBLE: Tolerá formato pero verificá valores"}
 
-Analiza si TODAS las especificaciones esperadas están presentes en el certificado.
-
 Responde SOLO con este JSON exacto:
 {{
   "found": true o false,
-  "matches": {{"voltage": true/false, "current": true/false, "power": true/false, "class": true/false}},
+  "matches": {{"voltage": true, "current": true, "power": true, "class": true}},
   "missing": ["lista de specs faltantes"],
   "confidence": 0.95,
   "reasoning": "breve explicación de qué encontraste o qué falta"
 }}'''
 
-
-        try:
-            self.logger.debug("Solicitando validación de specs a Gemini...")
-            
-            # Usar nueva API
-            response = self.client.models.generate_content(
-                model=self.model_id,
-                contents=prompt
-            )
-            
-            # Delay para evitar saturar API
-            time.sleep(self.delay_seconds)
-            
-            # Limpiar respuesta
-            response_text = response.text.strip()
-            if response_text.startswith('```'):
-                lines = response_text.split('\n')
-                response_text = '\n'.join(lines[1:-1])
-            
-            result = json.loads(response_text)
-            
-            self.logger.info(
-                f"✓ Validación IA: {'ENCONTRADO' if result['found'] else 'FALTA'} "
-                f"(confianza: {result.get('confidence', 0):.0%})"
-            )
-            self.logger.debug(f"  Razón: {result.get('reasoning', 'N/A')}")
-            
+        result, source = self.engine.generate_json(prompt, gestion="Validación Specs", documento="certificado.pdf")
+        if result:
             return result
-            
-        except json.JSONDecodeError as e:
-            self.logger.error(f"Error parseando respuesta JSON de IA: {e}")
-            self.logger.error(f"Respuesta recibida: {response.text[:200]}")
-            return {
-                'found': False,
-                'matches': {},
-                'missing': list(expected_specs.keys()),
-                'confidence': 0.0,
-                'reasoning': f'Error parseando respuesta IA: {e}'
-            }
-        except Exception as e:
-            # Manejo específico de rate limit
-            error_msg = str(e)
-            if '429' in error_msg or 'RESOURCE_EXHAUSTED' in error_msg:
-                self.logger.warning(f"Rate limit alcanzado. Esperando {self.delay_seconds * 2}s...")
-                time.sleep(self.delay_seconds * 2)
-            
-            self.logger.error(f"Error en validación con IA: {e}")
-            return {
-                'found': False,
-                'matches': {},
-                'missing': list(expected_specs.keys()),
-                'confidence': 0.0,
-                'reasoning': f'Error ejecutando IA: {e}'
-            }
+        return {
+            'found': False,
+            'matches': {},
+            'missing': list(expected_specs.keys()),
+            'confidence': 0.0,
+            'reasoning': 'No se pudo realizar la validación por IA'
+        }
 
 
-# Función auxiliar para uso rápido
-def extract_specs_ai(text: str, api_key: Optional[str] = None) -> Optional[Dict]:
-    """
-    Función helper rápida para extraer specs con IA.
-    
-    Args:
-        text: Texto del cual extraer especificaciones
-        api_key: API key de Gemini (opcional)
-    
-    Returns:
-        Dict con specs extraídas o None
-    """
-    helper = AISpecsHelper(api_key=api_key)
-    return helper.extract_specs_from_text(text)
-
-
-def validate_specs_ai(
-    pdf_text: str, 
-    expected_specs: Dict[str, str],
-    api_key: Optional[str] = None
-) -> Dict:
-    """
-    Función helper rápida para validar specs con IA.
-    
-    Args:
-        pdf_text: Texto del PDF del certificado
-        expected_specs: Specs que se esperan encontrar
-        api_key: API key de Gemini (opcional)
-    
-    Returns:
-        Dict con resultado de validación
-    """
-    helper = AISpecsHelper(api_key=api_key)
-    return helper.validate_specs_in_text(pdf_text, expected_specs)
-
+# ── Funciones Standalone para el Extractor Dispatcher (M3) ───────────────────
 
 def fill_missing_fields_ai(
     cert_text: str,
-    missing_fields: list[str],
+    missing_fields: List[str],
     api_key: Optional[str] = None,
     log_fn=None,
     oec_context: str = "",
 ) -> Dict[str, str]:
-    """
-    Función helper rápida para completar campos faltantes de un certificado usando IA.
-
-    Args:
-        cert_text: Texto completo extraído del certificado PDF.
-        missing_fields: Lista de campos vacíos a completar (ej: ['fabricante', 'marca']).
-        api_key: API key de Gemini (opcional, busca en env GEMINI_API_KEY).
-        log_fn: Función de log (level, msg) opcional.
-
-    Returns:
-        Dict con los campos completados. Los que no se pudieron extraer quedan como ''.
-    """
+    """Completado inteligente de campos vacíos."""
     logger_local = logging.getLogger(__name__)
     def _log(level: str, msg: str):
         if log_fn:
@@ -352,87 +311,51 @@ def fill_missing_fields_ai(
         else:
             getattr(logger_local, level, logger_local.info)(msg)
 
-    key = api_key or os.getenv('GEMINI_API_KEY')
-    if not key:
-        _log("warning", "[AI] GEMINI_API_KEY no configurada — saltando fallback de IA")
-        return {f: '' for f in missing_fields}
+    engine = AIEngine()
 
-    try:
-        client = genai.Client(api_key=key)
-        model_id = "gemini-2.5-flash-lite"
+    field_descriptions = {
+        "marca": "La marca comercial del producto (ej: GADNIC). NO incluir specs eléctricas aquí.",
+        "fabricante": "Nombre de la empresa FABRICANTE en China u origen. NUNCA Lenor, IRAM, Intertek o Qetkra.",
+        "direccion": "Dirección física de la FÁBRICA.",
+        "modelos": "Todos los números/códigos de modelo completos separados por coma. NUNCA truncar.",
+        "specs": "Especificaciones eléctricas (ej: 220V~; 50Hz; 500W; Clase II).",
+        "producto_desc": "Descripción del tipo de producto.",
+        "fecha_emision": "Fecha de emisión (dd/mm/yyyy).",
+    }
 
-        # Mapeo de campos a descripciones en lenguaje natural para el prompt
-        field_descriptions = {
-            "marca":         "La marca comercial del producto (ej: GADNIC, Samsung, Lenovo)",
-            "fabricante":    "Nombre de la empresa fabricante (ej: Shenzhen XYZ Electronics Co., Ltd.)",
-            "direccion":     "Dirección física del fabricante (calle, ciudad, país)",
-            "modelos":       "Los números o nombres de modelo del producto (pueden ser varios, separados por coma)",
-            "specs":         "Especificaciones técnicas eléctricas (voltaje, corriente, potencia, frecuencia, clase)",
-            "producto_desc": "Descripción general del tipo de producto (ej: Fuente de alimentación, Luminaria LED)",
-            "fecha_emision": "Fecha en que fue emitido el certificado (formato dd/mm/yyyy)",
-            "fecha_vencimiento": "Fecha de vencimiento o próxima vigilancia del certificado (formato dd/mm/yyyy)",
-        }
+    campos_solicitados = "\n".join(f'- "{f}": {field_descriptions.get(f, f)}' for f in missing_fields)
+    context_block = f"{oec_context}\n" if oec_context else ""
 
-        campos_solicitados = "\n".join(
-            f'- "{f}": {field_descriptions.get(f, f)}'
-            for f in missing_fields
-        )
+    prompt = f"""{context_block}Sos un auditor experto en certificación de productos eléctricos.
 
-        context_block = f"{oec_context}\n" if oec_context else ""
-        prompt = f"""{context_block}Sos un experto en análisis de certificados de seguridad eléctrica de productos.
-
-Tu tarea es extraer campos específicos de un certificado. SOLO respondé con un JSON válido.
-
-CAMPOS QUE NECESITO EXTRAER:
+CAMPOS A EXTRAER:
 {campos_solicitados}
 
 TEXTO DEL CERTIFICADO:
-{cert_text[:6000]}
+{cert_text[:15000]}
 
-REGLAS:
-- Si un campo no está claramente en el texto, retorná "" (string vacío).
-- No inventes datos. Solo extraé lo que definitivamente está en el texto.
-- Para 'modelos': si hay múltiples, unilos con ', ' (coma espacio).
-- Para 'specs': incluí todo el bloque de specs eléctricas en una sola línea.
-- Para fechas: formato dd/mm/yyyy.
-- Si el CONTEXTO DEL CERTIFICADO fue provisto arriba, usalo para identificar los labels correctos.
-- Respondé SOLO con el JSON, sin markdown, sin explicaciones.
-
-JSON esperado (solo las claves pedidas):
-{{{{
-  {', '.join(f'"{f}": "valor o vacío"' for f in missing_fields)}
-}}}}"""
-
-        context_block = f"{oec_context}\n" if oec_context else ""
-
-        _log("info", f"[AI] Fallback Gemini para campos vacios: {missing_fields}")
+REGLAS STRICTAS:
+1. FIDELIDAD ABSOLUTA: Extrae ÚNICAMENTE información que esté expresamente en el certificado. NUNCA inventes, adivines ni asumas datos que no figuren explícitamente. Si un dato no figura, asigna "".
+2. 'fabricante': Es la fábrica real. NUNCA pongas 'LENOR S.R.L.', 'IRAM', 'Intertek', 'Qetkra' ni códigos de formulario como 'AAB817'.
+3. 'marca': Solo el nombre de marca (ej: GADNIC). NUNCA pongas especificaciones eléctricas (voltaje/potencia) dentro del campo marca.
+4. 'modelos': Devuelve la LISTA COMPLETA de todos los modelos separados por comas (leé los anexos completos). No recortes la lista.
+5. 'specs': Pon únicamente el bloque eléctrico (voltaje, corriente, potencia, frecuencia, clase).
 
 
-        response = client.models.generate_content(
-            model=model_id,
-            contents=prompt
-        )
+JSON esperado (solo estas claves):
+{{
+  {', '.join(f'"{f}": "valor"' for f in missing_fields)}
+}}"""
 
-        response_text = response.text.strip()
-        # Limpiar markdown si viene en bloque de código
-        if response_text.startswith('```'):
-            lines_r = response_text.split('\n')
-            response_text = '\n'.join(lines_r[1:-1])
+    _log("info", f"[AI] Solicitando campos vacíos {missing_fields} a la IA...")
+    result, source = engine.generate_json(prompt, gestion="Completar Campos Vacíos", documento="certificado.pdf")
 
-        result = json.loads(response_text)
-
-        # Solo devolver los campos pedidos, nunca extras
-        filled = {f: str(result.get(f, '')) for f in missing_fields}
-        filled_info = ', '.join(f"{k}='{v[:30]}'".rstrip("'") + "'" for k, v in filled.items() if v)
-        _log("info", f"[AI] ✓ Campos completados por Gemini: {filled_info or '(ninguno)'}")
+    if result:
+        filled = {f: str(result.get(f, '')).strip() for f in missing_fields}
+        _log("info", f"[AI] ✓ Campos completados por IA ({source}): {filled}")
         return filled
 
-    except json.JSONDecodeError as e:
-        _log("warning", f"[AI] Error parseando JSON de Gemini: {e}")
-        return {f: '' for f in missing_fields}
-    except Exception as e:
-        _log("warning", f"[AI] Error en fallback de IA: {e}")
-        return {f: '' for f in missing_fields}
+    return {f: '' for f in missing_fields}
 
 
 def review_extraction_ai(
@@ -443,26 +366,7 @@ def review_extraction_ai(
     locked_fields: Optional[List[str]] = None,
     oec_context: str = "",
 ) -> Dict[str, str]:
-    """
-    Revisión semántica completa de todos los campos extraídos por el regex.
-
-    Gemini recibe los valores actuales + el texto del cert y verifica:
-    - Si cada campo es correcto para lo que debería ser
-    - Si hay valores mal asignados (dirección en fabricante, modelo en specs, etc.)
-    - Si hay campos con valores incompletos o truncados
-    - Completa los que están vacíos si los encuentra en el texto
-
-    Nunca sobreescribe con cadena vacía: solo mejora, nunca empeora.
-
-    Args:
-        cert_text: Texto completo del certificado.
-        extracted:  Dict con los valores actuales de todos los campos.
-        api_key:    API key de Gemini (opcional).
-        log_fn:     Función de log (level, msg).
-
-    Returns:
-        Dict con los campos corregidos/completados. Mismas claves que extracted.
-    """
+    """Revisión semántica completa de los datos extraídos."""
     logger_local = logging.getLogger(__name__)
     def _log(level: str, msg: str):
         if log_fn:
@@ -470,104 +374,165 @@ def review_extraction_ai(
         else:
             getattr(logger_local, level, logger_local.info)(msg)
 
-    key = api_key or os.getenv('GEMINI_API_KEY')
-    if not key:
-        _log("debug", "[AI] GEMINI_API_KEY no configurada — saltando revisión")
-        return extracted
+    engine = AIEngine()
+    campos_actuales = json.dumps(extracted, ensure_ascii=False, indent=2)
+    context_block = f"{oec_context}\n" if oec_context else ""
 
-    try:
-        client = genai.Client(api_key=key)
-        model_id = "gemini-2.5-flash-lite"
+    prompt = f"""{context_block}Sos un auditor experto en revisión de certificados de seguridad eléctrica.
+Revisa los datos extraídos por regex y corrige cualquier desalineación o confusión.
 
-        campos_actuales = json.dumps(extracted, ensure_ascii=False, indent=2)
-
-        context_block = f"{oec_context}\n" if oec_context else ""
-        prompt = f"""{context_block}Sos un experto en análisis de certificados de seguridad eléctrica (IRAM, IEC, CB Scheme).
-Tu tarea es REVISAR y CORREGIR los datos extraídos de un certificado por un sistema de regex.
-
-DATOS ACTUALES EXTRAÍDOS (pueden tener errores o estar incompletos):
+DATOS EXTRAÍDOS POR REGEX:
 {campos_actuales}
 
-TEXTO COMPLETO DEL CERTIFICADO:
-{cert_text[:7000]}
+TEXTO DEL CERTIFICADO:
+{cert_text[:8000]}
 
-DEFINICIÓN DE CADA CAMPO (qué debe contener):
-- cert_number: Código oficial del certificado (ej: LCSH-2466, Q-AR-05917-T-0, TCSE-IACSA-0146/324.1). Solo el código, sin texto extra ni sufijos de formulario.
-- normas: Normas técnicas aplicadas (ej: IEC 60335-1:2020, IRAM 2084). Lista completa separada por comas.
-- marca: Nombre comercial del producto/marca registrada (ej: GADNIC, Samsung). Solo la marca.
-- fabricante: Nombre de la empresa FABRICANTE del producto. NO es el laboratorio de ensayo, NO es el organismo certificador, NO es el importador.
-- direccion: Dirección física de la FÁBRICA. NO es la dirección del laboratorio ni del importador.
-- modelos: Números o referencias de modelo (ej: MOD-123, GAD-456). Solo códigos de modelo.
-- specs: Especificaciones eléctricas (voltaje, corriente, potencia, frecuencia, clase). Todo en una línea.
-- producto_desc: Tipo genérico del producto (ej: Fuente de alimentación, Luminaria LED, Calefactor).
-- fecha_emision: Fecha de emisión del certificado en formato dd/mm/yyyy.
+REGLAS CRÍTICAS DE CORRECCIÓN:
+1. 'marca': Si el regex guardó especificaciones eléctricas (ej: '220V~; 50Hz; 250W') dentro de 'marca', EXTRAELAS de allí y deja solo el nombre de la marca (ej: 'GADNIC').
+2. 'fabricante': El fabricante es la FÁBRICA. Si en 'fabricante' figura 'LENOR S.R.L.', 'IRAM', 'Intertek', 'Qetkra' o un código como 'AAB817', BÚSCALO en el texto y CORRÍGELO por el nombre real de la empresa fabricante.
+3. 'modelos': Si ves que la palabra de la marca (ej: 'GADNIC') o sufijos están pegados a cada modelo (ej: 'BAR01 GADNIC'), limpia la lista para que queden solo los códigos o separados por comas. Asegúrate de incluir TODOS los modelos del anexo.
+4. 'specs': Si las specs estaban vacías o cruzadas, colócalas correctamente en 'specs'.
+5. NUNCA borres un valor válido si no tienes una corrección mejor.
 
-INSTRUCCIONES:
-1. Para cada campo, decidí si el valor actual es CORRECTO, necesita CORRECCIÓN o está VACÍO.
-2. Si el valor es correcto: retornalo igual.
-3. Si el valor es incorrecto (ej: dirección del laboratorio en 'fabricante'): corregilo con el dato real del fabricante.
-4. Si está vacío pero lo encontrás en el texto: completálo.
-5. Si no podés determinarlo con certeza: dejálo como está.
-6. NUNCA retornes cadena vacía si el campo ya tenía un valor — solo mejorá.
-7. ATENCIÓN: El campo 'fabricante' debe ser la empresa que FABRICA el producto, no el laboratorio que lo ensayó ni el organismo que certifica. Si ves "LENOR S.R.L.", "IRAM", "Intertek", etc. como posible fabricante, verificá que efectivamente figure como fabricante en el certificado, no como laboratorio o certificadora.
-
-IMPORTANTE: Respondé SOLO con el JSON con exactamente las mismas claves, sin markdown, sin explicaciones.
-
-JSON esperado:
+JSON esperado (mismas claves exactas):
 {{
-  "cert_number": "valor corregido o igual",
-  "normas": "valor corregido o igual",
-  "marca": "valor corregido o igual",
-  "fabricante": "valor corregido o igual",
-  "direccion": "valor corregido o igual",
-  "modelos": "valor corregido o igual",
-  "specs": "valor corregido o igual",
-  "producto_desc": "valor corregido o igual",
-  "fecha_emision": "valor corregido o igual"
+  "cert_number": "valor",
+  "normas": "valor",
+  "marca": "valor",
+  "fabricante": "valor",
+  "direccion": "valor",
+  "modelos": "valor",
+  "specs": "valor",
+  "producto_desc": "valor",
+  "fecha_emision": "valor"
 }}"""
 
-        context_block = f"{oec_context}\n" if oec_context else ""
-        _log("info", "[AI] Revisión semántica completa iniciada (Gemini reviewer)")
+    _log("info", "[AI] Iniciando revisión semántica inteligente (OpenAI/AI Engine)...")
+    reviewed, source = engine.generate_json(prompt, gestion="Revisión Semántica", documento="certificado.pdf")
 
-        response = client.models.generate_content(
-            model=model_id,
-            contents=prompt
-        )
-
-        response_text = response.text.strip()
-        if response_text.startswith('```'):
-            lines_r = response_text.split('\n')
-            response_text = '\n'.join(lines_r[1:-1])
-
-        reviewed = json.loads(response_text)
-
-        # Aplicar correcciones: solo mejorar, nunca vaciar
-        result = dict(extracted)
-        changes = []
-        locked = locked_fields or []
-        for field, new_val in reviewed.items():
-            if field not in result or field in locked:
-                continue
-            old_val = result.get(field, '')
-            new_val = str(new_val).strip()
-            if new_val and new_val != old_val:
-                if not old_val:
-                    result[field] = new_val
-                    changes.append(f"{field}: [vacío]→'{new_val[:40]}'")
-                elif new_val != old_val:
-                    result[field] = new_val
-                    changes.append(f"{field}: '{old_val[:25]}'→'{new_val[:25]}'")
-
-        if changes:
-            _log("info", f"[AI] Revisor → cambios: {' | '.join(changes)}")
-        else:
-            _log("info", "[AI] Revisor → todos los campos validados sin cambios")
-
-        return result
-
-    except json.JSONDecodeError as e:
-        _log("warning", f"[AI] Error parseando revisión de Gemini: {e}")
+    if not reviewed:
         return extracted
-    except Exception as e:
-        _log("warning", f"[AI] Error en revisión semántica: {e}")
-        return extracted
+
+    result = dict(extracted)
+    changes = []
+    locked = locked_fields or []
+
+    for field, new_val in reviewed.items():
+        if field not in result or field in locked:
+            continue
+        old_val = str(result.get(field, '')).strip()
+        new_val = str(new_val).strip()
+
+        if new_val and new_val != old_val:
+            if not old_val:
+                result[field] = new_val
+                changes.append(f"{field}: [vacío] → '{new_val[:40]}'")
+            elif new_val != old_val:
+                result[field] = new_val
+                changes.append(f"{field}: '{old_val[:25]}' → '{new_val[:25]}'")
+
+    if changes:
+        _log("info", f"[AI] Revisor ({source}) → cambios aplicados: {' | '.join(changes)}")
+    else:
+        _log("info", f"[AI] Revisor ({source}) → datos validados sin desalineaciones.")
+
+    return result
+
+
+# ── Extracción Especializada para DJC Eficiencia Energética (EE) ──────────────
+
+def extract_ee_specs_ai(
+    report_text: str,
+    ee_families_config: List[Dict],
+    log_fn=None
+) -> Optional[Dict[str, Any]]:
+    """
+    Analiza un Informe de Ensayo o Certificado de Eficiencia Energética (EE)
+    y extrae automáticamente la familia correspondiente, métricas, datos de laboratorio y specs base.
+    """
+    engine = AIEngine()
+
+    # Filtrar bloques de texto relevantes si el informe es muy extenso
+    lines_relevant = []
+    for line in report_text.split('\n'):
+        l_low = line.lower()
+        if any(k in l_low for k in ['test report', 'prprüfbericht', 'client:', 'applicant', 'identification', 'model', 'modelo', 'brand', 'marca', 'iram', 'resolution', '438/2024', 'energy efficiency', 'clase', 'class', 'consumption', 'consumo', 'volume', 'volumen', 'eei', 'noise', 'ruido', 'capacity', 'capacidad', 'place settings', 'cubiertos', 'standby', 'off-mode', 'appendix', 'issue date', 'date:', 'voltage', 'frequency', 'power', 'potencia', 'tüv', 'iram', 'service-gc@tuv.com', 'web:', 'duration', 'duración', 'programme', 'minutes', 'min', 'watt', 'rated', 'input', '1900', '1760', '2100']):
+            lines_relevant.append(line)
+
+    text_to_analyze = "\n".join(lines_relevant) if len(lines_relevant) > 20 else report_text
+    if len(text_to_analyze) > 15000:
+        text_to_analyze = text_to_analyze[:15000]
+
+    familias_summary = []
+    for fam in ee_families_config:
+        fields_str = ", ".join(f"{f['key']} ({f['label']})" for f in fam.get("fields", []))
+        familias_summary.append(f"- ID: '{fam['id']}' | Nombre: '{fam['label']}' | Campos: {fields_str}")
+
+    prompt = f"""Sos un experto técnico en certificación de Eficiencia Energética (SENCE / IRAM / Res. 438/2024).
+Analiza el siguiente Informe de Ensayo o Certificado de Eficiencia Energética y extrae los datos requeridos.
+
+CATÁLOGO DE FAMILIAS DE EFICIENCIA ENERGÉTICA PERMITIDAS:
+{chr(10).join(familias_summary)}
+
+TEXTO DEL INFORME DE ENSAYO / CERTIFICADO EE:
+{text_to_analyze}
+
+INSTRUCCIONES DE EXTRACCIÓN COMPLETA:
+1. Identifica a qué 'family_id' pertenece el producto.
+2. Extrae la 'clase_ee' (Clase de Eficiencia Energética). IMPORTANTE: La escala fue RE-ESCALADA bajo la Res. 438/2024, por lo que arranca strictly en 'A' y va hasta la 'G' (NO existen las clases A+++, A++, A+).
+3. Extrae la marca comercial ('marca'), ej: 'GADNIC'. Si no figura explícita o figura N/A, infiérelas del cliente/marca si aplica o asigna null.
+4. Extrae el modelo o lista de modelos comerciales ('modelos'), ej: 'GADW14' o 'CS-100L-M, CS-100L-G'.
+5. Extrae la descripción técnica corta del producto ('producto_desc'), ej: 'Lavavajillas de 14 cubiertos' o 'Heladera con congelador'.
+6. Extrae los datos del informe y laboratorio:
+   - 'cert_number': Número de Informe de Ensayo (ej: 'CN26L8YX 001' o 'AR EE CN26ADZ3 001').
+   - 'oec_nombre': Nombre del Laboratorio (ej: 'TÜV Rheinland (Guangdong) Ltd.').
+   - 'oec_contacto': Correo o web de contacto (ej: 'service-gc@tuv.com' o 'www.tuv.com').
+   - 'fecha_emision': Fecha de emisión en formato DD/MM/YYYY.
+7. Extrae las especificaciones eléctricas base del producto ('base_specs'):
+   - 'tension': Tensión nominal en V~ (ej: '220 V~' o '220-240 V~').
+   - 'frecuencia': Frecuencia nominal en Hz (ej: '50 Hz').
+   - 'potencia': Potencia nominal en W (ej: '1900 W' o '1760-2100 W'). Busca la potencia de consumo/rated power. Si es lavavajillas y no la halla explícita, asigna '1760-2100 W'.
+   - 'clase': Clase eléctrica (SIEMPRE asigna 'Clase I' para electrodomésticos salvo que explicite Clase II).
+   - 'ip': Grado IP de protección si figura (ej: 'IPX1' o null si no especifica).
+
+8. Extrae todas las métricas de la familia ('ee_fields'):
+   - 'iee': Índice de Eficiencia Energética (EEI), ej: 47.5 o 41.8.
+   - Para Lavavajillas: 'capacidad' (cubiertos), 'consumo_anual' (kWh/año), 'consumo_ciclo' (kWh/ciclo), 'consumo_espera' (W), 'agua_ciclo' (L/ciclo), 'agua_anual' (L/año), 'clase_secado', 'duracion_ciclo' (min, ej: 220), 'duracion_sin_apagar' (min, ej: 5), 'ruido' (dB(A)).
+   - Para Refrigeradores: 'categoria', 'consumo_anual', 'vol_frescos', 'vol_congelados', 'ruido', 'estrellas', 'clase_climatica'.
+
+JSON ESPERADO ESTRICTO:
+{{
+  "family_id": "lavavajillas",
+  "clase_ee": "A",
+  "marca": "GADNIC",
+  "modelos": "GADW14",
+  "producto_desc": "Lavavajillas de 14 cubiertos",
+  "cert_number": "CN26L8YX 001",
+  "oec_nombre": "TÜV Rheinland",
+  "oec_contacto": "service-gc@tuv.com",
+  "fecha_emision": "02/04/2026",
+  "base_specs": {{
+    "tension": "220-240 V~",
+    "frecuencia": "50 Hz",
+    "potencia": "1900 W",
+    "clase": "Clase I",
+    "ip": null
+  }},
+  "ee_fields": {{
+    "iee": 47.5,
+    "capacidad": 14,
+    "consumo_anual": 227.48,
+    "consumo_ciclo": 0.835,
+    "consumo_espera": 0.45,
+    "agua_ciclo": 9.6,
+    "agua_anual": 2688,
+    "clase_secado": "A",
+    "duracion_ciclo": 220,
+    "duracion_sin_apagar": "5 min",
+    "ruido": 48
+  }}
+}}"""
+
+
+    result, source = engine.generate_json(prompt, gestion="Extracción DJC EE", documento="informe_ee.pdf")
+    return result

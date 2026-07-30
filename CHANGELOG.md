@@ -1,6 +1,18 @@
 # ARGOS - Changelog
 
-## v2.5.0 (2026-06-18) - Planilla de Fotos Datasheet, Reordenamiento de UI y Múltiples Marcas
+## v3.1.0 (2026-07-29) - Sistema Inteligente Completo, Instalable 1-Clic, Bloques Intertek y Argos Ledger
+
+### ✨ Nuevas Características
+- **Ejecutable e Instalador Windows Standalone (v3.1.0)**: Creados los compiladores `build_exe.py` (PyInstaller) e `argos_installer.iss` (Inno Setup) para empaquetar toda la aplicación (FastAPI + React Frontend + PyMuPDF + CustomTkinter) en un instalador Windows instalable en 1-clic (`Argos_Setup_v3_1_0.exe`).
+- **Nuevos Ejecutables de Instalación Directa**: Añadidos `Instalar_Argos.bat` e `Iniciar Argos.bat` en la raíz para permitir instalación y arranque inmediato en cualquier PC con 1 clic.
+- **Parser por Bloques de Coordenadas (`extract_pdf_clean_text`)**: Implementada la extracción espacial por coordenadas `(y0, x0)` en PyMuPDF que previene el entrelazado de columnas y garantiza la lectura de todas las líneas en certificados complejos de **Intertek**, **IRAM** y **Lenor**.
+- **Regla Estricta de Fidelidad sin Alucinaciones en IA**: Reforzadas las instrucciones de OpenAI `gpt-4o-mini` para prohibir expresamente la invención o suposición de datos que no figuren explícitamente en el certificado.
+- **Modal de Control de Presupuesto & Argos Ledger**: Incorporado el botón dinámico `💰 Presupuesto & Consumo IA` en el Header del frontend con modal interactivo de consumo acumulado, saldo mensual disponible, peticiones en caché gratuita (`⚡ $0.00 FREE`) e historial detallado.
+- **Eficiencia Energética Re-escalada (Res. SIyC N° 438/2024)**: Re-escaladas las familias de Eficiencia Energética estrictamente a letras **A** a **G** (eliminando clases obsoletas A+++/A++/A+) y agregando extracción explícita de **Marca comercial** y **Modelo/s** que autocompleta el Paso 1 al subir el informe PDF.
+- **Navegación Fluida en Paso 5**: Corregido el flujo UI del Paso 5 de Eficiencia Energética, asegurando que el panel nunca quede en blanco y habilitando los botones de navegación "Anterior" y "Generar DJC-EE" en todos los pasos.
+
+---
+
 
 ### ✨ Nuevas Características
 - **Planilla de Fotos (Datasheet) Autogenerada**: El orquestador de solicitudes para Lenor ahora genera y adjunta automáticamente en el ZIP de salida la planilla Excel precargada (`Datasheet_[Nro].xlsx`) con las tablas de modelos y especificaciones de todos los SKUs, combinando celdas de marcas/especificaciones/imagen y aplicando bordes negros estéticos listos para pegar fotos.

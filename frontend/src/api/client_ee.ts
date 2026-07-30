@@ -91,3 +91,20 @@ export async function confirmEEDJC(params: EEConfirmParams): Promise<string[]> {
   const d = await r.json();
   return d.saved as string[];
 }
+
+// ── POST Auto-Extract File ───────────────────────────────────────────────────
+
+export async function autoExtractEEFile(file: File): Promise<any> {
+  const fd = new FormData();
+  fd.append('file', file);
+  const r = await fetch(`${BASE}/ee/auto-extract-file`, {
+    method: 'POST',
+    body: fd,
+  });
+  if (!r.ok) {
+    const err = await r.json().catch(() => ({ detail: 'Error al autocompletar con IA' }));
+    throw new Error(err.detail || 'Error al procesar el archivo');
+  }
+  return r.json();
+}
+

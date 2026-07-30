@@ -1380,7 +1380,9 @@ class ArgosApp(TkinterDnD.Tk):
             oec_widget = self.djc_entries.get("OEC")
             if oec_widget:
                 oec_key = oec_widget.get()
-                oec_info = self.djc_gen.get_oec_options().get(oec_key, {})
+                from modules.m3_djc_generator import normalize_oec_key
+                normalized_oec_key = normalize_oec_key(oec_key)
+                oec_info = self.djc_gen.get_oec_options().get(normalized_oec_key, {})
                 data["oec_nombre"] = oec_info.get("nombre", oec_key)
                 data["oec_contacto"] = oec_info.get("contacto", "")
             

@@ -120,5 +120,5 @@ def extract(lines: list[str], text_sorted: str = "", log_fn=None) -> dict:
     result["fecha_inicio_tramite"] = calc_inicio_tramite(result["fecha_vencimiento"])
 
     if log_fn:
-        log_fn("info", f"Quektra extraído: marca={result['marca']}, fab={str(result['fabricante'])[:30]}, emision={result['fecha_emision']}")
+        log_fn("info", f"Qetkra extraído: marca={result['marca']}, fab={str(result['fabricante'])[:30]}, emision={result['fecha_emision']}")
     return result

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import * as htmlToImage from 'html-to-image';
-import { getEEFamilies, generateEEDJC, confirmEEDJC, type EEFamily, type EEGenerateResult } from '../api/client_ee';
+import { getEEFamilies, generateEEDJC, confirmEEDJC, autoExtractEEFile, type EEFamily, type EEGenerateResult } from '../api/client_ee';
 import EtiquetaEE, { type EtiquetaData } from '../components/EtiquetaEE';
 
 interface Props {
@@ -14,6 +14,83 @@ export default function EficienciaEnergetica({ onLog }: Props) {
   // ── ESTADOS DEL FORMULARIO ──
   const [families, setFamilies] = useState<EEFamily[]>([]);
   const [selectedFamilyId, setSelectedFamilyId] = useState<string>('');
+
+  const [loadingAiReport, setLoadingAiReport] = useState(false);
+  const eeReportInputRef = useRef<HTMLInputElement>(null);
+
+  const handleEeReportUpload = async (file: File) => {
+    if (!file.name.toLowerCase().endsWith('.pdf')) {
+      onLog('warning', 'El informe debe ser un archivo PDF');
+      return;
+    }
+    setLoadingAiReport(true);
+    onLog('info', `[EE/AI] 📄 Archivo cargado: '${file.name}' (${(file.size / 1024).toFixed(1)} KB)`);
+    onLog('info', `[EE/AI] 🤖 Enviando informe a OpenAI (gpt-4o-mini) para análisis estructural y extracción...`);
+    try {
+      const res = await autoExtractEEFile(file);
+      if (res) {
+        // Paso 1: Marca, Modelo y Descripción
+        if (res.marca) setMarca(res.marca);
+        if (res.modelos) setModelo(res.modelos);
+        if (res.producto_desc) setProductoDesc(res.producto_desc);
+
+
+        // Paso 2: Familia, Specs Base y Métricas EE
+        if (res.family_id) setSelectedFamilyId(res.family_id);
+        if (res.base_specs) {
+          setBaseSpecs(prev => ({
+            ...prev,
+            ...res.base_specs
+          }));
+        }
+        if (res.ee_fields) {
+          setEeFields(prev => ({
+            ...prev,
+            ...(res.clase_ee ? { clase_ee: res.clase_ee } : {}),
+            ...res.ee_fields
+          }));
+        }
+
+        // Paso 3: Informe, Laboratorio, Contacto y Fechas (+4 años auto)
+        if (res.cert_number) setCertNumber(res.cert_number);
+        if (res.oec_nombre) setOecNombre(res.oec_nombre);
+        if (res.oec_contacto) setOecContacto(res.oec_contacto);
+        if (res.fecha_emision) setFechaEmision(res.fecha_emision);
+        if (res.fecha_proxima_vigilancia) setFechaVencimiento(res.fecha_proxima_vigilancia);
+
+        // Logs detallados campo a campo para trazabilidad completa
+        onLog('info', `[EE/AI] 🏷️ Marca: '${res.marca || 'N/A'}' | Modelo/s: '${res.modelos || 'N/A'}'`);
+        onLog('info', `[EE/AI] 📦 Familia identificada: '${res.family_id || 'N/A'}' | Descripción: '${res.producto_desc || 'N/A'}'`);
+        onLog('info', `[EE/AI] ⚡ Clase Eficiencia Energética: '${res.clase_ee || 'N/A'}' (Res. 438/2024 escala A-G)`);
+
+
+        if (res.ee_fields) {
+          const metricsStr = Object.entries(res.ee_fields)
+            .filter(([_, v]) => v !== null && v !== undefined)
+            .map(([k, v]) => `${k}: ${v}`)
+            .join(' | ');
+          onLog('info', `[EE/AI] 📊 Métricas EE Extraídas: [ ${metricsStr} ]`);
+        }
+
+        if (res.base_specs) {
+          onLog('info', `[EE/AI] 🔌 Specs Eléctricas Base: Tensión '${res.base_specs.tension || 'N/A'}' | Frecuencia '${res.base_specs.frecuencia || 'N/A'}' | Potencia '${res.base_specs.potencia || 'N/A'}'`);
+        }
+
+        onLog('info', `[EE/AI] 🏭 Ensayo & Laboratorio: N° Informe '${res.cert_number || 'N/A'}' | OEC '${res.oec_nombre || 'N/A'}' | Contacto '${res.oec_contacto || 'N/A'}'`);
+        onLog('info', `[EE/AI] 📅 Vigencia: Emisión '${res.fecha_emision || 'N/A'}' → Próx. Vigilancia '${res.fecha_proxima_vigilancia || 'N/A'}' (+4 años auto)`);
+        onLog('info', `[EE/AI] ✓ Autocompletado del Paso 1, Paso 2 y Paso 3 finalizado exitosamente.`);
+      }
+    } catch (e: any) {
+      onLog('error', `[EE/AI] Error analizando informe con IA: ${e.message || e}`);
+    } finally {
+      setLoadingAiReport(false);
+    }
+  };
+
+
+
+
+
   
   const [bidcom, setBidcom] = useState('');
   const [marca, setMarca] = useState('');
@@ -656,6 +733,64 @@ export default function EficienciaEnergetica({ onLog }: Props) {
                       Paso 1: Identificación
                     </h3>
                   </div>
+
+                  {/* BLOQUE DE AUTOCOMPLETADO POR IA */}
+                  <div style={{
+                    padding: 14,
+                    background: 'linear-gradient(135deg, rgba(139,92,246,0.1) 0%, rgba(59,130,246,0.05) 100%)',
+                    borderRadius: 12,
+                    border: '1px dashed rgba(139,92,246,0.3)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 10
+                  }}>
+                    <input
+                      ref={eeReportInputRef}
+                      type="file"
+                      accept=".pdf"
+                      style={{ display: 'none' }}
+                      onChange={e => { const f = e.target.files?.[0]; if (f) handleEeReportUpload(f); }}
+                    />
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                      <span className="material-symbols-outlined" style={{ fontSize: 20, color: '#a78bfa' }}>auto_awesome</span>
+                      <span style={{ fontSize: 12, fontWeight: 700, color: '#c4b5fd', textTransform: 'uppercase' }}>
+                        Autocompletar con IA (Informe de Ensayo)
+                      </span>
+                    </div>
+                    <p style={{ fontSize: 11, color: '#94a3b8', margin: 0, lineHeight: 1.4 }}>
+                      Sube el PDF del Informe de Ensayo de EE (ej: TÜV Rheinland / IRAM) para extraer la familia, clase y métricas automáticamente.
+                    </p>
+                    <button
+                      onClick={() => eeReportInputRef.current?.click()}
+                      disabled={loadingAiReport}
+                      style={{
+                        width: '100%',
+                        height: 42,
+                        borderRadius: 8,
+                        background: loadingAiReport ? '#4c1d95' : '#7c3aed',
+                        color: '#ffffff',
+                        fontSize: 11,
+                        fontWeight: 700,
+                        textTransform: 'uppercase',
+                        border: 'none',
+                        cursor: loadingAiReport ? 'wait' : 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: 8,
+                        boxShadow: '0 4px 12px rgba(124,58,237,0.25)',
+                        transition: 'all 0.15s'
+                      }}
+                      onMouseEnter={(e) => { if (!loadingAiReport) e.currentTarget.style.background = '#6d28d9'; }}
+                      onMouseLeave={(e) => { if (!loadingAiReport) e.currentTarget.style.background = '#7c3aed'; }}
+                    >
+                      <span className="material-symbols-outlined" style={{ fontSize: 16 }}>
+                        {loadingAiReport ? 'sync' : 'upload_file'}
+                      </span>
+                      <span>{loadingAiReport ? 'Analizando Informe de Ensayo con IA...' : '📄 Subir Informe de Ensayo (PDF)'}</span>
+                    </button>
+                  </div>
+
                   
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
                     <label style={labelStyle}>Número de Gestión Bidcom</label>
@@ -1081,196 +1216,248 @@ export default function EficienciaEnergetica({ onLog }: Props) {
               )}
 
               {/* PASO 5: VISTA PREVIA Y CONFIRMACIÓN */}
-              {currentStep === 5 && previewResult && (
+              {currentStep === 5 && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }} className="animate-fadeIn">
                   <div style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: 12, marginBottom: 4 }}>
-                    <h3 style={{ fontSize: 14, fontWeight: 700, color: '#10b981', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
-                      Paso 5: Vista Previa
+                    <h3 style={{ fontSize: 14, fontWeight: 700, color: previewResult ? '#10b981' : '#f59e0b', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+                      Paso 5: Vista Previa y Confirmación
                     </h3>
                   </div>
 
-                  <div style={{
-                    background: 'rgba(16,185,129,0.06)',
-                    border: '1px solid rgba(16,185,129,0.2)',
-                    borderRadius: 10,
-                    padding: 16,
-                    fontSize: 12,
-                    color: '#34d399',
-                    lineHeight: '1.6'
-                  }}>
-                    <strong>¡DJC-EE generada exitosamente en memoria!</strong> Podés ver la previsualización del PDF en la pantalla derecha.
-                  </div>
-
-                  <div style={{
-                    background: '#161522',
-                    border: '1px solid rgba(139,92,246,0.18)',
-                    borderRadius: 10,
-                    padding: 16
-                  }}>
-                    <div style={{ fontSize: 9, fontWeight: 700, color: '#958ea0', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 8 }}>Resumen Archivo</div>
+                  {!previewResult ? (
                     <div style={{
-                      fontFamily: "'Courier New', monospace",
-                      fontSize: 12,
-                      color: '#a78bfa',
-                      userSelect: 'all',
-                      padding: 10,
-                      background: '#0f0e15',
-                      border: '1px solid rgba(139,92,246,0.08)',
-                      borderRadius: 6,
-                      marginBottom: 12,
-                      wordBreak: 'break-all'
-                    }}>
-                      {previewResult.filename}
-                    </div>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, fontSize: 11, color: '#94a3b8' }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <span>Bidcom:</span>
-                        <span style={{ fontWeight: 700, color: '#fff' }}>C{bidcom}</span>
-                      </div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <span>Marca/Modelo:</span>
-                        <span style={{ fontWeight: 700, color: '#fff' }}>{marca} / {modelo}</span>
-                      </div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <span>ID DJC:</span>
-                        <span style={{ fontWeight: 700, color: '#fff' }}>{previewResult.djc_id}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {savedPaths ? (
-                    <div style={{
-                      background: 'rgba(16,185,129,0.06)',
-                      border: '1px solid rgba(16,185,129,0.2)',
+                      background: 'rgba(245,158,11,0.06)',
+                      border: '1px solid rgba(245,158,11,0.2)',
                       borderRadius: 10,
                       padding: 16,
                       display: 'flex',
                       flexDirection: 'column',
-                      gap: 8
+                      gap: 12
                     }}>
-                      <p style={{ fontSize: 12, fontWeight: 700, color: '#34d399' }}>✓ Guardado físicamente en tu PC:</p>
-                      {savedPaths.map((p, idx) => (
-                        <div key={idx} style={{
-                          fontFamily: "'Courier New', monospace",
-                          fontSize: 10,
-                          color: '#e2e8f0',
-                          padding: 8,
-                          background: '#0f0e15',
-                          borderRadius: 4,
-                          wordBreak: 'break-all',
-                          userSelect: 'all'
-                        }}>
-                          {p}
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <div style={{ display: 'flex', gap: 12, marginTop: 8 }}>
+                      <p style={{ fontSize: 12, color: '#fbbf24', margin: 0, lineHeight: 1.5 }}>
+                        <strong>Previsualización pendiente:</strong> Presioná el botón a continuación para compilar el documento oficial en Word (.docx) y PDF con las etiquetas capturadas.
+                      </p>
                       <button
-                        onClick={handleDiscard}
-                        disabled={confirming}
+                        onClick={handleGenerate}
+                        disabled={generating}
                         style={{
-                          flex: 1,
+                          width: '100%',
                           height: 48,
                           borderRadius: 10,
-                          background: 'transparent',
-                          color: '#64748b',
-                          border: '1px solid rgba(255,255,255,0.08)',
-                          fontWeight: 700,
-                          fontSize: 12,
-                          textTransform: 'uppercase',
-                          cursor: 'pointer',
-                          transition: 'all 0.15s'
-                        }}
-                        onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.02)'; e.currentTarget.style.color = '#fff'; }}
-                        onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#64748b'; }}
-                      >
-                        Descartar
-                      </button>
-                      <button
-                        onClick={handleConfirm}
-                        disabled={confirming}
-                        style={{
-                          flex: 1,
-                          height: 48,
-                          borderRadius: 10,
-                          background: '#10b981',
+                          backgroundColor: '#8b5cf6',
                           color: '#fff',
-                          border: 'none',
                           fontWeight: 700,
                           fontSize: 12,
                           textTransform: 'uppercase',
+                          border: 'none',
                           cursor: 'pointer',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          gap: 6,
-                          boxShadow: '0 4px 14px rgba(16,185,129,0.3)',
-                          transition: 'all 0.15s'
+                          gap: 8,
+                          boxShadow: '0 4px 14px rgba(139,92,246,0.3)'
                         }}
-                        onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#059669'; }}
-                        onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#10b981'; }}
                       >
-                        {confirming ? (
+                        {generating ? (
                           <>
                             <div style={{ width: 16, height: 16, borderRadius: '50%', border: '2px solid rgba(255,255,255,0.3)', borderTopColor: '#fff', animation: 'spin 0.7s linear infinite' }} />
-                            <span>Guardando...</span>
+                            <span>Generando previsualización...</span>
                           </>
                         ) : (
                           <>
-                            <span className="material-symbols-outlined" style={{ fontSize: 18 }}>cloud_done</span>
-                            <span>Confirmar & Guardar</span>
+                            <span className="material-symbols-outlined" style={{ fontSize: 18 }}>picture_as_pdf</span>
+                            <span>⚡ GENERAR Y VER PREVISUALIZACIÓN DJC-EE</span>
                           </>
                         )}
                       </button>
                     </div>
+                  ) : (
+                    <>
+                      <div style={{
+                        background: 'rgba(16,185,129,0.06)',
+                        border: '1px solid rgba(16,185,129,0.2)',
+                        borderRadius: 10,
+                        padding: 16,
+                        fontSize: 12,
+                        color: '#34d399',
+                        lineHeight: '1.6'
+                      }}>
+                        <strong>¡DJC-EE generada exitosamente en memoria!</strong> Podés ver la previsualización del PDF en la pantalla derecha.
+                      </div>
+
+                      <div style={{
+                        background: '#161522',
+                        border: '1px solid rgba(139,92,246,0.18)',
+                        borderRadius: 10,
+                        padding: 16
+                      }}>
+                        <div style={{ fontSize: 9, fontWeight: 700, color: '#958ea0', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 8 }}>Resumen Archivo</div>
+                        <div style={{
+                          fontFamily: "'Courier New', monospace",
+                          fontSize: 12,
+                          color: '#a78bfa',
+                          userSelect: 'all',
+                          padding: 10,
+                          background: '#0f0e15',
+                          border: '1px solid rgba(139,92,246,0.08)',
+                          borderRadius: 6,
+                          marginBottom: 12,
+                          wordBreak: 'break-all'
+                        }}>
+                          {previewResult.filename}
+                        </div>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, fontSize: 11, color: '#94a3b8' }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                            <span>Bidcom:</span>
+                            <span style={{ fontWeight: 700, color: '#fff' }}>C{bidcom}</span>
+                          </div>
+                          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                            <span>Marca/Modelo:</span>
+                            <span style={{ fontWeight: 700, color: '#fff' }}>{marca} / {modelo}</span>
+                          </div>
+                          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                            <span>ID DJC:</span>
+                            <span style={{ fontWeight: 700, color: '#fff' }}>{previewResult.djc_id}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {savedPaths ? (
+                        <div style={{
+                          background: 'rgba(16,185,129,0.06)',
+                          border: '1px solid rgba(16,185,129,0.2)',
+                          borderRadius: 10,
+                          padding: 16,
+                          display: 'flex',
+                          flexDirection: 'column',
+                          gap: 8
+                        }}>
+                          <p style={{ fontSize: 12, fontWeight: 700, color: '#34d399' }}>✓ Guardado físicamente en tu PC:</p>
+                          {savedPaths.map((p, idx) => (
+                            <div key={idx} style={{
+                              fontFamily: "'Courier New', monospace",
+                              fontSize: 10,
+                              color: '#e2e8f0',
+                              padding: 8,
+                              background: '#0f0e15',
+                              borderRadius: 4,
+                              wordBreak: 'break-all',
+                              userSelect: 'all'
+                            }}>
+                              {p}
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div style={{ display: 'flex', gap: 12, marginTop: 8 }}>
+                          <button
+                            onClick={handleDiscard}
+                            disabled={confirming}
+                            style={{
+                              flex: 1,
+                              height: 48,
+                              borderRadius: 10,
+                              background: 'transparent',
+                              color: '#64748b',
+                              border: '1px solid rgba(255,255,255,0.08)',
+                              fontWeight: 700,
+                              fontSize: 12,
+                              textTransform: 'uppercase',
+                              cursor: 'pointer',
+                              transition: 'all 0.15s'
+                            }}
+                            onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.02)'; e.currentTarget.style.color = '#fff'; }}
+                            onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#64748b'; }}
+                          >
+                            Descartar
+                          </button>
+                          <button
+                            onClick={handleConfirm}
+                            disabled={confirming}
+                            style={{
+                              flex: 1,
+                              height: 48,
+                              borderRadius: 10,
+                              background: '#10b981',
+                              color: '#fff',
+                              border: 'none',
+                              fontWeight: 700,
+                              fontSize: 12,
+                              textTransform: 'uppercase',
+                              cursor: 'pointer',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              gap: 6,
+                              boxShadow: '0 4px 14px rgba(16,185,129,0.3)',
+                              transition: 'all 0.15s'
+                            }}
+                            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#059669'; }}
+                            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#10b981'; }}
+                          >
+                            {confirming ? (
+                              <>
+                                <div style={{ width: 16, height: 16, borderRadius: '50%', border: '2px solid rgba(255,255,255,0.3)', borderTopColor: '#fff', animation: 'spin 0.7s linear infinite' }} />
+                                <span>Guardando...</span>
+                              </>
+                            ) : (
+                              <>
+                                <span className="material-symbols-outlined" style={{ fontSize: 18 }}>cloud_done</span>
+                                <span>Confirmar & Guardar</span>
+                              </>
+                            )}
+                          </button>
+                        </div>
+                      )}
+                    </>
                   )}
                 </div>
               )}
 
             </div>
 
-            {/* BOTONES ANTERIOR / SIGUIENTE */}
-            {currentStep < 5 && (
-              <div style={{
-                display: 'flex',
-                gap: 16,
-                marginTop: 20,
-                paddingTop: 16,
-                borderTop: '1px solid rgba(255,255,255,0.06)'
-              }}>
-                <button
-                  onClick={() => setCurrentStep(prev => prev - 1)}
-                  disabled={currentStep === 1}
-                  style={{
-                    flex: 1,
-                    height: 48,
-                    borderRadius: 10,
-                    background: 'transparent',
-                    border: '1px solid rgba(255,255,255,0.08)',
-                    color: currentStep === 1 ? '#475569' : '#94a3b8',
-                    fontWeight: 700,
-                    fontSize: 12,
-                    textTransform: 'uppercase',
-                    cursor: currentStep === 1 ? 'default' : 'pointer',
-                    opacity: currentStep === 1 ? 0.4 : 1,
-                    transition: 'all 0.15s'
-                  }}
-                  onMouseEnter={(e) => {
-                    if (currentStep !== 1) {
-                      e.currentTarget.style.background = 'rgba(255,255,255,0.02)';
-                      e.currentTarget.style.color = '#fff';
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (currentStep !== 1) {
-                      e.currentTarget.style.background = 'transparent';
-                      e.currentTarget.style.color = '#94a3b8';
-                    }
-                  }}
-                >
-                  Anterior
-                </button>
+            {/* BOTONES ANTERIOR / SIGUIENTE (SIEMPRE VISIBLES PARA NAVEGACIÓN LIBRE) */}
+            <div style={{
+              display: 'flex',
+              gap: 16,
+              marginTop: 20,
+              paddingTop: 16,
+              borderTop: '1px solid rgba(255,255,255,0.06)'
+            }}>
+              <button
+                onClick={() => setCurrentStep(prev => Math.max(1, prev - 1))}
+                disabled={currentStep === 1}
+                style={{
+                  flex: 1,
+                  height: 48,
+                  borderRadius: 10,
+                  background: 'transparent',
+                  border: '1px solid rgba(255,255,255,0.08)',
+                  color: currentStep === 1 ? '#475569' : '#94a3b8',
+                  fontWeight: 700,
+                  fontSize: 12,
+                  textTransform: 'uppercase',
+                  cursor: currentStep === 1 ? 'default' : 'pointer',
+                  opacity: currentStep === 1 ? 0.4 : 1,
+                  transition: 'all 0.15s'
+                }}
+                onMouseEnter={(e) => {
+                  if (currentStep !== 1) {
+                    e.currentTarget.style.background = 'rgba(255,255,255,0.02)';
+                    e.currentTarget.style.color = '#fff';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (currentStep !== 1) {
+                    e.currentTarget.style.background = 'transparent';
+                    e.currentTarget.style.color = '#94a3b8';
+                  }
+                }}
+              >
+                Anterior
+              </button>
+
+              {currentStep < 4 ? (
                 <button
                   onClick={() => setCurrentStep(prev => prev + 1)}
                   disabled={
@@ -1335,8 +1522,32 @@ export default function EficienciaEnergetica({ onLog }: Props) {
                 >
                   Siguiente
                 </button>
-              </div>
-            )}
+              ) : currentStep === 4 ? (
+                <button
+                  onClick={handleGenerate}
+                  disabled={generating}
+                  style={{
+                    flex: 1,
+                    height: 48,
+                    borderRadius: 10,
+                    background: '#8b5cf6',
+                    color: '#fff',
+                    fontWeight: 700,
+                    fontSize: 12,
+                    textTransform: 'uppercase',
+                    border: 'none',
+                    cursor: 'pointer',
+                    boxShadow: '0 4px 14px rgba(139,92,246,0.3)',
+                    transition: 'all 0.15s'
+                  }}
+                  onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#7c3aed'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#8b5cf6'; }}
+                >
+                  {generating ? 'Generando...' : 'Generar DJC-EE →'}
+                </button>
+              ) : null}
+            </div>
+
           </div>
 
           {/* COLUMNA DERECHA: VISUALIZADOR (PDF O ETIQUETA SEGÚN EL PASO) */}

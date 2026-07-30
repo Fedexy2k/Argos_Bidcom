@@ -24,6 +24,28 @@ def _log_fn(level: str, msg: str, log_fn: Optional[Callable] = None):
         getattr(logger, level, logger.info)(msg)
 
 
+def extract_pdf_clean_text(pdf_path: str) -> str:
+    """
+    Extrae el texto completo de un PDF preservando la estructura de bloques y tablas multi-columna.
+    Ordena los bloques por coordenada (y0, x0) para evitar que tablas de Intertek/IRAM/Lenor
+    se mezclen entre columnas o pierdan líneas de modelos/specs.
+    """
+    if not os.path.exists(pdf_path):
+        return ""
+    doc = fitz.open(pdf_path)
+    all_pages_text = []
+    for page in doc:
+        blocks = page.get_text("blocks")
+        # Ordenar por fila (y0 agrupado en bandas de 15px) y luego por columna (x0)
+        blocks.sort(key=lambda b: (round(b[1] / 15), b[0]))
+        page_str = "\n".join(b[4].strip() for b in blocks if b[4].strip())
+        if page_str:
+            all_pages_text.append(page_str)
+    doc.close()
+    return "\n\n--- Hoja del Certificado ---\n\n".join(all_pages_text)
+
+
+
 # ─────────────────────────────────────────────────────────────
 #  Detección y remoción de DJC anterior
 # ─────────────────────────────────────────────────────────────
@@ -120,6 +142,20 @@ def censor_cert_pdf(
 
         count = 0
         for zone in hit_rects:
+            # Evitar censurar la linea de la marca comercial si el nombre del fabricante/direccion
+            # coincide con la marca y la coincidencia de anclaje cae en la declaracion de marca.
+            line_rect = fitz.Rect(0, zone.y0 - 15, page.rect.width, zone.y1 + 15)
+            line_words = page.get_text("words", clip=line_rect)
+            is_brand_line = False
+            for w in line_words:
+                w_lower = w[4].lower()
+                if any(k in w_lower for k in ("marca", "trademark", "brand", "marque", "tradename")):
+                    is_brand_line = True
+                    break
+            if is_brand_line:
+                _log_fn("info", f"[M3-Censor] Saltando linea de marca/trademark en Y={zone.y0:.1f} para evitar censura erronea.", log_fn)
+                continue
+
             band = fitz.Rect(zone.x0, zone.y0 - 2, page.rect.width, zone.y1 + 2)
             all_words = page.get_text("words", clip=band)
             if not all_words:
@@ -158,6 +194,73 @@ def censor_cert_pdf(
 
         return count
 
+    def _censor_factory_block(page) -> int:
+        factory_hits = page.search_for("de la fabrica", quads=False)
+        if not factory_hits:
+            factory_hits = page.search_for("de la fábrica", quads=False)
+        if not factory_hits:
+            factory_hits = page.search_for("of the factory", quads=False)
+            
+        if not factory_hits:
+            return 0
+            
+        zone_factory = factory_hits[0]
+        next_labels = [
+            "valores nominales", "ratings", "marca", "trademark",
+            "modelo", "model", "informacion", "información",
+            "additional", "normas", "standards"
+        ]
+        zone_next = None
+        for lbl in next_labels:
+            lbl_hits = page.search_for(lbl, quads=False)
+            for hit in lbl_hits:
+                if hit.y0 > zone_factory.y0 + 5:
+                    if zone_next is None or hit.y0 < zone_next.y0:
+                        zone_next = hit
+                        
+        y_start = zone_factory.y0 - 2
+        if zone_next:
+            y_end = zone_next.y0 - 4
+        else:
+            y_end = zone_factory.y1 + 100
+            
+        rect_factory_val = fitz.Rect(zone_factory.x1 + 5, y_start, page.rect.width, y_end)
+        factory_words = page.get_text("words", clip=rect_factory_val)
+        if not factory_words:
+            return 0
+            
+        factory_words_sorted = sorted(factory_words, key=lambda w: (w[1], w[0]))
+        group_rect = None
+        count = 0
+        
+        for word_entry in factory_words_sorted:
+            word_text = word_entry[4]
+            wr = fitz.Rect(word_entry[:4])
+            
+            if _should_preserve(word_text):
+                if group_rect is not None:
+                    page.draw_rect(group_rect, color=None, fill=BLACK, width=0)
+                    count += 1
+                    group_rect = None
+            else:
+                if group_rect is None:
+                    group_rect = wr
+                else:
+                    group_rect = fitz.Rect(
+                        min(group_rect.x0, wr.x0),
+                        min(group_rect.y0, wr.y0),
+                        max(group_rect.x1, wr.x1),
+                        max(group_rect.y1, wr.y1),
+                    )
+                    
+        if group_rect is not None:
+            page.draw_rect(group_rect, color=None, fill=BLACK, width=0)
+            count += 1
+            
+        if count > 0:
+            _log_fn("info", f"[M3-Censor] Bloque de fabrica censurado en pag {page.number+1}.", log_fn)
+        return count
+
     total_rects = 0
     for page in doc:
         page_text = page.get_text("text").strip()
@@ -166,6 +269,7 @@ def censor_cert_pdf(
             continue
         total_rects += _censor_field(page, fabricante, "Fabricante")
         total_rects += _censor_field(page, direccion, "Direccion")
+        total_rects += _censor_factory_block(page)
 
     if total_rects > 0:
         _log_fn("info", f"[M3-Censor] {total_rects} bloque(s) censurados (preserve_words respetadas).", log_fn)

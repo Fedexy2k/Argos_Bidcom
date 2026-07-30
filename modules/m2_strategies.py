@@ -479,16 +479,16 @@ class CBSchemeStrategy(AuditStrategy):
             self._log("INFO", f"   ✓ SPECS: Match aceptable ({len(matches)}/{len(datasheet_values)} valores)")
 
 
-class QuektraStrategy(AuditStrategy):
-    """Reglas específicas para certificados de Quektra (certificadora argentina)."""
+class QetkraStrategy(AuditStrategy):
+    """Reglas específicas para certificados de Qetkra (certificadora argentina)."""
     
     def validate(self, text, json_data, cert_type):
         
-        self._log("INFO", "=== Validación con QUEKTRA STRATEGY ===")
+        self._log("INFO", "=== Validación con QETKRA STRATEGY ===")
         self._log("INFO", f"Tipo de certificado: {cert_type}")
-        self._log("DEBUG", "Quektra: Certificadora nacional argentina (ISO/IEC 17067 Sistema Nº 2)")
+        self._log("DEBUG", "Qetkra: Certificadora nacional argentina (ISO/IEC 17067 Sistema Nº 2)")
         
-        # Quektra es muy similar a la estrategia estándar pero con algunas particularidades
+        # Qetkra es muy similar a la estrategia estándar pero con algunas particularidades
         
         # 1. Marca (Hard match)
         self._log("DEBUG", "Campo MARCA: Aparece como 'Trademark' o directamente en sección")
@@ -544,9 +544,9 @@ class StrategyFactory:
         
         if is_quektra:
             if logger:
-                logger.info("✓ Estrategia detectada: QUEKTRA")
+                logger.info("✓ Estrategia detectada: QETKRA")
                 logger.debug("Keywords encontradas: Q-AR- / ISO/IEC 17067 / Conformidad de Tipo")
-            return QuektraStrategy(base_results, logger)
+            return QetkraStrategy(base_results, logger)
         
         # 3. Detectar OEC Nacional (Lenor, IRAM, etc.)
         is_lenor = "lenor" in text_lower

@@ -81,9 +81,17 @@
             "nombre": "Lenor SRL",
             "contacto": "info@lenorcert.com"
         },
+        "Qetkra": {
+            "nombre": "Qetkra S.R.L.",
+            "contacto": "https://www.qetkra.com/es-contacto"
+        },
+        "Quektra": {
+            "nombre": "Qetkra S.R.L.",
+            "contacto": "https://www.qetkra.com/es-contacto"
+        },
         "qetkra": {
-            "nombre": "qetkra S.R.L.",
-            "contacto": "https://www.qetkra.com.ar/"
+            "nombre": "Qetkra S.R.L.",
+            "contacto": "https://www.qetkra.com/es-contacto"
         },
         "IRAM": {
             "nombre": "IRAM - Instituto Argentino de Normalización y Certificación",
