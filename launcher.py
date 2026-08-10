@@ -121,7 +121,7 @@ def main():
     # UI Elements
     if hasattr(ctk, 'CTkLabel'):
         title_font = ctk.CTkFont(size=22, weight="bold")
-        ctk.CTkLabel(root, text="Argos V2.5.0", font=title_font).pack(pady=(15, 5))
+        ctk.CTkLabel(root, text="Argos V3.2.0", font=title_font).pack(pady=(15, 5))
         
         status_label = ctk.CTkLabel(root, text="Servidor Apagado.", text_color="gray")
         status_label.pack(pady=5)

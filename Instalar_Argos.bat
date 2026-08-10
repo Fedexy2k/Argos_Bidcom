@@ -1,8 +1,8 @@
 @echo off
 chcp 65001 >nul
-title Instalador Argos v3.1.0 - BIDCOM / Gadnic
+title Instalador Argos v3.2.0 - BIDCOM / Gadnic
 echo ============================================================
-echo   INSTALADOR ARGOS v3.1.0 - GADNIC / BIDCOM
+echo   INSTALADOR ARGOS v3.2.0 - GADNIC / BIDCOM
 echo ============================================================
 echo.
 echo [1/3] Verificando dependencias de Python y Node...

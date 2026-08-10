@@ -103,7 +103,7 @@ export default function Sidebar({ activeTab, onTabChange, apiVersion }: SidebarP
       {/* Version */}
       <div style={{ padding: '16px 28px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
         <span style={{ fontSize: 10, fontFamily: 'monospace', color: 'rgba(255,255,255,0.35)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
-          v{apiVersion || '2.5.0'}
+          v{apiVersion || '3.2.0'}
         </span>
       </div>
     </aside>

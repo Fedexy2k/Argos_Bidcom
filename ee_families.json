@@ -5,15 +5,164 @@
       "label": "Refrigeradores / Congeladores / Freezers",
       "norma_base": "IRAM 2404-3",
       "fields": [
-        { "key": "categoria", "label": "Categoría de aparato", "type": "select", "options": ["Categoría 1: Refrigerador doméstico", "Categoría 2: Refrigerador-congelador doméstico", "Categoría 3: Conservador de alimentos", "Categoría 4: Freezer vertical doméstico", "Categoría 5: Freezer horizontal doméstico"] },
-        { "key": "clase_ee", "label": "Clase de eficiencia energética", "type": "select", "options": ["A", "B", "C", "D", "E", "F", "G"] },
-        { "key": "iee", "label": "Índice de Eficiencia Energética (IEE)", "type": "number" },
-        { "key": "consumo_anual", "label": "Consumo de energía (kWh/año)", "type": "number", "unit": "kWh/año" },
-        { "key": "vol_frescos", "label": "Volumen alimentos frescos (L)", "type": "number", "unit": "L" },
-        { "key": "vol_congelados", "label": "Volumen alimentos congelados (L)", "type": "number", "unit": "L" },
-        { "key": "ruido", "label": "Nivel de Ruido (dB)", "type": "number", "unit": "dB(A)", "optional": true },
-        { "key": "estrellas", "label": "Clasificación estrellas", "type": "select", "options": ["⋆", "⋆⋆", "⋆⋆⋆", "⋆⋆⋆⋆"] },
-        { "key": "clase_climatica", "label": "Clase climática", "type": "text", "default": "T" }
+        {
+          "key": "categoria",
+          "label": "Categoría de aparato",
+          "type": "select",
+          "options": [
+            "Categoría 1: Refrigerador doméstico",
+            "Categoría 2: Refrigerador-congelador doméstico",
+            "Categoría 3: Conservador de alimentos",
+            "Categoría 4: Freezer vertical doméstico",
+            "Categoría 5: Freezer horizontal doméstico"
+          ]
+        },
+        {
+          "key": "clase_ee",
+          "label": "Clase de eficiencia energética",
+          "type": "select",
+          "options": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G"
+          ]
+        },
+        {
+          "key": "iee",
+          "label": "Índice de Eficiencia Energética (IEE)",
+          "type": "number"
+        },
+        {
+          "key": "consumo_anual",
+          "label": "Consumo de energía (kWh/año)",
+          "type": "number",
+          "unit": "kWh/año"
+        },
+        {
+          "key": "vol_frescos",
+          "label": "Volumen alimentos frescos (L)",
+          "type": "number",
+          "unit": "L"
+        },
+        {
+          "key": "vol_congelados",
+          "label": "Volumen alimentos congelados (L)",
+          "type": "number",
+          "unit": "L"
+        },
+        {
+          "key": "ruido",
+          "label": "Nivel de Ruido (dB)",
+          "type": "number",
+          "unit": "dB(A)",
+          "optional": true
+        },
+        {
+          "key": "estrellas",
+          "label": "Clasificación estrellas",
+          "type": "select",
+          "options": [
+            "⋆",
+            "⋆⋆",
+            "⋆⋆⋆",
+            "⋆⋆⋆⋆"
+          ]
+        },
+        {
+          "key": "clase_climatica",
+          "label": "Clase climática",
+          "type": "text",
+          "default": "T"
+        },
+        {
+          "key": "no_frost",
+          "label": "No Frost",
+          "type": "text",
+          "optional": true
+        },
+        {
+          "key": "autonomia",
+          "label": "Autonomía",
+          "type": "number",
+          "unit": "h",
+          "optional": true
+        },
+        {
+          "key": "cap_congelamiento",
+          "label": "Capacidad de congelamiento",
+          "type": "number",
+          "unit": "kg/24h",
+          "optional": true
+        },
+        {
+          "key": "consumo_espera",
+          "label": "Consumo en modo de espera (Standby)",
+          "type": "number",
+          "unit": "W",
+          "optional": true
+        }
+      ],
+      "ficha_fields": [
+        {
+          "row_label": "Tipo / Categoria de Producto",
+          "data_key": "categoria"
+        },
+        {
+          "row_label": "Clase de Eficiencia Energetica",
+          "data_key": "clase_ee"
+        },
+        {
+          "row_label": "Consumo de Energia Anual",
+          "data_key": "consumo_anual"
+        },
+        {
+          "row_label": "Consumo en Modo de Espera / Standby (W)",
+          "data_key": "consumo_espera"
+        },
+        {
+          "row_label": "Volumen util alimentos frescos (L)",
+          "data_key": "vol_frescos"
+        },
+        {
+          "row_label": "Volumen util alimentos congelados (L)",
+          "data_key": "vol_congelados"
+        },
+        {
+          "row_label": "Clasificacion por estrellas del compartimento congelados",
+          "data_key": "estrellas"
+        },
+        {
+          "row_label": "Mencion Sin Escarcha (No Frost)",
+          "data_key": "no_frost"
+        },
+        {
+          "row_label": "Autonomia (tiempo de elevacion de temperatura) (h)",
+          "data_key": "autonomia"
+        },
+        {
+          "row_label": "Capacidad de congelamiento (kg/24h)",
+          "data_key": "cap_congelamiento"
+        },
+        {
+          "row_label": "Clase Climatica",
+          "data_key": "clase_climatica"
+        },
+        {
+          "row_label": "Nivel de Ruido Aereo (dB(A) re 1 pW)",
+          "data_key": "ruido"
+        },
+        {
+          "row_label": "Norma Tecnica de Referencia",
+          "data_key": "norma_base"
+        },
+        {
+          "row_label": "Resolucion Aplicable",
+          "static_value": "Resolucion SIyC No 438/2024"
+        }
       ]
     },
     {
@@ -21,18 +170,188 @@
       "label": "Lavarropas eléctricos",
       "norma_base": "IRAM 2141-3",
       "fields": [
-        { "key": "clase_ee", "label": "Clase de eficiencia energética", "type": "select", "options": ["A", "B", "C", "D", "E", "F", "G"] },
-        { "key": "consumo_ee", "label": "Consumo de energía específico (kWh/kg)", "type": "number", "unit": "kWh/kg" },
-        { "key": "consumo_ciclo", "label": "Consumo de energía por ciclo (kWh/ciclo)", "type": "number", "unit": "kWh/ciclo" },
-        { "key": "agua_ciclo", "label": "Consumo de agua por ciclo (L/ciclo)", "type": "number", "unit": "L/ciclo" },
-        { "key": "capacidad", "label": "Capacidad de carga declarada", "type": "number", "unit": "kg" },
-        { "key": "clase_centrifugado", "label": "Clase de eficacia de centrifugado", "type": "select", "options": ["A", "B", "C", "D", "E", "F", "G"] },
-        { "key": "eficacia_extraccion", "label": "Eficacia de extracción de agua (%)", "type": "number", "unit": "%" },
-        { "key": "rpm_max", "label": "Velocidad máxima de centrifugado (RPM)", "type": "number", "unit": "RPM" },
-        { "key": "duracion_ciclo", "label": "Duración del ciclo normal", "type": "number", "unit": "min" },
-        { "key": "clase_lavado", "label": "Clase de eficacia de lavado", "type": "select", "options": ["A", "B", "C", "D", "E", "F", "G"] },
-        { "key": "indice_lavado", "label": "Índice de eficacia de lavado", "type": "number" },
-        { "key": "ruido", "label": "Nivel de ruido (dB)", "type": "number", "unit": "dB(A)", "optional": true }
+        {
+          "key": "clase_ee",
+          "label": "Clase de eficiencia energética",
+          "type": "select",
+          "options": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G"
+          ]
+        },
+        {
+          "key": "consumo_ee",
+          "label": "Consumo de energía específico (kWh/kg)",
+          "type": "number",
+          "unit": "kWh/kg"
+        },
+        {
+          "key": "consumo_ciclo",
+          "label": "Consumo de energía por ciclo (kWh/ciclo)",
+          "type": "number",
+          "unit": "kWh/ciclo"
+        },
+        {
+          "key": "agua_ciclo",
+          "label": "Consumo de agua por ciclo (L/ciclo)",
+          "type": "number",
+          "unit": "L/ciclo"
+        },
+        {
+          "key": "capacidad",
+          "label": "Capacidad de carga declarada",
+          "type": "number",
+          "unit": "kg"
+        },
+        {
+          "key": "clase_centrifugado",
+          "label": "Clase de eficacia de centrifugado",
+          "type": "select",
+          "options": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G"
+          ]
+        },
+        {
+          "key": "eficacia_extraccion",
+          "label": "Eficacia de extracción de agua (%)",
+          "type": "number",
+          "unit": "%"
+        },
+        {
+          "key": "rpm_max",
+          "label": "Velocidad máxima de centrifugado (RPM)",
+          "type": "number",
+          "unit": "RPM"
+        },
+        {
+          "key": "duracion_ciclo",
+          "label": "Duración del ciclo normal",
+          "type": "number",
+          "unit": "min"
+        },
+        {
+          "key": "clase_lavado",
+          "label": "Clase de eficacia de lavado",
+          "type": "select",
+          "options": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G"
+          ]
+        },
+        {
+          "key": "indice_lavado",
+          "label": "Índice de eficacia de lavado",
+          "type": "number"
+        },
+        {
+          "key": "ruido",
+          "label": "Nivel de ruido (dB)",
+          "type": "number",
+          "unit": "dB(A)",
+          "optional": true
+        },
+        {
+          "key": "consumo_espera",
+          "label": "Consumo en modo de espera",
+          "type": "number",
+          "unit": "W"
+        },
+        {
+          "key": "ruido_lavado",
+          "label": "Nivel de ruido (Lavado)",
+          "type": "number",
+          "unit": "dB(A)",
+          "optional": true
+        },
+        {
+          "key": "ruido_centrifugado",
+          "label": "Nivel de ruido (Centrifugado)",
+          "type": "number",
+          "unit": "dB(A)",
+          "optional": true
+        }
+      ],
+      "ficha_fields": [
+        {
+          "row_label": "Clase de Eficiencia Energetica",
+          "data_key": "clase_ee"
+        },
+        {
+          "row_label": "Consumo de Energia por Ciclo",
+          "data_key": "consumo_ciclo"
+        },
+        {
+          "row_label": "Consumo de Energia Anual",
+          "data_key": "consumo_anual_calc"
+        },
+        {
+          "row_label": "Clase de eficacia de lavado",
+          "data_key": "clase_lavado"
+        },
+        {
+          "row_label": "Velocidad maxima de centrifugado (RPM)",
+          "data_key": "rpm_max"
+        },
+        {
+          "row_label": "Contenido residual de humedad (%)",
+          "data_key": "eficacia_extraccion"
+        },
+        {
+          "row_label": "Capacidad de carga declarada (kg)",
+          "data_key": "capacidad"
+        },
+        {
+          "row_label": "Consumo de agua por ciclo (L)",
+          "data_key": "agua_ciclo"
+        },
+        {
+          "row_label": "Duracion del programa / ciclo normal (min)",
+          "data_key": "duracion_ciclo"
+        },
+        {
+          "row_label": "Consumo en Modo de Espera / Standby (W)",
+          "data_key": "consumo_espera"
+        },
+        {
+          "row_label": "Nivel de Ruido - Lavado (dB(A))",
+          "data_key": "ruido_lavado"
+        },
+        {
+          "row_label": "Nivel de Ruido - Centrifugado (dB(A))",
+          "data_key": "ruido_centrifugado"
+        },
+        {
+          "row_label": "Clase de eficacia de centrifugado",
+          "data_key": "clase_centrifugado"
+        },
+        {
+          "row_label": "Eficacia de lavado (indicacion ciclo normal algodon)",
+          "static_value": "Ciclo normal algodón"
+        },
+        {
+          "row_label": "Norma Tecnica de Referencia",
+          "data_key": "norma_base"
+        },
+        {
+          "row_label": "Resolucion Aplicable",
+          "static_value": "Resolucion SIyC No 438/2024"
+        }
       ]
     },
     {
@@ -40,16 +359,120 @@
       "label": "Acondicionadores de aire",
       "norma_base": "IRAM 62406",
       "fields": [
-        { "key": "tipo", "label": "Tipo de equipo", "type": "select", "options": ["Compacto On-Off", "Dividido (Split) On-Off", "Dividido (Split) Inverter", "Multi-split Inverter"] },
-        { "key": "clase_ee_refrig", "label": "Clase de eficiencia en modo Refrigeración", "type": "select", "options": ["A", "B", "C", "D", "E", "F", "G"] },
-        { "key": "ieee_refrig", "label": "IEEE en modo Refrigeración", "type": "number" },
-        { "key": "consumo_anual_refrig", "label": "Consumo anual en modo Refrigeración", "type": "number", "unit": "kWh" },
-        { "key": "cap_refrig", "label": "Capacidad de refrigeración nominal", "type": "number", "unit": "kW" },
-        { "key": "clase_ee_calef", "label": "Clase de eficiencia en modo Calefacción", "type": "select", "options": ["A", "B", "C", "D", "E", "F", "G"], "optional": true },
-        { "key": "cop", "label": "COP (Coeficiente de Performance Calefacción)", "type": "number", "optional": true },
-        { "key": "consumo_anual_calef", "label": "Consumo anual en modo Calefacción", "type": "number", "unit": "kWh", "optional": true },
-        { "key": "cap_calef", "label": "Capacidad de calefacción nominal", "type": "number", "unit": "kW", "optional": true },
-        { "key": "ruido", "label": "Nivel de ruido (Interior/Exterior)", "type": "text", "unit": "dB(A)", "optional": true }
+        {
+          "key": "tipo",
+          "label": "Tipo de equipo",
+          "type": "select",
+          "options": [
+            "Compacto On-Off",
+            "Dividido (Split) On-Off",
+            "Dividido (Split) Inverter",
+            "Multi-split Inverter"
+          ]
+        },
+        {
+          "key": "clase_ee_refrig",
+          "label": "Clase de eficiencia en modo Refrigeración",
+          "type": "select",
+          "options": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G"
+          ]
+        },
+        {
+          "key": "ieee_refrig",
+          "label": "IEEE en modo Refrigeración",
+          "type": "number"
+        },
+        {
+          "key": "consumo_anual_refrig",
+          "label": "Consumo anual en modo Refrigeración",
+          "type": "number",
+          "unit": "kWh"
+        },
+        {
+          "key": "cap_refrig",
+          "label": "Capacidad de refrigeración nominal",
+          "type": "number",
+          "unit": "kW"
+        },
+        {
+          "key": "clase_ee_calef",
+          "label": "Clase de eficiencia en modo Calefacción",
+          "type": "select",
+          "options": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G"
+          ],
+          "optional": true
+        },
+        {
+          "key": "cop",
+          "label": "COP (Coeficiente de Performance Calefacción)",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "key": "consumo_anual_calef",
+          "label": "Consumo anual en modo Calefacción",
+          "type": "number",
+          "unit": "kWh",
+          "optional": true
+        },
+        {
+          "key": "cap_calef",
+          "label": "Capacidad de calefacción nominal",
+          "type": "number",
+          "unit": "kW",
+          "optional": true
+        },
+        {
+          "key": "ruido",
+          "label": "Nivel de ruido (Interior/Exterior)",
+          "type": "text",
+          "unit": "dB(A)",
+          "optional": true
+        }
+      ],
+      "ficha_fields": [
+        {
+          "row_label": "Tipo / Categoria de Producto",
+          "data_key": "tipo"
+        },
+        {
+          "row_label": "Clase de Eficiencia Energetica",
+          "data_key": "clase_ee_refrig"
+        },
+        {
+          "row_label": "Indice de Eficiencia Energetica (IEE)",
+          "data_key": "ieee_refrig"
+        },
+        {
+          "row_label": "Consumo de Energia Anual",
+          "data_key": "consumo_anual_refrig"
+        },
+        {
+          "row_label": "Nivel de Ruido Aereo (dB(A) re 1 pW)",
+          "data_key": "ruido"
+        },
+        {
+          "row_label": "Norma Tecnica de Referencia",
+          "data_key": "norma_base"
+        },
+        {
+          "row_label": "Resolucion Aplicable",
+          "static_value": "Resolucion SIyC No 438/2024"
+        }
       ]
     },
     {
@@ -57,13 +480,94 @@
       "label": "Hornos a microondas",
       "norma_base": "IRAM 62407, IRAM 62301",
       "fields": [
-        { "key": "clase_ee", "label": "Clase de eficiencia energética", "type": "select", "options": ["A", "B", "C", "D", "E", "F", "G"] },
-        { "key": "iee", "label": "Índice de Eficiencia Energética (IEE %)", "type": "number", "unit": "%" },
-        { "key": "consumo_anual", "label": "Consumo anual estimado", "type": "number", "unit": "kWh/año" },
-        { "key": "potencia_microondas", "label": "Potencia de salida de microondas", "type": "number", "unit": "W" },
-        { "key": "vol_cavidad", "label": "Volumen de la cavidad del microondas", "type": "number", "unit": "L" },
-        { "key": "vol_util", "label": "Volumen útil utilizable", "type": "number", "unit": "L" },
-        { "key": "consumo_espera", "label": "Consumo en modo espera (Standby)", "type": "number", "unit": "W" }
+        {
+          "key": "clase_ee",
+          "label": "Clase de eficiencia energética",
+          "type": "select",
+          "options": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G"
+          ]
+        },
+        {
+          "key": "iee",
+          "label": "Índice de Eficiencia Energética (IEE %)",
+          "type": "number",
+          "unit": "%"
+        },
+        {
+          "key": "consumo_anual",
+          "label": "Consumo anual estimado",
+          "type": "number",
+          "unit": "kWh/año"
+        },
+        {
+          "key": "potencia_microondas",
+          "label": "Potencia de salida de microondas",
+          "type": "number",
+          "unit": "W"
+        },
+        {
+          "key": "vol_cavidad",
+          "label": "Volumen de la cavidad del microondas",
+          "type": "number",
+          "unit": "L"
+        },
+        {
+          "key": "vol_util",
+          "label": "Volumen útil utilizable",
+          "type": "number",
+          "unit": "L"
+        },
+        {
+          "key": "consumo_espera",
+          "label": "Consumo en modo espera (Standby)",
+          "type": "number",
+          "unit": "W"
+        }
+      ],
+      "ficha_fields": [
+        {
+          "row_label": "Clase de Eficiencia Energetica",
+          "data_key": "clase_ee"
+        },
+        {
+          "row_label": "Indice de Eficiencia Energetica (IEE)",
+          "data_key": "iee"
+        },
+        {
+          "row_label": "Consumo de Energia Anual",
+          "data_key": "consumo_anual"
+        },
+        {
+          "row_label": "Potencia de salida microondas (kW)",
+          "data_key": "potencia_microondas"
+        },
+        {
+          "row_label": "Volumen de la cavidad (L)",
+          "data_key": "vol_cavidad"
+        },
+        {
+          "row_label": "Volumen util de la cavidad (L)",
+          "data_key": "vol_util"
+        },
+        {
+          "row_label": "Consumo en Modo de Espera / Standby (W)",
+          "data_key": "consumo_espera"
+        },
+        {
+          "row_label": "Norma Tecnica de Referencia",
+          "data_key": "norma_base"
+        },
+        {
+          "row_label": "Resolucion Aplicable",
+          "static_value": "Resolucion SIyC No 438/2024"
+        }
       ]
     },
     {
@@ -71,13 +575,100 @@
       "label": "Calentadores de agua por acumulación (Termotanques)",
       "norma_base": "IRAM 62403",
       "fields": [
-        { "key": "clase_ee", "label": "Clase de eficiencia energética", "type": "select", "options": ["A", "B", "C", "D", "E", "F", "G"] },
-        { "key": "iee", "label": "Índice de Eficiencia Energética (IEE %)", "type": "number", "unit": "%" },
-        { "key": "capacidad_nominal", "label": "Capacidad nominal acumulada", "type": "number", "unit": "L" },
-        { "key": "consumo_anual", "label": "Consumo anual estimado", "type": "number", "unit": "kWh" },
-        { "key": "potencia_nominal", "label": "Potencia nominal de calentamiento", "type": "number", "unit": "kW" },
-        { "key": "tiempo_recalentamiento", "label": "Tiempo de recalentamiento", "type": "number", "unit": "min" },
-        { "key": "temp_agua", "label": "Temperatura media del agua extraída", "type": "number", "unit": "°C" }
+        {
+          "key": "clase_ee",
+          "label": "Clase de eficiencia energética",
+          "type": "select",
+          "options": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G"
+          ]
+        },
+        {
+          "key": "iee",
+          "label": "Índice de Eficiencia Energética (IEE %)",
+          "type": "number",
+          "unit": "%"
+        },
+        {
+          "key": "capacidad_nominal",
+          "label": "Capacidad nominal acumulada",
+          "type": "number",
+          "unit": "L"
+        },
+        {
+          "key": "consumo_anual",
+          "label": "Consumo anual estimado",
+          "type": "number",
+          "unit": "kWh"
+        },
+        {
+          "key": "potencia_nominal",
+          "label": "Potencia nominal de calentamiento",
+          "type": "number",
+          "unit": "kW"
+        },
+        {
+          "key": "tiempo_recalentamiento",
+          "label": "Tiempo de recalentamiento",
+          "type": "number",
+          "unit": "min"
+        },
+        {
+          "key": "temp_agua",
+          "label": "Temperatura media del agua extraída",
+          "type": "number",
+          "unit": "°C"
+        },
+        {
+          "key": "perdidas_disponibilidad",
+          "label": "Pérdidas por disponibilidad",
+          "type": "number",
+          "unit": "kWh/24h"
+        }
+      ],
+      "ficha_fields": [
+        {
+          "row_label": "Clase de Eficiencia Energetica",
+          "data_key": "clase_ee"
+        },
+        {
+          "row_label": "Consumo de Energia Anual",
+          "data_key": "consumo_anual"
+        },
+        {
+          "row_label": "Capacidad nominal acumulada (L)",
+          "data_key": "capacidad_nominal"
+        },
+        {
+          "row_label": "Perdidas por disponibilidad (kWh/24h)",
+          "data_key": "perdidas_disponibilidad"
+        },
+        {
+          "row_label": "Potencia nominal de calentamiento (W)",
+          "data_key": "potencia_nominal"
+        },
+        {
+          "row_label": "Tiempo de recalentamiento nominal (h)",
+          "data_key": "tiempo_recalentamiento"
+        },
+        {
+          "row_label": "Temperatura media del agua extraida (C)",
+          "data_key": "temp_agua"
+        },
+        {
+          "row_label": "Norma Tecnica de Referencia",
+          "data_key": "norma_base"
+        },
+        {
+          "row_label": "Resolucion Aplicable",
+          "static_value": "Resolucion SIyC No 438/2024"
+        }
       ]
     },
     {
@@ -85,14 +676,85 @@
       "label": "Lámparas",
       "norma_base": "IRAM 62404",
       "fields": [
-        { "key": "tecnologia", "label": "Tecnología de la lámpara", "type": "select", "options": ["LED", "Lámpara Fluorescente Compacta (LFC)", "Halógena", "Incandescente"] },
-        { "key": "clase_ee", "label": "Clase de eficiencia energética", "type": "select", "options": ["A", "B", "C", "D", "E", "F", "G"] },
-        { "key": "eficacia_luminosa", "label": "Eficacia luminosa declarada", "type": "number", "unit": "lm/W" },
-        { "key": "potencia", "label": "Potencia eléctrica nominal", "type": "number", "unit": "W" },
-        { "key": "flujo", "label": "Flujo luminoso nominal", "type": "number", "unit": "lm" },
-        { "key": "temp_color", "label": "Temperatura de color correlacionada", "type": "number", "unit": "K" },
-        { "key": "vida_nominal", "label": "Vida nominal declarada", "type": "number", "unit": "h" },
-        { "key": "flujo_mantenido", "label": "Factor de mantenimiento de flujo luminoso (%)", "type": "number", "unit": "%" }
+        {
+          "key": "tecnologia",
+          "label": "Tecnología de la lámpara",
+          "type": "select",
+          "options": [
+            "LED",
+            "Lámpara Fluorescente Compacta (LFC)",
+            "Halógena",
+            "Incandescente"
+          ]
+        },
+        {
+          "key": "clase_ee",
+          "label": "Clase de eficiencia energética",
+          "type": "select",
+          "options": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G"
+          ]
+        },
+        {
+          "key": "eficacia_luminosa",
+          "label": "Eficacia luminosa declarada",
+          "type": "number",
+          "unit": "lm/W"
+        },
+        {
+          "key": "potencia",
+          "label": "Potencia eléctrica nominal",
+          "type": "number",
+          "unit": "W"
+        },
+        {
+          "key": "flujo",
+          "label": "Flujo luminoso nominal",
+          "type": "number",
+          "unit": "lm"
+        },
+        {
+          "key": "temp_color",
+          "label": "Temperatura de color correlacionada",
+          "type": "number",
+          "unit": "K"
+        },
+        {
+          "key": "vida_nominal",
+          "label": "Vida nominal declarada",
+          "type": "number",
+          "unit": "h"
+        },
+        {
+          "key": "flujo_mantenido",
+          "label": "Factor de mantenimiento de flujo luminoso (%)",
+          "type": "number",
+          "unit": "%"
+        }
+      ],
+      "ficha_fields": [
+        {
+          "row_label": "Clase de Eficiencia Energetica",
+          "data_key": "clase_ee"
+        },
+        {
+          "row_label": "Consumo de Energia Anual",
+          "data_key": "consumo_anual_calc"
+        },
+        {
+          "row_label": "Norma Tecnica de Referencia",
+          "data_key": "norma_base"
+        },
+        {
+          "row_label": "Resolucion Aplicable",
+          "static_value": "Resolucion SIyC No 438/2024"
+        }
       ]
     },
     {
@@ -100,12 +762,79 @@
       "label": "Televisores",
       "norma_base": "IRAM 62411",
       "fields": [
-        { "key": "clase_ee", "label": "Clase de eficiencia energética", "type": "select", "options": ["A", "B", "C", "D", "E", "F", "G"] },
-        { "key": "iee", "label": "Índice de Eficiencia Energética (IEE)", "type": "number" },
-        { "key": "consumo_encendido", "label": "Consumo de potencia en modo encendido", "type": "number", "unit": "W" },
-        { "key": "consumo_anual", "label": "Consumo de energía anual estimado", "type": "number", "unit": "kWh/año" },
-        { "key": "diagonal", "label": "Diagonal visible de la pantalla", "type": "number", "unit": "cm" },
-        { "key": "consumo_espera", "label": "Consumo de potencia en modo de espera", "type": "number", "unit": "W" }
+        {
+          "key": "clase_ee",
+          "label": "Clase de eficiencia energética",
+          "type": "select",
+          "options": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G"
+          ]
+        },
+        {
+          "key": "iee",
+          "label": "Índice de Eficiencia Energética (IEE)",
+          "type": "number"
+        },
+        {
+          "key": "consumo_encendido",
+          "label": "Consumo de potencia en modo encendido",
+          "type": "number",
+          "unit": "W"
+        },
+        {
+          "key": "consumo_anual",
+          "label": "Consumo de energía anual estimado",
+          "type": "number",
+          "unit": "kWh/año"
+        },
+        {
+          "key": "diagonal",
+          "label": "Diagonal visible de la pantalla",
+          "type": "number",
+          "unit": "cm"
+        },
+        {
+          "key": "consumo_espera",
+          "label": "Consumo de potencia en modo de espera",
+          "type": "number",
+          "unit": "W"
+        }
+      ],
+      "ficha_fields": [
+        {
+          "row_label": "Clase de Eficiencia Energetica",
+          "data_key": "clase_ee"
+        },
+        {
+          "row_label": "Consumo Electrico en Modo Encendido (W)",
+          "data_key": "consumo_encendido"
+        },
+        {
+          "row_label": "Consumo de Energia Anual",
+          "data_key": "consumo_anual"
+        },
+        {
+          "row_label": "Consumo en Modo de Espera / Standby (W)",
+          "data_key": "consumo_espera"
+        },
+        {
+          "row_label": "Diagonal visible de la pantalla (cm)",
+          "data_key": "diagonal"
+        },
+        {
+          "row_label": "Norma Tecnica de Referencia",
+          "data_key": "norma_base"
+        },
+        {
+          "row_label": "Resolucion Aplicable",
+          "static_value": "Resolucion SIyC No 438/2024"
+        }
       ]
     },
     {
@@ -113,30 +842,190 @@
       "label": "Motores de inducción",
       "norma_base": "IRAM 62409",
       "fields": [
-        { "key": "tipo", "label": "Tipo de motor", "type": "select", "options": ["Monofásico (IRAM 62409)", "Trifásico (IRAM 62405)"] },
-        { "key": "clase_ee", "label": "Clase de eficiencia energética", "type": "select", "options": ["IE1 (Normal)", "IE2 (Alta)", "IE3 (Premium)", "IE4 (Super Premium)"] },
-        { "key": "rendimiento", "label": "Rendimiento a plena carga", "type": "number", "unit": "%" },
-        { "key": "potencia_nominal", "label": "Potencia nominal de salida", "type": "number", "unit": "kW" },
-        { "key": "nro_polos", "label": "Número de polos", "type": "number", "unit": "polos" }
-      ]
+        {
+          "key": "tipo",
+          "label": "Tipo de motor",
+          "type": "select",
+          "options": [
+            "Monofásico (IRAM 62409)",
+            "Trifásico (IRAM 62405)"
+          ]
+        },
+        {
+          "key": "clase_ee",
+          "label": "Clase de eficiencia energética",
+          "type": "select",
+          "options": [
+            "IE1 (Normal)",
+            "IE2 (Alta)",
+            "IE3 (Premium)",
+            "IE4 (Super Premium)"
+          ]
+        },
+        {
+          "key": "rendimiento",
+          "label": "Rendimiento a plena carga",
+          "type": "number",
+          "unit": "%"
+        },
+        {
+          "key": "potencia_nominal",
+          "label": "Potencia nominal de salida",
+          "type": "number",
+          "unit": "kW"
+        },
+        {
+          "key": "nro_polos",
+          "label": "Número de polos",
+          "type": "number",
+          "unit": "polos"
+        }
+      ],
+      "ficha_fields": []
     },
     {
       "id": "lavavajillas",
       "label": "Lavavajillas",
       "norma_base": "IRAM 2294-3, IEC 60436, IRAM 62301",
       "fields": [
-        { "key": "capacidad", "label": "Capacidad (cubiertos)", "type": "number", "unit": "cubiertos" },
-        { "key": "clase_ee", "label": "Clase de eficiencia energética", "type": "select", "options": ["A", "B", "C", "D", "E", "F", "G"] },
-        { "key": "iee", "label": "Índice de eficiencia energética (IEE)", "type": "number" },
-        { "key": "consumo_anual", "label": "Consumo de energía anual estimado", "type": "number", "unit": "kWh/año" },
-        { "key": "consumo_ciclo", "label": "Consumo de energía por ciclo", "type": "number", "unit": "kWh/ciclo" },
-        { "key": "consumo_espera", "label": "Consumo en modo espera (Standby)", "type": "number", "unit": "W" },
-        { "key": "agua_anual", "label": "Consumo de agua anual estimado", "type": "number", "unit": "L/año" },
-        { "key": "agua_ciclo", "label": "Consumo de agua por ciclo", "type": "number", "unit": "L/ciclo" },
-        { "key": "clase_secado", "label": "Clase eficacia de secado", "type": "select", "options": ["A", "B", "C", "D", "E", "F", "G"] },
-        { "key": "duracion_ciclo", "label": "Duración del ciclo normal", "type": "number", "unit": "min" },
-        { "key": "duracion_sin_apagar", "label": "Duración del modo sin apagar", "type": "text", "optional": true },
-        { "key": "ruido", "label": "Nivel de Ruido (dB)", "type": "number", "unit": "dB(A)", "optional": true }
+        {
+          "key": "capacidad",
+          "label": "Capacidad (cubiertos)",
+          "type": "number",
+          "unit": "cubiertos"
+        },
+        {
+          "key": "clase_ee",
+          "label": "Clase de eficiencia energética",
+          "type": "select",
+          "options": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G"
+          ]
+        },
+        {
+          "key": "iee",
+          "label": "Índice de eficiencia energética (IEE)",
+          "type": "number"
+        },
+        {
+          "key": "consumo_anual",
+          "label": "Consumo de energía anual estimado",
+          "type": "number",
+          "unit": "kWh/año"
+        },
+        {
+          "key": "consumo_ciclo",
+          "label": "Consumo de energía por ciclo",
+          "type": "number",
+          "unit": "kWh/ciclo"
+        },
+        {
+          "key": "consumo_espera",
+          "label": "Consumo en modo espera (Standby)",
+          "type": "number",
+          "unit": "W"
+        },
+        {
+          "key": "agua_anual",
+          "label": "Consumo de agua anual estimado",
+          "type": "number",
+          "unit": "L/año"
+        },
+        {
+          "key": "agua_ciclo",
+          "label": "Consumo de agua por ciclo",
+          "type": "number",
+          "unit": "L/ciclo"
+        },
+        {
+          "key": "clase_secado",
+          "label": "Clase eficacia de secado",
+          "type": "select",
+          "options": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G"
+          ]
+        },
+        {
+          "key": "duracion_ciclo",
+          "label": "Duración del ciclo normal",
+          "type": "number",
+          "unit": "min"
+        },
+        {
+          "key": "duracion_sin_apagar",
+          "label": "Duración del modo sin apagar",
+          "type": "text",
+          "optional": true
+        },
+        {
+          "key": "ruido",
+          "label": "Nivel de Ruido (dB)",
+          "type": "number",
+          "unit": "dB(A)",
+          "optional": true
+        }
+      ],
+      "ficha_fields": [
+        {
+          "row_label": "Capacidad declarada (cubiertos)",
+          "data_key": "capacidad"
+        },
+        {
+          "row_label": "Clase de Eficiencia Energetica",
+          "data_key": "clase_ee"
+        },
+        {
+          "row_label": "Consumo de Energia Anual",
+          "data_key": "consumo_anual"
+        },
+        {
+          "row_label": "Consumo de Energia por Ciclo",
+          "data_key": "consumo_ciclo"
+        },
+        {
+          "row_label": "Consumo en Modo Apagado (Po) y Sin Apagar (Pl)",
+          "data_key": "consumo_espera"
+        },
+        {
+          "row_label": "Consumo de agua anual (L/ano)",
+          "data_key": "agua_anual"
+        },
+        {
+          "row_label": "Clase de eficacia de secado",
+          "data_key": "clase_secado"
+        },
+        {
+          "row_label": "Duracion del programa / ciclo normal (min)",
+          "data_key": "duracion_ciclo"
+        },
+        {
+          "row_label": "Duracion del modo sin apagar (Tl)",
+          "data_key": "duracion_sin_apagar"
+        },
+        {
+          "row_label": "Nivel de Ruido Aereo (dB(A) re 1 pW)",
+          "data_key": "ruido"
+        },
+        {
+          "row_label": "Norma Tecnica de Referencia",
+          "data_key": "norma_base"
+        },
+        {
+          "row_label": "Resolucion Aplicable",
+          "static_value": "Resolucion SIyC No 438/2024"
+        }
       ]
     },
     {
@@ -144,16 +1033,113 @@
       "label": "Hornos eléctricos",
       "norma_base": "IRAM 62414-1/2, IRAM 62301",
       "fields": [
-        { "key": "clase_ee", "label": "Clase de eficiencia energética", "type": "select", "options": ["A", "B", "C", "D", "E", "F", "G"] },
-        { "key": "iee", "label": "Índice de eficiencia energética (IEE)", "type": "number" },
-        { "key": "consumo_anual", "label": "Consumo de energía anual estimado", "type": "number", "unit": "kWh/año" },
-        { "key": "consumo_ciclo", "label": "Consumo de energía por ciclo (modo conv.)", "type": "number", "unit": "kWh/ciclo" },
-        { "key": "consumo_forzada", "label": "Consumo por ciclo (modo conv. forzada)", "type": "number", "unit": "kWh/ciclo", "optional": true },
-        { "key": "vol_util", "label": "Volumen útil cavidad", "type": "number", "unit": "L" },
-        { "key": "clasificacion", "label": "Clasificación por volumen", "type": "select", "options": ["CHICO", "MEDIANO", "GRANDE"] },
-        { "key": "duracion_ciclo", "label": "Duración del ciclo", "type": "number", "unit": "min" },
-        { "key": "temp_maxima", "label": "Temperatura máxima alcanzable", "type": "number", "unit": "°C", "optional": true },
-        { "key": "consumo_espera", "label": "Consumo en modo espera (Standby)", "type": "number", "unit": "W" }
+        {
+          "key": "clase_ee",
+          "label": "Clase de eficiencia energética",
+          "type": "select",
+          "options": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G"
+          ]
+        },
+        {
+          "key": "iee",
+          "label": "Índice de eficiencia energética (IEE)",
+          "type": "number"
+        },
+        {
+          "key": "consumo_anual",
+          "label": "Consumo de energía anual estimado",
+          "type": "number",
+          "unit": "kWh/año"
+        },
+        {
+          "key": "consumo_ciclo",
+          "label": "Consumo de energía por ciclo (modo conv.)",
+          "type": "number",
+          "unit": "kWh/ciclo"
+        },
+        {
+          "key": "consumo_forzada",
+          "label": "Consumo por ciclo (modo conv. forzada)",
+          "type": "number",
+          "unit": "kWh/ciclo",
+          "optional": true
+        },
+        {
+          "key": "vol_util",
+          "label": "Volumen útil cavidad",
+          "type": "number",
+          "unit": "L"
+        },
+        {
+          "key": "clasificacion",
+          "label": "Clasificación por volumen",
+          "type": "select",
+          "options": [
+            "CHICO",
+            "MEDIANO",
+            "GRANDE"
+          ]
+        },
+        {
+          "key": "duracion_ciclo",
+          "label": "Duración del ciclo",
+          "type": "number",
+          "unit": "min"
+        },
+        {
+          "key": "temp_maxima",
+          "label": "Temperatura máxima alcanzable",
+          "type": "number",
+          "unit": "°C",
+          "optional": true
+        },
+        {
+          "key": "consumo_espera",
+          "label": "Consumo en modo espera (Standby)",
+          "type": "number",
+          "unit": "W"
+        }
+      ],
+      "ficha_fields": [
+        {
+          "row_label": "Clase de Eficiencia Energetica",
+          "data_key": "clase_ee"
+        },
+        {
+          "row_label": "Indice de Eficiencia Energetica (IEE)",
+          "data_key": "iee"
+        },
+        {
+          "row_label": "Consumo de Energia Anual",
+          "data_key": "consumo_anual"
+        },
+        {
+          "row_label": "Consumo de Energia por Ciclo",
+          "data_key": "consumo_ciclo"
+        },
+        {
+          "row_label": "Volumen util de la cavidad (L)",
+          "data_key": "vol_util"
+        },
+        {
+          "row_label": "Consumo en Modo de Espera / Standby (W)",
+          "data_key": "consumo_espera"
+        },
+        {
+          "row_label": "Norma Tecnica de Referencia",
+          "data_key": "norma_base"
+        },
+        {
+          "row_label": "Resolucion Aplicable",
+          "static_value": "Resolucion SIyC No 438/2024"
+        }
       ]
     },
     {
@@ -161,10 +1147,64 @@
       "label": "Electrobombas",
       "norma_base": "IRAM 62408",
       "fields": [
-        { "key": "clase_ee", "label": "Clase de eficiencia energética", "type": "select", "options": ["A", "B", "C", "D", "E", "F", "G"] },
-        { "key": "max_eficiencia", "label": "Máxima eficiencia obtenida (%)", "type": "number", "unit": "%" },
-        { "key": "caudal_max", "label": "Caudal al máximo rendimiento (Q_opt)", "type": "number", "unit": "L/min" },
-        { "key": "altura_bombeo", "label": "Altura manométrica al máximo rendimiento (H_opt)", "type": "number", "unit": "m" }
+        {
+          "key": "clase_ee",
+          "label": "Clase de eficiencia energética",
+          "type": "select",
+          "options": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G"
+          ]
+        },
+        {
+          "key": "max_eficiencia",
+          "label": "Máxima eficiencia obtenida (%)",
+          "type": "number",
+          "unit": "%"
+        },
+        {
+          "key": "caudal_max",
+          "label": "Caudal al máximo rendimiento (Q_opt)",
+          "type": "number",
+          "unit": "L/min"
+        },
+        {
+          "key": "altura_bombeo",
+          "label": "Altura manométrica al máximo rendimiento (H_opt)",
+          "type": "number",
+          "unit": "m"
+        }
+      ],
+      "ficha_fields": [
+        {
+          "row_label": "Clase de Eficiencia Energetica",
+          "data_key": "clase_ee"
+        },
+        {
+          "row_label": "Maxima eficiencia / rendimiento (%)",
+          "data_key": "max_eficiencia"
+        },
+        {
+          "row_label": "Caudal al maximo rendimiento (L/min)",
+          "data_key": "caudal_max"
+        },
+        {
+          "row_label": "Altura total de bombeo al maximo rendimiento (m)",
+          "data_key": "altura_bombeo"
+        },
+        {
+          "row_label": "Norma Tecnica de Referencia",
+          "data_key": "norma_base"
+        },
+        {
+          "row_label": "Resolucion Aplicable",
+          "static_value": "Resolucion SIyC No 438/2024"
+        }
       ]
     }
   ]

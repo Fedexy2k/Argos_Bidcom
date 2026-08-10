@@ -16,6 +16,26 @@
 
 ---
 
+## 🔄 Metodología de Desarrollo: Validación Previa por Pasos
+
+Antes de escribir o modificar código para cualquier nueva funcionalidad o mejora:
+1. **Presentar el Flujo de Usuario Final**: Explicar el proceso paso a paso de cómo interactuará el usuario con la mejora antes de implementarla.
+2. **Plan de Pruebas y Verificación**: Detallar exactamente cómo se va a probar la funcionalidad para asegurar que opera sin errores ni efectos colaterales.
+3. **Aprobación del Usuario**: Esperar la confirmación explícita del usuario antes de proceder a la implementación.
+4. **Desarrollo Iterativo (Bucles Cortos)**: Avanzar en pasos pequeños y autónomos, otorgando control total al usuario en cada etapa.
+
+---
+
+## 📜 Directiva de Logging Extensivo y Visibilidad de Ejecución
+
+- **Logs Explicativos y Detallados en Tiempo Real**: Todo script o módulo (Python, FastAPI, Apps Script) debe contar con un sistema de logging sumamente detallado e informativo.
+- En **Apps Script**: Utilizar `Logger.log()` con prefijos visuales claros (`[INICIO]`, `[BUSQUEDA]`, `[PARSEO]`, `[MATCH]`, `[CAMBIO_ESTADO]`, `[DUPLICADO]`, `[ERROR]`) y/o volcar eventos en hojas de log (`Log_Sync`) para que el usuario vea exactamente qué hace el programa paso a paso.
+- En **Python / Argos Backend**: Mantener la emisión en vivo por WebSockets (`LogBroadcaster`) y logs de consola formateados para visibilidad total en tiempo real.
+
+---
+
+
+
 ## 📦 Política de Versionado — Semantic Versioning (MAJOR.MINOR.PATCH)
 
 ### Cuándo subir cada número
@@ -59,4 +79,5 @@ Estos 6 archivos siempre van juntos. Sin excepción:
 
 ---
 
-## Versión actual: v2.5.0
+## Versión actual: v3.2.0
+

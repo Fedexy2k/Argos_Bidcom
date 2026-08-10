@@ -1,5 +1,14 @@
 # ARGOS - Changelog
 
+## v3.2.0 (2026-08-10) - Generación Dinámica de Ficha Técnica, Plantilla Lavarropas de Illustrator y Fondo de Consumo Dinámico
+
+### ✨ Nuevas Características
+- **Ficha Técnica de Información de Producto (Res. SIyC N° 438/2024 Art. 7°)**: Generación automática de la Ficha Técnica oficial en formato Word y PDF. Implementado superset de 44 especificaciones técnicas y borrado dinámico de filas por familia en `fill_template_ft()`.
+- **Plantilla Oficial de Lavarropas (`TemplateLavarropas`)**: Reconstrucción 1:1 en React/HTML del diseño oficial de Illustrator (`GAD-WM80.ai`, `GAD-WM60.ai`, `GAD-WM120.ai`), incluyendo grid de características 4x2 con íconos vectoriales SVG (Agua, Capacidad, Duración, Ruido, Standby, RPM y escala A-G de Centrifugado).
+- **Fondo de Consumo de Energía Dinámico**: Ajuste automático del fondo del bloque de Consumo de Energía para que adopte el color exacto correspondiente a la letra seleccionada (A=Verde Oscuro, B=Verde Claro, C=Verde Amarillento, D=Amarillo, E=Naranja Claro, F=Naranja, G=Rojo) en todas las familias de etiquetas según Res. 438/24 Anexo I Pág. 10.
+- **Soporte de Standby / Consumo en Espera para Heladeras**: Incorporación del campo `consumo_espera` en la plantilla de Ficha Técnica y etiqueta de Refrigeradores/Freezers (Res. 438/2024 Anexo I pág. 19).
+- **Inclusión de `Ficha Tecnica Modelo EE.docx` en PyInstaller**: Configurado `build_exe.py` para empaquetar la nueva plantilla Word de Ficha Técnica dentro de `dist/Argos` en instalaciones standalone.
+
 ## v3.1.0 (2026-07-29) - Sistema Inteligente Completo, Instalable 1-Clic, Bloques Intertek y Argos Ledger
 
 ### ✨ Nuevas Características

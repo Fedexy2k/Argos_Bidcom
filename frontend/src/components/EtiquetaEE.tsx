@@ -10,7 +10,7 @@ export interface EtiquetaData {
   qrImageUrl?: string;
   referenciaIram: string;
   resolucion: string;
-  
+
   // Hornos específicos
   descripcion?: string;
   consumoConvencional?: string;
@@ -57,15 +57,15 @@ const GRAY_BG = '#eae9ea';
 // ── COMPONENTE TEMPLATE: HORNO ELÉCTRICO ───────────────────────────────────
 
 function TemplateHorno({ data, id = "label-export" }: { data: EtiquetaData; id?: string }) {
-  const FS6  = 8;
-  const FS7  = 9;
-  const FS8  = 11;
+  const FS6 = 8;
+  const FS7 = 9;
+  const FS8 = 11;
   const FS10 = 13;
   const FS11 = 15;
   const FS12 = 16;
 
-  const BLUE    = '#2E3092';
-  const GREEN   = '#009640';
+  const BLUE = '#2E3092';
+  const GREEN = '#009640';
   const GRAY_BG = '#eae9ea';
   const COLORS_MAP: Record<string, string> = {
     A: '#009640', B: '#52AE32', C: '#C8D400',
@@ -73,43 +73,43 @@ function TemplateHorno({ data, id = "label-export" }: { data: EtiquetaData; id?:
   };
 
   const selIdx = LETTERS.indexOf(data.eficiencia);
-  const W  = mm(116);
-  const H  = mm(195);
+  const W = mm(116);
+  const H = mm(195);
   const MX = mm(2);
   const LW = W - 2 * MX;
 
   const HDR_T = MX;
   const HDR_H = mm(8);
 
-  const LINE1_Y     = mm(12);
+  const LINE1_Y = mm(12);
   const ARR_BLOCK_H = mm(85);
-  const LINE2_Y     = LINE1_Y + ARR_BLOCK_H;
-  const ARR_H       = mm(10);
-  const ARR_GAP     = mm(1);
-  const LBL_AREA    = Math.round(4.5 * MM);
-  const IND_W       = mm(39);
-  const IND_H       = mm(17);
-  const IND_TRI     = mm(8);
-  const ARR_TIP     = mm(5);
+  const LINE2_Y = LINE1_Y + ARR_BLOCK_H;
+  const ARR_H = mm(10);
+  const ARR_GAP = mm(1);
+  const LBL_AREA = Math.round(4.5 * MM);
+  const IND_W = mm(39);
+  const IND_H = mm(17);
+  const IND_TRI = mm(8);
+  const ARR_TIP = mm(5);
   const ARROW_WIDTHS_MM: Record<string, number> = {
     A: 22, B: 27.5, C: 33, D: 38.5, E: 44, F: 49.5, G: 55,
   };
 
   const BAR_TOP = LINE2_Y + 1 + mm(1);
-  const BAR_H   = mm(20);
+  const BAR_H = mm(20);
 
-  const CARACT_TOP     = BAR_TOP + BAR_H;
+  const CARACT_TOP = BAR_TOP + BAR_H;
   const CARACT_TITLE_H = mm(6);
-  const ROW_H          = mm(13);
+  const ROW_H = mm(13);
 
   const ROWS_TOP = CARACT_TOP + CARACT_TITLE_H;
-  const ROW1_T   = ROWS_TOP;
-  const ROW2_T   = ROW1_T + ROW_H;
-  const ROW3_T   = ROW2_T + ROW_H;
-  const ROW4_T   = ROW3_T + ROW_H;
+  const ROW1_T = ROWS_TOP;
+  const ROW2_T = ROW1_T + ROW_H;
+  const ROW3_T = ROW2_T + ROW_H;
+  const ROW4_T = ROW3_T + ROW_H;
 
   const FOOTER_SEP_Y = ROW4_T + ROW_H;
-  const FOOTER_T     = FOOTER_SEP_Y + 1;
+  const FOOTER_T = FOOTER_SEP_Y + 1;
 
   const LEFT_COL_W = mm(50);
   const LEFT_COL_R = MX + LEFT_COL_W;
@@ -117,21 +117,21 @@ function TemplateHorno({ data, id = "label-export" }: { data: EtiquetaData; id?:
   const SEP_X = MX + mm(1);
   const SEP_W = LEFT_COL_W - mm(2);
 
-  const LBL_X  = MX + 4;
+  const LBL_X = MX + 4;
   const ICON_CX = MX + mm(23);
-  const VAL_X   = MX + mm(35);
-  const VAL_W   = LEFT_COL_W - mm(35) - 2;
+  const VAL_X = MX + mm(35);
+  const VAL_W = LEFT_COL_W - mm(35) - 2;
 
   const RIGHT_COL_X = LEFT_COL_R;
-  const QR_SZ       = mm(26);
-  const QR_LEFT     = MX + LW - QR_SZ - 2;
-  const TEXT_COL_X  = RIGHT_COL_X + 4;
-  const TEXT_COL_W  = QR_LEFT - RIGHT_COL_X - 10;
+  const QR_SZ = mm(26);
+  const QR_LEFT = MX + LW - QR_SZ - 2;
+  const TEXT_COL_X = RIGHT_COL_X + 4;
+  const TEXT_COL_W = QR_LEFT - RIGHT_COL_X - 10;
   const THREE_ROW_H = ROW_H * 3;
-  const QR_TOP      = ROWS_TOP + Math.round((THREE_ROW_H - QR_SZ) / 2);
-  const TEXT_MID_Y  = ROWS_TOP + Math.round(THREE_ROW_H / 2);
+  const QR_TOP = ROWS_TOP + Math.round((THREE_ROW_H - QR_SZ) / 2);
+  const TEXT_MID_Y = ROWS_TOP + Math.round(THREE_ROW_H / 2);
 
-  const BAR_LH       = 20;
+  const BAR_LH = 20;
   const BAR_TEXT_TOP = BAR_TOP + Math.round((BAR_H - BAR_LH * 3) / 2);
   const lhMult = 1.1;
 
@@ -164,8 +164,8 @@ function TemplateHorno({ data, id = "label-export" }: { data: EtiquetaData; id?:
       </div>
 
       {LETTERS.map((letter, i) => {
-        const aTop  = LINE1_Y + 1 + LBL_AREA + i * (ARR_H + ARR_GAP);
-        const aW    = mm(ARROW_WIDTHS_MM[letter]);
+        const aTop = LINE1_Y + 1 + LBL_AREA + i * (ARR_H + ARR_GAP);
+        const aW = mm(ARROW_WIDTHS_MM[letter]);
         const color = COLORS_MAP[letter] || '#000';
         const bodyW = aW - ARR_TIP;
         return (
@@ -189,8 +189,8 @@ function TemplateHorno({ data, id = "label-export" }: { data: EtiquetaData; id?:
 
       {(() => {
         const safeSelIdx = selIdx >= 0 ? selIdx : 0;
-        const cy      = LINE1_Y + 1 + LBL_AREA + safeSelIdx * (ARR_H + ARR_GAP) + Math.round(ARR_H / 2);
-        const indTop  = cy - Math.round(IND_H / 2);
+        const cy = LINE1_Y + 1 + LBL_AREA + safeSelIdx * (ARR_H + ARR_GAP) + Math.round(ARR_H / 2);
+        const indTop = cy - Math.round(IND_H / 2);
         const indLeft = MX + LW - IND_W;
         return (
           <>
@@ -226,7 +226,7 @@ function TemplateHorno({ data, id = "label-export" }: { data: EtiquetaData; id?:
       {/* ROW 1 */}
       {(() => {
         const lbTop = vc(ROW1_T, ROW_H, FS6 * 2 * lhMult);
-        const iconSz  = mm(8);
+        const iconSz = mm(8);
         const iconTop = vc(ROW1_T, ROW_H, iconSz);
         const iconLeft = ICON_CX - Math.round(iconSz / 2);
         return (
@@ -243,11 +243,11 @@ function TemplateHorno({ data, id = "label-export" }: { data: EtiquetaData; id?:
 
       {/* ROW 2 */}
       {(() => {
-        const lbTop  = vc(ROW2_T, ROW_H, FS6 * 3 * lhMult);
+        const lbTop = vc(ROW2_T, ROW_H, FS6 * 3 * lhMult);
         const iconSz = mm(8);
-        const iconTop  = vc(ROW2_T, ROW_H, iconSz);
+        const iconTop = vc(ROW2_T, ROW_H, iconSz);
         const iconLeft = ICON_CX - Math.round(iconSz / 2);
-        const valTop   = ROW2_T + Math.round((ROW_H - (FS10 + FS6)) / 2);
+        const valTop = ROW2_T + Math.round((ROW_H - (FS10 + FS6)) / 2);
         return (
           <>
             <div style={{ position: 'absolute', top: lbTop, left: LBL_X, fontSize: FS6, lineHeight: lhMult, color: '#000', fontWeight: 'bold' }}>CONSUMO<br />DE ENERG&Iacute;A<br />CONVENCIONAL</div>
@@ -261,11 +261,11 @@ function TemplateHorno({ data, id = "label-export" }: { data: EtiquetaData; id?:
 
       {/* ROW 3 */}
       {(() => {
-        const lbTop  = vc(ROW3_T, ROW_H, FS6 * 4 * lhMult);
+        const lbTop = vc(ROW3_T, ROW_H, FS6 * 4 * lhMult);
         const iconSz = mm(8);
-        const iconTop  = vc(ROW3_T, ROW_H, iconSz);
+        const iconTop = vc(ROW3_T, ROW_H, iconSz);
         const iconLeft = ICON_CX - Math.round(iconSz / 2);
-        const valTop   = ROW3_T + Math.round((ROW_H - (FS10 + FS6)) / 2);
+        const valTop = ROW3_T + Math.round((ROW_H - (FS10 + FS6)) / 2);
         return (
           <>
             <div style={{ position: 'absolute', top: lbTop, left: LBL_X, fontSize: FS6, lineHeight: lhMult, color: '#000', fontWeight: 'bold' }}>CONSUMO<br />DE ENERG&Iacute;A<br />CONVENCIONAL<br />FORZADA</div>
@@ -279,12 +279,12 @@ function TemplateHorno({ data, id = "label-export" }: { data: EtiquetaData; id?:
 
       {/* ROW 4 */}
       {(() => {
-        const lbTop     = vc(ROW4_T, ROW_H, FS6 * 2 * lhMult);
-        const clsLineH  = FS6 + 3;
-        const clsTop    = ROW4_T + Math.round((ROW_H - clsLineH * 3) / 2);
-        const clsColX   = LEFT_COL_R - mm(17);
-        const arrowW    = mm(4);
-        const arrowX    = clsColX - arrowW - 2;
+        const lbTop = vc(ROW4_T, ROW_H, FS6 * 2 * lhMult);
+        const clsLineH = FS6 + 3;
+        const clsTop = ROW4_T + Math.round((ROW_H - clsLineH * 3) / 2);
+        const clsColX = LEFT_COL_R - mm(17);
+        const arrowW = mm(4);
+        const arrowX = clsColX - arrowW - 2;
 
         return (
           <>
@@ -309,7 +309,7 @@ function TemplateHorno({ data, id = "label-export" }: { data: EtiquetaData; id?:
               CONSUMO EN ESPERA
             </div>
             {(() => {
-              const sz   = mm(5);
+              const sz = mm(5);
               const pTop = ROW4_T + Math.round((ROW_H - sz) / 2);
               const pLft = MX + LW - mm(20);
               return (
@@ -350,9 +350,9 @@ function TemplateHorno({ data, id = "label-export" }: { data: EtiquetaData; id?:
         {data.descripcion || 'HORNO ELÉCTRICO'}
       </div>
       {[
-        { label: 'MODELO',          val: data.modelo },
+        { label: 'MODELO', val: data.modelo },
         { label: 'MARCA COMERCIAL', val: data.marca },
-        { label: 'ORIGEN',          val: data.origen },
+        { label: 'ORIGEN', val: data.origen },
       ].map(({ label, val }, i) => (
         <div key={label} style={{ position: 'absolute', top: FOOTER_T + 4 + mm(5) + i * mm(3.8), left: MX, width: LW, height: mm(3.8), display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: FS7, fontWeight: 'bold' }}>
           <span>{label}</span>
@@ -368,7 +368,7 @@ function TemplateHorno({ data, id = "label-export" }: { data: EtiquetaData; id?:
 function TemplateLavavajillas({ data, id = "label-export" }: { data: EtiquetaData; id?: string }) {
   const scale = 3.78;
   const mm = (val: number) => val * scale;
-  const pt = (val: number) => val * 1.333 * (scale / 3.78); 
+  const pt = (val: number) => val * 1.333 * (scale / 3.78);
 
   // Global Dimensions
   const outerW = mm(116);
@@ -380,13 +380,13 @@ function TemplateLavavajillas({ data, id = "label-export" }: { data: EtiquetaDat
   const innerW = outerW - m * 2; // 112mm
   const innerH = outerH - m * 2; // 218mm
 
-  const H_CABEZAL = mm(11); 
+  const H_CABEZAL = mm(11);
   const H_ESCALA = mm(99);
   const H_GAP = mm(1);
   const H_ENERGIA = mm(24);
   const H_AGUA = mm(17);
   const H_CARACT = mm(45);
-  const H_FOOTER = mm(21); 
+  const H_FOOTER = mm(21);
 
   const yCabezal = 0;
   const yEscala = yCabezal + H_CABEZAL;
@@ -401,12 +401,12 @@ function TemplateLavavajillas({ data, id = "label-export" }: { data: EtiquetaDat
   const renderRibbon = (color: string, bodyWidthMm: number, height: number, text: string) => {
     const tipWidth = mm(5);
     const bodyWidth = mm(bodyWidthMm) - tipWidth;
-    
+
     return (
       <div style={{ position: 'relative', height: height, display: 'flex', alignItems: 'center' }}>
-        <div style={{ 
-          backgroundColor: color, 
-          width: bodyWidth, 
+        <div style={{
+          backgroundColor: color,
+          width: bodyWidth,
           height: '100%',
           display: 'flex',
           alignItems: 'center',
@@ -415,7 +415,7 @@ function TemplateLavavajillas({ data, id = "label-export" }: { data: EtiquetaDat
           fontWeight: 'bold',
           fontSize: pt(20)
         }}>
-          <span style={{color: '#fff'}}>{text}</span>
+          <span style={{ color: '#fff' }}>{text}</span>
         </div>
         <div style={{
           width: 0,
@@ -449,12 +449,12 @@ function TemplateLavavajillas({ data, id = "label-export" }: { data: EtiquetaDat
         fontFamily: 'Arial, sans-serif',
         lineHeight: '1',
         color: '#000',
-        border: `${lineW}px solid #000` 
+        border: `${lineW}px solid #000`
       }}
     >
       {/* Inner Container: 112x218 empty margin (no border) */}
       <div style={{ position: 'absolute', top: m, left: m, width: innerW, height: innerH, boxSizing: 'border-box' }}>
-        
+
         {/* BLOCK 1: Cabezal */}
         <div style={{ position: 'absolute', top: yCabezal, left: 0, width: '100%', height: H_CABEZAL }}>
           <div style={{ backgroundColor: '#21337B', height: mm(10), width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -470,7 +470,7 @@ function TemplateLavavajillas({ data, id = "label-export" }: { data: EtiquetaDat
         <div style={{ position: 'absolute', top: yEscala, left: 0, width: '100%', height: H_ESCALA }}>
           <div style={{ position: 'absolute', top: mm(1.5), left: 0, fontSize: pt(6), fontWeight: 'bold' }}>MÁS EFICIENTE</div>
           <div style={{ position: 'absolute', bottom: mm(2), left: 0, fontSize: pt(6), fontWeight: 'bold' }}>MENOS EFICIENTE</div>
-          
+
           <div style={{ position: 'absolute', top: mm(5.5), left: 0, width: '100%' }}>
             {LETTERS.map((label, i) => {
               return (
@@ -482,7 +482,7 @@ function TemplateLavavajillas({ data, id = "label-export" }: { data: EtiquetaDat
           </div>
 
           {/* Black Indicator Arrow */}
-          <div style={{ position: 'absolute', top: mm(5.5 + (selectedIndex * (11.5 + 1.41))) + (mm(11.5 - 20)/2), right: 0, width: mm(46), height: mm(20), display: 'flex' }}>
+          <div style={{ position: 'absolute', top: mm(5.5 + (selectedIndex * (11.5 + 1.41))) + (mm(11.5 - 20) / 2), right: 0, width: mm(46), height: mm(20), display: 'flex' }}>
             <div style={{
               width: 0,
               height: 0,
@@ -490,12 +490,12 @@ function TemplateLavavajillas({ data, id = "label-export" }: { data: EtiquetaDat
               borderBottom: `${mm(10)}px solid transparent`,
               borderRight: `${mm(10)}px solid #000`
             }} />
-            <div style={{ 
-              backgroundColor: '#000', 
-              flex: 1, 
-              height: '100%', 
-              display: 'flex', 
-              alignItems: 'center', 
+            <div style={{
+              backgroundColor: '#000',
+              flex: 1,
+              height: '100%',
+              display: 'flex',
+              alignItems: 'center',
               justifyContent: 'center',
               color: '#fff',
               fontSize: pt(40),
@@ -504,15 +504,15 @@ function TemplateLavavajillas({ data, id = "label-export" }: { data: EtiquetaDat
               {data.eficiencia}
             </div>
           </div>
-          
+
           {/* Border below Escala */}
           <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: `${lineW}px`, backgroundColor: '#000' }} />
         </div>
 
-        {/* BLOCK 3: Energía */}
-        <div style={{ position: 'absolute', top: yEnergia, left: 0, width: '100%', height: H_ENERGIA, backgroundColor: '#f1ea3a', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', padding: `0 ${mm(4)}px ${mm(2.5)}px ${mm(4)}px` }}>
+        {/* BLOCK 3: Energía (Color dinámico según la clase de eficiencia) */}
+        <div style={{ position: 'absolute', top: yEnergia, left: 0, width: '100%', height: H_ENERGIA, backgroundColor: COLORS[selectedIndex] || '#009640', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', padding: `0 ${mm(4)}px ${mm(2.5)}px ${mm(4)}px` }}>
           <div style={{ fontSize: pt(14), fontWeight: 'bold', lineHeight: '16pt', color: '#000', paddingBottom: mm(1) }}>
-            CONSUMO<br/>DE ENERGÍA<br/>POR CICLO
+            CONSUMO<br />DE ENERGÍA<br />POR CICLO
           </div>
           <div style={{ display: 'flex', alignItems: 'baseline' }}>
             <span style={{ fontSize: pt(60), fontWeight: 'bold', color: '#000', lineHeight: '0.8' }}>{data.consumoEnergia || '0.00'}</span>
@@ -523,120 +523,120 @@ function TemplateLavavajillas({ data, id = "label-export" }: { data: EtiquetaDat
         {/* BLOCK 4: Agua */}
         <div style={{ position: 'absolute', top: yAgua, left: 0, width: '100%', height: H_AGUA, backgroundColor: bgGrisClaro }}>
           <div style={{ position: 'absolute', top: mm(2), left: mm(4), fontSize: pt(10), fontWeight: 'bold', lineHeight: '1.1', color: '#27348b' }}>
-            CONSUMO<br/>DE AGUA<br/>POR CICLO
+            CONSUMO<br />DE AGUA<br />POR CICLO
           </div>
           <img src="/icons/agua.png" style={{ position: 'absolute', left: mm(25), top: mm(2.5), height: mm(12.5) }} alt="agua" />
-          
+
           {/* Water Slider Line */}
           <div style={{ position: 'absolute', bottom: mm(4), right: mm(4), width: mm(63), height: mm(10) }}>
-             
-             {/* Slider Top Values (Dynamic Triangle) */}
-             <div style={{ position: 'absolute', left: `${sliderPct}%`, bottom: mm(5), transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <div style={{ display: 'flex', alignItems: 'baseline', whiteSpace: 'nowrap' }}>
-                  <span style={{ fontFamily: 'Arial', fontWeight: 'bold', fontSize: pt(12) }}>{data.consumoAgua || '0'}</span>
-                  <span style={{ fontFamily: 'Arial', fontSize: pt(8), marginLeft: mm(1) }}>lts</span>
-                </div>
-                <div style={{
-                  width: 0,
-                  height: 0,
-                  borderLeft: `${mm(2.5)}px solid transparent`,
-                  borderRight: `${mm(2.5)}px solid transparent`,
-                  borderTop: `${mm(2.5)}px solid #000`,
-                  marginTop: mm(0.5)
-                }} />
-             </div>
 
-             {/* Line */}
-             <div style={{ position: 'absolute', bottom: mm(4), left: 0, width: '100%', height: mm(0.8), backgroundColor: '#000' }}>
-               {[0, 50, 100, 150, 200, 250, 300].map((val, idx) => {
-                 const pct = (idx / 6) * 100;
-                 return <div key={val} style={{ position: 'absolute', left: `${pct}%`, top: mm(-0.6), width: mm(2), height: mm(2), borderRadius: '50%', backgroundColor: '#000', transform: 'translateX(-50%)' }} />
-               })}
-             </div>
+            {/* Slider Top Values (Dynamic Triangle) */}
+            <div style={{ position: 'absolute', left: `${sliderPct}%`, bottom: mm(5), transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <div style={{ display: 'flex', alignItems: 'baseline', whiteSpace: 'nowrap' }}>
+                <span style={{ fontFamily: 'Arial', fontWeight: 'bold', fontSize: pt(12) }}>{data.consumoAgua || '0'}</span>
+                <span style={{ fontFamily: 'Arial', fontSize: pt(8), marginLeft: mm(1) }}>lts</span>
+              </div>
+              <div style={{
+                width: 0,
+                height: 0,
+                borderLeft: `${mm(2.5)}px solid transparent`,
+                borderRight: `${mm(2.5)}px solid transparent`,
+                borderTop: `${mm(2.5)}px solid #000`,
+                marginTop: mm(0.5)
+              }} />
+            </div>
 
-             {/* Bottom texts */}
-             <div style={{ position: 'absolute', bottom: mm(-1.5), left: 0, width: '100%', height: mm(3) }}>
-                {[0, 50, 100, 150, 200, 250, 300].map((val, idx) => {
-                  const pct = (idx / 6) * 100;
-                  return <div key={val} style={{ position: 'absolute', left: `${pct}%`, top: 0, transform: 'translateX(-50%)', fontSize: pt(5), fontFamily: 'Arial' }}>{val}</div>
-                })}
-                <div style={{ position: 'absolute', left: mm(-1), top: mm(2.5), fontSize: pt(5), fontFamily: 'Arial' }}>MENOR</div>
-                <div style={{ position: 'absolute', right: mm(-1), top: mm(2.5), fontSize: pt(5), fontFamily: 'Arial' }}>MAYOR</div>
-             </div>
+            {/* Line */}
+            <div style={{ position: 'absolute', bottom: mm(4), left: 0, width: '100%', height: mm(0.8), backgroundColor: '#000' }}>
+              {[0, 50, 100, 150, 200, 250, 300].map((val, idx) => {
+                const pct = (idx / 6) * 100;
+                return <div key={val} style={{ position: 'absolute', left: `${pct}%`, top: mm(-0.6), width: mm(2), height: mm(2), borderRadius: '50%', backgroundColor: '#000', transform: 'translateX(-50%)' }} />
+              })}
+            </div>
+
+            {/* Bottom texts */}
+            <div style={{ position: 'absolute', bottom: mm(-1.5), left: 0, width: '100%', height: mm(3) }}>
+              {[0, 50, 100, 150, 200, 250, 300].map((val, idx) => {
+                const pct = (idx / 6) * 100;
+                return <div key={val} style={{ position: 'absolute', left: `${pct}%`, top: 0, transform: 'translateX(-50%)', fontSize: pt(5), fontFamily: 'Arial' }}>{val}</div>
+              })}
+              <div style={{ position: 'absolute', left: mm(-1), top: mm(2.5), fontSize: pt(5), fontFamily: 'Arial' }}>MENOR</div>
+              <div style={{ position: 'absolute', right: mm(-1), top: mm(2.5), fontSize: pt(5), fontFamily: 'Arial' }}>MAYOR</div>
+            </div>
           </div>
         </div>
 
         {/* BLOCK 5: Características */}
         <div style={{ position: 'absolute', top: yCaract, left: 0, width: '100%', height: H_CARACT, backgroundColor: '#fff' }}>
-          
+
           <div style={{ position: 'absolute', left: 0, top: 0, width: mm(57), height: mm(45), backgroundColor: bgGrisClaro }}>
-             
-             {/* Secado */}
-             <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: mm(15), display: 'flex', alignItems: 'center', paddingLeft: mm(2) }}>
-               <div style={{ width: mm(18), fontSize: pt(6), lineHeight: '1.2', fontWeight: 'bold' }}>EFICACIA<br/>DE SECADO</div>
-               <div style={{ width: mm(12), display: 'flex', justifyContent: 'center' }}>
-                 <img src="/icons/secado.png" style={{ height: mm(10) }} alt="secado" />
-               </div>
-               <div style={{ width: mm(22), display: 'flex', alignItems: 'baseline', gap: mm(0.5) }}>
-                 {LETTERS.map(l => (
-                   <span key={l} style={{ fontSize: pt(data.eficaciaSecado === l ? 12 : 7), fontFamily: '"Arial Black", Arial', color: '#000', lineHeight: 1, fontWeight: 'bold' }}>{l}</span>
-                 ))}
-               </div>
-               <div style={{ position: 'absolute', bottom: 0, left: mm(2), width: mm(53), height: `${lineW}px`, backgroundColor: '#000' }} />
-             </div>
 
-             {/* Capacidad */}
-             <div style={{ position: 'absolute', top: mm(15), left: 0, width: '100%', height: mm(15), display: 'flex', alignItems: 'center', paddingLeft: mm(2) }}>
-               <div style={{ width: mm(18), fontSize: pt(6), lineHeight: '1.2', fontWeight: 'bold' }}>CAPACIDAD<br/>DECLARADA</div>
-               <div style={{ width: mm(12), display: 'flex', justifyContent: 'center' }}>
-                 <img src="/icons/capacidad.png" style={{ height: mm(8) }} alt="capacidad" />
-               </div>
-               <div style={{ width: mm(22), display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start' }}>
-                 <span style={{ fontSize: pt(10), fontFamily: '"Arial Black", Arial', lineHeight: 1, fontWeight: 'bold' }}>{data.capacidad || '0'}</span> 
-                 <span style={{ fontSize: pt(5), fontFamily: 'Arial' }}>Cubiertos</span>
-               </div>
-               <div style={{ position: 'absolute', bottom: 0, left: mm(2), width: mm(53), height: `${lineW}px`, backgroundColor: '#000' }} />
-             </div>
+            {/* Secado */}
+            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: mm(15), display: 'flex', alignItems: 'center', paddingLeft: mm(2) }}>
+              <div style={{ width: mm(18), fontSize: pt(6), lineHeight: '1.2', fontWeight: 'bold' }}>EFICACIA<br />DE SECADO</div>
+              <div style={{ width: mm(12), display: 'flex', justifyContent: 'center' }}>
+                <img src="/icons/secado.png" style={{ height: mm(10) }} alt="secado" />
+              </div>
+              <div style={{ width: mm(22), display: 'flex', alignItems: 'baseline', gap: mm(0.5) }}>
+                {LETTERS.map(l => (
+                  <span key={l} style={{ fontSize: pt(data.eficaciaSecado === l ? 12 : 7), fontFamily: '"Arial Black", Arial', color: '#000', lineHeight: 1, fontWeight: 'bold' }}>{l}</span>
+                ))}
+              </div>
+              <div style={{ position: 'absolute', bottom: 0, left: mm(2), width: mm(53), height: `${lineW}px`, backgroundColor: '#000' }} />
+            </div>
 
-             {/* Ruido */}
-             <div style={{ position: 'absolute', top: mm(30), left: 0, width: '100%', height: mm(15), display: 'flex', alignItems: 'center', paddingLeft: mm(2) }}>
-               <div style={{ width: mm(18), fontSize: pt(6), lineHeight: '1.2', fontWeight: 'bold' }}>NIVEL<br/>DE RUIDO</div>
-               <div style={{ width: mm(12), display: 'flex', justifyContent: 'center' }}>
-                 <img src="/icons/ruido.png" style={{ height: mm(8) }} alt="ruido" />
-               </div>
-               <div style={{ width: mm(22), display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start' }}>
-                 <span style={{ fontSize: pt(10), fontFamily: '"Arial Black", Arial', lineHeight: 1, fontWeight: 'bold' }}>{data.ruido || '0'}</span> 
-                 <span style={{ fontSize: pt(5), fontFamily: 'Arial' }}>dB(A)re 1 pW</span>
-               </div>
-             </div>
+            {/* Capacidad */}
+            <div style={{ position: 'absolute', top: mm(15), left: 0, width: '100%', height: mm(15), display: 'flex', alignItems: 'center', paddingLeft: mm(2) }}>
+              <div style={{ width: mm(18), fontSize: pt(6), lineHeight: '1.2', fontWeight: 'bold' }}>CAPACIDAD<br />DECLARADA</div>
+              <div style={{ width: mm(12), display: 'flex', justifyContent: 'center' }}>
+                <img src="/icons/capacidad.png" style={{ height: mm(8) }} alt="capacidad" />
+              </div>
+              <div style={{ width: mm(22), display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start' }}>
+                <span style={{ fontSize: pt(10), fontFamily: '"Arial Black", Arial', lineHeight: 1, fontWeight: 'bold' }}>{data.capacidad || '0'}</span>
+                <span style={{ fontSize: pt(5), fontFamily: 'Arial' }}>Cubiertos</span>
+              </div>
+              <div style={{ position: 'absolute', bottom: 0, left: mm(2), width: mm(53), height: `${lineW}px`, backgroundColor: '#000' }} />
+            </div>
+
+            {/* Ruido */}
+            <div style={{ position: 'absolute', top: mm(30), left: 0, width: '100%', height: mm(15), display: 'flex', alignItems: 'center', paddingLeft: mm(2) }}>
+              <div style={{ width: mm(18), fontSize: pt(6), lineHeight: '1.2', fontWeight: 'bold' }}>NIVEL<br />DE RUIDO</div>
+              <div style={{ width: mm(12), display: 'flex', justifyContent: 'center' }}>
+                <img src="/icons/ruido.png" style={{ height: mm(8) }} alt="ruido" />
+              </div>
+              <div style={{ width: mm(22), display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start' }}>
+                <span style={{ fontSize: pt(10), fontFamily: '"Arial Black", Arial', lineHeight: 1, fontWeight: 'bold' }}>{data.ruido || '0'}</span>
+                <span style={{ fontSize: pt(5), fontFamily: 'Arial' }}>dB(A)re 1 pW</span>
+              </div>
+            </div>
           </div>
 
           {/* Right panel */}
           <div style={{ position: 'absolute', left: mm(57), top: 0, width: mm(55), height: mm(35), display: 'flex' }}>
-             
-             <div style={{ width: mm(27), height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: mm(1) }}>
-                 <span style={{ fontSize: pt(8), fontWeight: 'bold', fontFamily: 'Arial' }}>Referencia IRAM</span>
-                 <span style={{ fontSize: pt(8), fontWeight: 'bold', fontFamily: 'Arial' }}>{data.referenciaIram || '2294-3'}</span>
-               </div>
-               <div style={{ width: mm(18), height: `${lineW}px`, backgroundColor: '#000', margin: `${mm(2)}px 0` }} />
-               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: mm(1) }}>
-                 <span style={{ fontSize: pt(8), fontWeight: 'bold', fontFamily: 'Arial' }}>Res. SIyC N°</span>
-                 <span style={{ fontSize: pt(8), fontWeight: 'bold', fontFamily: 'Arial' }}>{data.resolucion || '438/24'}</span>
-               </div>
-             </div>
-             
-             {/* QR Box */}
-             <div style={{ width: mm(28), height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-               <div style={{ width: mm(28), height: mm(28), border: `${lineW}px solid #000`, display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center', overflow: 'hidden' }}>
-                 {data.qrImageUrl ? (
-                   <img src={data.qrImageUrl} alt="QR" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-                 ) : (
-                   <span style={{ fontSize: pt(8), fontFamily: '"Arial Black", Arial', fontWeight: 'bold' }}>ESPACIO<br/>CODIGO QR</span>
-                 )}
-               </div>
-             </div>
-             
+
+            <div style={{ width: mm(27), height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: mm(1) }}>
+                <span style={{ fontSize: pt(8), fontWeight: 'bold', fontFamily: 'Arial' }}>Referencia IRAM</span>
+                <span style={{ fontSize: pt(8), fontWeight: 'bold', fontFamily: 'Arial' }}>{data.referenciaIram || '2294-3'}</span>
+              </div>
+              <div style={{ width: mm(18), height: `${lineW}px`, backgroundColor: '#000', margin: `${mm(2)}px 0` }} />
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: mm(1) }}>
+                <span style={{ fontSize: pt(8), fontWeight: 'bold', fontFamily: 'Arial' }}>Res. SIyC N°</span>
+                <span style={{ fontSize: pt(8), fontWeight: 'bold', fontFamily: 'Arial' }}>{data.resolucion || '438/24'}</span>
+              </div>
+            </div>
+
+            {/* QR Box */}
+            <div style={{ width: mm(28), height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <div style={{ width: mm(28), height: mm(28), border: `${lineW}px solid #000`, display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center', overflow: 'hidden' }}>
+                {data.qrImageUrl ? (
+                  <img src={data.qrImageUrl} alt="QR" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                ) : (
+                  <span style={{ fontSize: pt(8), fontFamily: '"Arial Black", Arial', fontWeight: 'bold' }}>ESPACIO<br />CODIGO QR</span>
+                )}
+              </div>
+            </div>
+
           </div>
 
           {/* Consumo Espera */}
@@ -682,13 +682,13 @@ function TemplateGeneric({ data, familyId, id = "label-export" }: { data: Etique
   const H = mm(220); // standard height
   const MX = mm(2);
   const LW = W - 2 * MX;
-  
+
   const HDR_T = MX;
   const HDR_H = mm(10);
   const LINE1_Y = mm(14);
   const ARR_BLOCK_H = mm(85);
   const LINE2_Y = LINE1_Y + ARR_BLOCK_H;
-  
+
   const ARR_H = mm(9.5);
   const ARR_GAP = mm(1);
   const LBL_AREA = Math.round(4.5 * MM);
@@ -696,20 +696,20 @@ function TemplateGeneric({ data, familyId, id = "label-export" }: { data: Etique
   const IND_H = mm(16);
   const IND_TRI = mm(8);
   const ARR_TIP = mm(5);
-  
+
   const arrowWidths: Record<string, number> = {
     A: 22, B: 27.5, C: 33, D: 38.5, E: 44, F: 49.5, G: 55,
   };
 
   const BAR_TOP = LINE2_Y + 1 + mm(1);
   const BAR_H = mm(20);
-  
+
   const CARACT_TOP = BAR_TOP + BAR_H + mm(1);
   const CARACT_TITLE_H = mm(6);
   const ROW_H = mm(11.5);
-  
+
   const ROWS_TOP = CARACT_TOP + CARACT_TITLE_H;
-  
+
   const RIGHT_COL_X = MX + mm(60);
   const QR_SZ = mm(26);
 
@@ -720,7 +720,7 @@ function TemplateGeneric({ data, familyId, id = "label-export" }: { data: Etique
   // Filtrar campos técnicos dinámicos ingresados (que no sean metadatos base)
   const eeFields = Object.entries(data).filter(([k, v]) => {
     return ![
-      'marca', 'modelo', 'origen', 'eficiencia', 'qrImageUrl', 
+      'marca', 'modelo', 'origen', 'eficiencia', 'qrImageUrl',
       'referenciaIram', 'resolucion', 'descripcion'
     ].includes(k) && v !== undefined && String(v).trim() !== '';
   }).slice(0, 4); // max 4 rows in generic
@@ -785,7 +785,7 @@ function TemplateGeneric({ data, familyId, id = "label-export" }: { data: Etique
       <Hline y={LINE2_Y} />
 
       {/* Barra de Consumo Primario */}
-      <div style={{ position: 'absolute', top: BAR_TOP, left: MX, width: LW, height: BAR_H, backgroundColor: '#52AE32', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: `0 ${mm(3)}px` }} />
+      <div style={{ position: 'absolute', top: BAR_TOP, left: MX, width: LW, height: BAR_H, backgroundColor: COLORS[selIdx] || '#52AE32', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: `0 ${mm(3)}px` }} />
       <div style={{ position: 'absolute', top: BAR_TOP, left: MX + mm(3), height: BAR_H, display: 'flex', flexDirection: 'column', justifyContent: 'center', fontSize: pt(7.5), fontWeight: 'bold', color: '#000' }}>
         <span>CONSUMO</span>
         <span>DE ENERG&Iacute;A</span>
@@ -830,7 +830,7 @@ function TemplateGeneric({ data, familyId, id = "label-export" }: { data: Etique
           </div>
         )}
       </div>
-      
+
       <div style={{ position: 'absolute', top: ROWS_TOP + QR_SZ + mm(4), left: RIGHT_COL_X, width: LW - mm(60), display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3px' }}>
         <div style={{ textAlign: 'center', fontWeight: 'bold' }}>
           <div style={{ fontSize: pt(6.5), color: '#555' }}>Norma IRAM</div>
@@ -862,6 +862,649 @@ function TemplateGeneric({ data, familyId, id = "label-export" }: { data: Etique
   );
 }
 
+// ── COMPONENTE TEMPLATE: LAVARROPAS ELÉCTRICOS (IRAM 2141-3) ────────────────
+
+function TemplateLavarropas({ data, id = "label-export" }: { data: EtiquetaData; id?: string }) {
+  const scale = 3.78;
+  const mm = (val: number) => val * scale;
+  const pt = (val: number) => val * 1.333 * (scale / 3.78);
+
+  const outerW = mm(124);
+  const outerH = mm(212);
+  const lineW = mm(0.5);
+
+  const m = mm(2);
+  const innerW = outerW - m * 2;
+  const innerH = outerH - m * 2;
+
+  const H_CABEZAL = mm(11.5);
+  const H_ESCALA = mm(98);
+  const H_ENERGIA = mm(24);
+
+  const yCabezal = 0;
+  const yEscala = yCabezal + H_CABEZAL;
+  const yEnergia = yEscala + H_ESCALA;
+  const yCaract = yEnergia + H_ENERGIA;
+
+  const bgGrisClaro = '#eae9ea';
+
+  const renderRibbon = (color: string, bodyWidthMm: number, height: number, text: string) => {
+    const tipWidth = mm(5);
+    const bodyWidth = mm(bodyWidthMm) - tipWidth;
+
+    return (
+      <div style={{ position: 'relative', height: height, display: 'flex', alignItems: 'center' }}>
+        <div style={{
+          backgroundColor: color,
+          width: bodyWidth,
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          paddingLeft: mm(2),
+          fontFamily: 'Arial',
+          fontWeight: 'bold',
+          fontSize: pt(20)
+        }}>
+          <span style={{ color: '#fff' }}>{text}</span>
+        </div>
+        <div style={{
+          width: 0,
+          height: 0,
+          borderTop: `${height / 2}px solid transparent`,
+          borderBottom: `${height / 2}px solid transparent`,
+          borderLeft: `${tipWidth}px solid ${color}`
+        }} />
+      </div>
+    );
+  };
+
+  const selectedIndex = LETTERS.indexOf(data.eficiencia) >= 0 ? LETTERS.indexOf(data.eficiencia) : 0;
+  const ribbonWidths = [31.5, 36.3, 41.1, 45.9, 50.7, 55.5, 60.3];
+
+  const consumoCiclo = data.consumoCiclo || data.consumo_ciclo || data.consumoEnergia || '0,26';
+  const capacidad = data.capacidad || data.capacidad_carga || '7,5';
+  const claseCentrifugado = (data.claseCentrifugado || data.clase_centrifugado || data.eficaciaCentrifugado || 'B').toUpperCase();
+  const aguaCiclo = data.aguaCiclo || data.agua_ciclo || data.consumoAgua || '62';
+  const rpmMax = data.rpmMax || data.rpm_max || data.velocidadCentrifugado || '1200';
+  const duracionCiclo = data.duracionCiclo || data.duracion_ciclo || data.duracion || '235';
+  const consumoEspera = data.consumoEspera || data.consumo_espera || '0.50';
+  const nivelRuido = data.ruido || data.nivel_ruido || data.ruido_centrifugado || '74';
+
+  return (
+    <div
+      id={id}
+      style={{
+        width: outerW,
+        height: outerH,
+        backgroundColor: '#fff',
+        position: 'relative',
+        boxSizing: 'border-box',
+        overflow: 'hidden',
+        fontFamily: 'Arial, sans-serif',
+        lineHeight: '1',
+        color: '#000',
+        border: `${lineW}px solid #000`
+      }}
+    >
+      <div style={{ position: 'absolute', top: m, left: m, width: innerW, height: innerH, boxSizing: 'border-box' }}>
+
+        {/* BLOCK 1: Cabezal */}
+        <div style={{ position: 'absolute', top: yCabezal, left: 0, width: '100%', height: mm(11.5) }}>
+          <div style={{ backgroundColor: '#21337B', height: mm(10), width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <span style={{ color: '#fff', fontFamily: '"Arial Black", Arial, sans-serif', fontSize: pt(14), fontWeight: 900, letterSpacing: '0.5px' }}>
+              EFICIENCIA ENERGÉTICA
+            </span>
+          </div>
+          <div style={{ position: 'absolute', top: mm(11), left: 0, width: '100%', height: `${lineW}px`, backgroundColor: '#000' }} />
+        </div>
+
+        {/* BLOCK 2: Escala A-G */}
+        <div style={{ position: 'absolute', top: yEscala, left: 0, width: '100%', height: H_ESCALA }}>
+          <div style={{ position: 'absolute', top: mm(1.5), left: 0, fontSize: pt(6), fontWeight: 'bold' }}>MÁS EFICIENTE</div>
+          <div style={{ position: 'absolute', bottom: mm(1.5), left: 0, fontSize: pt(6), fontWeight: 'bold' }}>MENOS EFICIENTE</div>
+
+          <div style={{ position: 'absolute', top: mm(6.5), left: 0, width: '100%' }}>
+            {LETTERS.map((label, i) => {
+              const h = 11.2;
+              const gap = 1.2;
+              return (
+                <div key={label} style={{ position: 'absolute', top: mm(i * (h + gap)), left: 0 }}>
+                  {renderRibbon(COLORS[i], ribbonWidths[i], mm(h), label)}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Indicator Arrow */}
+          {(() => {
+            const ribbonH = 11.2;
+            const ribbonGap = 1.2;
+            const topInicial = 6.5;
+            const selTop = topInicial + selectedIndex * (ribbonH + ribbonGap);
+            const selCenter = selTop + ribbonH / 2;
+            const indH = 20;
+            const indTop = selCenter - indH / 2;
+            return (
+              <div style={{ position: 'absolute', top: mm(indTop), right: 0, width: mm(46), height: mm(indH), display: 'flex' }}>
+                <div style={{
+                  width: 0,
+                  height: 0,
+                  borderTop: `${mm(indH / 2)}px solid transparent`,
+                  borderBottom: `${mm(indH / 2)}px solid transparent`,
+                  borderRight: `${mm(10)}px solid #000`
+                }} />
+                <div style={{
+                  backgroundColor: '#000',
+                  flex: 1,
+                  height: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#fff',
+                  fontSize: pt(40),
+                  fontWeight: 700
+                }}>
+                  {data.eficiencia}
+                </div>
+              </div>
+            );
+          })()}
+
+          <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: `${lineW}px`, backgroundColor: '#000' }} />
+        </div>
+
+        {/* BLOCK 3: Consumo de Energía por Ciclo */}
+        <div style={{ position: 'absolute', top: yEnergia, left: 0, width: '100%', height: mm(25) }}>
+          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: mm(1), backgroundColor: '#fff' }} />
+          <div style={{ position: 'absolute', top: mm(1), left: 0, width: '100%', height: mm(24), backgroundColor: COLORS[selectedIndex] || '#009640', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: `0 ${mm(3)}px`, boxSizing: 'border-box' }}>
+            <div style={{ fontSize: pt(13), fontWeight: 'bold', lineHeight: '15pt', color: '#000' }}>
+              CONSUMO DE ENERGÍA<br />POR CICLO
+            </div>
+            <div style={{ display: 'flex', alignItems: 'baseline' }}>
+              <span style={{ fontSize: pt(56), fontWeight: 'bold', color: '#000', lineHeight: '0.8' }}>{consumoCiclo}</span>
+              <span style={{ fontSize: pt(15), marginLeft: mm(1), color: '#000', fontWeight: 'bold' }}>kWh</span>
+            </div>
+          </div>
+        </div>
+
+        {/* BLOCK 4: Grid de Características específicas de Lavarropas */}
+        <div style={{ position: 'absolute', top: yEnergia + mm(25), left: 0, width: '100%', height: mm(51), backgroundColor: '#fff' }}>
+          {/* LADO IZQUIERDO: Tarjeta gris con íconos (54 mm de ancho) */}
+          <div style={{ position: 'absolute', left: 0, top: 0, width: mm(54), height: mm(51), backgroundColor: bgGrisClaro, borderRight: `${lineW * 1.5}px solid #fff`, boxSizing: 'border-box' }}>
+            
+            {/* Fila 1: Consumo Agua */}
+            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: mm(12.75), display: 'flex', alignItems: 'center', paddingLeft: mm(2), paddingRight: mm(2), justifyContent: 'space-between' }}>
+              <div style={{ fontSize: pt(5.5), fontWeight: 'bold', lineHeight: '7pt' }}>
+                CONSUMO DE AGUA<br />POR CICLO
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <svg width={mm(6)} height={mm(7)} viewBox="0 0 24 24" fill="#000" style={{ marginRight: mm(1) }}>
+                  <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
+                </svg>
+                <span style={{ fontSize: pt(13), fontWeight: 'bold' }}>{aguaCiclo}</span>
+                <span style={{ fontSize: pt(7), marginLeft: 2, fontWeight: 'bold' }}>lts</span>
+              </div>
+            </div>
+
+            <div style={{ position: 'absolute', top: mm(12.75), left: mm(2), width: mm(50), height: `${lineW}px`, backgroundColor: '#000' }} />
+
+            {/* Fila 2: Capacidad */}
+            <div style={{ position: 'absolute', top: mm(12.75), left: 0, width: '100%', height: mm(12.75), display: 'flex', alignItems: 'center', paddingLeft: mm(2), paddingRight: mm(2), justifyContent: 'space-between' }}>
+              <div style={{ fontSize: pt(5.5), fontWeight: 'bold', lineHeight: '7pt' }}>
+                CAPACIDAD<br />DEL LAVARROPAS
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <svg width={mm(6)} height={mm(7)} viewBox="0 0 24 24" fill="#000" style={{ marginRight: mm(1) }}>
+                  <path d="M6 2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm6 4a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z" />
+                </svg>
+                <span style={{ fontSize: pt(13), fontWeight: 'bold' }}>{capacidad}</span>
+                <span style={{ fontSize: pt(7), marginLeft: 2, fontWeight: 'bold' }}>Kg</span>
+              </div>
+            </div>
+
+            <div style={{ position: 'absolute', top: mm(25.5), left: mm(2), width: mm(50), height: `${lineW}px`, backgroundColor: '#000' }} />
+
+            {/* Fila 3: Duración */}
+            <div style={{ position: 'absolute', top: mm(25.5), left: 0, width: '100%', height: mm(12.75), display: 'flex', alignItems: 'center', paddingLeft: mm(2), paddingRight: mm(2), justifyContent: 'space-between' }}>
+              <div style={{ fontSize: pt(5.5), fontWeight: 'bold', lineHeight: '7pt' }}>
+                DURACIÓN
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <svg width={mm(6)} height={mm(6)} viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: mm(1) }}>
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+                <span style={{ fontSize: pt(13), fontWeight: 'bold' }}>{duracionCiclo}</span>
+                <span style={{ fontSize: pt(7), marginLeft: 2, fontWeight: 'bold' }}>min</span>
+              </div>
+            </div>
+
+            <div style={{ position: 'absolute', top: mm(38.25), left: mm(2), width: mm(50), height: `${lineW}px`, backgroundColor: '#000' }} />
+
+            {/* Fila 4: Ruido */}
+            <div style={{ position: 'absolute', top: mm(38.25), left: 0, width: '100%', height: mm(12.75), display: 'flex', alignItems: 'center', paddingLeft: mm(2), paddingRight: mm(2), justifyContent: 'space-between' }}>
+              <div style={{ fontSize: pt(5.5), fontWeight: 'bold', lineHeight: '7pt' }}>
+                NIVEL<br />DE RUIDO
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <svg width={mm(6)} height={mm(6)} viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2" style={{ marginRight: mm(1) }}>
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="#000" />
+                  <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+                </svg>
+                <span style={{ fontSize: pt(13), fontWeight: 'bold' }}>{nivelRuido}</span>
+                <span style={{ fontSize: pt(5.5), marginLeft: 2, fontWeight: 'bold', lineHeight: '6pt' }}>dB(A)<br />re 1 pW</span>
+              </div>
+            </div>
+
+          </div>
+
+          {/* LADO DERECHO: Especificaciones Técnicas secundarias */}
+          <div style={{ position: 'absolute', left: mm(54), top: 0, width: mm(66), height: mm(51), backgroundColor: '#fff', paddingLeft: mm(2), paddingRight: mm(2), boxSizing: 'border-box' }}>
+            
+            {/* Centrifugado & Eficacia */}
+            <div style={{ height: mm(12.75), borderBottom: `${lineW}px solid #000`, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+              <div style={{ fontSize: pt(5), fontWeight: 'bold', letterSpacing: '0.2px' }}>CENTRIFUGADO</div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 1 }}>
+                <span style={{ fontSize: pt(4.5), fontWeight: 'bold' }}>CLASE DE EFICACIA</span>
+                <div style={{ display: 'flex', gap: 1 }}>
+                  {LETTERS.map(l => (
+                    <span key={l} style={{
+                      fontSize: pt(6.5),
+                      fontWeight: 'bold',
+                      padding: '0 1px',
+                      backgroundColor: l === claseCentrifugado ? '#000' : 'transparent',
+                      color: l === claseCentrifugado ? '#fff' : '#000',
+                      borderRadius: 1
+                    }}>{l}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Velocidad máxima */}
+            <div style={{ height: mm(12.75), borderBottom: `${lineW}px solid #000`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div style={{ fontSize: pt(5.5), fontWeight: 'bold', lineHeight: '7pt' }}>
+                VELOCIDAD<br />MÁXIMA
+              </div>
+              <div style={{ fontSize: pt(12), fontWeight: 'bold' }}>
+                {rpmMax} <span style={{ fontSize: pt(7), fontWeight: 'normal' }}>rpm</span>
+              </div>
+            </div>
+
+            {/* Consumo en espera */}
+            <div style={{ height: mm(12.75), borderBottom: `${lineW}px solid #000`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div style={{ fontSize: pt(5), fontWeight: 'bold', lineHeight: '6.5pt' }}>
+                CONSUMO EN ESPERA
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <svg width={mm(4.5)} height={mm(4.5)} viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2.5" strokeLinecap="round" style={{ marginRight: mm(1) }}>
+                  <path d="M18.36 6.64a9 9 0 1 1-12.73 0" />
+                  <line x1="12" y1="2" x2="12" y2="12" />
+                </svg>
+                <span style={{ fontSize: pt(11), fontWeight: 'bold' }}>{consumoEspera}</span>
+                <span style={{ fontSize: pt(7), marginLeft: 1, fontWeight: 'bold' }}>W</span>
+              </div>
+            </div>
+
+            {/* Normas e IRAM */}
+            <div style={{ height: mm(12.75), display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div style={{ fontSize: pt(5), fontWeight: 'bold', lineHeight: '6.5pt' }}>
+                IRAM 2141-3<br />
+                IRAM 62301<br />
+                Res. SIyC N° 438/24
+              </div>
+              <div style={{ width: mm(14), height: mm(11), border: '1px solid #999', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: pt(4), color: '#666', textAlign: 'center' }}>
+                CÓDIGO QR
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* BLOCK 5: Footer / Modelo / Origen */}
+        <div style={{ position: 'absolute', top: yCaract + mm(51), left: 0, width: '100%', height: mm(13) }}>
+          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: `${lineW}px`, backgroundColor: '#000' }} />
+          
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', paddingTop: mm(1.5) }}>
+            <div style={{ fontSize: pt(12), fontFamily: '"Arial Black", Arial, sans-serif', fontWeight: 900 }}>
+              LAVARROPAS
+            </div>
+
+            <div style={{ fontSize: pt(6.5), textAlign: 'right', lineHeight: '8.5pt' }}>
+              <div>MODELO <span style={{ fontWeight: 'bold', marginLeft: mm(2) }}>{data.modelo || 'GAD-WM80'}</span></div>
+              <div>MARCA COMERCIAL <span style={{ fontWeight: 'bold', marginLeft: mm(2) }}>{data.marca || 'GADNIC'}</span></div>
+              <div>ORIGEN <span style={{ fontWeight: 'bold', marginLeft: mm(2) }}>{data.origen || 'CHINA'}</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  );
+}
+
+// ── COMPONENTE TEMPLATE: REFRIGERADORES Y CONGELADORES (IRAM 2404-3) ────────
+
+function TemplateRefrigeradores({ data, id = "label-export" }: { data: EtiquetaData; id?: string }) {
+  const scale = 3.78;
+  const mm = (val: number) => val * scale;
+  const pt = (val: number) => val * 1.333 * (scale / 3.78);
+
+  // Global Dimensions: 124 mm width x 212 mm height (según Hoja 3 IRAM 2404-3)
+  const outerW = mm(124);
+  const outerH = mm(212);
+  const lineW = mm(0.5); // Líneas divisoras de 0,5 mm exactos según plano Hoja 3
+
+  // Inner margins: 2 mm
+  const m = mm(2);
+  const innerW = outerW - m * 2; // 120 mm
+  const innerH = outerH - m * 2; // 208 mm
+
+  const H_CABEZAL = mm(11.5);
+  const H_ESCALA = mm(98);
+  const H_ENERGIA = mm(24);
+
+  const yCabezal = 0;
+  const yEscala = yCabezal + H_CABEZAL;
+  const yEnergia = yEscala + H_ESCALA;
+  const yCaract = yEnergia + H_ENERGIA;
+
+  const bgGrisClaro = '#eae9ea';
+
+  const renderRibbon = (color: string, bodyWidthMm: number, height: number, text: string) => {
+    const tipWidth = mm(5);
+    const bodyWidth = mm(bodyWidthMm) - tipWidth;
+
+    return (
+      <div style={{ position: 'relative', height: height, display: 'flex', alignItems: 'center' }}>
+        <div style={{
+          backgroundColor: color,
+          width: bodyWidth,
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          paddingLeft: mm(2),
+          fontFamily: 'Arial',
+          fontWeight: 'bold',
+          fontSize: pt(20)
+        }}>
+          <span style={{ color: '#fff' }}>{text}</span>
+        </div>
+        <div style={{
+          width: 0,
+          height: 0,
+          borderTop: `${height / 2}px solid transparent`,
+          borderBottom: `${height / 2}px solid transparent`,
+          borderLeft: `${tipWidth}px solid ${color}`
+        }} />
+      </div>
+    );
+  };
+
+  const selectedIndex = LETTERS.indexOf(data.eficiencia) >= 0 ? LETTERS.indexOf(data.eficiencia) : 0;
+  const ribbonWidths = [31.5, 36.3, 41.1, 45.9, 50.7, 55.5, 60.3]; // mm width of A to G labels
+
+  const volFrescos = data.vol_frescos || data.volFrescos || data.volumen_frescos || '274';
+  const volCongelados = data.vol_congelados || data.volCongelados || data.volumen_congelados || '168';
+  const consumoAnual = data.consumo_anual || data.consumoAnual || data.consumo_energia || '308';
+  const nivelRuido = data.ruido || data.nivelRuido || data.nivel_ruido || '36';
+  const claseClimatica = data.clase_climatica || data.claseClimatica || 'T';
+  const consumoEspera = data.consumo_espera || data.consumoEspera || '0.28';
+
+  return (
+    <div
+      id={id}
+      style={{
+        width: outerW,
+        height: outerH,
+        backgroundColor: '#fff',
+        position: 'relative',
+        boxSizing: 'border-box',
+        overflow: 'hidden',
+        fontFamily: 'Arial, sans-serif',
+        lineHeight: '1',
+        color: '#000',
+        border: `${lineW}px solid #000`
+      }}
+    >
+      {/* Inner Container: 120x208 mm (2mm margin all around) */}
+      <div style={{ position: 'absolute', top: m, left: m, width: innerW, height: innerH, boxSizing: 'border-box' }}>
+
+        {/* BLOCK 1: Cabezal */}
+        <div style={{ position: 'absolute', top: yCabezal, left: 0, width: '100%', height: mm(11.5) }}>
+          <div style={{ backgroundColor: '#21337B', height: mm(10), width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <span style={{ color: '#fff', fontFamily: '"Arial Black", Arial, sans-serif', fontSize: pt(14), fontWeight: 900, letterSpacing: '0.5px' }}>
+              EFICIENCIA ENERGÉTICA
+            </span>
+          </div>
+          {/* Línea negra 1mm debajo del recuadro azul */}
+          <div style={{ position: 'absolute', top: mm(11), left: 0, width: '100%', height: `${lineW}px`, backgroundColor: '#000' }} />
+        </div>
+
+        {/* BLOCK 2: Escala A-G (98 mm entre línea superior e inferior) */}
+        <div style={{ position: 'absolute', top: yEscala, left: 0, width: '100%', height: H_ESCALA }}>
+          <div style={{ position: 'absolute', top: mm(1.5), left: 0, fontSize: pt(6), fontWeight: 'bold', fontFamily: 'Arial, sans-serif' }}>
+            MÁS EFICIENTE
+          </div>
+          <div style={{ position: 'absolute', bottom: mm(1.5), left: 0, fontSize: pt(6), fontWeight: 'bold', fontFamily: 'Arial, sans-serif' }}>
+            MENOS EFICIENTE
+          </div>
+
+          <div style={{ position: 'absolute', top: mm(6.5), left: 0, width: '100%' }}>
+            {LETTERS.map((label, i) => {
+              const h = 11.2;
+              const gap = 1.2;
+              return (
+                <div key={label} style={{ position: 'absolute', top: mm(i * (h + gap)), left: 0 }}>
+                  {renderRibbon(COLORS[i], ribbonWidths[i], mm(h), label)}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Black Indicator Arrow (centrado verticalmente con la bandera seleccionada) */}
+          {(() => {
+            const ribbonH = 11.2;
+            const ribbonGap = 1.2;
+            const topInicial = 6.5;
+            const selTop = topInicial + selectedIndex * (ribbonH + ribbonGap);
+            const selCenter = selTop + ribbonH / 2;
+            const indH = 20;
+            const indTop = selCenter - indH / 2;
+            return (
+              <div style={{ position: 'absolute', top: mm(indTop), right: 0, width: mm(46), height: mm(indH), display: 'flex' }}>
+                <div style={{
+                  width: 0,
+                  height: 0,
+                  borderTop: `${mm(indH / 2)}px solid transparent`,
+                  borderBottom: `${mm(indH / 2)}px solid transparent`,
+                  borderRight: `${mm(10)}px solid #000`
+                }} />
+                <div style={{
+                  backgroundColor: '#000',
+                  flex: 1,
+                  height: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#fff',
+                  fontSize: pt(40),
+                  fontWeight: 700
+                }}>
+                  {data.eficiencia}
+                </div>
+              </div>
+            );
+          })()}
+
+          {/* Línea negra horizontal de 0.5mm que separa la escala del bloque de consumo */}
+          <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: `${lineW}px`, backgroundColor: '#000' }} />
+        </div>
+
+        {/* BLOCK 3: Consumo de Energía (24 mm de alto con 1 mm de gap superior, SIN línea negra abajo) */}
+        <div style={{ position: 'absolute', top: yEnergia, left: 0, width: '100%', height: mm(25) }}>
+          {/* Espacio en blanco de 1mm */}
+          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: mm(1), backgroundColor: '#fff' }} />
+
+          {/* Recuadro de consumo dinámico según la clase de eficiencia energética (Res. 438/2024 Anexo I Pág. 10) */}
+          <div style={{ position: 'absolute', top: mm(1), left: 0, width: '100%', height: mm(24), backgroundColor: COLORS[selectedIndex] || '#009640', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: `0 ${mm(3)}px`, boxSizing: 'border-box' }}>
+            <div style={{ fontSize: pt(14), fontWeight: 'bold', lineHeight: '16pt', color: '#000' }}>
+              CONSUMO<br />DE ENERGÍA
+            </div>
+            <div style={{ display: 'flex', alignItems: 'baseline' }}>
+              <span style={{ fontSize: pt(60), fontWeight: 'bold', color: '#000', lineHeight: '0.8' }}>{consumoAnual}</span>
+              <span style={{ fontSize: pt(16), marginLeft: mm(1), color: '#000', fontWeight: 'normal' }}>kWh/año</span>
+            </div>
+          </div>
+        </div>
+
+        {/* BLOCK 4: Características (51 mm de alto total, pegado directamente debajo del recuadro verde) */}
+        <div style={{ position: 'absolute', top: yEnergia + mm(25), left: 0, width: '100%', height: mm(51), backgroundColor: '#fff' }}>
+
+          {/* Columna Izquierda (54 mm de ancho, fondo gris `#eae9ea` ÍNTEGRO de 51 mm de alto, con borde blanco a la derecha) */}
+          <div style={{ position: 'absolute', left: 0, top: 0, width: mm(54), height: mm(51), backgroundColor: bgGrisClaro, borderRight: `${lineW * 1.5}px solid #fff`, boxSizing: 'border-box' }}>
+
+            {/* Fila 0: Título CARACTERÍSTICAS (11pt bold) + Clase Climática T (21pt bold) - Alto 12.75 mm */}
+            <div style={{ position: 'absolute', top: 0, left: mm(2), width: mm(50), height: mm(12.75), display: 'flex', alignItems: 'center', justifyContent: 'space-between', boxSizing: 'border-box' }}>
+              <span style={{ fontSize: pt(11), fontWeight: 'bold', color: '#27348b' }}>CARACTERÍSTICAS</span>
+              <span style={{ fontSize: pt(21), fontWeight: 'bold', fontFamily: 'Arial, sans-serif', color: '#000' }}>{claseClimatica}</span>
+            </div>
+            {/* Línea 1: Debajo de CARACTERÍSTICAS T (arranca a 3 mm del borde izquierdo) */}
+            <div style={{ position: 'absolute', top: mm(12.75), left: mm(3), width: mm(48), height: `${lineW}px`, backgroundColor: '#000' }} />
+
+            {/* Fila 1: Alimentos Frescos - Alto 12.75 mm */}
+            <div style={{ position: 'absolute', top: mm(12.75), left: mm(3), width: mm(48), height: mm(12.75), display: 'flex', alignItems: 'center', boxSizing: 'border-box' }}>
+              <div style={{ width: mm(19), fontSize: pt(6.2), lineHeight: '1.1', fontFamily: 'Arial, sans-serif' }}>
+                VOLUMEN<br />ALIMENTOS<br />FRESCOS
+              </div>
+              {/* Ícono 1: Cartón de Leche 3D (Centrado) */}
+              <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <img src="/icons/frescos_icon.png" alt="frescos" style={{ height: mm(9.5), objectFit: 'contain' }} />
+              </div>
+              <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'flex-end', gap: '1px' }}>
+                <span style={{ fontSize: pt(10), fontWeight: 'bold' }}>{volFrescos}</span>
+                <span style={{ fontSize: pt(8) }}>lts</span>
+              </div>
+            </div>
+            {/* Línea 2: Entre Frescos y Congelados (arranca a 3 mm del borde izquierdo, grosor lineW = 0.5 mm) */}
+            <div style={{ position: 'absolute', top: mm(25.5), left: mm(3), width: mm(48), height: `${lineW}px`, backgroundColor: '#000' }} />
+
+            {/* Fila 2: Alimentos Congelados - Alto 12.75 mm */}
+            <div style={{ position: 'absolute', top: mm(25.5), left: mm(3), width: mm(48), height: mm(12.75), display: 'flex', alignItems: 'center', boxSizing: 'border-box' }}>
+              <div style={{ width: mm(19), fontSize: pt(6.2), lineHeight: '1.1', fontFamily: 'Arial, sans-serif' }}>
+                VOLUMEN<br />ALIMENTOS<br />CONGELADOS
+              </div>
+              {/* Ícono 2: Copo con 4 estrellas celestes (Centrado) */}
+              <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <img src="/icons/congelados_icon.png" alt="congelados" style={{ height: mm(10), objectFit: 'contain' }} />
+              </div>
+              <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'flex-end', gap: '1px' }}>
+                <span style={{ fontSize: pt(10), fontWeight: 'bold' }}>{volCongelados}</span>
+                <span style={{ fontSize: pt(8) }}>lts</span>
+              </div>
+            </div>
+            {/* Línea 3: Entre Congelados y Ruido (arranca a 3 mm del borde izquierdo, grosor lineW = 0.5 mm) */}
+            <div style={{ position: 'absolute', top: mm(38.25), left: mm(3), width: mm(48), height: `${lineW}px`, backgroundColor: '#000' }} />
+
+            {/* Fila 3: Ruido - Alto 12.75 mm */}
+            <div style={{ position: 'absolute', top: mm(38.25), left: mm(2), width: mm(50), height: mm(12.75), display: 'flex', alignItems: 'center', boxSizing: 'border-box' }}>
+              <div style={{ width: mm(19), fontSize: pt(6.2), lineHeight: '1.1', fontFamily: 'Arial, sans-serif' }}>
+                RUIDO
+              </div>
+              {/* Ícono 3: Parlante Ruido (Centrado) */}
+              <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <img src="/icons/ruido_icon.png" alt="ruido" style={{ height: mm(8.5), objectFit: 'contain' }} />
+              </div>
+              <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'flex-end', gap: '1px' }}>
+                <span style={{ fontSize: pt(10), fontWeight: 'bold' }}>{nivelRuido}</span>
+                <span style={{ fontSize: pt(8) }}>dB <sup style={{ fontSize: '5px' }}>(A)</sup></span>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Columna Derecha (66 mm de ancho): Referencias + QR + Consumo en Espera */}
+          <div style={{ position: 'absolute', left: mm(54), top: 0, width: mm(66), height: mm(51) }}>
+
+            {/* Sub-bloque superior: Referencia IRAM + Res SIyC + QR */}
+            <div style={{ display: 'flex', width: '100%', height: mm(38) }}>
+              {/* Referencias (IRAM + Res SIyC) ambos Arial Bold 11 pt */}
+              <div style={{ width: mm(38), height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                <div style={{ textAlign: 'center' }}>
+                  <span style={{ fontSize: pt(11), fontWeight: 'bold', display: 'block' }}>Referencia IRAM</span>
+                  <span style={{ fontSize: pt(11), fontWeight: 'bold', display: 'block' }}>{data.referenciaIram || '2404-3'}</span>
+                </div>
+                <div style={{ width: mm(28), height: `${lineW}px`, flexShrink: 0, backgroundColor: '#000', margin: `${mm(2)}px 0` }} />
+                <div style={{ textAlign: 'center' }}>
+                  <span style={{ fontSize: pt(11), fontWeight: 'bold', display: 'block' }}>Res. SIyC N°</span>
+                  <span style={{ fontSize: pt(11), fontWeight: 'bold', display: 'block' }}>{data.resolucion || '438/24'}</span>
+                </div>
+              </div>
+
+              {/* Caja QR (28 mm x 28 mm exactos) */}
+              <div style={{ width: mm(28), height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', paddingRight: mm(1) }}>
+                <div style={{ width: mm(28), height: mm(28), border: `${lineW}px solid #000`, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', textAlign: 'center', boxSizing: 'border-box' }}>
+                  {data.qrImageUrl ? (
+                    <img src={data.qrImageUrl} alt="QR" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                  ) : (
+                    <span style={{ fontSize: pt(8), fontWeight: 'bold', fontFamily: '"Arial Black", Arial' }}>
+                      ESPACIO<br />CODIGO QR
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* Línea horizontal divisora arriba de Consumo en Espera (0.5mm exactos) */}
+            <div style={{ position: 'absolute', top: mm(38), left: 0, width: '100%', height: `${lineW}px`, backgroundColor: '#000' }} />
+
+            {/* Sub-bloque inferior: Consumo en Espera (fondo gris claro `#eae9ea`, 13mm de alto) */}
+            <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: mm(13), backgroundColor: bgGrisClaro, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: mm(2), boxSizing: 'border-box' }}>
+              <span style={{ fontSize: pt(8), fontWeight: 'bold' }}>CONSUMO EN ESPERA</span>
+              {/* Ícono Botón Standby / Power */}
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2.5" strokeLinecap="round">
+                <path d="M18.36 6.64a9 9 0 1 1-12.73 0" />
+                <line x1="12" y1="2" x2="12" y2="12" />
+              </svg>
+              <div style={{ display: 'flex', alignItems: 'baseline' }}>
+                <span style={{ fontSize: pt(10), fontWeight: 'bold', fontFamily: 'Arial, sans-serif' }}>{consumoEspera}</span>
+                <span style={{ fontSize: pt(7), fontWeight: 'bold', fontFamily: 'Arial, sans-serif' }}>W</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* Línea horizontal negra de 0.5mm que separa el Bloque 4 (Características) del Bloque 5 (Footer) */}
+        <div style={{ position: 'absolute', top: yCaract + mm(51), left: 0, width: '100%', height: `${lineW}px`, backgroundColor: '#000' }} />
+
+        {/* BLOCK 5: Footer (Interlineado 100% uniforme entre el título y las filas de datos) */}
+        <div style={{ position: 'absolute', top: yCaract + mm(51.5), left: 0, width: '100%', bottom: mm(1.5), display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', gap: mm(1.2), paddingTop: mm(0.5), boxSizing: 'border-box' }}>
+          <div style={{ fontSize: pt(12), fontWeight: 900, fontFamily: '"Arial Black", Arial, sans-serif', textTransform: 'uppercase', lineHeight: '1.1' }}>
+            {(data.descripcion || data.producto_desc || 'REFRIGERADORES Y CONGELADORES').toUpperCase()}
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <span style={{ fontSize: pt(8), fontFamily: 'Arial, sans-serif', fontWeight: 'normal' }}>MODELO</span>
+            <span style={{ fontSize: pt(8), fontFamily: 'Arial, sans-serif', fontWeight: 'normal' }}>{data.modelo || '123'}</span>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <span style={{ fontSize: pt(8), fontFamily: 'Arial, sans-serif', fontWeight: 'normal' }}>MARCA COMERCIAL</span>
+            <span style={{ fontSize: pt(8), fontFamily: 'Arial, sans-serif', fontWeight: 'normal' }}>{data.marca || 'ABC'}</span>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <span style={{ fontSize: pt(8), fontFamily: 'Arial, sans-serif', fontWeight: 'normal' }}>ORIGEN</span>
+            <span style={{ fontSize: pt(8), fontFamily: 'Arial, sans-serif', fontWeight: 'normal' }}>{data.origen || 'ABC'}</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  );
+}
+
 // ── DISPACHER PRINCIPAL ──────────────────────────────────────────────────────
 
 export default function EtiquetaEE({ familyId, data, id = "label-export" }: Props) {
@@ -886,8 +1529,27 @@ export default function EtiquetaEE({ familyId, data, id = "label-export" }: Prop
     normalizedData.eficaciaSecado = data.eficaciaSecado || data.clase_secado || '';
     normalizedData.consumoEspera = data.consumoEspera || data.consumo_espera || '';
     return <TemplateLavavajillas data={normalizedData} id={id} />;
+  } else if (familyId === 'lavarropas') {
+    normalizedData.consumoCiclo = data.consumoCiclo || data.consumo_ciclo || data.consumoEnergia || '';
+    normalizedData.capacidad = data.capacidad || data.capacidad_carga || '';
+    normalizedData.claseCentrifugado = data.claseCentrifugado || data.clase_centrifugado || data.eficaciaCentrifugado || '';
+    normalizedData.aguaCiclo = data.aguaCiclo || data.agua_ciclo || data.consumoAgua || '';
+    normalizedData.rpmMax = data.rpmMax || data.rpm_max || data.velocidadCentrifugado || '';
+    normalizedData.duracionCiclo = data.duracionCiclo || data.duracion_ciclo || data.duracion || '';
+    normalizedData.consumoEspera = data.consumoEspera || data.consumo_espera || '';
+    normalizedData.ruido = data.ruido || data.nivel_ruido || data.ruido_centrifugado || '';
+    return <TemplateLavarropas data={normalizedData} id={id} />;
+  } else if (familyId === 'refrigeradores' || familyId === 'heladeras') {
+    normalizedData.consumoAnual = data.consumoAnual || data.consumo_anual || data.consumo_energia || '';
+    normalizedData.volFrescos = data.volFrescos || data.vol_frescos || data.volumen_frescos || '';
+    normalizedData.volCongelados = data.volCongelados || data.vol_congelados || data.volumen_congelados || '';
+    normalizedData.ruido = data.ruido || data.nivel_ruido || '';
+    normalizedData.estrellas = data.estrellas || '';
+    normalizedData.claseClimatica = data.claseClimatica || data.clase_climatica || 'T';
+    normalizedData.consumoEspera = data.consumoEspera || data.consumo_espera || '';
+    return <TemplateRefrigeradores data={normalizedData} id={id} />;
   } else {
-    // Fallback dinámico genérico para las otras 9 familias
+    // Fallback dinámico genérico para las otras familias
     return <TemplateGeneric data={normalizedData} familyId={familyId} id={id} />;
   }
 }

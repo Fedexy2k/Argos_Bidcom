@@ -29,6 +29,7 @@ class DJCEEGenerator:
     """Genera Declaraciones Juradas de Conformidad de Eficiencia Energética (DJC-EE)."""
 
     TEMPLATE_FILENAME = "DJ Conformidad Modelo EE.docx"
+    FT_TEMPLATE_FILENAME = "Ficha Tecnica Modelo EE.docx"
 
     def __init__(self, config_path: Optional[str] = None, ee_config_path: Optional[str] = None):
         base_dir = Path(__file__).parent.parent
@@ -51,7 +52,9 @@ class DJCEEGenerator:
             if not self.template_path.exists():
                 raise FileNotFoundError(f"Template DJC-EE no encontrado en {base_dir / self.TEMPLATE_FILENAME}")
 
-        logger.info(f"DJCEEGenerator inicializado. Template: {self.template_path.name}")
+        self.ft_template_path = base_dir / self.FT_TEMPLATE_FILENAME
+
+        logger.info(f"DJCEEGenerator inicializado. Template DJC: {self.template_path.name}")
 
     def get_family_by_id(self, family_id: str) -> Optional[dict]:
         """Busca una familia por su ID en el listado de familias."""
@@ -533,3 +536,142 @@ class DJCEEGenerator:
         else:
             logger.error("No se encontró Microsoft Word ni LibreOffice instalados.")
             raise RuntimeError(f"No se pudo generar PDF. LibreOffice no instalado.")
+
+    def generate_ft_id(self, bidcom_num: str, emision_date_str: str) -> str:
+        """Genera el código ID de la Ficha Técnica: FT-EE-{MMYY}-C{NUM}-V1."""
+        try:
+            dt = datetime.strptime(emision_date_str, "%d/%m/%Y")
+            anio_mes = dt.strftime("%m%y")
+        except Exception:
+            anio_mes = datetime.now().strftime("%m%y")
+
+        bidcom_clean = str(bidcom_num).replace("/", "-").replace("C", "").replace("c", "") if bidcom_num else "XXXX"
+        return f"FT-EE-{anio_mes}-C{bidcom_clean}-V1"
+
+    def fill_template_ft(self, data: dict, family_id: str, ee_fields_data: dict, images_bytes: Optional[list] = None) -> Document:
+        """
+        Llena la plantilla de Ficha Técnica de Información de Producto con los datos dinámicos.
+        Filtra la Tabla 2 eliminando las filas que no pertenecen a la familia seleccionada.
+        """
+        import unicodedata
+
+        def normalize_text(text: str) -> str:
+            if not text:
+                return ""
+            text = unicodedata.normalize('NFD', text)
+            text = "".join(c for c in text if unicodedata.category(c) != 'Mn')
+            return text.lower().strip()
+
+        if not self.ft_template_path.exists():
+            raise FileNotFoundError(f"Template Ficha Técnica no encontrado en {self.ft_template_path}")
+
+        doc = Document(str(self.ft_template_path))
+        tables = doc.tables
+
+        if len(tables) < 5:
+            raise ValueError(f"Template Ficha Técnica inválido: esperaba 5 tablas, encontró {len(tables)}.")
+
+        # --- Tabla 0: ID FT ---
+        ft_id = data.get("ft_id") or data.get("djc_id", "").replace("DJC-EE-", "FT-EE-")
+        if not ft_id:
+            ft_id = self.generate_ft_id(data.get("bidcom_num", ""), data.get("fecha_emision", ""))
+        self._set_cell_id(tables[0], 1, 0, ft_id)
+
+        # --- Tabla 1: Identificación Comercial ---
+        emp = data.get("empresa_override") or self.config["empresa"]
+        marca = data.get("marca") or emp.get("marca_registrada", "BIDCOM")
+        self._set_cell(tables[1], 0, 1, marca)
+        self._set_cell(tables[1], 1, 1, data.get("modelo", ""))
+        self._set_cell(tables[1], 2, 1, data.get("origen", "China"))
+
+        # --- Tabla 2: Especificaciones Técnicas (Filtrar y Completar) ---
+        family = self.get_family_by_id(family_id)
+        ficha_fields = family.get("ficha_fields", []) if family else []
+        norma_base = family.get("norma_base", "") if family else data.get("normas", "")
+
+        label_map = {}
+        static_map = {}
+        for ff in ficha_fields:
+            lbl_norm = normalize_text(ff["row_label"])
+            if "data_key" in ff:
+                label_map[lbl_norm] = ff["data_key"]
+            elif "static_value" in ff:
+                static_map[lbl_norm] = ff["static_value"]
+
+        static_always_keep = {
+            normalize_text("Norma Tecnica de Referencia"): norma_base,
+            normalize_text("Resolucion Aplicable"): "Resolución SIyC N° 438/2024",
+            normalize_text("Tipo / Categoria de Producto"): ee_fields_data.get("categoria", "") or (family.get("label", "") if family else ""),
+        }
+
+        table_specs = tables[2]
+        rows_indices = list(range(len(table_specs.rows)))
+        rows_indices.reverse()
+
+        for idx in rows_indices:
+            row = table_specs.rows[idx]
+            cell_label = row.cells[0].text.strip()
+            cell_norm = normalize_text(cell_label)
+
+            is_static = False
+            for stat_norm, stat_val in static_always_keep.items():
+                if stat_norm in cell_norm or cell_norm in stat_norm:
+                    is_static = True
+                    if stat_val:
+                        self._fill_cell_direct(row.cells[1], str(stat_val))
+                    break
+
+            if not is_static:
+                for stat_norm, stat_val in static_map.items():
+                    if stat_norm in cell_norm or cell_norm in stat_norm:
+                        is_static = True
+                        if stat_val:
+                            self._fill_cell_direct(row.cells[1], str(stat_val))
+                        break
+
+            if is_static:
+                continue
+
+            matched_key = None
+            for lbl_norm, key in label_map.items():
+                if lbl_norm in cell_norm or cell_norm in lbl_norm:
+                    matched_key = key
+                    break
+
+            if matched_key:
+                val = ee_fields_data.get(matched_key, "")
+                if val is not None and str(val).strip() != "":
+                    unit = ""
+                    if family:
+                        for f_info in family.get("fields", []):
+                            if f_info["key"] == matched_key and "unit" in f_info:
+                                unit = f" {f_info['unit']}"
+                                break
+                    self._fill_cell_direct(row.cells[1], f"{val}{unit}")
+                else:
+                    self._fill_cell_direct(row.cells[1], "N/A")
+            else:
+                self._delete_table_row(table_specs, idx)
+
+        # --- Tabla 3: Etiquetas y QR ---
+        t3 = tables[3]
+        qr_url = data.get("qr_url", f"https://qr.gadnic.com/certifications/certificado-{data.get('cert_number', 'ZZZ')}-ee")
+        self._set_cell_hyperlink(t3, 0, 1, qr_url, qr_url)
+
+        if images_bytes:
+            model_names = [m.strip() for m in data.get("modelo", "").split("/") if m.strip()]
+            slots = [(1, 0), (1, 1), (2, 0), (2, 1), (3, 0), (3, 1)]
+            for idx_img, img_b in enumerate(images_bytes[:len(slots)]):
+                r, c = slots[idx_img]
+                m_name = model_names[idx_img] if idx_img < len(model_names) else f"Modelo {idx_img+1}"
+                self._insert_label_in_cell(t3, r, c, img_b, model_name=m_name)
+
+        fecha_emision = data.get("fecha_emision_djc") or datetime.now().strftime("%d/%m/%Y")
+        self._set_cell(t3, 4, 1, fecha_emision)
+        self._set_cell(t3, 5, 1, data.get("lugar", "Ciudad de Buenos Aires"))
+
+        # --- Tabla 4: Firma ---
+        aclaracion = data.get("firmante_override") or data.get("aclaracion", "BARNA, Emanuel Lucas")
+        self._set_cell(tables[4], 1, 1, aclaracion)
+
+        return doc

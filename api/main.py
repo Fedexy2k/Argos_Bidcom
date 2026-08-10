@@ -122,7 +122,7 @@ async def lifespan(app: FastAPI):
     task.cancel()
 
 
-app = FastAPI(title="Argos API", version="3.1.0", lifespan=lifespan)
+app = FastAPI(title="Argos API", version="3.2.0", lifespan=lifespan)
 
 
 
@@ -647,7 +647,7 @@ async def verify_certs(files: list[UploadFile] = File(...)):
 
 @app.get("/api/health")
 def health_check():
-    return {"status": "ok", "version": "3.1.0"}
+    return {"status": "ok", "version": "3.2.0"}
 
 
 
@@ -1094,10 +1094,27 @@ def auto_extract_ee(req: EEExtractRequest):
 async def auto_extract_ee_file(file: UploadFile = File(...)):
     """Extrae automáticamente la familia y métricas de Eficiencia Energética desde un archivo PDF subido."""
     try:
-        import pypdf
         pdf_bytes = await file.read()
-        reader = pypdf.PdfReader(io.BytesIO(pdf_bytes))
-        full_text = "\n".join([page.extract_text() for page in reader.pages if page.extract_text()])
+        full_text = ""
+
+        # 1. Intentar con PyMuPDF (fitz) - alta precisión en certificados e informes
+        try:
+            import fitz
+            doc = fitz.open(stream=pdf_bytes, filetype="pdf")
+            texts = [page.get_text() for page in doc if page.get_text()]
+            full_text = "\n".join(texts)
+        except Exception as e:
+            _gui_logger.warning(f"fitz text extraction warning: {e}")
+
+        # 2. Fallback a pypdf si fitz no obtuvo texto
+        if not full_text.strip():
+            try:
+                import pypdf
+                reader = pypdf.PdfReader(io.BytesIO(pdf_bytes))
+                texts = [page.extract_text() for page in reader.pages if page.extract_text()]
+                full_text = "\n".join(texts)
+            except Exception as e:
+                _gui_logger.warning(f"pypdf text extraction warning: {e}")
 
         if not full_text.strip():
             raise HTTPException(status_code=400, detail="El archivo PDF no contiene texto legible.")

@@ -1,4 +1,4 @@
-# ⚡ ARGOS — Sistema Inteligente de Certificaciones (v3.1.0)
+# ⚡ ARGOS — Sistema Inteligente de Certificaciones (v3.2.0)
 > **Solución Integrada para Declaraciones Juradas de Conformidad (DJC), Eficiencia Energética (Res. 438/2024), Solicitudes Lenor/QETKRA y Control de Presupuesto IA.**
 > **GADNIC / BIDCOM S.R.L.**
 
@@ -13,7 +13,8 @@
   - Índice de Eficiencia Energética (IEE), consumos anuales y por ciclo, ruido (dB), capacidad y secado.
   - Especificaciones eléctricas base (Tensión, Frecuencia, Potencia nominal y Clase I de aislación).
   - Laboratorio de ensayo, correo/web de contacto, fecha de emisión y vencimiento automático a +4 años.
-- **Generación de Etiquetas en Vivo**: Visualizador dinámico SVG/HTML de la etiqueta oficial de Eficiencia Energética por modelo.
+- **Generación de Ficha Técnica Dinámica (Art. 7°)**: Emisión automática de la Ficha Técnica de Información de Producto en Word/PDF con superset de 44 especificaciones técnicas y borrado dinámico de filas no aplicables.
+- **Generación de Etiquetas en Vivo**: Visualizador dinámico SVG/HTML de la etiqueta oficial de Eficiencia Energética por modelo (con plantillas 1:1 de Illustrator para Lavarropas, Heladeras, etc.).
 - **DJC-EE Word & PDF**: Compilación automática del documento de Declaración Jurada de Eficiencia Energética con etiquetas incrustadas.
 
 ### 📜 2. Generador DJC de Seguridad Eléctrica
@@ -35,7 +36,7 @@
 ## 🛠️ Instalación y Ejecución
 
 ### Opción A: Instalador Ejecutable Standalone (Recomendado para Usuario Final)
-1. Ejecutá el instalador oficial `Argos_Setup_v3_1_0.exe`.
+1. Ejecutá el instalador oficial `Argos_Setup_v3_2_0.exe`.
 2. El instalador creará un acceso directo en tu Escritorio y Menú Inicio.
 3. Al hacer doble clic en **Argos**, se abrirá la aplicación en modo ventana independiente (App Mode).
 

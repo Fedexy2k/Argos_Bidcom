@@ -1,16 +1,19 @@
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
-AppId={{ARGOS-V3-1-0}}
+AppId={{ARGOS-V3-2-0}}
 AppName=Argos
-AppVersion=3.1.0_STABLE
+AppVersion=3.2.0
 AppPublisher=Gadnic / BIDCOM
 DefaultDirName={localappdata}\Argos
 PrivilegesRequired=lowest
 DefaultGroupName=Argos
 AllowNoIcons=yes
+CloseApplications=yes
+CloseApplicationsFilter=*Argos*
+
 ; Output folder and installer name
 OutputDir=.\
-OutputBaseFilename=Argos_Setup_v3_1_0
+OutputBaseFilename=Argos_Setup_v3_2_0
 
 Compression=lzma2/ultra64
 SolidCompression=yes
