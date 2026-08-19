@@ -243,4 +243,18 @@ def extract_product_data(
         except Exception as e:
             _log("warning", f"[M3] Error en revisión semántica IA: {e}")
 
+    # Regla de negocio: En certificados de juguetes (SJ / 163/2004 / NM 300 / LCJ),
+    # si no se encuentran especificaciones técnicas (ratings eléctricos), poner "----"
+    text_lower = text.lower()
+    is_juguete = (
+        "163/2004" in text_lower or
+        "nm 300" in text_lower or
+        "lcj-" in text_lower or
+        "juguete" in text_lower or
+        "juguetes" in text_lower
+    )
+    if is_juguete and not (result.get("specs") or "").strip():
+        result["specs"] = "----"
+        _log("info", "[M3] Certificado de Juguetes: specs asignado a '----' por defecto")
+
     return result

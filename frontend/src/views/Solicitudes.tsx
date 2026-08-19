@@ -70,7 +70,7 @@ export default function Solicitudes({ onLog }: Props) {
 
   // ── PASO 2: Formulario ───────────────────────────────────────────────────────
   const [data, setData] = useState<DatasheetParseResult | null>(null)
-  const [oec, setOec] = useState<'lenor' | 'qetkra' | 'juguetes' | 'ftalatos'>('lenor')
+  const [oec, setOec] = useState<'lenor' | 'qetkra' | 'tuv' | 'juguetes' | 'ftalatos'>('lenor')
   const [esquema, setEsquema] = useState(ESQUEMAS_QETKRA[0])
   const [svgFile, setSvgFile] = useState<File | null>(null)
   const svgInputRef = useRef<HTMLInputElement>(null)
@@ -122,7 +122,8 @@ export default function Solicitudes({ onLog }: Props) {
       onLog('info', `Parseando datasheet: ${dsFile.name}…`)
       const result = await parseDatasheet(dsFile)
       setData(result)
-      setOec(result.oec_detected)
+      const detected = (result.oec_detected === 'tuv' || result.oec_detected === 'qetkra') ? result.oec_detected : 'lenor'
+      setOec(detected as any)
       setStep(2)
       onLog('info', `✓ Datasheet procesado: ${result.skus.length} SKU(s) | OEC sugerido: ${result.oec_detected.toUpperCase()}`)
     } catch (e: any) {
@@ -143,7 +144,7 @@ export default function Solicitudes({ onLog }: Props) {
       onLog('info', `Generando solicitud ${oec.toUpperCase()} para ${data.certificado}…`)
       const blob = await generateSolicitud(
         { data, oec, esquema },
-        (oec === 'lenor' || oec === 'qetkra') && svgFile ? svgFile : undefined,
+        (oec === 'lenor' || oec === 'qetkra' || oec === 'tuv') && svgFile ? svgFile : undefined,
       )
       setZipBlob(blob)
       setResultDir(`Solicitudes/${data.certificado}/`)
@@ -158,133 +159,115 @@ export default function Solicitudes({ onLog }: Props) {
 
   const handleDownload = () => {
     if (!zipBlob || !data) return
-    downloadZip(zipBlob, `Solicitud_${data.certificado}.zip`)
+    downloadZip(zipBlob, data.certificado)
   }
 
   // ── RENDER ─────────────────────────────────────────────────────────────────
   return (
-    <div style={{ maxWidth: 920, fontFamily: '"Plus Jakarta Sans", "Inter", sans-serif' }}>
-
-      {/* Header + Stepper */}
-      <div style={{ marginBottom: 32 }}>
-        <p style={{ fontSize: 14, color: '#64748b', marginTop: 6 }}>
-          Generá automáticamente la solicitud de certificación Excel, la nota Word y el PDF QR
-          a partir de la planilla de ingeniería o un certificado PDF viejo para renovaciones.
-        </p>
-      </div>
-
-      {/* Progress Steps */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 0, marginBottom: 36 }}>
+    <div style={{ maxWidth: 960, margin: '0 auto', padding: '0 16px 80px' }}>
+      {/* Indicador de pasos */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, marginBottom: 32 }}>
         {[
-          { n: 1, label: 'Cargar Archivo' },
-          { n: 2, label: 'Revisar y Configurar' },
-          { n: 3, label: 'Descargar' },
-        ].map((s, i) => (
-          <div key={s.n} style={{ display: 'flex', alignItems: 'center', flex: i < 2 ? 1 : undefined }}>
-            <div style={{
-              display: 'flex', alignItems: 'center', gap: 10,
-              opacity: step >= s.n ? 1 : 0.35,
-            }}>
-              <div style={{
-                width: 32, height: 32, borderRadius: '50%',
-                background: step > s.n ? '#8b5cf6' : step === s.n ? 'rgba(139,92,246,0.2)' : 'rgba(255,255,255,0.04)',
-                border: `2px solid ${step >= s.n ? '#8b5cf6' : 'rgba(255,255,255,0.1)'}`,
+          { num: 1, label: 'Cargar Datasheet' },
+          { num: 2, label: 'Completar Datos' },
+          { num: 3, label: 'Descargar Solicitud' },
+        ].map((s, idx) => (
+          <div key={s.num} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div
+              style={{
+                width: 28, height: 28, borderRadius: '50%',
+                background: step === s.num ? '#8b5cf6' : step > s.num ? 'rgba(139,92,246,0.3)' : 'rgba(255,255,255,0.06)',
+                color: step === s.num ? '#fff' : step > s.num ? '#d0bcff' : '#64748b',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: 13, fontWeight: 700,
-                color: step > s.n ? '#fff' : step === s.n ? '#d0bcff' : '#64748b',
-                flexShrink: 0,
-              }}>
-                {step > s.n
-                  ? <span className="material-symbols-outlined" style={{ fontSize: 16 }}>check</span>
-                  : s.n}
-              </div>
-              <span style={{
-                fontSize: 13, fontWeight: step === s.n ? 700 : 500,
-                color: step === s.n ? '#d0bcff' : '#64748b',
-                whiteSpace: 'nowrap',
-              }}>{s.label}</span>
+                fontSize: 12, fontWeight: 700,
+              }}
+            >
+              {step > s.num ? '✓' : s.num}
             </div>
-            {i < 2 && (
-              <div style={{
-                flex: 1, height: 1, margin: '0 16px',
-                background: step > s.n ? 'rgba(139,92,246,0.4)' : 'rgba(255,255,255,0.06)',
-              }} />
+            <span style={{ fontSize: 13, fontWeight: step === s.num ? 600 : 400, color: step === s.num ? '#f1eeff' : '#64748b' }}>
+              {s.label}
+            </span>
+            {idx < 2 && (
+              <div style={{ width: 32, height: 1, background: step > s.num ? 'rgba(139,92,246,0.4)' : 'rgba(255,255,255,0.08)' }} />
             )}
           </div>
         ))}
       </div>
 
-      {/* ══ PASO 1: DROPZONE ══════════════════════════════════════════════════ */}
+      {/* ── PASO 1 ─────────────────────────────────────────────────────────── */}
       {step === 1 && (
         <div style={cardStyle}>
-          <p style={sectionTitle}>
-            <span className="material-symbols-outlined" style={{ fontSize: 18 }}>upload_file</span>
-            Planilla Excel (.xlsx / .xlsm) o Certificado viejo (.pdf)
-          </p>
-
-          {/* Dropzone */}
           <div
             onDragOver={e => { e.preventDefault(); setDragOver(true) }}
             onDragLeave={() => setDragOver(false)}
             onDrop={handleDrop}
             onClick={() => fileInputRef.current?.click()}
             style={{
-              border: `2px dashed ${dragOver ? '#8b5cf6' : dsFile ? 'rgba(139,92,246,0.4)' : 'rgba(255,255,255,0.1)'}`,
-              borderRadius: 14,
-              padding: '52px 32px',
+              border: `2px dashed ${dragOver ? '#8b5cf6' : 'rgba(139,92,246,0.25)'}`,
+              borderRadius: 16,
+              padding: '60px 32px',
               textAlign: 'center',
               cursor: 'pointer',
-              background: dragOver ? 'rgba(139,92,246,0.06)' : dsFile ? 'rgba(139,92,246,0.04)' : 'transparent',
-              transition: 'all 0.2s',
+              background: dragOver ? 'rgba(139,92,246,0.06)' : 'rgba(139,92,246,0.02)',
+              transition: 'all 0.2s ease',
             }}
           >
-            <span className="material-symbols-outlined" style={{ fontSize: 48, color: dsFile ? '#8b5cf6' : '#343440' }}>
-              {dsFile ? (dsFile.name.endsWith('.pdf') ? 'picture_as_pdf' : 'check_circle') : 'table_view'}
+            <span className="material-symbols-outlined" style={{ fontSize: 56, color: '#8b5cf6', marginBottom: 16 }}>
+              upload_file
             </span>
-            <p style={{ color: dsFile ? '#d0bcff' : '#64748b', marginTop: 12, fontSize: 14 }}>
-              {dsFile ? dsFile.name : 'Arrastrá o hacé clic para seleccionar la planilla (.xlsx / .xlsm) o certificado viejo (.pdf)'}
+            <h3 style={{ fontSize: 18, color: '#f1eeff', fontWeight: 700, marginBottom: 8 }}>
+              {dsFile ? dsFile.name : 'Arrastrá tu Datasheet de Ingeniería o Certificado PDF aquí'}
+            </h3>
+            <p style={{ color: '#64748b', fontSize: 13, margin: 0 }}>
+              Soporta planillas .xlsx / .xlsm con fotos o certificados PDF para auto-completar
             </p>
-            {dsFile && (
-              <p style={{ color: '#64748b', fontSize: 12, marginTop: 4 }}>
-                {(dsFile.size / 1024).toFixed(1)} KB
-              </p>
-            )}
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept=".xlsx,.xlsm,.xls,.pdf"
+              style={{ display: 'none' }}
+              onChange={e => { if (e.target.files?.[0]) handleFile(e.target.files[0]) }}
+            />
           </div>
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept=".xlsx,.xlsm,.xls,.pdf"
-            style={{ display: 'none' }}
-            onChange={e => { if (e.target.files?.[0]) handleFile(e.target.files[0]) }}
-          />
 
           {dsFile && (
-            <div style={{ marginTop: 20, display: 'flex', justifyContent: 'flex-end' }}>
+            <div style={{ marginTop: 24, display: 'flex', justifyContent: 'flex-end', gap: 12 }}>
+              <button
+                onClick={() => setDsFile(null)}
+                style={{
+                  padding: '12px 20px', background: 'transparent',
+                  border: '1px solid rgba(255,255,255,0.1)', borderRadius: 10,
+                  color: '#64748b', fontSize: 14, cursor: 'pointer',
+                }}
+              >
+                Cancelar
+              </button>
               <button
                 onClick={handleParse}
                 disabled={parsing}
                 style={{
                   padding: '12px 28px',
-                  background: parsing ? 'rgba(139,92,246,0.3)' : '#8b5cf6',
-                  border: 'none', borderRadius: 10, cursor: parsing ? 'not-allowed' : 'pointer',
-                  color: '#fff', fontSize: 14, fontWeight: 700,
+                  background: parsing ? 'rgba(139,92,246,0.3)' : 'linear-gradient(135deg, #8b5cf6, #7c3aed)',
+                  border: 'none', borderRadius: 10,
+                  cursor: parsing ? 'not-allowed' : 'pointer',
+                  color: '#fff', fontSize: 14, fontWeight: 600,
                   display: 'flex', alignItems: 'center', gap: 8,
                 }}
               >
                 <span className="material-symbols-outlined" style={{ fontSize: 18 }}>
-                  {parsing ? 'sync' : 'arrow_forward'}
+                  {parsing ? 'sync' : 'search'}
                 </span>
-                {parsing ? 'Procesando…' : 'Analizar Datasheet'}
+                {parsing ? 'Procesando…' : 'Procesar Datasheet'}
               </button>
             </div>
           )}
         </div>
       )}
 
-      {/* ══ PASO 2: FORMULARIO ════════════════════════════════════════════════ */}
+      {/* ── PASO 2 ─────────────────────────────────────────────────────────── */}
       {step === 2 && data && (
         <>
-          {/* ── Certificadora y Trámite ─────────────────────────────────────── */}
+          {/* ── Metadatos del Trámite ─────────────────────────────────────────── */}
           <div style={cardStyle}>
             <p style={sectionTitle}>
               <span className="material-symbols-outlined" style={{ fontSize: 18 }}>badge</span>
@@ -294,12 +277,12 @@ export default function Solicitudes({ onLog }: Props) {
               {/* Selector OEC */}
               <div style={{ gridColumn: '1 / -1' }}>
                 <label style={labelStyle}>Organismo Certificador (OEC)</label>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 12 }}>
                   {[
                     { id: 'lenor', label: '🏛️ Lenor (Eléctrica)' },
                     { id: 'qetkra', label: '🔬 Qetkra (Convenio)' },
-                    { id: 'juguetes', label: '🧸 Lenor Juguetes (Próximamente)' },
-                    { id: 'ftalatos', label: '🧪 Lenor Ftalatos (Próximamente)' }
+                    { id: 'tuv', label: '🛡️ TÜV Rheinland (Oficial)' },
+                    { id: 'juguetes', label: '🧸 Lenor Juguetes (Próx.)' }
                   ].map(opt => (
                     <button
                       key={opt.id}
@@ -389,7 +372,7 @@ export default function Solicitudes({ onLog }: Props) {
             </div>
           </div>
 
-          {(oec === 'lenor' || oec === 'qetkra') && (
+          {(oec === 'lenor' || oec === 'qetkra' || oec === 'tuv') && (
             <>
               {/* ── Datos de Fábrica ─────────────────────────────────────────────── */}
               <div style={cardStyle}>
@@ -536,7 +519,7 @@ export default function Solicitudes({ onLog }: Props) {
           </div>
 
           {/* ── QR SVG ───────────────────────────────────────────────────────── */}
-          {(oec === 'lenor' || oec === 'qetkra') && (
+          {(oec === 'lenor' || oec === 'qetkra' || oec === 'tuv') && (
             <div style={cardStyle}>
               <p style={sectionTitle}>
                 <span className="material-symbols-outlined" style={{ fontSize: 18 }}>qr_code_2</span>

@@ -121,7 +121,7 @@ def main():
     # UI Elements
     if hasattr(ctk, 'CTkLabel'):
         title_font = ctk.CTkFont(size=22, weight="bold")
-        ctk.CTkLabel(root, text="Argos V3.2.0", font=title_font).pack(pady=(15, 5))
+        ctk.CTkLabel(root, text="Argos V3.2.1", font=title_font).pack(pady=(15, 5))
         
         status_label = ctk.CTkLabel(root, text="Servidor Apagado.", text_color="gray")
         status_label.pack(pady=5)
@@ -134,7 +134,7 @@ def main():
         
         ctk.CTkLabel(root, text="Este panel lanzará la interfaz principal de Argos.", font=ctk.CTkFont(size=11), text_color="gray").pack(side="bottom", pady=10)
     else:
-        ctk.Label(root, text="Argos V2.5.0", font=("Arial", 16, "bold")).pack(pady=(20, 5))
+        ctk.Label(root, text="Argos V3.2.1", font=("Arial", 16, "bold")).pack(pady=(20, 5))
         status_label = ctk.Label(root, text="Iniciando servidor...", fg="orange")
         status_label.pack(pady=5)
         

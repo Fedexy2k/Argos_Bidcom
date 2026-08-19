@@ -45,6 +45,7 @@ TEMPLATE_LENOR_XLSX = TEMPLATES_DIR / "Solicitud_Modelo_Lenor.xlsm"
 TEMPLATE_LENOR_DOCX = TEMPLATES_DIR / "Nota_Modelo_Lenor.docx"
 TEMPLATE_qetkra_XLSX = TEMPLATES_DIR / "Solicitud_Modelo_qetkra.xlsx"
 TEMPLATE_qetkra_DOCX = TEMPLATES_DIR / "Nota_Modelo_qetkra.docx"
+TEMPLATE_TUV_DOCX = TEMPLATES_DIR / "Solicitud_Modelo_tuv.docx"
 
 
 # ═════════════════════════════════════════════════════════════════════════════
@@ -85,11 +86,13 @@ def _clean_key(val: Any) -> str:
 def _detect_oec(metadata: dict) -> str:
     """
     Detecta la certificadora a partir del motivo y el campo OEC del datasheet.
-    Retorna 'qetkra' o 'lenor'.
+    Retorna 'tuv', 'qetkra' o 'lenor'.
     """
     motivo = metadata.get("motivo", "").lower()
     oec = metadata.get("oec", "").lower()
-    if "convenio" in motivo or "quektra" in oec or "qetkra" in oec or "tüv" in oec or "tuv" in oec:
+    if "tüv" in oec or "tuv" in oec or "tüv" in motivo or "tuv" in motivo:
+        return "tuv"
+    if "convenio" in motivo or "quektra" in oec or "qetkra" in oec:
         return "qetkra"
     return "lenor"
 
@@ -1310,7 +1313,7 @@ def generate_qetkra_excel(data: dict, esquema: str, out_path: Path, logger: Any 
 # 5. REEMPLAZO DE TAGS EN WORD (python-docx respetando runs)
 # ═════════════════════════════════════════════════════════════════════════════
 
-def _set_cell_text(cell, text: str, font_name: str | None = None, font_size_pt: int | None = None) -> None:
+def _set_cell_text(cell, text: str, font_name: str | None = None, font_size_pt: int | float | None = None, bold: bool | None = None) -> None:
     """Escribe texto en una celda de tabla Word preservando el formato del primer run si existe o aplicando uno nuevo."""
     from docx.shared import Pt
     run = None
@@ -1335,6 +1338,8 @@ def _set_cell_text(cell, text: str, font_name: str | None = None, font_size_pt: 
             run.font.name = font_name
         if font_size_pt:
             run.font.size = Pt(font_size_pt)
+        if bold is not None:
+            run.font.bold = bold
 
 
 def replace_tags_in_docx(doc: Document, replacements: dict[str, str]) -> None:
@@ -1608,6 +1613,147 @@ def generate_qetkra_word(data: dict, out_path: Path, svg_bytes: bytes | None = N
     _log("Nota de aclaración de qetkra Word generada exitosamente.", "info", logger)
 
 
+def generate_tuv_word(data: dict, out_path: Path, logger: Any = None) -> None:
+    """Genera la Solicitud de Servicio oficial de TÜV Rheinland en Word (.docx)."""
+    _log(f"Iniciando generación de Solicitud de Servicio Word para TÜV Rheinland. Destino: {out_path.name}", "info", logger)
+    try:
+        _log(f"Abriendo plantilla Word: {TEMPLATE_TUV_DOCX.name}...", "debug", logger)
+        doc = Document(str(TEMPLATE_TUV_DOCX))
+    except Exception as e:
+        _log(f"Error al cargar la plantilla Word de TÜV: {e}", "error", logger)
+        raise
+
+    if not doc.tables:
+        _log("ERROR: No se encontró la tabla de solicitud en la plantilla de TÜV.", "error", logger)
+        raise ValueError("Plantilla de TÜV inválida: no contiene tabla.")
+
+    table = doc.tables[0]
+
+    # Extraer campos
+    producto = data.get("producto", "") or "---"
+    motivo = data.get("motivo", "") or "Adición de modelo"
+    reglamento = data.get("reglamento", "") or "Resolución S.I.C. N° 16/2025"
+    esquema = data.get("esquema", "") or "Tipo 2"
+    normas = data.get("normas", "") or "---"
+    laboratorio = data.get("laboratorio", "") or "TÜV Rheinland"
+    certificado = data.get("certificado", "") or ""
+    fabrica_nombre = data.get("fabrica", "") or "---"
+    fabrica_direccion = data.get("direccion", "") or "---"
+
+    # Modelos y marcas
+    all_models = []
+    all_marcas = set()
+    for b in data.get("skus", []):
+        if b.get("marca"):
+            for m in split_marcas(b.get("marca")):
+                all_marcas.add(m)
+        mods = b.get("modelos", [])
+        if mods:
+            all_models.extend(mods)
+        elif b.get("sku"):
+            all_models.append(b.get("sku"))
+
+    seen_m = set()
+    unique_models = [m for m in all_models if not (m in seen_m or seen_m.add(m))]
+    modelos_str = ", ".join(unique_models) if unique_models else "---"
+    marcas_str = ", ".join(sorted(all_marcas)) if all_marcas else "GADNIC"
+
+    _log("Completando datos de Titular, Solicitante y Facturación en la tabla...", "debug", logger)
+    # 1. Titular (Fila 1 y 2)
+    _set_cell_text(table.rows[1].cells[2], "BIDCOM S.R.L.", font_name="Calibri", font_size_pt=10, bold=True)
+    _set_cell_text(table.rows[1].cells[7], "30-71106936-0", font_name="Calibri", font_size_pt=10)
+    _set_cell_text(table.rows[2].cells[2], "Bouchard 468, 5° I, CABA. CP 1004", font_name="Calibri", font_size_pt=10)
+
+    # 2. Fábrica (Fila 4 y 5)
+    _log(f"Completando datos de Fábrica: {fabrica_nombre}...", "debug", logger)
+    _set_cell_text(table.rows[4].cells[2], fabrica_nombre, font_name="Calibri", font_size_pt=10)
+    _set_cell_text(table.rows[5].cells[2], fabrica_direccion, font_name="Calibri", font_size_pt=10)
+
+    # 3. Facturación (Fila 7)
+    _set_cell_text(table.rows[7].cells[0], "Razón social a facturar:    BIDCOM S.R.L.", font_name="Calibri", font_size_pt=10)
+
+    # 4. Solicitante (Fila 10, 11, 12, 13)
+    _set_cell_text(table.rows[10].cells[2], "BIDCOM S.R.L.", font_name="Calibri", font_size_pt=10, bold=True)
+    _set_cell_text(table.rows[10].cells[6], "CUIT: 30-71106936-0", font_name="Calibri", font_size_pt=10)
+    _set_cell_text(table.rows[11].cells[2], "Bouchard 468, 5° I, CABA. CP 1004", font_name="Calibri", font_size_pt=10)
+    _set_cell_text(table.rows[12].cells[0], "Persona de contacto : Federico Dean / Ariana Jallinsky", font_name="Calibri", font_size_pt=10)
+    _set_cell_text(table.rows[12].cells[5], "Dept.: COMEX", font_name="Calibri", font_size_pt=10)
+    _set_cell_text(table.rows[13].cells[0], "Tel.: 3960-0184", font_name="Calibri", font_size_pt=10)
+    _set_cell_text(table.rows[13].cells[2], "Ext.: ---", font_name="Calibri", font_size_pt=10)
+    _set_cell_text(table.rows[13].cells[5], "e-mail: federico.de@bidcom.com.ar / ariana.jallinsky@bidcom.com.ar", font_name="Calibri", font_size_pt=9)
+
+    # 5. Datos Técnicos (Fila 15, 16, 17, 18, 19, 20)
+    _log(f"Completando datos técnicos: Producto='{producto}', Modelos='{modelos_str}', Marcas='{marcas_str}'...", "debug", logger)
+    _set_cell_text(table.rows[15].cells[2], producto, font_name="Calibri", font_size_pt=10, bold=True)
+    _set_cell_text(table.rows[16].cells[2], modelos_str, font_name="Calibri", font_size_pt=10)
+    _set_cell_text(table.rows[17].cells[2], marcas_str, font_name="Calibri", font_size_pt=10)
+    _set_cell_text(table.rows[18].cells[2], normas, font_name="Calibri", font_size_pt=10)
+
+    if certificado and certificado != "SIN_NRO":
+        _set_cell_text(table.rows[19].cells[0], f"¿El producto ya fue certificado previamente por TÜV?    No   Si [X]:  Indicar Nº Certificado: {certificado}", font_name="Calibri", font_size_pt=10)
+    else:
+        _set_cell_text(table.rows[19].cells[0], "¿El producto ya fue certificado previamente por TÜV?   [X] No   Si:  Indicar Nº Certificado: ", font_name="Calibri", font_size_pt=10)
+
+    _set_cell_text(table.rows[20].cells[2], laboratorio or "TÜV Rheinland Argentina S.A.", font_name="Calibri", font_size_pt=10)
+
+    # 6. Servicios Solicitados / Checkboxes en Fila 22
+    _log("Marcando servicios y resoluciones solicitadas...", "debug", logger)
+    r22 = table.rows[22]
+    reg_clean = reglamento.lower()
+    esq_clean = esquema.lower()
+    mot_clean = motivo.lower()
+
+    for p in r22.cells[0].paragraphs:
+        txt = p.text.strip()
+        if "16/25" in txt or "16/2025" in txt:
+            if "16/25" in reg_clean or "16/2025" in reg_clean or "seguridad" in reg_clean:
+                p.text = "[X] Resolución S.I.C. N° 16/25 y mod."
+        elif "236/24" in txt or "236/2024" in txt:
+            if "236/24" in reg_clean or "236/2024" in reg_clean:
+                p.text = "[X] Resolución S.I.C. N° 236/24 y mod."
+        elif "17/25" in txt or "17/2025" in txt:
+            if "17/25" in reg_clean or "17/2025" in reg_clean:
+                p.text = "[X] Resolución S.I.C. N° 17/25 y mod."
+        elif "Apéndice" in txt:
+            prod_low = producto.lower()
+            if ("fuente" in prod_low or "cargador" in prod_low) and "Apéndice I " in txt:
+                p.text = "\t [X] Apéndice I (Fuentes y cargadores)"
+            elif ("iluminac" in prod_low or "lampar" in prod_low or "led" in prod_low) and "Apéndice III" in txt:
+                p.text = "\t [X] Apéndice III (Dispositivos de iluminación)"
+            elif ("audio" in prod_low or "video" in prod_low or "tv" in prod_low or "parlante" in prod_low or "auricular" in prod_low) and "Apéndice IV" in txt:
+                p.text = "\t [X] Apéndice IV (Aparatos de electrónica, audio y video)"
+            elif "Apéndice II" in txt:
+                p.text = "\t [X] Apéndice II (Aparatos eléctricos de uso doméstico)"
+        elif "Esquema tipo 2" in txt:
+            if "2" in esq_clean or "tipo" in esq_clean:
+                p.text = "[X] Certificación de tipo (Esquema tipo 2 *)"
+        elif "Esquema tipo 5" in txt:
+            if "5" in esq_clean or "marca" in esq_clean:
+                p.text = "[X] Certificación de marca (Esquema tipo 5 *)"
+        elif "Esquema tipo 1b" in txt:
+            if "lote" in esq_clean or "1b" in esq_clean:
+                p.text = "[X] Certificación de lote (Esquema tipo 1b *)"
+
+    for p in r22.cells[3].paragraphs:
+        txt = p.text.strip()
+        if "Adición de modelo" in txt and ("adicion" in mot_clean or "ampliacion" in mot_clean or "modelo" in mot_clean or "nuevo" in mot_clean):
+            p.text = "[X] Adición de modelo"
+        elif "Actualización de norma" in txt and "norma" in mot_clean:
+            p.text = "[X] Actualización de norma"
+        elif "Cambio de datos" in txt and "cambio" in mot_clean:
+            p.text = "[X] Cambio de datos técnicos"
+
+    # Fecha en párrafos
+    fecha_hoy = date.today().strftime("%d/%m/%Y")
+    for p in doc.paragraphs:
+        if "Fecha:" in p.text:
+            p.text = f"Fecha: {fecha_hoy}"
+
+    _log(f"Guardando Solicitud Word de TÜV en: {out_path}...", "debug", logger)
+    doc.save(str(out_path))
+    _log("Solicitud de Servicio de TÜV Rheinland generada exitosamente.", "info", logger)
+
+
 # ═════════════════════════════════════════════════════════════════════════════
 # 7. GENERADOR PDF QR (SVG → PDF A4 vectorial)
 # ═════════════════════════════════════════════════════════════════════════════
@@ -1872,9 +2018,27 @@ def generate_solicitud(
         generate_qetkra_word(data, docx_out, svg_bytes, logger)
         generated_files.append(docx_out)
 
+    elif oec_lower in ("tuv", "tüv", "tuv rheinland"):
+        _log(f"Iniciando flujo de generación para organismo TÜV RHEINLAND", "info", logger)
+        docx_out = out_dir / f"Solicitud_tuv_{nro_clean}.docx"
+        generate_tuv_word(data, docx_out, logger)
+        generated_files.append(docx_out)
+
+        ds_out = out_dir / f"Datasheet_{nro_clean}.xlsx"
+        generate_lenor_datasheet_excel(data, ds_out, logger)
+        generated_files.append(ds_out)
+
+        if svg_bytes:
+            _log("SVG de código QR provisto. Generando PDF con etiquetas QR vectoriales...", "info", logger)
+            pdf_out = out_dir / f"QR Certificado {nro_clean}.pdf"
+            generate_qr_pdf(svg_bytes, nro, pdf_out, logger)
+            generated_files.append(pdf_out)
+        else:
+            _log("ADVERTENCIA: No se proveyó SVG de QR. Se omitirá la generación del PDF de etiquetas.", "warning", logger)
+
     else:
         _log(f"Error: Organismo '{oec}' desconocido.", "error", logger)
-        raise ValueError(f"OEC desconocido: '{oec}'. Use 'lenor' o 'qetkra'.")
+        raise ValueError(f"OEC desconocido: '{oec}'. Use 'lenor', 'qetkra' o 'tuv'.")
 
     # Comprimir en ZIP en memoria
     _log("Empaquetando archivos generados en formato ZIP...", "info", logger)

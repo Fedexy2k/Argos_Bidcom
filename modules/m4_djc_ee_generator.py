@@ -45,16 +45,21 @@ class DJCEEGenerator:
         with open(ee_config_path, "r", encoding="utf-8") as f:
             self.ee_families = json.load(f)["families"]
 
-        self.template_path = base_dir / self.TEMPLATE_FILENAME
+        # Lookup para DJC-EE
+        self.template_path = base_dir / "assets" / "djc_templates" / self.TEMPLATE_FILENAME
         if not self.template_path.exists():
-            # Fallback a ejemplos si no está en la raíz
-            self.template_path = base_dir / "ejemplos" / "DJ Conformidad Modelo EE (1).docx"
+            self.template_path = base_dir / self.TEMPLATE_FILENAME
             if not self.template_path.exists():
-                raise FileNotFoundError(f"Template DJC-EE no encontrado en {base_dir / self.TEMPLATE_FILENAME}")
+                self.template_path = base_dir / "ejemplos" / "DJ Conformidad Modelo EE (1).docx"
+                if not self.template_path.exists():
+                    raise FileNotFoundError(f"Template DJC-EE no encontrado en assets/djc_templates ni en {base_dir / self.TEMPLATE_FILENAME}")
 
-        self.ft_template_path = base_dir / self.FT_TEMPLATE_FILENAME
+        # Lookup para Ficha Técnica EE
+        self.ft_template_path = base_dir / "assets" / "djc_templates" / self.FT_TEMPLATE_FILENAME
+        if not self.ft_template_path.exists():
+            self.ft_template_path = base_dir / self.FT_TEMPLATE_FILENAME
 
-        logger.info(f"DJCEEGenerator inicializado. Template DJC: {self.template_path.name}")
+        logger.info(f"DJCEEGenerator inicializado. Template DJC: {self.template_path}")
 
     def get_family_by_id(self, family_id: str) -> Optional[dict]:
         """Busca una familia por su ID en el listado de familias."""

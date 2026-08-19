@@ -1,20 +1,21 @@
 ---
 proyecto: Argos
-stack: [FastAPI, React, TypeScript, Tailwind CSS, Vite, PyMuPDF, python-docx, openpyxl, comtypes, Google GenAI SDK, LibreOffice, Tesseract]
+stack: [FastAPI, React, TypeScript, Tailwind CSS, Vite, PyMuPDF, python-docx, openpyxl, comtypes, OpenAI API, Google GenAI SDK, LibreOffice, Tesseract OCR]
 status: en-desarrollo
-última_actualización: 2026-06-18
+versión_actual: v3.2.1
+última_actualización: 2026-08-17
 ---
 # CONTEXT.md — Argos
 
 ## Qué es
-Argos es una plataforma de escritorio local diseñada para Bidcom SRL que automatiza el proceso de auditoría de certificados de seguridad y la generación masiva de Declaraciones Juradas de Conformidad (DJC), certificados de Eficiencia Energética (EE) y solicitudes de certificación (para Lenor y Quektra). Combina reglas de negocio locales, extracción clásica de texto y auditoría semántica avanzada a través de la API de Google Gemini para optimizar los tiempos de gestión e importación de productos.
+Argos es una plataforma de escritorio local diseñada para Bidcom SRL que automatiza el proceso de auditoría de certificados de seguridad y la generación masiva de Declaraciones Juradas de Conformidad (DJC), certificados de Eficiencia Energética (EE) y solicitudes de certificación (para Lenor y Quektra). Combina reglas de negocio locales, extracción clásica de texto y auditoría semántica avanzada a través de modelos de IA (OpenAI `gpt-4o-mini` y Google Gemini `gemini-2.5-flash-lite`) con control estricto de presupuesto.
 
 ## Stack
 El stack tecnológico del proyecto está compuesto por las siguientes tecnologías y versiones específicas:
 
 *   **Backend (Servidor API local):**
     *   **Python >= 3.10** como lenguaje de programación base.
-    *   **FastAPI >= 0.111.0** para la definición de endpoints REST y comunicación en tiempo real.
+    *   **FastAPI >= 0.111.0** para la definición de endpoints REST estructurados en sub-routers (`api/routers/`) y WebSockets.
     *   **Uvicorn >= 0.29.0** como servidor ASGI de alto rendimiento.
     *   **Pydantic >= 2.0.0** para validación de esquemas y tipos de datos.
 *   **Frontend (Single Page Application):**
@@ -25,22 +26,25 @@ El stack tecnológico del proyecto está compuesto por las siguientes tecnologí
     *   **Lucide React ^1.16.0** para la iconografía del sistema.
     *   **html-to-image ^1.11.13** para exportaciones y renderizados visuales.
 *   **Procesamiento de Documentos y PDF:**
-    *   **PyMuPDF (fitz)** para la lectura de texto, censura de datos y rasterizado de PDF.
-    *   **python-docx** para la edición y llenado automatizado de las plantillas Word de DJC.
+    *   **PyMuPDF (fitz)** para la lectura de texto, censura multilínea de datos y merge de PDF con capa OCR invisible (`render_mode=3`).
+    *   **python-docx** para la edición y llenado automatizado de las plantillas Word de DJC y notas comerciales.
     *   **openpyxl** para el parsing de las planillas de ingeniería y fallback de escritura de planillas de solicitud Excel.
 *   **Automatización de Escritorio (COM/OS):**
-    *   **CustomTkinter** / **Tkinter** para la interfaz del panel de control del servidor local.
+    *   **CustomTkinter** / **Tkinter** para la interfaz del panel de control del servidor local (`launcher.py`).
     *   **comtypes / pywin32** para controlar Microsoft Word y Excel a nivel de sistema operativo en Windows (conversión de Word a PDF y guardado de hojas habilitadas para macros con macros intactas).
 *   **Servicios Externos e Inteligencia Artificial:**
-    *   **Google GenAI SDK** (`google-genai` para el backend, interactuando con el modelo **gemini-2.5-flash-lite** en su plan gratuito) para la extracción inteligente de datos complejos y validación semántica flexible.
-    *   **Tesseract OCR (pytesseract)** para la extracción de texto en imágenes y certificados rasterizados.
+    *   **OpenAI API** (`gpt-4o-mini`) + **Google GenAI SDK** (`gemini-2.5-flash-lite`) con gobernanza de gasto mensual (`BudgetManager`).
+    *   **Tesseract OCR 5.4.0 (pytesseract)** para la indexación y generación de PDFs buscables (Ctrl+F).
 
 ## Arquitectura
-El sistema de Argos está estructurado de forma modular y separada entre la lógica de backend (Python) y de frontend (React), alojando y sirviendo la SPA estática directamente desde el servidor local de FastAPI.
+El sistema de Argos está estructurado de forma modular y desacoplada:
 
 ### Estructura de Módulos y Archivos Clave
-*   `launcher.py` (160 líneas): El punto de entrada principal del software. Lanza un panel Tkinter/CustomTkinter que ejecuta la API en un hilo secundario (`uvicorn.run`), encuentra un puerto libre dinámicamente y levanta el navegador en modo aplicación sin bordes (`--app={URL}`) apuntando a dicho puerto.
-*   `api/main.py` (1016 líneas - **Archivo Complejo >40KB**): Orquestador del backend. Expone los endpoints principales `/api/config`, `/api/djc/extract`, `/api/djc/generate`, `/api/djc/confirm`, `/api/ee/families`, `/api/ee/generate`, `/api/ee/confirm`, `/api/verify` y `/api/solicitud/parse`. Controla `LogBroadcaster` mediante WebSockets (`/ws/log`) para transmitir logs de la consola en vivo a la UI.
+*   `launcher.py`: Punto de entrada de escritorio. Lanza el panel de control, inicia el servidor en segundo plano y levanta el navegador en modo aplicación sin bordes (`--app={URL}`).
+*   `api/`: Backend modular en FastAPI.
+    *   `main.py`: Punto de montaje, middlewares CORS, WebSocket (`/ws/log`) y servidor SPA.
+    *   `dependencies.py`: Gestión centralizada de `LogBroadcaster`, `GUILogger` y helpers.
+    *   `routers/`: `health.py`, `budget.py`, `djc.py`, `ee.py`, `solicitud.py`, `verify.py`.
 *   `modules/`
     *   `m1_ingest.py` (~270 líneas): Parsea y extrae datos técnicos del datasheet del producto cargado (Excel) buscando las especificaciones eléctricas clásicas.
     *   `m2_audit.py` (~150 líneas): Contiene la clase base `CertAuditor` encargada de validar las coincidencias de los modelos, fechas de vigencia y marcas del certificado contra los datos del datasheet.

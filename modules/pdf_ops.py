@@ -3,7 +3,8 @@ modules/pdf_ops.py
 ==================
 Operaciones de manipulación de PDF:
   - censor_cert_pdf : censura fabricante/dirección en el certificado
-  - merge_pdfs      : combina DJC + extras + certificado rasterizado
+  - merge_pdfs      : combina DJC + extras + certificado rasterizado con texto buscable
+                      (imagen JPEG a 2x + texto invisible render_mode=3 vía Tesseract)
   - _strip_old_djc  : elimina carátulas de DJC anterior del certificado
 """
 from __future__ import annotations
@@ -114,9 +115,9 @@ def censor_cert_pdf(
 
     def _anchor_tokens(text: str, n: int = 3) -> list[str]:
         tokens = []
-        for t in text.replace(",", " ").replace(".", " ").split():
+        for t in text.replace(",", " ").replace(".", " ").replace("\n", " ").split():
             t = t.strip()
-            if len(t) >= 5 and not _should_preserve(t):
+            if len(t) >= 4 and not _should_preserve(t):
                 tokens.append(t)
                 if len(tokens) >= n:
                     break
@@ -126,89 +127,114 @@ def censor_cert_pdf(
         if not field_text or not field_text.strip():
             return 0
 
-        anchors = _anchor_tokens(field_text)
-        if not anchors:
-            return 0
-
-        search_text = " ".join(anchors[:2]) if len(anchors) >= 2 else anchors[0]
-        hit_rects = page.search_for(search_text, quads=False)
-
-        if not hit_rects:
-            hit_rects = page.search_for(anchors[0], quads=False)
-
-        if not hit_rects:
-            _log_fn("warning", f"[M3-Censor] '{label}' no encontrado en pag {page.number+1}.", log_fn)
-            return 0
+        # Dividir textos multilínea en renglones para censurar cada uno
+        lines_to_search = [l.strip() for l in field_text.split("\n") if l.strip()]
+        if not lines_to_search:
+            lines_to_search = [field_text.strip()]
 
         count = 0
-        for zone in hit_rects:
-            # Evitar censurar la linea de la marca comercial si el nombre del fabricante/direccion
-            # coincide con la marca y la coincidencia de anclaje cae en la declaracion de marca.
-            line_rect = fitz.Rect(0, zone.y0 - 15, page.rect.width, zone.y1 + 15)
-            line_words = page.get_text("words", clip=line_rect)
-            is_brand_line = False
-            for w in line_words:
-                w_lower = w[4].lower()
-                if any(k in w_lower for k in ("marca", "trademark", "brand", "marque", "tradename")):
-                    is_brand_line = True
+        for line in lines_to_search:
+            anchors = _anchor_tokens(line, n=3)
+            if not anchors:
+                continue
+
+            search_candidates = []
+            if len(anchors) >= 2:
+                search_candidates.append(" ".join(anchors[:2]))
+            search_candidates.append(anchors[0])
+
+            hit_rects = []
+            for sc in search_candidates:
+                hit_rects = page.search_for(sc, quads=False)
+                if hit_rects:
                     break
-            if is_brand_line:
-                _log_fn("info", f"[M3-Censor] Saltando linea de marca/trademark en Y={zone.y0:.1f} para evitar censura erronea.", log_fn)
+
+            if not hit_rects:
                 continue
 
-            band = fitz.Rect(zone.x0, zone.y0 - 2, page.rect.width, zone.y1 + 2)
-            all_words = page.get_text("words", clip=band)
-            if not all_words:
-                continue
+            for zone in hit_rects:
+                # Evitar censurar la línea de la marca comercial
+                line_rect = fitz.Rect(0, zone.y0 - 15, page.rect.width, zone.y1 + 15)
+                line_words = page.get_text("words", clip=line_rect)
+                is_brand_line = False
+                for w in line_words:
+                    w_lower = w[4].lower()
+                    if any(k in w_lower for k in ("marca", "trademark", "brand", "marque", "tradename")):
+                        is_brand_line = True
+                        break
+                if is_brand_line:
+                    _log_fn("info", f"[M3-Censor] Saltando línea de marca en Y={zone.y0:.1f} para evitar censura errónea.", log_fn)
+                    continue
 
-            all_words_sorted = sorted(all_words, key=lambda w: w[0])
-            group_rect = None
+                band = fitz.Rect(zone.x0 - 2, zone.y0 - 3, page.rect.width, zone.y1 + 3)
+                all_words = page.get_text("words", clip=band)
+                if not all_words:
+                    continue
 
-            for word_entry in all_words_sorted:
-                word_text = word_entry[4]
-                wr = fitz.Rect(word_entry[:4])
+                all_words_sorted = sorted(all_words, key=lambda w: w[0])
+                group_rect = None
 
-                if _should_preserve(word_text):
-                    if group_rect is not None:
-                        page.draw_rect(group_rect, color=None, fill=BLACK, width=0)
-                        count += 1
-                        group_rect = None
-                else:
-                    inflated = fitz.Rect(
-                        wr.x0 - MARGIN, wr.y0 - MARGIN,
-                        wr.x1 + MARGIN, wr.y1 + MARGIN,
-                    )
-                    if group_rect is None:
-                        group_rect = inflated
+                for word_entry in all_words_sorted:
+                    word_text = word_entry[4]
+                    wr = fitz.Rect(word_entry[:4])
+
+                    if _should_preserve(word_text):
+                        if group_rect is not None:
+                            page.draw_rect(group_rect, color=None, fill=BLACK, width=0)
+                            count += 1
+                            group_rect = None
                     else:
-                        group_rect = fitz.Rect(
-                            min(group_rect.x0, inflated.x0),
-                            min(group_rect.y0, inflated.y0),
-                            max(group_rect.x1, inflated.x1),
-                            max(group_rect.y1, inflated.y1),
+                        inflated = fitz.Rect(
+                            wr.x0 - MARGIN, wr.y0 - MARGIN,
+                            wr.x1 + MARGIN, wr.y1 + MARGIN,
                         )
+                        if group_rect is None:
+                            group_rect = inflated
+                        else:
+                            group_rect = fitz.Rect(
+                                min(group_rect.x0, inflated.x0),
+                                min(group_rect.y0, inflated.y0),
+                                max(group_rect.x1, inflated.x1),
+                                max(group_rect.y1, inflated.y1),
+                            )
 
-            if group_rect is not None:
-                page.draw_rect(group_rect, color=None, fill=BLACK, width=0)
-                count += 1
+                if group_rect is not None:
+                    page.draw_rect(group_rect, color=None, fill=BLACK, width=0)
+                    count += 1
 
         return count
 
     def _censor_factory_block(page) -> int:
-        factory_hits = page.search_for("de la fabrica", quads=False)
-        if not factory_hits:
-            factory_hits = page.search_for("de la fábrica", quads=False)
-        if not factory_hits:
-            factory_hits = page.search_for("of the factory", quads=False)
-            
-        if not factory_hits:
+        factory_label_candidates = [
+            "domicilio de la planta", "domicilio de la(s) planta(s)",
+            "planta productora", "plantas productoras",
+            "planta de fabricacion", "planta de fabricación",
+            "nombre y dirección de la fábrica", "nombre y direccion de la fabrica",
+            "nombre y domicilio de la fábrica", "nombre y domicilio de la fabrica",
+            "nombre y dirección de la planta", "nombre y direccion de la planta",
+            "nombre y domicilio de la planta",
+            "de la fabrica", "de la fábrica", "of the factory",
+            "nombre y domicilio del fabricante",
+            "domicilio del fabricante", "direccion del fabricante", "dirección del fabricante",
+            "fabricante / manufacturer",
+        ]
+        
+        hit_label = None
+        for flab in factory_label_candidates:
+            f_hits = page.search_for(flab, quads=False)
+            if f_hits:
+                hit_label = f_hits[0]
+                break
+
+        if not hit_label:
             return 0
-            
-        zone_factory = factory_hits[0]
+
+        zone_factory = hit_label
         next_labels = [
             "valores nominales", "ratings", "marca", "trademark",
             "modelo", "model", "informacion", "información",
-            "additional", "normas", "standards"
+            "additional", "normas", "standards", "titular",
+            "fecha", "date", "tipo de producto", "ensayo"
         ]
         zone_next = None
         for lbl in next_labels:
@@ -217,26 +243,58 @@ def censor_cert_pdf(
                 if hit.y0 > zone_factory.y0 + 5:
                     if zone_next is None or hit.y0 < zone_next.y0:
                         zone_next = hit
-                        
+
         y_start = zone_factory.y0 - 2
         if zone_next:
             y_end = zone_next.y0 - 4
         else:
-            y_end = zone_factory.y1 + 100
+            y_end = zone_factory.y1 + 80
+
+        # Si el label está en la columna izquierda (ej. Qetkra, Lenor, IRAM con diseño tabular),
+        # el valor a censurar está en la columna DERECHA. Calculamos el límite derecho de la etiqueta
+        # para JAMÁS pisar las palabras del encabezado a la izquierda.
+        is_left_column = zone_factory.x1 < (page.rect.width * 0.45)
+        if is_left_column:
+            # Buscar el borde derecho de todas las palabras de etiqueta en esta banda vertical
+            label_words = page.get_text("words", clip=fitz.Rect(0, y_start, page.rect.width * 0.45, y_end))
+            max_label_x1 = zone_factory.x1
+            label_vocab = {
+                "nombre", "y", "dirección", "direccion", "domicilio", "del", "de", "la", "las", "la(s)",
+                "fábrica", "fabrica", "planta", "plantas", "productora", "productoras", "fabricante",
+                "name", "and", "address", "of", "the", "factory", "manufacturer", "plant", "producer",
+                "fabricación", "fabricacion"
+            }
+            for lw in label_words:
+                lw_clean = lw[4].lower().strip(":,./()[]*")
+                if lw_clean in label_vocab:
+                    if lw[2] > max_label_x1:
+                        max_label_x1 = lw[2]
             
-        rect_factory_val = fitz.Rect(zone_factory.x1 + 5, y_start, page.rect.width, y_end)
+            x_val_start = max_label_x1 + 6
+            rect_factory_val = fitz.Rect(x_val_start, y_start, page.rect.width, y_end)
+        else:
+            # Encabezado horizontal superior (ej. Lenor juguetes donde el valor está abajo)
+            x_val_start = 0
+            rect_factory_val = fitz.Rect(0, zone_factory.y1 + 1, page.rect.width, y_end)
+
         factory_words = page.get_text("words", clip=rect_factory_val)
         if not factory_words:
             return 0
-            
+
         factory_words_sorted = sorted(factory_words, key=lambda w: (w[1], w[0]))
         group_rect = None
         count = 0
-        
+
         for word_entry in factory_words_sorted:
             word_text = word_entry[4]
             wr = fitz.Rect(word_entry[:4])
-            
+
+            # Si por algún motivo una palabra de etiqueta cae dentro del clip, preservarla
+            if is_left_column and wr.x0 < x_val_start:
+                continue
+            if not is_left_column and wr.y1 <= zone_factory.y1:
+                continue
+
             if _should_preserve(word_text):
                 if group_rect is not None:
                     page.draw_rect(group_rect, color=None, fill=BLACK, width=0)
@@ -252,20 +310,20 @@ def censor_cert_pdf(
                         max(group_rect.x1, wr.x1),
                         max(group_rect.y1, wr.y1),
                     )
-                    
+
         if group_rect is not None:
             page.draw_rect(group_rect, color=None, fill=BLACK, width=0)
             count += 1
-            
+
         if count > 0:
-            _log_fn("info", f"[M3-Censor] Bloque de fabrica censurado en pag {page.number+1}.", log_fn)
+            _log_fn("info", f"[M3-Censor] Bloque completo de fábrica censurado en pág {page.number+1}.", log_fn)
         return count
 
     total_rects = 0
     for page in doc:
         page_text = page.get_text("text").strip()
         if not page_text:
-            _log_fn("warning", f"[M3-Censor] Pag {page.number+1} es imagen pura, no se puede censurar.", log_fn)
+            _log_fn("warning", f"[M3-Censor] Pág {page.number+1} es imagen pura, no se puede censurar.", log_fn)
             continue
         total_rects += _censor_field(page, fabricante, "Fabricante")
         total_rects += _censor_field(page, direccion, "Direccion")
@@ -351,63 +409,103 @@ def merge_pdfs(
                 os.path.expanduser(r'~\AppData\Local\Tesseract-OCR\tesseract.exe'),
                 os.path.expanduser(r'~\Tesseract-OCR\tesseract.exe'),
             ]
-            
             if getattr(sys, 'frozen', False):
                 posibles_rutas.insert(0, os.path.join(sys._MEIPASS, 'tesseract', 'tesseract.exe'))
             else:
                 local_dev = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'bin', 'tesseract', 'tesseract.exe')
                 posibles_rutas.insert(0, local_dev)
-
             for ruta in posibles_rutas:
                 if os.path.exists(ruta):
                     pytesseract.pytesseract.tesseract_cmd = ruta
                     break
             pytesseract.get_tesseract_version()
             has_tesseract = True
+            _log_fn("info", "[M3-Merge] Tesseract detectado — el certificado quedará con texto buscable.", log_fn)
         except Exception as e:
-            _log_fn("warning", f"[M3-Merge] Tesseract no disponible ({e}). PDF final será imagen pura.", log_fn)
+            _log_fn("warning", f"[M3-Merge] Tesseract no disponible ({e}). El certificado quedará como imagen pura.", log_fn)
             _log_fn("warning", r"[M3-Merge] Para habilitar OCR, instalá Tesseract en C:\Program Files\Tesseract-OCR", log_fn)
 
         for page_num in range(n_pages):
             page = cert_src[page_num]
+
+            # Rasterizar a 2x para calidad de imagen (~150-200 DPI equivalente)
             mat = fitz.Matrix(2.0, 2.0)
             pix = page.get_pixmap(matrix=mat, alpha=False)
             img_bytes = pix.tobytes("jpeg")
-            inserted_ocr = False
+            img_w_px = pix.width
+            img_h_px = pix.height
+
+            # Dimensiones de la página PDF original en puntos (1pt = 1/72 pulgada)
+            rect = page.rect
+            pdf_w_pt = rect.width
+            pdf_h_pt = rect.height
+
+            # Factores de escala: píxeles de imagen → puntos PDF
+            scale_x = pdf_w_pt / img_w_px
+            scale_y = pdf_h_pt / img_h_px
+
+            # Crear nueva página e insertar la imagen JPEG como fondo visual
+            new_page = merged.new_page(width=pdf_w_pt, height=pdf_h_pt)
+            new_page.insert_image(fitz.Rect(0, 0, pdf_w_pt, pdf_h_pt), stream=img_bytes)
 
             if has_tesseract:
                 try:
                     from PIL import Image  # type: ignore[import-untyped]
                     import io
-                    import tempfile
-                    img_pil = Image.open(io.BytesIO(img_bytes))
-                    # Usar directorio temporal explícito para evitar errores de ruta
-                    with tempfile.TemporaryDirectory() as tess_tmp:
-                        old_tmp = os.environ.get("TMPDIR") or os.environ.get("TMP") or os.environ.get("TEMP", "")
-                        os.environ["TMPDIR"] = tess_tmp
-                        os.environ["TMP"] = tess_tmp
-                        os.environ["TEMP"] = tess_tmp
-                        try:
-                            pdf_ocr_bytes = pytesseract.image_to_pdf_or_hocr(img_pil, extension='pdf', lang='spa+eng')  # type: ignore[reportPossiblyUnbound]
-                        finally:
-                            if old_tmp:
-                                os.environ["TMPDIR"] = old_tmp
-                                os.environ["TMP"] = old_tmp
-                                os.environ["TEMP"] = old_tmp
-                    ocr_doc = fitz.open("pdf", pdf_ocr_bytes)
-                    rect = page.rect
-                    new_page = merged.new_page(width=rect.width, height=rect.height)
-                    new_page.show_pdf_page(rect, ocr_doc, 0)
-                    ocr_doc.close()
-                    inserted_ocr = True
-                    _log_fn("info", f"[M3-Merge] Página {page_num+1}/{n_pages}: OCR aplicado.", log_fn)
-                except Exception as e:
-                    _log_fn("warning", f"[M3-Merge] Página {page_num+1}: Error OCR ({e}), fallback a imagen.", log_fn)
 
-            if not inserted_ocr:
-                rect = page.rect
-                new_page = merged.new_page(width=rect.width, height=rect.height)
-                new_page.insert_image(fitz.Rect(0, 0, rect.width, rect.height), stream=img_bytes)
+                    img_pil = Image.open(io.BytesIO(img_bytes))
+
+                    # Obtener palabras con sus bounding boxes desde Tesseract
+                    ocr_data = pytesseract.image_to_data(  # type: ignore[reportPossiblyUnbound]
+                        img_pil,
+                        lang='spa+eng',
+                        output_type=pytesseract.Output.DICT
+                    )
+
+                    words_inserted = 0
+                    for i in range(len(ocr_data['text'])):
+                        word = ocr_data['text'][i].strip()
+                        conf = int(ocr_data['conf'][i])
+                        # Ignorar palabras vacías o con confianza baja (<30%)
+                        if not word or conf < 30:
+                            continue
+
+                        x_px = ocr_data['left'][i]
+                        y_px = ocr_data['top'][i]
+                        w_px = ocr_data['width'][i]
+                        h_px = ocr_data['height'][i]
+
+                        if w_px <= 0 or h_px <= 0:
+                            continue
+
+                        # Convertir bounding box de píxeles a puntos PDF
+                        x0 = x_px * scale_x
+                        y1 = (y_px + h_px) * scale_y  # baseline (esquina inferior)
+
+                        # Tamaño de fuente proporcional al alto de la palabra en pts
+                        font_size = max(4.0, h_px * scale_y * 0.85)
+
+                        # Insertar texto INVISIBLE (render_mode=3) encima de la imagen.
+                        # El texto no se ve pero es completamente buscable y seleccionable
+                        # en cualquier visor PDF (Adobe, Chrome, Edge, Evince, etc.)
+                        try:
+                            new_page.insert_text(
+                                fitz.Point(x0, y1),
+                                word,
+                                fontsize=font_size,
+                                render_mode=3,
+                                color=(0, 0, 0),
+                            )
+                            words_inserted += 1
+                        except Exception:
+                            pass  # Si una palabra falla, continuar con las demás
+
+                    _log_fn("info", f"[M3-Merge] Página {page_num+1}/{n_pages}: {words_inserted} palabras indexadas — PDF buscable ✓", log_fn)
+
+                except Exception as e:
+                    _log_fn("warning", f"[M3-Merge] Página {page_num+1}: Error OCR ({e}). La imagen queda sin texto buscable.", log_fn)
+            else:
+                _log_fn("info", f"[M3-Merge] Página {page_num+1}/{n_pages}: imagen insertada (sin capa OCR).", log_fn)
 
             pix = None  # Liberar memoria
 

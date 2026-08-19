@@ -3,7 +3,7 @@
 // FASE 2: Panel de revisión/edición de todos los campos extraídos
 // FASE 3: GENERAR (usa los valores editados, no los crudos)
 
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useCallback, useMemo, useEffect } from 'react'
 import {
   extractCert, generateDJC, confirmDJC, downloadPdf, makeBlobUrl,
   type Config, type GenerateParams, type GenerateResult, type EmpresaOverride,
@@ -163,6 +163,11 @@ export default function GeneradorDJC({ config, onLog }: Props) {
         fv = calcVencimiento(r.fecha_emision, reglamentoVal)
       }
 
+      let initialSpecs = r.specs
+      if (!initialSpecs?.trim() && /juguete|163\/2004|nm 300|lcj/i.test(reglamentoVal || djcId || '')) {
+        initialSpecs = '----'
+      }
+
       setForm({
         djc_id: djcId,
         enlace_djc: enlace,
@@ -171,7 +176,7 @@ export default function GeneradorDJC({ config, onLog }: Props) {
         direccion: r.direccion,
         producto_desc: r.producto_desc,
         modelos: r.modelos,
-        specs: r.specs,
+        specs: initialSpecs,
         cert_number: r.cert_number,
         normas: r.normas,
         fecha_emision: r.fecha_emision,
@@ -206,6 +211,9 @@ export default function GeneradorDJC({ config, onLog }: Props) {
       const updated = { ...prev, reglamento: v }
       if (prev.fecha_emision) {
         updated.fecha_vencimiento = calcVencimiento(prev.fecha_emision, v)
+      }
+      if (!prev.specs?.trim() && /juguete|163\/2004|nm 300/i.test(v)) {
+        updated.specs = '----'
       }
       return updated
     })
@@ -273,14 +281,9 @@ export default function GeneradorDJC({ config, onLog }: Props) {
 
     try {
       const results = await generateDJC(params, certFile, notaFile ?? undefined)
-      // Calcular filenames: normal = djc_id, codificada = djc_id con COD antes del V
+      // Calcular filenames: normal = djc_id, codificada = djc_id (sin -COD-)
       const fnames = results.map(r => {
         const socSuffix = r.society ? `_${cleanSocName(r.society)}` : ''
-        if (r.version === 'codificada') {
-          // DJC-SE-0426-C916-QKA-V1 → DJC-SE-0426-C916-QKA-COD-V1
-          const codId = form.djc_id.replace(/-V(\d+)$/, '-COD-V$1')
-          return `${codId}${socSuffix}.pdf`
-        }
         return `${form.djc_id}${socSuffix}.pdf`
       })
       setPreviewFilenames(fnames)
@@ -822,8 +825,21 @@ function PreviewPanel({
   onDiscard: () => void
   confirming: boolean
 }) {
-  const active = results[activeIdx]
-  const blobUrl = active ? makeBlobUrl(active.pdf_b64) : ''
+  // Generar blob URLs de forma estable y memoizada para evitar recargas periódicas del iframe
+  const blobUrls = useMemo(() => {
+    return results.map(r => makeBlobUrl(r.pdf_b64))
+  }, [results])
+
+  // Liberar memoria de los blobs al desmontar el modal
+  useEffect(() => {
+    return () => {
+      blobUrls.forEach(url => {
+        try { URL.revokeObjectURL(url) } catch (_) {}
+      })
+    }
+  }, [blobUrls])
+
+  const currentBlobUrl = blobUrls[activeIdx] || ''
 
   return (
     <div style={{
@@ -871,10 +887,10 @@ function PreviewPanel({
 
       {/* Iframe — ocupa todo el espacio disponible */}
       <div style={{ flex: 1, overflow: 'hidden', background: '#111' }}>
-        {blobUrl && (
+        {currentBlobUrl && (
           <iframe
-            key={blobUrl}
-            src={blobUrl}
+            key={activeIdx}
+            src={currentBlobUrl}
             style={{ width: '100%', height: '100%', border: 'none' }}
             title="Vista previa DJC"
           />

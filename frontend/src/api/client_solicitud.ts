@@ -18,7 +18,7 @@ export interface SkuBlock {
 }
 
 export interface DatasheetParseResult {
-  oec_detected: 'lenor' | 'qetkra'
+  oec_detected: 'lenor' | 'qetkra' | 'tuv'
   certificado: string
   producto: string
   motivo: string
@@ -36,7 +36,7 @@ export interface DatasheetParseResult {
 
 export interface GenerateRequest {
   data: DatasheetParseResult
-  oec: 'lenor' | 'qetkra' | 'juguetes' | 'ftalatos'
+  oec: 'lenor' | 'qetkra' | 'tuv' | 'juguetes' | 'ftalatos'
   esquema: string
 }
 

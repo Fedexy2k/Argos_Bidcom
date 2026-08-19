@@ -60,7 +60,8 @@ def main():
         
     # 3. Instalar y asegurar dependencias de Python
     reqs = ["fastapi", "uvicorn[standard]", "python-multipart", "pydantic", 
-            "customtkinter", "pymupdf", "thefuzz", "openpyxl", "python-docx"]
+            "customtkinter", "pymupdf", "thefuzz", "openpyxl", "python-docx",
+            "google-genai", "openai", "pytesseract", "comtypes", "pywin32"]
     run_step("Instalar Dependencias de Python", f"{sys.executable} -m pip install {' '.join(reqs)}", cwd=root_dir)
 
     # 4. PyInstaller Build con flag --clean para evitar bytecodes (.pyc) viejos
@@ -77,15 +78,27 @@ def main():
         "--collect-all=pydantic",
         "--collect-all=customtkinter",
         "--collect-all=fitz",
+        "--collect-all=docx",
+        "--collect-all=openpyxl",
+        "--collect-all=google.genai",
+        "--collect-all=openai",
+        "--exclude-module=torch",
+        "--exclude-module=torchvision",
+        "--exclude-module=torchaudio",
+        "--exclude-module=cv2",
+        "--exclude-module=scipy",
+        "--exclude-module=transformers",
+        "--exclude-module=tokenizers",
+        "--exclude-module=matplotlib",
+        "--exclude-module=pandas",
+        "--exclude-module=hf_xet",
         '--add-data="frontend/dist;frontend/dist"',
         '--add-data="modules;modules"',
+        '--add-data="api;api"',
         '--add-data="assets;assets"',
         '--add-data="ee_families.json;."',
         '--add-data="m3_config.json;."',
-        '--add-data="DJ Conformidad Modelo SE LIMPIO.docx;."',
-        '--add-data="DJ Conformidad Modelo SE.docx;."',
-        '--add-data="DJ Conformidad Modelo EE.docx;."',
-        '--add-data="Ficha Tecnica Modelo EE.docx;."',
+        '--add-data=".env.example;."',
         'launcher.py'
     ]
 
@@ -102,7 +115,7 @@ def main():
         run_step("Generar Instalador 1-Clic (Inno Setup)", f'"{iscc_path}" "{iss_file}"', cwd=root_dir)
         print("\n" + "="*50)
         print("¡INSTALADOR GENERADO CON ÉXITO!")
-        print("Instalador listo: Argos_Setup_v3_2_0.exe")
+        print("Instalador listo: Argos_Setup_v3_2_1.exe")
         print("="*50 + "\n")
     else:
         print("\nSi tenés Inno Setup instalado, podés compilar argos_installer.iss para generar el archivo instalador .exe")

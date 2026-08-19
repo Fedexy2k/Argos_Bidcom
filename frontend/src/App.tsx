@@ -1,11 +1,12 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import Sidebar from './components/Sidebar'
 import LogBar from './components/LogBar'
 import BudgetModal from './components/BudgetModal'
+import { AIConfigModal } from './components/AIConfigModal'
 import GeneradorDJC from './views/GeneradorDJC'
 import EficienciaEnergetica from './views/EficienciaEnergetica'
 import Solicitudes from './views/Solicitudes'
-import { checkHealth, getConfig, getBudgetSummary, type Config, type BudgetSummary } from './api/client'
+import { checkHealth, checkAIHealth, type AIHealthResult, getConfig, getBudgetSummary, type Config, type BudgetSummary } from './api/client'
 import './index.css'
 
 interface LogEntry {
@@ -22,6 +23,8 @@ export default function App() {
   const [activeTab, setActiveTab] = useState('generador')
   const [apiOk, setApiOk]         = useState<boolean | null>(null)
   const [apiVersion, setApiVersion] = useState<string | null>(null)
+  const [aiHealth, setAiHealth] = useState<AIHealthResult | null>(null)
+  const [aiModalOpen, setAiModalOpen] = useState(false)
   const [config, setConfig]       = useState<Config | null>(null)
   const [logs, setLogs]           = useState<LogEntry[]>([])
   const [logsExpanded, setLogsExpanded] = useState(false)
@@ -29,9 +32,9 @@ export default function App() {
   const [budget, setBudget]       = useState<BudgetSummary | null>(null)
   const wsRef = useRef<WebSocket | null>(null)
 
-  const addLog = (level: string, msg: string) => {
+  const addLog = useCallback((level: string, msg: string) => {
     setLogs(prev => [...prev.slice(-200), { level, msg, ts: now() }])
-  }
+  }, [])
 
   // Health check — polls every 5s, auto-recovers when API comes online
   useEffect(() => {
@@ -49,8 +52,13 @@ export default function App() {
         return ok
       })
       if (ok && ver) {
-        setApiVersion(ver)
-        getBudgetSummary().then(setBudget).catch(() => {})
+        setApiVersion(prev => prev !== ver ? ver : prev)
+        getBudgetSummary().then(b => {
+          setBudget(prev => JSON.stringify(prev) !== JSON.stringify(b) ? b : prev)
+        }).catch(() => {})
+        checkAIHealth().then(ai => {
+          setAiHealth(prev => JSON.stringify(prev) !== JSON.stringify(ai) ? ai : prev)
+        }).catch(() => {})
       }
       // Load config once API is up
       if (ok && !configLoaded) {
@@ -137,6 +145,37 @@ export default function App() {
               </span>
             </button>
 
+            {/* BADGE ESTADO IA - CLICKABLE PARA CONFIGURAR */}
+            <button
+              onClick={() => setAiModalOpen(true)}
+              className="flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-semibold tracking-wide hover:opacity-80 transition-all cursor-pointer"
+              style={{
+                background: aiHealth?.status === 'ok' ? 'rgba(56,189,248,0.08)' : 'rgba(239,68,68,0.08)',
+                borderColor: aiHealth?.status === 'ok' ? 'rgba(56,189,248,0.25)' : 'rgba(239,68,68,0.25)',
+                color: aiHealth?.status === 'ok' ? '#38bdf8' : '#f87171',
+              }}
+              title={aiHealth?.providers?.length ? `Proveedores: ${aiHealth.providers.join(', ')} (Clic para editar claves)` : 'Sin claves de IA (Clic para configurar)'}
+            >
+              <span
+                className="w-2 h-2 rounded-full"
+                style={{
+                  background: aiHealth?.status === 'ok' ? '#38bdf8' : '#ef4444',
+                  boxShadow: aiHealth?.status === 'ok' ? '0 0 8px rgba(56,189,248,0.6)' : undefined,
+                }}
+              />
+              <span>
+                {aiHealth === null
+                  ? 'IA...'
+                  : aiHealth.openai_configured && aiHealth.gemini_configured
+                  ? 'IA: OpenAI + Gemini'
+                  : aiHealth.openai_configured
+                  ? 'IA: OpenAI OK'
+                  : aiHealth.gemini_configured
+                  ? 'IA: Gemini OK'
+                  : 'IA: Sin Clave'}
+              </span>
+            </button>
+
             <div
               className="flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-semibold tracking-wide uppercase"
               style={{
@@ -189,6 +228,14 @@ export default function App() {
 
         {/* Modal de Presupuesto y Registro IA */}
         <BudgetModal isOpen={budgetModalOpen} onClose={() => setBudgetModalOpen(false)} />
+
+        {/* Modal de Configuración de Claves de IA */}
+        <AIConfigModal
+          isOpen={aiModalOpen}
+          onClose={() => setAiModalOpen(false)}
+          aiHealth={aiHealth}
+          onUpdate={setAiHealth}
+        />
 
         {/* Log bar */}
         <LogBar logs={logs} expanded={logsExpanded} onToggle={() => setLogsExpanded(v => !v)} />

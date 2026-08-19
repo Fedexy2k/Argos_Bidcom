@@ -47,6 +47,33 @@ export async function checkHealth(): Promise<string | null> {
   }
 }
 
+export interface AIHealthResult {
+  status: string
+  openai_configured: boolean
+  gemini_configured: boolean
+  providers: string[]
+}
+
+export async function checkAIHealth(): Promise<AIHealthResult | null> {
+  try {
+    const r = await fetch(`${BASE}/health/ai`)
+    if (!r.ok) return null
+    return await r.json()
+  } catch {
+    return null
+  }
+}
+
+export async function saveAIKeys(keys: { openai_api_key?: string; gemini_api_key?: string }): Promise<AIHealthResult> {
+  const r = await fetch(`${BASE}/config/env`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(keys),
+  })
+  if (!r.ok) throw new Error('Error al guardar las claves de IA')
+  return await r.json()
+}
+
 // ── Config ────────────────────────────────────────────────────────────────────
 
 export async function getConfig(): Promise<Config> {

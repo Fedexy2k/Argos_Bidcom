@@ -97,15 +97,14 @@ class DJCGenerator:
 
 
 
-        self.template_path = Path(__file__).parent.parent / self.TEMPLATE_FILENAME
-
+        base_dir = Path(__file__).parent.parent
+        self.template_path = base_dir / "assets" / "djc_templates" / self.TEMPLATE_FILENAME
         if not self.template_path.exists():
+            self.template_path = base_dir / self.TEMPLATE_FILENAME
+            if not self.template_path.exists():
+                raise FileNotFoundError(f"Template DJC no encontrado en assets/djc_templates ni en raíz: {self.TEMPLATE_FILENAME}")
 
-            raise FileNotFoundError(f"Template DJC no encontrado: {self.template_path}")
-
-
-
-        self._log("info", f"DJCGenerator inicializado. Template: {self.template_path.name}")
+        self._log("info", f"DJCGenerator inicializado. Template: {self.template_path}")
 
 
 

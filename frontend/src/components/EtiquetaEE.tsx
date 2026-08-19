@@ -129,7 +129,6 @@ function TemplateHorno({ data, id = "label-export" }: { data: EtiquetaData; id?:
   const TEXT_COL_W = QR_LEFT - RIGHT_COL_X - 10;
   const THREE_ROW_H = ROW_H * 3;
   const QR_TOP = ROWS_TOP + Math.round((THREE_ROW_H - QR_SZ) / 2);
-  const TEXT_MID_Y = ROWS_TOP + Math.round(THREE_ROW_H / 2);
 
   const BAR_LH = 20;
   const BAR_TEXT_TOP = BAR_TOP + Math.round((BAR_H - BAR_LH * 3) / 2);
@@ -205,7 +204,13 @@ function TemplateHorno({ data, id = "label-export" }: { data: EtiquetaData; id?:
       <Hline y={LINE2_Y} x={MX} w={LW} />
 
       {/* 3. CONSUMPTION BAR */}
-      <div style={{ position: 'absolute', top: BAR_TOP, left: MX, width: LW, height: BAR_H, backgroundColor: GREEN }} />
+      {(() => {
+        const safeSelIdx = selIdx >= 0 ? selIdx : 0;
+        const consumptionColor = COLORS_MAP[LETTERS[safeSelIdx]] || COLORS_MAP[data.eficiencia] || GREEN;
+        return (
+          <div style={{ position: 'absolute', top: BAR_TOP, left: MX, width: LW, height: BAR_H, backgroundColor: consumptionColor }} />
+        );
+      })()}
       {['CONSUMO DE', 'ENERG\u00CDA EN MODO', 'CONVENCIONAL'].map((txt, i) => (
         <div key={i} style={{ position: 'absolute', top: BAR_TEXT_TOP + i * BAR_LH, left: MX + mm(2), height: BAR_LH, display: 'flex', alignItems: 'center', fontWeight: 700, fontSize: FS12, color: '#000' }}>{txt}</div>
       ))}
@@ -333,14 +338,30 @@ function TemplateHorno({ data, id = "label-export" }: { data: EtiquetaData; id?:
           </div>
         )}
       </div>
-      <div style={{ position: 'absolute', top: TEXT_MID_Y - (FS10 + 4) * 2 - 6, left: TEXT_COL_X, width: TEXT_COL_W, textAlign: 'center', fontWeight: 700, color: '#000' }}>
-        <div style={{ fontSize: FS10, lineHeight: 1.2 }}>Referencia IRAM</div>
-        <div style={{ fontSize: FS10, lineHeight: 1.2 }}>{data.referenciaIram || '62414-1/2'}</div>
-      </div>
-      <Hline y={TEXT_MID_Y} x={TEXT_COL_X + mm(1)} w={TEXT_COL_W - mm(2)} color="#999" />
-      <div style={{ position: 'absolute', top: TEXT_MID_Y + 4, left: TEXT_COL_X, width: TEXT_COL_W, textAlign: 'center', fontWeight: 700, color: '#000' }}>
-        <div style={{ fontSize: FS10, lineHeight: 1.2 }}>Res. SIyC N&deg;</div>
-        <div style={{ fontSize: FS10, lineHeight: 1.2 }}>{data.resolucion || '438/24'}</div>
+      <div style={{
+        position: 'absolute',
+        top: ROWS_TOP,
+        left: TEXT_COL_X,
+        width: TEXT_COL_W,
+        height: THREE_ROW_H,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+        fontWeight: 700,
+        color: '#000',
+        boxSizing: 'border-box'
+      }}>
+        <div style={{ fontSize: FS10, lineHeight: 1.15 }}>Referencia IRAM</div>
+        <div style={{ fontSize: FS10, lineHeight: 1.15, whiteSpace: 'pre-line' }}>
+          {data.referenciaIram || '62414-1/2'}
+        </div>
+        <div style={{ width: '80%', height: '1px', backgroundColor: '#999', margin: '4px 0' }} />
+        <div style={{ fontSize: FS10, lineHeight: 1.15 }}>Res. SIyC N&deg;</div>
+        <div style={{ fontSize: FS10, lineHeight: 1.15 }}>
+          {data.resolucion || '438/24'}
+        </div>
       </div>
 
       <Hline y={FOOTER_SEP_Y} x={MX} w={LW} />
