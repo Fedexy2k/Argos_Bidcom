@@ -79,4 +79,4 @@ Estos 6 archivos siempre van juntos. Sin excepción:
 
 ---
 
-## Versión actual: v3.2.1
+## Versión actual: v3.2.2

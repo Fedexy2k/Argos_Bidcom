@@ -1,36 +1,22 @@
 # ARGOS - Changelog
 
+## v3.2.2 (2026-08-19) - Corrección de Color Dinámico de Consumo y Maquetación de Normas en Hornos Eléctricos
+
+### 🐛 Correcciones de Errores
+- **Color Dinámico de Banda de Consumo en Hornos**: Corregido `TemplateHorno` para que la barra de Consumo de Energía cambie dinámicamente de color según la clase seleccionada (A=Verde, B=Verde Claro, C=Amarillo Verdoso, D=Amarillo, E=Naranja Claro, F=Naranja, G=Rojo), garantizando que el 100% de las plantillas del sistema respondan de forma dinámica.
+- **Maquetación Flex de Normas IRAM y Resolución en Hornos**: Reemplazada la posición absoluta fija por un contenedor flex vertical autoadaptable (`display: flex`, `flex-direction: column`, `align-items: center`), evitando que las normas de múltiples líneas (ej: `IRAM 62414-1/2, IRAM 62301`) se tachen o se solapen con la línea separadora gris.
+
 ## v3.2.1 (2026-08-17) - Capa OCR Buscable en DJC, Arquitectura Modular FastAPI, Censura Multilínea y Suite QA
 
 ### ✨ Nuevas Características y Mejoras
 - **Capa OCR Buscable en PDFs de DJC (`render_mode=3`)**: Corrección en `modules/pdf_ops.py` (`merge_pdfs`) para que los certificados rasterizados adjuntos en las DJCs incorporen una capa de texto invisible superpuesta con Tesseract OCR (`pytesseract.image_to_data`). Esto garantiza que los documentos finales sean **100% buscables y seleccionables (Ctrl+F)** en cualquier visor PDF preservando firmas digitales.
-- **Arquitectura Modular FastAPI (`api/routers/`)**: Refactorización integral del backend monolítico `main.py` dividiéndolo en routers independientes por dominio:
-  - `api/routers/health.py`: Healthcheck general y validación de estado de IA (`/api/health/ai`).
-  - `api/routers/budget.py`: Control de presupuesto y ledger de IA.
-  - `api/routers/djc.py`: Extracción, generación y confirmación de DJC (Común/Extensión/Terceros).
-  - `api/routers/ee.py`: Catálogo de familias, generación de DJC-EE y extracción con IA.
-  - `api/routers/solicitud.py`: Parseo de datasheets y generación de solicitudes oficiales (M5).
-  - `api/routers/verify.py`: Multi-auditoría de certificados (M2).
-  - `api/dependencies.py`: Gestión centralizada de WebSocket `LogBroadcaster`, `GUILogger` y helpers de carga de archivos.
-- **Indicador Visual de Estado de IA en la UI**: Nuevo endpoint `/api/health/ai` y badge inteligente en el Header de la aplicación que informa en tiempo real la disponibilidad de claves de OpenAI y Gemini con semáforo luminoso (`🟢 IA: OpenAI + Gemini` / `🟢 IA: OpenAI OK` / `🔴 IA: Sin Clave`).
-- **Censura Multilínea para Juguetes y Certificados Complejos**: Actualización de `modules/pdf_ops.py` (`censor_cert_pdf`) para censurar bloques y párrafos multilínea completos de fábrica y dirección (incluyendo etiquetas Lenor Juguetes como *DOMICILIO DE LA(S) PLANTA(S) PRODUCTORA(S)*), preservando intacto el país de origen (`China`, `Corea`, etc.).
-- **Actualización y Validación de Plantilla Oficial Lenor (`Solicitud_Modelo_Lenor.xlsm`)**: Mapeo y verificación completa de la nueva versión de solicitud Lenor (`PCE-34 F1 R05` con 7 solapas). Automatización con `win32com` que preserva fórmulas cruzadas y macros VBA, inyectando datos de fábrica (C40:G46), reglamentos (C57, C59) y detalle de modelos (B11:E11 en adelante en Calibri 12).
-- **Protección de Etiquetas en Tablas Qetkra/Lenor/IRAM (`modules/pdf_ops.py`)**: Corrección en el algoritmo de censura de bloques de fábrica (`_censor_factory_block`) para delimitar estrictamente el inicio del rectángulo negro en la columna derecha de valores, evitando que se superponga o pise los textos de los encabezados de la columna izquierda (*"Nombre y dirección de la fábrica"*).
-- **Nombre Limpio en DJC Codificada**: Se eliminó el prefijo `-COD-` en la descarga de PDFs codificados para que el nombre de archivo conserve la nomenclatura oficial (`DJC-SE-XXXX-CXXX-XXX-VX.pdf`).
-- **Valores por Defecto en Juguetes (`specs = "----"`)**: Si un certificado de juguetes (Res. 163/2004, NM 300 o LCJ) no posee especificaciones técnicas de voltaje/potencia, el sistema completa automáticamente el campo con `----`.
-- **Integración Oficial de TÜV Rheinland en Solicitudes (M5)**: Incorporación de TÜV Rheinland como organismo certificador oficial en `modules/m5_solicitud_generator.py` y `frontend/src/views/Solicitudes.tsx`. Automatización de la Solicitud de Servicio Word oficial (`assets/solicitud_templates/Solicitud_Modelo_tuv.docx`) inyectando datos de Bidcom, fábrica, producto, normas, modelos y checkboxes automáticos (`[X]`) de resoluciones y esquemas, empaquetando el `.docx` editable y el datasheet de fotos en un ZIP listo para entregar.
-- **Configuración Rápida de Claves de IA desde la UI (`POST /api/config/env`)**: Modal visual interactivo accesible haciendo clic en el badge de IA del Header para ingresar o actualizar claves de OpenAI y Gemini en memoria y en `.env` sin reiniciar el sistema, más el script interactivo `Configurar_IA.bat`.
-- **Optimización Extrema de Tamaño de Instalador (-77% en disco)**: Exclusión en PyInstaller de librerías innecesarias de Machine Learning (`torch`, `cv2`, `scipy`, `transformers`), reduciendo el instalador de 232 MB a **71.6 MB** y el espacio instalado de 812 MB a **187.5 MB**.
-- **Centralización y Limpieza de Plantillas (`assets/djc_templates/`)**: Reorganización de todas las plantillas Word de DJC (`DJ Conformidad Modelo SE.docx`, `DJ Conformidad Modelo EE.docx`, `Ficha Tecnica Modelo EE.docx`) dentro de `assets/djc_templates/`, dejando una única plantilla oficial editable para Seguridad Eléctrica y eliminando duplicados obsoletos de la raíz.
-- **Estabilidad de Visor PDF en UI**: Memoización de URLs de Blob (`useMemo`) y clave estable en el iframe para prevenir parpadeos o reinicios de página durante el sondeo en segundo plano.
-- **Suite de Pruebas de Humo Automatizada (`tools/smoke_test_api.py`)**: Script de QA para validación continua de endpoints REST, integridad de respuestas y conexión WebSocket en entornos de desarrollo y producción.
-- **Especificación Funcional Integral (`docs/especificacion_funcional_argos.md`)**: Documentación exhaustiva como fuente única de verdad del comportamiento esperado de todos los módulos.
-
-## v3.2.1 (2026-08-19) - Corrección de Color Dinámico de Consumo y Maquetación de Normas en Hornos Eléctricos
-
-### 🐛 Correcciones de Errores
-- **Color Dinámico de Banda de Consumo en Hornos**: Corregido `TemplateHorno` para que la barra de Consumo de Energía cambie dinámicamente de color según la clase seleccionada (A=Verde, B=Verde Claro, C=Amarillo Verdoso, D=Amarillo, E=Naranja Claro, F=Naranja, G=Rojo), solucionando la asignación estática previa.
-- **Maquetación Flex de Normas IRAM y Resolución en Hornos**: Reemplazada la posición absoluta fija por un contenedor flex vertical autoadaptable (`display: flex`, `flex-direction: column`, `align-items: center`), evitando que las normas de múltiples líneas (ej: `IRAM 62414-1/2, IRAM 62301`) se tachen o se solapen con la línea separadora gris.
+- **Arquitectura Modular FastAPI (`api/routers/`)**: Refactorización integral del backend monolítico `main.py` dividiéndolo en routers independientes por dominio (`health.py`, `budget.py`, `djc.py`, `ee.py`, `solicitud.py`, `verify.py`).
+- **Indicador Visual de Estado de IA en la UI**: Nuevo endpoint `/api/health/ai` y badge inteligente en el Header de la aplicación que informa en tiempo real la disponibilidad de claves de OpenAI y Gemini con semáforo luminoso (`🟢 IA: OpenAI + Gemini` / `🔴 IA: Sin Clave`).
+- **Censura Multilínea para Juguetes y Certificados Complejos**: Actualización de `modules/pdf_ops.py` (`censor_cert_pdf`) para censurar bloques y párrafos multilínea completos de fábrica y dirección, preservando el país de origen.
+- **Actualización de Plantilla Oficial Lenor (`Solicitud_Modelo_Lenor.xlsm`)**: Mapeo completo de la nueva versión de solicitud Lenor (`PCE-34 F1 R05` con 7 solapas) automatizada con `win32com`.
+- **Integración Oficial de TÜV Rheinland en Solicitudes (M5)**: Incorporación de TÜV Rheinland como organismo certificador oficial con plantilla `assets/solicitud_templates/Solicitud_Modelo_tuv.docx`.
+- **Optimización Extrema de Tamaño de Instalador (-77% en disco)**: Exclusión en PyInstaller de librerías innecesarias de Machine Learning (`torch`, `cv2`, `scipy`, `transformers`), reduciendo el instalador a **71.6 MB**.
+- **Centralización de Plantillas (`assets/djc_templates/`)**: Reorganización de todas las plantillas Word de DJC dentro de `assets/djc_templates/`.
 
 ## v3.2.0 (2026-08-10) - Generación Dinámica de Ficha Técnica, Plantilla Lavarropas de Illustrator y Fondo de Consumo Dinámico
 

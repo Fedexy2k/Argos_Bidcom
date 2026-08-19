@@ -32,7 +32,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title="Argos API",
-    version="3.2.1",
+    version="3.2.2",
     lifespan=lifespan,
 )
 

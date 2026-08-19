@@ -115,7 +115,7 @@ def main():
         run_step("Generar Instalador 1-Clic (Inno Setup)", f'"{iscc_path}" "{iss_file}"', cwd=root_dir)
         print("\n" + "="*50)
         print("¡INSTALADOR GENERADO CON ÉXITO!")
-        print("Instalador listo: Argos_Setup_v3_2_1.exe")
+        print("Instalador listo: Argos_Setup_v3_2_2.exe")
         print("="*50 + "\n")
     else:
         print("\nSi tenés Inno Setup instalado, podés compilar argos_installer.iss para generar el archivo instalador .exe")

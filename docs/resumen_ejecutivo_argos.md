@@ -29,12 +29,12 @@ Históricamente, la gestión de estas certificaciones se realizaba de manera **m
 
 Para resolver este cuello de botella se desarrolló **Argos**, una plataforma de software de escritorio/web de alta performance, integrada con el ecosistema de Google Workspace de Bidcom y potenciada por Inteligencia Artificial.
 
-### Componentes de la Plataforma Argos (v3.2.0):
+### Componentes de la Plataforma Argos (v3.2.2):
 * **Arquitectura de Software**: 
   * **Backend**: Desarrollado en Python con FastAPI (puerto dinámico `:8742`), con motores nativos de procesamiento de documentos (`PyMuPDF`, `python-docx`, `openpyxl`, `comtypes`/LibreOffice).
   * **Frontend**: Interfaz moderna tipo Single Page Application (SPA) construida en React 19, TypeScript y Tailwind CSS con diseño en tema oscuro (Dark Theme).
   * **Desktop App**: Lanzador local en Python (`launcher.py` / CustomTkinter) que abre la aplicación en modo ventana sin bordes.
-  * **Instalador de 1-Clic**: Compilador automatizado (`build_exe.py` + Inno Setup) que genera el ejecutable `Argos_Setup_v3_2_0.exe`.
+  * **Instalador de 1-Clic**: Compilador automatizado (`build_exe.py` + Inno Setup) que genera el ejecutable `Argos_Setup_v3_2_2.exe`.
 
 * **Módulos Operativos Desarrollados**:
   * **Móduo M5 (Solicitudes)**: Parsea planillas de ingeniería (Excel) y genera automáticamente las notas comerciales en Word, los Excel de solicitud oficiales para laboratorios (Lenor/Qetkra) y los paquetes ZIP listos para enviar.

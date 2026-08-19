@@ -24,7 +24,7 @@ class EnvConfigPayload(BaseModel):
 @router.get("/api/health")
 def health_check():
     """Returns the API health status and current semantic version."""
-    return {"status": "ok", "version": "3.2.1"}
+    return {"status": "ok", "version": "3.2.2"}
 
 
 @router.get("/api/config")

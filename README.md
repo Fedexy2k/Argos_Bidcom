@@ -1,4 +1,4 @@
-# ⚡ ARGOS — Sistema Inteligente de Certificaciones (v3.2.0)
+# ⚡ ARGOS — Sistema Inteligente de Certificaciones (v3.2.2)
 > **Solución Integrada para Declaraciones Juradas de Conformidad (DJC), Eficiencia Energética (Res. 438/2024), Solicitudes Lenor/QETKRA y Control de Presupuesto IA.**
 > **GADNIC / BIDCOM S.R.L.**
 
@@ -36,7 +36,7 @@
 ## 🛠️ Instalación y Ejecución
 
 ### Opción A: Instalador Ejecutable Standalone (Recomendado para Usuario Final)
-1. Ejecutá el instalador oficial `Argos_Setup_v3_2_0.exe`.
+1. Ejecutá el instalador oficial `Argos_Setup_v3_2_2.exe`.
 2. El instalador creará un acceso directo en tu Escritorio y Menú Inicio.
 3. Al hacer doble clic en **Argos**, se abrirá la aplicación en modo ventana independiente (App Mode).
 
