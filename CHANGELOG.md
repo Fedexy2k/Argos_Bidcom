@@ -3,6 +3,7 @@
 ## v3.2.2 (2026-08-19) - Corrección de Color Dinámico de Consumo y Maquetación de Normas en Hornos Eléctricos
 
 ### 🐛 Correcciones de Errores
+- **Formato de Coma Decimal Argentina/IRAM (`fmtComma`)**: Implementada la función de formateo automático que renderiza todos los valores numéricos decimales usando la coma (`,`) en lugar del punto (`.`) en todas las plantillas de etiquetas (ej: `0,63` kWh/ciclo, `15,7` lts, `7,5` kg), conforme a la norma oficial argentina (Res. SIyC N° 438/2024 y reglamentación IRAM).
 - **Color Dinámico de Banda de Consumo en Hornos**: Corregido `TemplateHorno` para que la barra de Consumo de Energía cambie dinámicamente de color según la clase seleccionada (A=Verde, B=Verde Claro, C=Amarillo Verdoso, D=Amarillo, E=Naranja Claro, F=Naranja, G=Rojo), garantizando que el 100% de las plantillas del sistema respondan de forma dinámica.
 - **Maquetación Flex de Normas IRAM y Resolución en Hornos**: Reemplazada la posición absoluta fija por un contenedor flex vertical autoadaptable (`display: flex`, `flex-direction: column`, `align-items: center`), evitando que las normas de múltiples líneas (ej: `IRAM 62414-1/2, IRAM 62301`) se tachen o se solapen con la línea separadora gris.
 

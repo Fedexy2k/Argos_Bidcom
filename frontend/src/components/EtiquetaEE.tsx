@@ -54,6 +54,12 @@ const pt = (v: number) => Math.round(v * 1.333 * (MM / 3.78));
 const BLUE = '#2E3092';
 const GRAY_BG = '#eae9ea';
 
+const fmtComma = (val: any, fallback = ''): string => {
+  if (val === undefined || val === null || val === '') return fallback ? String(fallback).replace(/\./g, ',') : '';
+  const str = String(val).trim();
+  return str.replace(/(\d+)\.(\d+)/g, '$1,$2');
+};
+
 // ── COMPONENTE TEMPLATE: HORNO ELÉCTRICO ───────────────────────────────────
 
 function TemplateHorno({ data, id = "label-export" }: { data: EtiquetaData; id?: string }) {
@@ -215,7 +221,7 @@ function TemplateHorno({ data, id = "label-export" }: { data: EtiquetaData; id?:
         <div key={i} style={{ position: 'absolute', top: BAR_TEXT_TOP + i * BAR_LH, left: MX + mm(2), height: BAR_LH, display: 'flex', alignItems: 'center', fontWeight: 700, fontSize: FS12, color: '#000' }}>{txt}</div>
       ))}
       <div style={{ position: 'absolute', top: BAR_TOP, left: MX + mm(45), width: LW - mm(45) - 4, height: BAR_H, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '5px' }}>
-        <span style={{ fontWeight: 700, fontSize: 58, color: '#000' }}>{data.consumoConvencional || '0.00'}</span>
+        <span style={{ fontWeight: 700, fontSize: 58, color: '#000' }}>{fmtComma(data.consumoConvencional, '0,00')}</span>
         <span style={{ fontSize: FS12, fontWeight: 400, color: '#000', position: 'relative', top: '16px' }}>kWh/ciclo</span>
       </div>
 
@@ -239,7 +245,7 @@ function TemplateHorno({ data, id = "label-export" }: { data: EtiquetaData; id?:
             <div style={{ position: 'absolute', top: lbTop, left: LBL_X, fontSize: FS6, lineHeight: lhMult, color: '#000', fontWeight: 'bold' }}>VOLUMEN DE<br />LA CAVIDAD</div>
             <img src="/icons/volumen-cavidad.png" alt="Oven" style={{ position: 'absolute', top: iconTop, left: iconLeft, width: iconSz, height: iconSz, objectFit: 'contain' }} />
             <div style={{ position: 'absolute', top: ROW1_T, left: VAL_X, width: VAL_W, height: ROW_H, display: 'flex', alignItems: 'center', fontWeight: 700, fontSize: FS10, color: '#000' }}>
-              {data.volumen || '0'} <span style={{ fontWeight: 400, fontSize: FS6, marginLeft: 3 }}>lts</span>
+              {fmtComma(data.volumen, '0')} <span style={{ fontWeight: 400, fontSize: FS6, marginLeft: 3 }}>lts</span>
             </div>
           </>
         );
@@ -257,7 +263,7 @@ function TemplateHorno({ data, id = "label-export" }: { data: EtiquetaData; id?:
           <>
             <div style={{ position: 'absolute', top: lbTop, left: LBL_X, fontSize: FS6, lineHeight: lhMult, color: '#000', fontWeight: 'bold' }}>CONSUMO<br />DE ENERG&Iacute;A<br />CONVENCIONAL</div>
             <img src="/icons/consumo-convencional.png" alt="Meter" style={{ position: 'absolute', top: iconTop, left: iconLeft, width: iconSz, height: iconSz, objectFit: 'contain' }} />
-            <div style={{ position: 'absolute', top: valTop, left: VAL_X, width: VAL_W, fontWeight: 700, fontSize: FS10, color: '#000', lineHeight: 1 }}>{data.consumoConvencional || '0.00'}</div>
+            <div style={{ position: 'absolute', top: valTop, left: VAL_X, width: VAL_W, fontWeight: 700, fontSize: FS10, color: '#000', lineHeight: 1 }}>{fmtComma(data.consumoConvencional, '0,00')}</div>
             <div style={{ position: 'absolute', top: valTop + FS10 + 2, left: VAL_X, width: VAL_W, fontSize: FS6, color: '#000', lineHeight: 1 }}>kWh/ciclo</div>
           </>
         );
@@ -275,7 +281,7 @@ function TemplateHorno({ data, id = "label-export" }: { data: EtiquetaData; id?:
           <>
             <div style={{ position: 'absolute', top: lbTop, left: LBL_X, fontSize: FS6, lineHeight: lhMult, color: '#000', fontWeight: 'bold' }}>CONSUMO<br />DE ENERG&Iacute;A<br />CONVENCIONAL<br />FORZADA</div>
             <img src="/icons/consumo-forzada.png" alt="Gauge" style={{ position: 'absolute', top: iconTop, left: iconLeft, width: iconSz, height: iconSz, objectFit: 'contain' }} />
-            <div style={{ position: 'absolute', top: valTop, left: VAL_X, width: VAL_W, fontWeight: 700, fontSize: FS10, color: '#000', lineHeight: 1 }}>{data.consumoForzada || '0.00'}</div>
+            <div style={{ position: 'absolute', top: valTop, left: VAL_X, width: VAL_W, fontWeight: 700, fontSize: FS10, color: '#000', lineHeight: 1 }}>{fmtComma(data.consumoForzada, '0,00')}</div>
             <div style={{ position: 'absolute', top: valTop + FS10 + 2, left: VAL_X, width: VAL_W, fontSize: FS6, color: '#000', lineHeight: 1 }}>kWh/ciclo</div>
           </>
         );
@@ -322,7 +328,7 @@ function TemplateHorno({ data, id = "label-export" }: { data: EtiquetaData; id?:
               );
             })()}
             <div style={{ position: 'absolute', top: ROW4_T, left: MX + LW - mm(13), width: mm(13), height: ROW_H, display: 'flex', alignItems: 'center', fontWeight: 700, fontSize: FS8, color: '#000' }}>
-              {data.consumoEspera || '0.00'}w
+              {fmtComma(data.consumoEspera, '0,00')}w
             </div>
           </>
         );
@@ -536,7 +542,7 @@ function TemplateLavavajillas({ data, id = "label-export" }: { data: EtiquetaDat
             CONSUMO<br />DE ENERGÍA<br />POR CICLO
           </div>
           <div style={{ display: 'flex', alignItems: 'baseline' }}>
-            <span style={{ fontSize: pt(60), fontWeight: 'bold', color: '#000', lineHeight: '0.8' }}>{data.consumoEnergia || '0.00'}</span>
+            <span style={{ fontSize: pt(60), fontWeight: 'bold', color: '#000', lineHeight: '0.8' }}>{fmtComma(data.consumoEnergia, '0,00')}</span>
             <span style={{ fontSize: pt(16), marginLeft: mm(1), color: '#000' }}>kWh</span>
           </div>
         </div>
@@ -554,7 +560,7 @@ function TemplateLavavajillas({ data, id = "label-export" }: { data: EtiquetaDat
             {/* Slider Top Values (Dynamic Triangle) */}
             <div style={{ position: 'absolute', left: `${sliderPct}%`, bottom: mm(5), transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <div style={{ display: 'flex', alignItems: 'baseline', whiteSpace: 'nowrap' }}>
-                <span style={{ fontFamily: 'Arial', fontWeight: 'bold', fontSize: pt(12) }}>{data.consumoAgua || '0'}</span>
+                <span style={{ fontFamily: 'Arial', fontWeight: 'bold', fontSize: pt(12) }}>{fmtComma(data.consumoAgua, '0')}</span>
                 <span style={{ fontFamily: 'Arial', fontSize: pt(8), marginLeft: mm(1) }}>lts</span>
               </div>
               <div style={{
@@ -613,7 +619,7 @@ function TemplateLavavajillas({ data, id = "label-export" }: { data: EtiquetaDat
                 <img src="/icons/capacidad.png" style={{ height: mm(8) }} alt="capacidad" />
               </div>
               <div style={{ width: mm(22), display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start' }}>
-                <span style={{ fontSize: pt(10), fontFamily: '"Arial Black", Arial', lineHeight: 1, fontWeight: 'bold' }}>{data.capacidad || '0'}</span>
+                <span style={{ fontSize: pt(10), fontFamily: '"Arial Black", Arial', lineHeight: 1, fontWeight: 'bold' }}>{fmtComma(data.capacidad, '0')}</span>
                 <span style={{ fontSize: pt(5), fontFamily: 'Arial' }}>Cubiertos</span>
               </div>
               <div style={{ position: 'absolute', bottom: 0, left: mm(2), width: mm(53), height: `${lineW}px`, backgroundColor: '#000' }} />
@@ -626,7 +632,7 @@ function TemplateLavavajillas({ data, id = "label-export" }: { data: EtiquetaDat
                 <img src="/icons/ruido.png" style={{ height: mm(8) }} alt="ruido" />
               </div>
               <div style={{ width: mm(22), display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start' }}>
-                <span style={{ fontSize: pt(10), fontFamily: '"Arial Black", Arial', lineHeight: 1, fontWeight: 'bold' }}>{data.ruido || '0'}</span>
+                <span style={{ fontSize: pt(10), fontFamily: '"Arial Black", Arial', lineHeight: 1, fontWeight: 'bold' }}>{fmtComma(data.ruido, '0')}</span>
                 <span style={{ fontSize: pt(5), fontFamily: 'Arial' }}>dB(A)re 1 pW</span>
               </div>
             </div>
@@ -664,7 +670,7 @@ function TemplateLavavajillas({ data, id = "label-export" }: { data: EtiquetaDat
           <div style={{ position: 'absolute', left: mm(57), top: mm(35), width: mm(55), height: mm(10), backgroundColor: bgGrisClaro, display: 'flex', alignItems: 'center', justifyContent: 'center', paddingRight: mm(1) }}>
             <span style={{ fontSize: pt(8), fontWeight: 'bold', whiteSpace: 'nowrap', fontFamily: 'Arial' }}>CONSUMO EN ESPERA</span>
             <img src="/icons/espera.png" style={{ height: mm(6), marginLeft: mm(1), marginRight: mm(1) }} alt="standby" />
-            <span style={{ fontSize: pt(8), fontFamily: '"Arial Black", Arial', fontWeight: 'bold' }}>{data.consumoEspera || '0.00'}W</span>
+            <span style={{ fontSize: pt(8), fontFamily: '"Arial Black", Arial', fontWeight: 'bold' }}>{fmtComma(data.consumoEspera, '0,00')}W</span>
           </div>
 
         </div>
@@ -813,7 +819,7 @@ function TemplateGeneric({ data, familyId, id = "label-export" }: { data: Etique
       </div>
       <div style={{ position: 'absolute', top: BAR_TOP, right: MX + mm(3), height: BAR_H, display: 'flex', alignItems: 'baseline', justifyContent: 'flex-end', gap: '3px' }}>
         <span style={{ fontWeight: 900, fontSize: pt(36), color: '#000', lineHeight: 0.8 }}>
-          {data.consumo_anual || data.consumo_ciclo || data.consumo_encendido || '0.00'}
+          {fmtComma(data.consumo_anual || data.consumo_ciclo || data.consumo_encendido, '0,00')}
         </span>
         <span style={{ fontSize: pt(8), fontWeight: 'bold', color: '#000' }}>
           {data.consumo_anual ? 'kWh/año' : 'kWh'}
@@ -835,7 +841,7 @@ function TemplateGeneric({ data, familyId, id = "label-export" }: { data: Etique
               {k.replace('_', ' ')}
             </span>
             <span style={{ fontSize: pt(8.5), fontWeight: 900, color: '#000' }}>
-              {String(val)}
+              {fmtComma(val)}
             </span>
           </div>
         );
@@ -942,14 +948,14 @@ function TemplateLavarropas({ data, id = "label-export" }: { data: EtiquetaData;
   const selectedIndex = LETTERS.indexOf(data.eficiencia) >= 0 ? LETTERS.indexOf(data.eficiencia) : 0;
   const ribbonWidths = [31.5, 36.3, 41.1, 45.9, 50.7, 55.5, 60.3];
 
-  const consumoCiclo = data.consumoCiclo || data.consumo_ciclo || data.consumoEnergia || '0,26';
-  const capacidad = data.capacidad || data.capacidad_carga || '7,5';
+  const consumoCiclo = fmtComma(data.consumoCiclo || data.consumo_ciclo || data.consumoEnergia, '0,26');
+  const capacidad = fmtComma(data.capacidad || data.capacidad_carga, '7,5');
   const claseCentrifugado = (data.claseCentrifugado || data.clase_centrifugado || data.eficaciaCentrifugado || 'B').toUpperCase();
-  const aguaCiclo = data.aguaCiclo || data.agua_ciclo || data.consumoAgua || '62';
-  const rpmMax = data.rpmMax || data.rpm_max || data.velocidadCentrifugado || '1200';
-  const duracionCiclo = data.duracionCiclo || data.duracion_ciclo || data.duracion || '235';
-  const consumoEspera = data.consumoEspera || data.consumo_espera || '0.50';
-  const nivelRuido = data.ruido || data.nivel_ruido || data.ruido_centrifugado || '74';
+  const aguaCiclo = fmtComma(data.aguaCiclo || data.agua_ciclo || data.consumoAgua, '62');
+  const rpmMax = fmtComma(data.rpmMax || data.rpm_max || data.velocidadCentrifugado, '1200');
+  const duracionCiclo = fmtComma(data.duracionCiclo || data.duracion_ciclo || data.duracion, '235');
+  const consumoEspera = fmtComma(data.consumoEspera || data.consumo_espera, '0,50');
+  const nivelRuido = fmtComma(data.ruido || data.nivel_ruido || data.ruido_centrifugado, '74');
 
   return (
     <div
@@ -1267,12 +1273,12 @@ function TemplateRefrigeradores({ data, id = "label-export" }: { data: EtiquetaD
   const selectedIndex = LETTERS.indexOf(data.eficiencia) >= 0 ? LETTERS.indexOf(data.eficiencia) : 0;
   const ribbonWidths = [31.5, 36.3, 41.1, 45.9, 50.7, 55.5, 60.3]; // mm width of A to G labels
 
-  const volFrescos = data.vol_frescos || data.volFrescos || data.volumen_frescos || '274';
-  const volCongelados = data.vol_congelados || data.volCongelados || data.volumen_congelados || '168';
-  const consumoAnual = data.consumo_anual || data.consumoAnual || data.consumo_energia || '308';
-  const nivelRuido = data.ruido || data.nivelRuido || data.nivel_ruido || '36';
+  const volFrescos = fmtComma(data.vol_frescos || data.volFrescos || data.volumen_frescos, '274');
+  const volCongelados = fmtComma(data.vol_congelados || data.volCongelados || data.volumen_congelados, '168');
+  const consumoAnual = fmtComma(data.consumo_anual || data.consumoAnual || data.consumo_energia, '308');
+  const nivelRuido = fmtComma(data.ruido || data.nivelRuido || data.nivel_ruido, '36');
   const claseClimatica = data.clase_climatica || data.claseClimatica || 'T';
-  const consumoEspera = data.consumo_espera || data.consumoEspera || '0.28';
+  const consumoEspera = fmtComma(data.consumo_espera || data.consumoEspera, '0,28');
 
   return (
     <div
