@@ -373,8 +373,8 @@ function TemplateHorno({ data, id = "label-export" }: { data: EtiquetaData; id?:
       <Hline y={FOOTER_SEP_Y} x={MX} w={LW} />
 
       {/* 5. FOOTER */}
-      <div style={{ position: 'absolute', top: FOOTER_T + 4, left: MX, width: LW, height: mm(5), display: 'flex', alignItems: 'center', fontFamily: '"Arial Black", Arial, sans-serif', fontSize: FS11, fontWeight: 900 }}>
-        {data.descripcion || 'HORNO ELÉCTRICO'}
+      <div style={{ position: 'absolute', top: FOOTER_T + 4, left: MX, width: LW, height: mm(5), display: 'flex', alignItems: 'center', fontFamily: '"Arial Black", Arial, sans-serif', fontSize: FS11, fontWeight: 900, textTransform: 'uppercase' }}>
+        {(data.descripcion || 'HORNOS ELÉCTRICOS').toUpperCase()}
       </div>
       {[
         { label: 'MODELO', val: data.modelo },
@@ -383,7 +383,7 @@ function TemplateHorno({ data, id = "label-export" }: { data: EtiquetaData; id?:
       ].map(({ label, val }, i) => (
         <div key={label} style={{ position: 'absolute', top: FOOTER_T + 4 + mm(5) + i * mm(3.8), left: MX, width: LW, height: mm(3.8), display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: FS7, fontWeight: 'bold' }}>
           <span>{label}</span>
-          <span style={{ fontWeight: 900 }}>{val || '—'}</span>
+          <span style={{ fontWeight: 900 }}>{(val || '—').toUpperCase()}</span>
         </div>
       ))}
     </div>
@@ -679,19 +679,21 @@ function TemplateLavavajillas({ data, id = "label-export" }: { data: EtiquetaDat
 
         {/* Footer */}
         <div style={{ position: 'absolute', top: yFooter + mm(2), left: 0, width: '100%', height: H_FOOTER - mm(2), display: 'flex', flexDirection: 'column' }}>
-          <div style={{ fontSize: pt(12), fontWeight: 900, fontFamily: '"Arial Black", Arial', marginBottom: mm(1) }}>LAVAVAJILLAS</div>
+          <div style={{ fontSize: pt(12), fontWeight: 900, fontFamily: '"Arial Black", Arial', marginBottom: mm(1), textTransform: 'uppercase' }}>
+            {(data.descripcion || 'LAVAVAJILLAS').toUpperCase()}
+          </div>
           <div style={{ display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <span style={{ fontSize: pt(7), fontWeight: 'bold' }}>MODELO</span>
-              <span style={{ fontSize: pt(7), fontWeight: 'bold' }}>{data.modelo}</span>
+              <span style={{ fontSize: pt(7), fontWeight: 'bold' }}>{(data.modelo || '').toUpperCase()}</span>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <span style={{ fontSize: pt(7), fontWeight: 'bold' }}>MARCA COMERCIAL</span>
-              <span style={{ fontSize: pt(7), fontWeight: 'bold' }}>{data.marca}</span>
+              <span style={{ fontSize: pt(7), fontWeight: 'bold' }}>{(data.marca || '').toUpperCase()}</span>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <span style={{ fontSize: pt(7), fontWeight: 'bold' }}>ORIGEN</span>
-              <span style={{ fontSize: pt(7), fontWeight: 'bold' }}>{data.origen}</span>
+              <span style={{ fontSize: pt(7), fontWeight: 'bold' }}>{(data.origen || '').toUpperCase()}</span>
             </div>
           </div>
         </div>
@@ -872,8 +874,8 @@ function TemplateGeneric({ data, familyId, id = "label-export" }: { data: Etique
 
       {/* Footer */}
       <Hline y={FOOTER_Y} />
-      <div style={{ position: 'absolute', top: FOOTER_Y + 2, left: MX, width: LW, height: mm(5), display: 'flex', alignItems: 'center', fontFamily: '"Arial Black", Arial, sans-serif', fontSize: pt(9.5), fontWeight: 900 }}>
-        {data.descripcion || familyId.toUpperCase()}
+      <div style={{ position: 'absolute', top: FOOTER_Y + 2, left: MX, width: LW, height: mm(5), display: 'flex', alignItems: 'center', fontFamily: '"Arial Black", Arial, sans-serif', fontSize: pt(9.5), fontWeight: 900, textTransform: 'uppercase' }}>
+        {(data.descripcion || familyId || 'PRODUCTO').toUpperCase()}
       </div>
       {[
         { label: 'MODELO', val: data.modelo },
@@ -882,7 +884,7 @@ function TemplateGeneric({ data, familyId, id = "label-export" }: { data: Etique
       ].map(({ label, val }, i) => (
         <div key={label} style={{ position: 'absolute', top: FOOTER_Y + 2 + mm(5) + i * mm(3.8), left: MX, width: LW, height: mm(3.8), display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: pt(6.5), fontWeight: 'bold' }}>
           <span>{label}</span>
-          <span style={{ fontWeight: 900 }}>{val || '—'}</span>
+          <span style={{ fontWeight: 900 }}>{(val || '—').toUpperCase()}</span>
         </div>
       ))}
     </div>
@@ -1195,14 +1197,14 @@ function TemplateLavarropas({ data, id = "label-export" }: { data: EtiquetaData;
           <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: `${lineW}px`, backgroundColor: '#000' }} />
           
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', paddingTop: mm(1.5) }}>
-            <div style={{ fontSize: pt(12), fontFamily: '"Arial Black", Arial, sans-serif', fontWeight: 900 }}>
-              LAVARROPAS
+            <div style={{ fontSize: pt(12), fontFamily: '"Arial Black", Arial, sans-serif', fontWeight: 900, textTransform: 'uppercase' }}>
+              {(data.descripcion || 'LAVARROPAS').toUpperCase()}
             </div>
 
             <div style={{ fontSize: pt(6.5), textAlign: 'right', lineHeight: '8.5pt' }}>
-              <div>MODELO <span style={{ fontWeight: 'bold', marginLeft: mm(2) }}>{data.modelo || 'GAD-WM80'}</span></div>
-              <div>MARCA COMERCIAL <span style={{ fontWeight: 'bold', marginLeft: mm(2) }}>{data.marca || 'GADNIC'}</span></div>
-              <div>ORIGEN <span style={{ fontWeight: 'bold', marginLeft: mm(2) }}>{data.origen || 'CHINA'}</span></div>
+              <div>MODELO <span style={{ fontWeight: 'bold', marginLeft: mm(2) }}>{(data.modelo || 'GAD-WM80').toUpperCase()}</span></div>
+              <div>MARCA COMERCIAL <span style={{ fontWeight: 'bold', marginLeft: mm(2) }}>{(data.marca || 'GADNIC').toUpperCase()}</span></div>
+              <div>ORIGEN <span style={{ fontWeight: 'bold', marginLeft: mm(2) }}>{(data.origen || 'CHINA').toUpperCase()}</span></div>
             </div>
           </div>
         </div>
@@ -1515,15 +1517,15 @@ function TemplateRefrigeradores({ data, id = "label-export" }: { data: EtiquetaD
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <span style={{ fontSize: pt(8), fontFamily: 'Arial, sans-serif', fontWeight: 'normal' }}>MODELO</span>
-            <span style={{ fontSize: pt(8), fontFamily: 'Arial, sans-serif', fontWeight: 'normal' }}>{data.modelo || '123'}</span>
+            <span style={{ fontSize: pt(8), fontFamily: 'Arial, sans-serif', fontWeight: 'normal' }}>{(data.modelo || '—').toUpperCase()}</span>
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <span style={{ fontSize: pt(8), fontFamily: 'Arial, sans-serif', fontWeight: 'normal' }}>MARCA COMERCIAL</span>
-            <span style={{ fontSize: pt(8), fontFamily: 'Arial, sans-serif', fontWeight: 'normal' }}>{data.marca || 'ABC'}</span>
+            <span style={{ fontSize: pt(8), fontFamily: 'Arial, sans-serif', fontWeight: 'normal' }}>{(data.marca || '—').toUpperCase()}</span>
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <span style={{ fontSize: pt(8), fontFamily: 'Arial, sans-serif', fontWeight: 'normal' }}>ORIGEN</span>
-            <span style={{ fontSize: pt(8), fontFamily: 'Arial, sans-serif', fontWeight: 'normal' }}>{data.origen || 'ABC'}</span>
+            <span style={{ fontSize: pt(8), fontFamily: 'Arial, sans-serif', fontWeight: 'normal' }}>{(data.origen || '—').toUpperCase()}</span>
           </div>
         </div>
 
