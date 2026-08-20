@@ -374,7 +374,7 @@ function TemplateHorno({ data, id = "label-export" }: { data: EtiquetaData; id?:
 
       {/* 5. FOOTER */}
       <div style={{ position: 'absolute', top: FOOTER_T + 4, left: MX, width: LW, height: mm(5), display: 'flex', alignItems: 'center', fontFamily: '"Arial Black", Arial, sans-serif', fontSize: FS11, fontWeight: 900, textTransform: 'uppercase' }}>
-        {(data.descripcion || 'HORNOS ELÉCTRICOS').toUpperCase()}
+        {(data.descripcion || 'HORNO ELÉCTRICO').toUpperCase()}
       </div>
       {[
         { label: 'MODELO', val: data.modelo },
@@ -1547,6 +1547,7 @@ export default function EtiquetaEE({ familyId, data, id = "label-export" }: Prop
   };
 
   if (familyId === 'hornos') {
+    normalizedData.descripcion = 'HORNO ELÉCTRICO';
     normalizedData.consumoConvencional = data.consumoConvencional || data.consumo_ciclo || '';
     normalizedData.consumoForzada = data.consumoForzada || data.consumo_forzada || '';
     normalizedData.volumen = data.volumen || data.vol_util || '';

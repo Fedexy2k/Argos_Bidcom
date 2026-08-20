@@ -1030,7 +1030,7 @@
     },
     {
       "id": "hornos",
-      "label": "Hornos eléctricos",
+      "label": "Horno eléctrico",
       "norma_base": "IRAM 62414-1/2, IRAM 62301",
       "fields": [
         {
