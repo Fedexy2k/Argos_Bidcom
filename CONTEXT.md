@@ -93,10 +93,12 @@ graph TD
 *   **Requisito de Tesseract en Ruta Estática:** La rasterización indexable en el merge del PDF requiere que Tesseract esté instalado en el sistema (`C:\Program Files\Tesseract-OCR`) o que sea provisto mediante el empaquetado interno de PyInstaller (`sys._MEIPASS`), de lo contrario fallará silenciosamente y unirá los PDFs en modo imagen pura (sin OCR).
 *   **Cuotas del Plan Free de Gemini:** La clave API de Gemini utilizada por `AISpecsHelper` tiene un límite estricto de 15 solicitudes por minuto. Si se realizan verificaciones masivas rápidas, podría gatillar errores `429 RESOURCE_EXHAUSTED` a pesar del delay de 2.0 segundos implementado.
 
-## 📋 Próximos pasos
+## 📋 Próximos pasos & Mejoras a Mediano Plazo (Tech Radar)
 *   **Detección Preventiva de Dependencias:** Implementar una validación en `/api/health` o en el arranque del backend que avise al usuario si no se encuentran instalados LibreOffice, MS Word o Tesseract en el equipo, mostrando un aviso visible en la UI.
 *   **Soporte de Estrategias para Nuevos OECs:** Extender las estrategias de auditoría de `m2_strategies.py` para cubrir organismos certificadores secundarios usados recientemente por Bidcom.
-*   **Modo OCR offline alternativo:** Diseñar un motor de extracción OCR local simplificado para su uso en computadoras sin acceso a internet o sin una API Key de Gemini configurada.
+*   **Pipeline de Parsing Avanzado (Docling / Surya):** Evaluar `DS4SD/docling` y `VikParuchuri/surya` para el parsing automático de PDFs con tablas anidadas y jerarquías complejas, reemplazando heurísticas manuales de coordenadas `(y0, x0)`.
+*   **Extracción Estructurada con Cero Alucinaciones (Instructor):** Integrar `instructor-ai/instructor` sobre Gemini/OpenAI para forzar esquemas Pydantic estrictos con auto-retry y validación matemática en los extractores de certificados y DJC.
+*   **Distribución Ultraligera Desktop (Tauri v2):** Evaluar migración de PyInstaller (~75 MB) a `tauri-apps/tauri` v2 con WebView nativo de Windows (reducción estimada a 10-15 MB).
 
 ## 🚫 Anti-patterns — NO hacer esto
 *   **NO incrementar la versión en desarrollo:** Según la [[rules.md]], la versión del software debe permanecer estática e inalterada en los 6 archivos del release (por ejemplo, `v2.5.0`) durante toda la fase de desarrollo y pruebas. Solo se incrementa la versión al finalizar el desarrollo completo y estar listos para compilar un nuevo instalador `.iss` oficial.

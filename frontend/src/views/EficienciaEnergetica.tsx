@@ -111,10 +111,11 @@ export default function EficienciaEnergetica({ onLog }: Props) {
   // Campos específicos de la familia
   const [eeFields, setEeFields] = useState<Record<string, any>>({});
 
-  // Informe de ensayo
+  // Informe de ensayo y Normas
   const [certNumber, setCertNumber] = useState('');
   const [oecNombre, setOecNombre] = useState('TÜV Rheinland');
   const [oecContacto, setOecContacto] = useState('');
+  const [referenciaIram, setReferenciaIram] = useState('');
   const [fechaEmision, setFechaEmision] = useState('');
   const [fechaVencimiento, setFechaVencimiento] = useState('');
   const [fechaEmisionDjc, setFechaEmisionDjc] = useState('');
@@ -216,8 +217,9 @@ export default function EficienciaEnergetica({ onLog }: Props) {
       fam.fields.forEach(field => {
         initial[field.key] = field.default || (field.type === 'select' ? field.options?.[0] : '');
       });
-      // Predeterminar descripción de producto según la familia
+      // Predeterminar descripción de producto y norma según la familia
       setProductoDesc(fam.label);
+      setReferenciaIram(fam.norma_base || '');
       setEeFields(initial);
     }
   };
@@ -266,7 +268,7 @@ export default function EficienciaEnergetica({ onLog }: Props) {
       origen,
       eficiencia: eeFields.clase_ee || 'A',
       qrImageUrl,
-      referenciaIram: fam?.norma_base || '',
+      referenciaIram: referenciaIram || fam?.norma_base || '',
       resolucion: 'Res. 438/2024',
       descripcion: productoDesc,
       ...eeFields
@@ -338,7 +340,7 @@ export default function EficienciaEnergetica({ onLog }: Props) {
         producto_desc: productoDesc,
         base_specs: baseSpecs,
         ee_fields: eeFields,
-        normas: selectedFamily?.norma_base || '',
+        normas: referenciaIram || selectedFamily?.norma_base || '',
         cert_number: certNumber,
         oec_nombre: oecNombre,
         oec_contacto: oecContacto,
@@ -1012,6 +1014,18 @@ export default function EficienciaEnergetica({ onLog }: Props) {
                   </div>
 
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                    <label style={labelStyle}>Normas Técnicas de Referencia (IRAM)</label>
+                    <input
+                      type="text"
+                      value={referenciaIram}
+                      onChange={e => setReferenciaIram(e.target.value)}
+                      style={inputStyle()}
+                      placeholder="Ej: IRAM 62414-1/2, IRAM 62301"
+                    />
+                    <span style={{ fontSize: 10, color: '#64748b', marginTop: 4 }}>Norma o normas IRAM aplicables. Podés ingresar múltiples normas separadas por comas.</span>
+                  </div>
+
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
                     <label style={labelStyle}>Datos de Contacto del Laboratorio</label>
                     <input
                       type="text"
@@ -1112,6 +1126,18 @@ export default function EficienciaEnergetica({ onLog }: Props) {
                       </div>
                     </div>
                   )}
+
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                    <label style={labelStyle}>Normas Técnicas de Referencia (IRAM)</label>
+                    <input
+                      type="text"
+                      value={referenciaIram}
+                      onChange={e => setReferenciaIram(e.target.value)}
+                      style={inputStyle()}
+                      placeholder="Ej: IRAM 62414-1/2, IRAM 62301"
+                    />
+                    <span style={{ fontSize: 10, color: '#64748b', marginTop: 4 }}>Edición en tiempo real: los cambios se reflejan inmediatamente en la etiqueta visual.</span>
+                  </div>
 
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
                     <label style={labelStyle}>Código QR de la Etiqueta</label>

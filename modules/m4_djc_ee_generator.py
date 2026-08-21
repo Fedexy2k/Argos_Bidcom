@@ -592,7 +592,7 @@ class DJCEEGenerator:
         # --- Tabla 2: Especificaciones Técnicas (Filtrar y Completar) ---
         family = self.get_family_by_id(family_id)
         ficha_fields = family.get("ficha_fields", []) if family else []
-        norma_base = family.get("norma_base", "") if family else data.get("normas", "")
+        norma_base = data.get("normas") or (family.get("norma_base", "") if family else "")
 
         label_map = {}
         static_map = {}
