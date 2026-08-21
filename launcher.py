@@ -134,7 +134,7 @@ def main():
         
         ctk.CTkLabel(root, text="Este panel lanzará la interfaz principal de Argos.", font=ctk.CTkFont(size=11), text_color="gray").pack(side="bottom", pady=10)
     else:
-        ctk.Label(root, text="Argos V3.2.1", font=("Arial", 16, "bold")).pack(pady=(20, 5))
+        ctk.Label(root, text="Argos V3.2.2", font=("Arial", 16, "bold")).pack(pady=(20, 5))
         status_label = ctk.Label(root, text="Iniciando servidor...", fg="orange")
         status_label.pack(pady=5)
         

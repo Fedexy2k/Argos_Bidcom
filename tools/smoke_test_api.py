@@ -19,7 +19,7 @@ def run_smoke_tests():
         assert r.status_code == 200, f"Status {r.status_code}"
         data = r.json()
         assert data.get("status") == "ok", f"Data: {data}"
-        assert data.get("version") == "3.2.1", f"Version: {data.get('version')}"
+        assert data.get("version") == "3.2.2", f"Version: {data.get('version')}"
         tests.append(("GET /api/health", "PASSED", f"Version: {data.get('version')}"))
     except Exception as e:
         tests.append(("GET /api/health", "FAILED", str(e)))

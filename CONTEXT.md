@@ -2,8 +2,8 @@
 proyecto: Argos
 stack: [FastAPI, React, TypeScript, Tailwind CSS, Vite, PyMuPDF, python-docx, openpyxl, comtypes, OpenAI API, Google GenAI SDK, LibreOffice, Tesseract OCR]
 status: en-desarrollo
-versión_actual: v3.2.1
-última_actualización: 2026-08-17
+versión_actual: v3.2.2
+última_actualización: 2026-08-20
 ---
 # CONTEXT.md — Argos
 
