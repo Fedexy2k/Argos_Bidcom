@@ -573,6 +573,18 @@ export default function EficienciaEnergetica({ onLog }: Props) {
                   <input type="text" value={origen} onChange={e => setOrigen(e.target.value)} style={inputStyle()} />
                 </div>
 
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                  <label style={labelStyle}>Normas Técnicas de Referencia (IRAM)</label>
+                  <input
+                    type="text"
+                    value={referenciaIram}
+                    onChange={e => setReferenciaIram(e.target.value)}
+                    style={inputStyle()}
+                    placeholder="Ej: IRAM 62414-1/2, IRAM 62301"
+                  />
+                  <span style={{ fontSize: 10, color: '#64748b', marginTop: 2 }}>Se actualiza en tiempo real en la vista previa de la etiqueta.</span>
+                </div>
+
                 <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: 16, marginTop: 8 }}>
                   <h4 style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: '#8b5cf6', textTransform: 'uppercase', marginBottom: 14 }}>
                     Métricas de la Familia
