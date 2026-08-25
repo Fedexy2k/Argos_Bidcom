@@ -71,7 +71,12 @@ export async function generateEEDJC(params: EEGenerateParams): Promise<EEGenerat
   });
   if (!r.ok) {
     const err = await r.json().catch(() => ({ detail: 'Error generando DJC-EE' }));
-    throw new Error(err.detail || 'Error en la generación');
+    const detailMsg = typeof err.detail === 'string'
+      ? err.detail
+      : Array.isArray(err.detail)
+        ? err.detail.map((d: any) => `${d.loc?.join('.') || 'campo'}: ${d.msg}`).join(', ')
+        : JSON.stringify(err.detail);
+    throw new Error(detailMsg || 'Error en la generación');
   }
   return r.json();
 }

@@ -1,4 +1,4 @@
-﻿"""
+"""
 api/routers/ee.py
 =================
 Eficiencia Energética (EE) generation, family configurations, and auto-extraction endpoints.
@@ -28,13 +28,13 @@ router = APIRouter(prefix="/api/ee", tags=["Eficiencia Energética"])
 # ── Pydantic Models ───────────────────────────────────────────────────────────
 
 class EEGenerateRequest(BaseModel):
-    family_id: str
-    bidcom_num: str
-    marca: str
-    modelo: str
-    producto_desc: str
-    base_specs: dict[str, str]
-    ee_fields: dict[str, Any]
+    family_id: str = ""
+    bidcom_num: str = ""
+    marca: str = ""
+    modelo: str = ""
+    producto_desc: str = ""
+    base_specs: dict[str, Any] = {}
+    ee_fields: dict[str, Any] = {}
     normas: str = ""
     cert_number: str = ""
     oec_nombre: str = ""
